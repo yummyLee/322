@@ -1,0 +1,2686 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://hero_v2/cloth.gdshader" id="1_4pt66"]
+[ext_resource type="PackedScene" path="res://hero_v2/traveler.tscn" id="2_oi42k"]
+[ext_resource type="Script" path="res://hero_v2/hero_controller.gd" id="3_2ujlq"]
+[ext_resource type="Script" path="res://hero_v2/follow_camera.gd" id="4_2d6qq"]
+
+[sub_resource type="Environment" id="Environment_ruxxa"]
+background_mode = 1
+background_color = Color(0.1254902, 0.18039216, 0.16862746, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7019608, 0.7411765, 0.69803923, 1)
+ambient_light_energy = 0.52
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ls1ni"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.46666667, 0.48235294, 0.38039216, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v1i68"]
+size = Vector3(32, 0.35, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4befr"]
+size = Vector3(32, 0.35, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibmx6"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.6509804, 0.6039216, 0.4862745, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_brf2k"]
+size = Vector3(30, 0.02, 3.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tq4n2"]
+size = Vector3(3.5, 0.022, 30)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gw7t"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.6156863, 0.5803922, 0.49019608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n8tjg"]
+size = Vector3(0.4508618, 0.033, 0.31595555)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wickd"]
+size = Vector3(0.43657508, 0.033, 0.2976995)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3bnwq"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.73333335, 0.68235296, 0.57254905, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o4f0j"]
+size = Vector3(0.45136264, 0.033, 0.3173585)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fy6tc"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.6431373, 0.5921569, 0.4862745, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uu7df"]
+size = Vector3(0.37423635, 0.033, 0.3169603)
+
+[sub_resource type="BoxMesh" id="BoxMesh_af2mb"]
+size = Vector3(0.36687848, 0.033, 0.33541676)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cbeax"]
+size = Vector3(0.42114174, 0.033, 0.31772062)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bnlfg"]
+size = Vector3(0.40211192, 0.033, 0.28242028)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a707v"]
+size = Vector3(0.431807, 0.033, 0.30899405)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ocjqh"]
+size = Vector3(0.36784148, 0.033, 0.30418485)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cftrg"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.69411767, 0.64705884, 0.5411765, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_28xri"]
+size = Vector3(0.3970553, 0.033, 0.29694262)
+
+[sub_resource type="BoxMesh" id="BoxMesh_icqra"]
+size = Vector3(0.4037007, 0.033, 0.2735656)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8jaej"]
+size = Vector3(0.3651877, 0.033, 0.31842858)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iu6kb"]
+size = Vector3(0.44806686, 0.033, 0.3174873)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ylmi6"]
+size = Vector3(0.3978338, 0.033, 0.29119697)
+
+[sub_resource type="BoxMesh" id="BoxMesh_28u11"]
+size = Vector3(0.41063243, 0.033, 0.32659015)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j1l1s"]
+size = Vector3(0.37039194, 0.033, 0.29826164)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vfk1q"]
+size = Vector3(0.45387083, 0.033, 0.3020241)
+
+[sub_resource type="BoxMesh" id="BoxMesh_udr7y"]
+size = Vector3(0.3990492, 0.033, 0.33770317)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l15so"]
+size = Vector3(0.36810824, 0.033, 0.30901882)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3y4q8"]
+size = Vector3(0.39585957, 0.033, 0.32195115)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rdore"]
+size = Vector3(0.43377727, 0.033, 0.28191304)
+
+[sub_resource type="BoxMesh" id="BoxMesh_17ngy"]
+size = Vector3(0.3638882, 0.033, 0.30303082)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m6faa"]
+size = Vector3(0.4300469, 0.033, 0.3285866)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5x4eg"]
+size = Vector3(0.4159932, 0.033, 0.2823991)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lj4pa"]
+size = Vector3(0.44462305, 0.033, 0.3204031)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rayu3"]
+size = Vector3(0.44642428, 0.033, 0.33989388)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cttca"]
+size = Vector3(0.42858273, 0.033, 0.30710626)
+
+[sub_resource type="BoxMesh" id="BoxMesh_usmgv"]
+size = Vector3(0.36423755, 0.033, 0.27500296)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ysnwy"]
+size = Vector3(0.45817155, 0.033, 0.3188631)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lh3fh"]
+size = Vector3(0.42590284, 0.033, 0.3038056)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cdcpf"]
+size = Vector3(0.44074956, 0.033, 0.3050508)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i6knq"]
+size = Vector3(0.4252389, 0.033, 0.32484856)
+
+[sub_resource type="BoxMesh" id="BoxMesh_aaaku"]
+size = Vector3(0.4365799, 0.033, 0.3342654)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uj7dx"]
+size = Vector3(0.4039207, 0.033, 0.2844493)
+
+[sub_resource type="BoxMesh" id="BoxMesh_34g25"]
+size = Vector3(0.40742895, 0.033, 0.33709633)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yg20j"]
+size = Vector3(0.41359186, 0.033, 0.30001378)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kuqkn"]
+size = Vector3(0.41768226, 0.033, 0.31610668)
+
+[sub_resource type="BoxMesh" id="BoxMesh_emkrf"]
+size = Vector3(0.4112962, 0.033, 0.33525243)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0gtb2"]
+size = Vector3(0.40349776, 0.033, 0.3387215)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ldusx"]
+size = Vector3(0.42601663, 0.033, 0.3305484)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hyj4f"]
+size = Vector3(0.3960768, 0.033, 0.28799304)
+
+[sub_resource type="BoxMesh" id="BoxMesh_das6s"]
+size = Vector3(0.368901, 0.033, 0.28915834)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mngnw"]
+size = Vector3(0.40309805, 0.033, 0.28025094)
+
+[sub_resource type="BoxMesh" id="BoxMesh_atvea"]
+size = Vector3(0.40395504, 0.033, 0.28082213)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uu725"]
+size = Vector3(0.44558588, 0.033, 0.28981808)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e51s7"]
+size = Vector3(0.38680556, 0.033, 0.29391158)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nmxc6"]
+size = Vector3(0.40079, 0.033, 0.3346674)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2vsx7"]
+size = Vector3(0.44326365, 0.033, 0.27737293)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6xjsp"]
+size = Vector3(0.45406386, 0.033, 0.3228979)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jdoly"]
+size = Vector3(0.44670725, 0.033, 0.31044286)
+
+[sub_resource type="BoxMesh" id="BoxMesh_66o2x"]
+size = Vector3(0.38650557, 0.033, 0.30334798)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jvnt6"]
+size = Vector3(0.42001152, 0.033, 0.3383242)
+
+[sub_resource type="BoxMesh" id="BoxMesh_73vuu"]
+size = Vector3(0.407723, 0.033, 0.33729562)
+
+[sub_resource type="BoxMesh" id="BoxMesh_047ys"]
+size = Vector3(0.44890475, 0.033, 0.28143364)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nw07a"]
+size = Vector3(0.37370253, 0.033, 0.28879446)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p2ivs"]
+size = Vector3(0.45968017, 0.033, 0.338192)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4c8tp"]
+size = Vector3(0.41866487, 0.033, 0.3240877)
+
+[sub_resource type="BoxMesh" id="BoxMesh_whnvr"]
+size = Vector3(0.38599092, 0.033, 0.2926921)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tunwi"]
+size = Vector3(0.39604297, 0.033, 0.29097414)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1p60x"]
+size = Vector3(0.4550898, 0.033, 0.3012621)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6cmb4"]
+size = Vector3(0.43817168, 0.033, 0.29969358)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4jgvr"]
+size = Vector3(0.41504234, 0.033, 0.31280404)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kw3u5"]
+size = Vector3(0.37337032, 0.033, 0.27515116)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kbyr0"]
+size = Vector3(0.39881572, 0.033, 0.30952036)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ajnwi"]
+size = Vector3(0.45535013, 0.033, 0.32729048)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q0mx6"]
+size = Vector3(0.3603263, 0.033, 0.28363147)
+
+[sub_resource type="BoxMesh" id="BoxMesh_damtn"]
+size = Vector3(0.4363856, 0.033, 0.2839769)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k3ui6"]
+size = Vector3(0.36746395, 0.033, 0.29752508)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ucjfa"]
+size = Vector3(0.4597535, 0.033, 0.31364638)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5duyf"]
+size = Vector3(0.4291499, 0.033, 0.32151365)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t4t4l"]
+size = Vector3(0.39931333, 0.033, 0.2800917)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6sjj0"]
+size = Vector3(0.38424453, 0.033, 0.3079703)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kdh68"]
+size = Vector3(0.44164592, 0.033, 0.27288127)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p8idj"]
+size = Vector3(0.41438535, 0.033, 0.3332983)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xswtw"]
+size = Vector3(0.4034801, 0.033, 0.32272646)
+
+[sub_resource type="BoxMesh" id="BoxMesh_plgtk"]
+size = Vector3(0.36852202, 0.033, 0.28209102)
+
+[sub_resource type="BoxMesh" id="BoxMesh_prjl2"]
+size = Vector3(0.36257756, 0.033, 0.27832198)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wm0pm"]
+size = Vector3(0.37035272, 0.033, 0.3271295)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ubobo"]
+size = Vector3(0.3816353, 0.033, 0.27925757)
+
+[sub_resource type="BoxMesh" id="BoxMesh_17odc"]
+size = Vector3(0.44768912, 0.033, 0.3084281)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o7m38"]
+size = Vector3(0.36905214, 0.033, 0.27982983)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lfstl"]
+size = Vector3(0.428948, 0.033, 0.33357006)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h85md"]
+size = Vector3(0.37862882, 0.033, 0.28499383)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vk76q"]
+size = Vector3(0.45632434, 0.033, 0.2873586)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0cx6s"]
+size = Vector3(0.4380764, 0.033, 0.32367086)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7u80c"]
+size = Vector3(0.36151108, 0.033, 0.3327031)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hwnh3"]
+size = Vector3(0.3965122, 0.033, 0.33188158)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8kdpy"]
+size = Vector3(0.4257843, 0.033, 0.312363)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ke6aj"]
+size = Vector3(0.39869428, 0.033, 0.30495062)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s8n8v"]
+size = Vector3(0.42338502, 0.033, 0.30704248)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e87xc"]
+size = Vector3(0.44738293, 0.033, 0.3255413)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ig2p8"]
+size = Vector3(0.40471524, 0.033, 0.2885381)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rusf1"]
+size = Vector3(0.44761124, 0.033, 0.31572393)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bdfum"]
+size = Vector3(0.38447198, 0.033, 0.30048746)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mjc53"]
+size = Vector3(0.4052637, 0.033, 0.27580324)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a4mo5"]
+size = Vector3(0.41427982, 0.033, 0.339929)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yk6uv"]
+size = Vector3(0.42335638, 0.033, 0.33973104)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cxxn5"]
+size = Vector3(0.38898325, 0.033, 0.30614182)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2lkwb"]
+size = Vector3(0.4062033, 0.033, 0.31438062)
+
+[sub_resource type="BoxMesh" id="BoxMesh_meqoa"]
+size = Vector3(0.36750337, 0.033, 0.3277618)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h24bc"]
+size = Vector3(0.43487024, 0.033, 0.29801074)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4fq8e"]
+size = Vector3(0.4055464, 0.033, 0.2717882)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jbcee"]
+size = Vector3(0.40703607, 0.033, 0.28967646)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hhinf"]
+size = Vector3(0.4297234, 0.033, 0.27011192)
+
+[sub_resource type="BoxMesh" id="BoxMesh_aay63"]
+size = Vector3(0.39429042, 0.033, 0.27099156)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yd7es"]
+size = Vector3(0.41213286, 0.033, 0.32541353)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nkgjb"]
+size = Vector3(0.4478762, 0.033, 0.29910553)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pms86"]
+size = Vector3(0.37583593, 0.033, 0.2787714)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hqh54"]
+size = Vector3(0.4250341, 0.033, 0.318749)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kct6g"]
+size = Vector3(0.36809272, 0.033, 0.3323217)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r4knl"]
+size = Vector3(0.43632793, 0.033, 0.31572065)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a3sms"]
+size = Vector3(0.44109243, 0.033, 0.29587835)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o1a80"]
+size = Vector3(0.41449964, 0.033, 0.33831567)
+
+[sub_resource type="BoxMesh" id="BoxMesh_abvfu"]
+size = Vector3(0.42655033, 0.033, 0.27107072)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qpivc"]
+size = Vector3(0.42646956, 0.033, 0.3307814)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ga8k"]
+size = Vector3(0.4410439, 0.033, 0.31407794)
+
+[sub_resource type="BoxMesh" id="BoxMesh_toir6"]
+size = Vector3(0.3626023, 0.033, 0.29995)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s7p33"]
+size = Vector3(0.40216658, 0.033, 0.27203348)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k0j6q"]
+size = Vector3(0.41582078, 0.033, 0.28316492)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7fg46"]
+size = Vector3(0.41616958, 0.033, 0.28911754)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rimad"]
+size = Vector3(0.4042895, 0.033, 0.29374254)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j2btq"]
+size = Vector3(0.43826383, 0.033, 0.33832312)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7al8"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.45490196, 0.4745098, 0.41568628, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vcthw"]
+size = Vector3(0.72, 0.46, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5tott"]
+size = Vector3(0.72, 0.46, 0.6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5wjy"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.6666667, 0.6392157, 0.54509807, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2dvq4"]
+size = Vector3(0.78, 0.13, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xol77"]
+size = Vector3(0.72, 0.46, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ix5xq"]
+size = Vector3(0.72, 0.46, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bilqj"]
+size = Vector3(0.72, 0.46, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yv6r1"]
+size = Vector3(0.72, 0.46, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p68vm"]
+size = Vector3(0.72, 0.46, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ilxkd"]
+size = Vector3(0.72, 0.46, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pvjrj"]
+size = Vector3(0.72, 0.46, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ycgex"]
+size = Vector3(0.72, 0.46, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_30dq3"]
+size = Vector3(0.72, 0.46, 0.6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rd0ks"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.4627451, 0.49411765, 0.42352942, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n4dls"]
+size = Vector3(1.2, 0.5, 1.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5jhx3"]
+size = Vector3(1.2, 0.5, 1.15)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ay5rv"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.3137255, 0.36862746, 0.2784314, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i3bty"]
+size = Vector3(1.02, 0.05, 0.97)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aenfl"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.34117648, 0.42352942, 0.3137255, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_gj1ry"]
+radius = 1.0
+height = 2.0
+radial_segments = 7
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lc87b"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.39215687, 0.49019608, 0.34117648, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uw1gw"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.52156866, 0.5647059, 0.4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_18a8v"]
+size = Vector3(1.2, 0.5, 1.15)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u61mr"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.3882353, 0.4, 0.3254902, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vn5lw"]
+top_radius = 0.13
+bottom_radius = 0.2
+height = 2.2
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ivqwd"]
+height = 2.2
+radius = 0.23
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqvm3"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.39215687, 0.45882353, 0.3254902, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_151j4"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.49019608, 0.5372549, 0.38039216, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_168qq"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.5372549, 0.5882353, 0.41960785, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5rxph"]
+height = 2.2
+radius = 0.23
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_up637"]
+height = 2.2
+radius = 0.23
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0d5lu"]
+height = 2.2
+radius = 0.23
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrese"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.60784316, 0.6117647, 0.4392157, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v7jmd"]
+size = Vector3(0.042, 0.19, 0.038)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_acvhn"]
+render_priority = 0
+shader = ExtResource("1_4pt66")
+shader_parameter/base_color = Color(0.38431373, 0.43529412, 0.3137255, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pqk1v"]
+size = Vector3(0.3, 2, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ly7fo"]
+size = Vector3(0.3, 2, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0tvks"]
+size = Vector3(0.3, 2, 32)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5y8b7"]
+size = Vector3(32, 2, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ock7"]
+size = Vector3(32, 2, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28yfb"]
+size = Vector3(32, 2, 0.3)
+
+[node name="TravelerWorld" type="Node3D" unique_id=1881278206]
+
+[node name="Environment" type="WorldEnvironment" parent="." unique_id=53428078]
+environment = SubResource("Environment_ruxxa")
+
+[node name="AfternoonSun" type="DirectionalLight3D" parent="." unique_id=1715429307]
+transform = Transform3D(0.7880108, 0.48514786, -0.37903908, 0, 0.6156615, 0.7880107, 0.6156615, -0.62096095, 0.4851479, 0, 0, 0)
+light_color = Color(1, 0.8862745, 0.7176471, 1)
+light_energy = 1.25
+shadow_enabled = true
+directional_shadow_max_distance = 55.0
+
+[node name="Ground" type="Node3D" parent="." unique_id=1554752804]
+
+[node name="Earth" type="Node3D" parent="Ground" unique_id=1795989359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Earth" unique_id=646836871]
+material_override = SubResource("ShaderMaterial_ls1ni")
+mesh = SubResource("BoxMesh_v1i68")
+
+[node name="Solid" type="StaticBody3D" parent="Ground/Earth" unique_id=594705924]
+
+[node name="Shape" type="CollisionShape3D" parent="Ground/Earth/Solid" unique_id=905620715]
+shape = SubResource("BoxShape3D_4befr")
+
+[node name="CrossingEastWest" type="MeshInstance3D" parent="Ground" unique_id=56489233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+material_override = SubResource("ShaderMaterial_ibmx6")
+mesh = SubResource("BoxMesh_brf2k")
+
+[node name="CrossingNorthSouth" type="MeshInstance3D" parent="Ground" unique_id=2036833764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.002, 0)
+material_override = SubResource("ShaderMaterial_ibmx6")
+mesh = SubResource("BoxMesh_tq4n2")
+
+[node name="Paving" type="Node3D" parent="." unique_id=615861707]
+
+[node name="Stone_-6_-5" type="MeshInstance3D" parent="Paving" unique_id=1616419430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_n8tjg")
+
+[node name="Stone_-5_-5" type="MeshInstance3D" parent="Paving" unique_id=1308025240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_wickd")
+
+[node name="Stone_-4_-5" type="MeshInstance3D" parent="Paving" unique_id=1430566075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_o4f0j")
+
+[node name="Stone_-3_-5" type="MeshInstance3D" parent="Paving" unique_id=915570662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.27, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_uu7df")
+
+[node name="Stone_-2_-5" type="MeshInstance3D" parent="Paving" unique_id=1603024935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_af2mb")
+
+[node name="Stone_-1_-5" type="MeshInstance3D" parent="Paving" unique_id=1358503724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_cbeax")
+
+[node name="Stone_0_-5" type="MeshInstance3D" parent="Paving" unique_id=882063612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_bnlfg")
+
+[node name="Stone_1_-5" type="MeshInstance3D" parent="Paving" unique_id=1717742067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_a707v")
+
+[node name="Stone_2_-5" type="MeshInstance3D" parent="Paving" unique_id=853353768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_ocjqh")
+
+[node name="Stone_3_-5" type="MeshInstance3D" parent="Paving" unique_id=1149359401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_28xri")
+
+[node name="Stone_4_-5" type="MeshInstance3D" parent="Paving" unique_id=1878120808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_icqra")
+
+[node name="Stone_5_-5" type="MeshInstance3D" parent="Paving" unique_id=882862194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_8jaej")
+
+[node name="Stone_6_-5" type="MeshInstance3D" parent="Paving" unique_id=1409231050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23, 0.024, -2.05)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_iu6kb")
+
+[node name="Stone_-6_-4" type="MeshInstance3D" parent="Paving" unique_id=985529673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_ylmi6")
+
+[node name="Stone_-4_-4" type="MeshInstance3D" parent="Paving" unique_id=130408248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_28u11")
+
+[node name="Stone_-3_-4" type="MeshInstance3D" parent="Paving" unique_id=1281764843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_j1l1s")
+
+[node name="Stone_-2_-4" type="MeshInstance3D" parent="Paving" unique_id=1423149079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_vfk1q")
+
+[node name="Stone_-1_-4" type="MeshInstance3D" parent="Paving" unique_id=1182124767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_udr7y")
+
+[node name="Stone_0_-4" type="MeshInstance3D" parent="Paving" unique_id=464078211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_l15so")
+
+[node name="Stone_1_-4" type="MeshInstance3D" parent="Paving" unique_id=912358890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_3y4q8")
+
+[node name="Stone_2_-4" type="MeshInstance3D" parent="Paving" unique_id=606091069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_rdore")
+
+[node name="Stone_3_-4" type="MeshInstance3D" parent="Paving" unique_id=333935013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_17ngy")
+
+[node name="Stone_4_-4" type="MeshInstance3D" parent="Paving" unique_id=859211565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_m6faa")
+
+[node name="Stone_5_-4" type="MeshInstance3D" parent="Paving" unique_id=1642217550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_5x4eg")
+
+[node name="Stone_6_-4" type="MeshInstance3D" parent="Paving" unique_id=1586882050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.024, -1.64)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_lj4pa")
+
+[node name="Stone_-6_-3" type="MeshInstance3D" parent="Paving" unique_id=1371655895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77, 0.024, -1.23)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_rayu3")
+
+[node name="Stone_-5_-3" type="MeshInstance3D" parent="Paving" unique_id=868181438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27, 0.024, -1.23)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_cttca")
+
+[node name="Stone_-4_-3" type="MeshInstance3D" parent="Paving" unique_id=323544298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77, 0.024, -1.23)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_usmgv")
+
+[node name="Stone_-3_-3" type="MeshInstance3D" parent="Paving" unique_id=792481808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.27, 0.024, -1.23)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_ysnwy")
+
+[node name="Stone_-2_-3" type="MeshInstance3D" parent="Paving" unique_id=1521094744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77, 0.024, -1.23)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_lh3fh")
+
+[node name="Stone_0_-3" type="MeshInstance3D" parent="Paving" unique_id=435345969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.024, -1.23)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_cdcpf")
+
+[node name="Stone_1_-3" type="MeshInstance3D" parent="Paving" unique_id=939398598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73, 0.024, -1.23)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_i6knq")
+
+[node name="Stone_2_-3" type="MeshInstance3D" parent="Paving" unique_id=2035224567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23, 0.024, -1.23)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_aaaku")
+
+[node name="Stone_3_-3" type="MeshInstance3D" parent="Paving" unique_id=1242333110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73, 0.024, -1.23)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_uj7dx")
+
+[node name="Stone_4_-3" type="MeshInstance3D" parent="Paving" unique_id=455525370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23, 0.024, -1.23)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_34g25")
+
+[node name="Stone_-6_-2" type="MeshInstance3D" parent="Paving" unique_id=178857642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_yg20j")
+
+[node name="Stone_-5_-2" type="MeshInstance3D" parent="Paving" unique_id=1410521255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_kuqkn")
+
+[node name="Stone_-4_-2" type="MeshInstance3D" parent="Paving" unique_id=1594066220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_emkrf")
+
+[node name="Stone_-3_-2" type="MeshInstance3D" parent="Paving" unique_id=1006218898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_0gtb2")
+
+[node name="Stone_-2_-2" type="MeshInstance3D" parent="Paving" unique_id=223950447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_ldusx")
+
+[node name="Stone_0_-2" type="MeshInstance3D" parent="Paving" unique_id=607359240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_hyj4f")
+
+[node name="Stone_1_-2" type="MeshInstance3D" parent="Paving" unique_id=1636810361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_das6s")
+
+[node name="Stone_2_-2" type="MeshInstance3D" parent="Paving" unique_id=879965172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_mngnw")
+
+[node name="Stone_3_-2" type="MeshInstance3D" parent="Paving" unique_id=2070388061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_atvea")
+
+[node name="Stone_4_-2" type="MeshInstance3D" parent="Paving" unique_id=498436467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_uu725")
+
+[node name="Stone_5_-2" type="MeshInstance3D" parent="Paving" unique_id=1324895790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_e51s7")
+
+[node name="Stone_6_-2" type="MeshInstance3D" parent="Paving" unique_id=1356416193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.024, -0.82)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_nmxc6")
+
+[node name="Stone_-6_-1" type="MeshInstance3D" parent="Paving" unique_id=540218707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77, 0.024, -0.41)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_2vsx7")
+
+[node name="Stone_-4_-1" type="MeshInstance3D" parent="Paving" unique_id=400624435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77, 0.024, -0.41)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_6xjsp")
+
+[node name="Stone_-2_-1" type="MeshInstance3D" parent="Paving" unique_id=1842394538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77, 0.024, -0.41)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_jdoly")
+
+[node name="Stone_-1_-1" type="MeshInstance3D" parent="Paving" unique_id=264525419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 0.024, -0.41)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_66o2x")
+
+[node name="Stone_0_-1" type="MeshInstance3D" parent="Paving" unique_id=1270377497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.024, -0.41)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_jvnt6")
+
+[node name="Stone_1_-1" type="MeshInstance3D" parent="Paving" unique_id=1328676475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73, 0.024, -0.41)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_73vuu")
+
+[node name="Stone_2_-1" type="MeshInstance3D" parent="Paving" unique_id=1217130306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23, 0.024, -0.41)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_047ys")
+
+[node name="Stone_3_-1" type="MeshInstance3D" parent="Paving" unique_id=2095749532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73, 0.024, -0.41)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_nw07a")
+
+[node name="Stone_4_-1" type="MeshInstance3D" parent="Paving" unique_id=1875579475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23, 0.024, -0.41)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_p2ivs")
+
+[node name="Stone_5_-1" type="MeshInstance3D" parent="Paving" unique_id=1274215458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73, 0.024, -0.41)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_4c8tp")
+
+[node name="Stone_6_-1" type="MeshInstance3D" parent="Paving" unique_id=1611702997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23, 0.024, -0.41)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_whnvr")
+
+[node name="Stone_-6_0" type="MeshInstance3D" parent="Paving" unique_id=1569621266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.024, 0)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_tunwi")
+
+[node name="Stone_-5_0" type="MeshInstance3D" parent="Paving" unique_id=1819866044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.024, 0)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_1p60x")
+
+[node name="Stone_-4_0" type="MeshInstance3D" parent="Paving" unique_id=250579646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.024, 0)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_6cmb4")
+
+[node name="Stone_-3_0" type="MeshInstance3D" parent="Paving" unique_id=1410047078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.024, 0)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_4jgvr")
+
+[node name="Stone_-2_0" type="MeshInstance3D" parent="Paving" unique_id=1264875014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.024, 0)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_kw3u5")
+
+[node name="Stone_-1_0" type="MeshInstance3D" parent="Paving" unique_id=1236748010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.024, 0)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_kbyr0")
+
+[node name="Stone_1_0" type="MeshInstance3D" parent="Paving" unique_id=359686035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.024, 0)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_ajnwi")
+
+[node name="Stone_2_0" type="MeshInstance3D" parent="Paving" unique_id=1444413861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.024, 0)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_q0mx6")
+
+[node name="Stone_3_0" type="MeshInstance3D" parent="Paving" unique_id=1086084909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.024, 0)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_damtn")
+
+[node name="Stone_4_0" type="MeshInstance3D" parent="Paving" unique_id=942699851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.024, 0)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_k3ui6")
+
+[node name="Stone_5_0" type="MeshInstance3D" parent="Paving" unique_id=789824749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.024, 0)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_ucjfa")
+
+[node name="Stone_6_0" type="MeshInstance3D" parent="Paving" unique_id=1573360752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.024, 0)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_5duyf")
+
+[node name="Stone_-6_1" type="MeshInstance3D" parent="Paving" unique_id=1977948329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77, 0.024, 0.41)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_t4t4l")
+
+[node name="Stone_-5_1" type="MeshInstance3D" parent="Paving" unique_id=1867635417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27, 0.024, 0.41)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_6sjj0")
+
+[node name="Stone_-4_1" type="MeshInstance3D" parent="Paving" unique_id=1223368894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77, 0.024, 0.41)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_kdh68")
+
+[node name="Stone_-2_1" type="MeshInstance3D" parent="Paving" unique_id=1232546871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77, 0.024, 0.41)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_p8idj")
+
+[node name="Stone_-1_1" type="MeshInstance3D" parent="Paving" unique_id=1608648812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 0.024, 0.41)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_xswtw")
+
+[node name="Stone_0_1" type="MeshInstance3D" parent="Paving" unique_id=722814365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.024, 0.41)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_plgtk")
+
+[node name="Stone_1_1" type="MeshInstance3D" parent="Paving" unique_id=1422689646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73, 0.024, 0.41)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_prjl2")
+
+[node name="Stone_3_1" type="MeshInstance3D" parent="Paving" unique_id=1352831985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73, 0.024, 0.41)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_wm0pm")
+
+[node name="Stone_4_1" type="MeshInstance3D" parent="Paving" unique_id=1149473202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23, 0.024, 0.41)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_ubobo")
+
+[node name="Stone_5_1" type="MeshInstance3D" parent="Paving" unique_id=760872800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73, 0.024, 0.41)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_17odc")
+
+[node name="Stone_6_1" type="MeshInstance3D" parent="Paving" unique_id=1389905553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23, 0.024, 0.41)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_o7m38")
+
+[node name="Stone_-6_2" type="MeshInstance3D" parent="Paving" unique_id=594500078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_lfstl")
+
+[node name="Stone_-5_2" type="MeshInstance3D" parent="Paving" unique_id=773106664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_h85md")
+
+[node name="Stone_-4_2" type="MeshInstance3D" parent="Paving" unique_id=1347694152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_vk76q")
+
+[node name="Stone_-3_2" type="MeshInstance3D" parent="Paving" unique_id=138186099]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_0cx6s")
+
+[node name="Stone_-2_2" type="MeshInstance3D" parent="Paving" unique_id=1142521677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_7u80c")
+
+[node name="Stone_-1_2" type="MeshInstance3D" parent="Paving" unique_id=357116084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_hwnh3")
+
+[node name="Stone_0_2" type="MeshInstance3D" parent="Paving" unique_id=1448545924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_8kdpy")
+
+[node name="Stone_1_2" type="MeshInstance3D" parent="Paving" unique_id=966837295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_ke6aj")
+
+[node name="Stone_2_2" type="MeshInstance3D" parent="Paving" unique_id=554799091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_s8n8v")
+
+[node name="Stone_3_2" type="MeshInstance3D" parent="Paving" unique_id=1345622726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_e87xc")
+
+[node name="Stone_4_2" type="MeshInstance3D" parent="Paving" unique_id=1857647979]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_ig2p8")
+
+[node name="Stone_5_2" type="MeshInstance3D" parent="Paving" unique_id=105976109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_rusf1")
+
+[node name="Stone_6_2" type="MeshInstance3D" parent="Paving" unique_id=776044464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.024, 0.82)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_bdfum")
+
+[node name="Stone_-5_3" type="MeshInstance3D" parent="Paving" unique_id=808595040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27, 0.024, 1.23)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_mjc53")
+
+[node name="Stone_-4_3" type="MeshInstance3D" parent="Paving" unique_id=996540195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77, 0.024, 1.23)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_a4mo5")
+
+[node name="Stone_-2_3" type="MeshInstance3D" parent="Paving" unique_id=46882338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77, 0.024, 1.23)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_yk6uv")
+
+[node name="Stone_-1_3" type="MeshInstance3D" parent="Paving" unique_id=1661801652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 0.024, 1.23)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_cxxn5")
+
+[node name="Stone_5_3" type="MeshInstance3D" parent="Paving" unique_id=1141040882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73, 0.024, 1.23)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_2lkwb")
+
+[node name="Stone_6_3" type="MeshInstance3D" parent="Paving" unique_id=1868621364]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23, 0.024, 1.23)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_meqoa")
+
+[node name="Stone_-5_4" type="MeshInstance3D" parent="Paving" unique_id=1383880610]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.024, 1.64)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_h24bc")
+
+[node name="Stone_-4_4" type="MeshInstance3D" parent="Paving" unique_id=713344464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.024, 1.64)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_4fq8e")
+
+[node name="Stone_-3_4" type="MeshInstance3D" parent="Paving" unique_id=1707665600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.024, 1.64)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_jbcee")
+
+[node name="Stone_-2_4" type="MeshInstance3D" parent="Paving" unique_id=731076633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.024, 1.64)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_hhinf")
+
+[node name="Stone_-1_4" type="MeshInstance3D" parent="Paving" unique_id=1863778585]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.024, 1.64)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_aay63")
+
+[node name="Stone_1_4" type="MeshInstance3D" parent="Paving" unique_id=1379383476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.024, 1.64)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_yd7es")
+
+[node name="Stone_3_4" type="MeshInstance3D" parent="Paving" unique_id=1187093809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.024, 1.64)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_nkgjb")
+
+[node name="Stone_4_4" type="MeshInstance3D" parent="Paving" unique_id=430022831]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.024, 1.64)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_pms86")
+
+[node name="Stone_5_4" type="MeshInstance3D" parent="Paving" unique_id=2014338369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.024, 1.64)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_hqh54")
+
+[node name="Stone_6_4" type="MeshInstance3D" parent="Paving" unique_id=101899338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.024, 1.64)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_kct6g")
+
+[node name="Stone_-6_5" type="MeshInstance3D" parent="Paving" unique_id=1059089790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_r4knl")
+
+[node name="Stone_-5_5" type="MeshInstance3D" parent="Paving" unique_id=1764915015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_a3sms")
+
+[node name="Stone_-4_5" type="MeshInstance3D" parent="Paving" unique_id=953094460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_o1a80")
+
+[node name="Stone_-3_5" type="MeshInstance3D" parent="Paving" unique_id=389298177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.27, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_fy6tc")
+mesh = SubResource("BoxMesh_abvfu")
+
+[node name="Stone_-2_5" type="MeshInstance3D" parent="Paving" unique_id=1779062173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_qpivc")
+
+[node name="Stone_-1_5" type="MeshInstance3D" parent="Paving" unique_id=1859732475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_5ga8k")
+
+[node name="Stone_0_5" type="MeshInstance3D" parent="Paving" unique_id=429055223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_toir6")
+
+[node name="Stone_1_5" type="MeshInstance3D" parent="Paving" unique_id=332454390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_7gw7t")
+mesh = SubResource("BoxMesh_s7p33")
+
+[node name="Stone_3_5" type="MeshInstance3D" parent="Paving" unique_id=1011150941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_k0j6q")
+
+[node name="Stone_4_5" type="MeshInstance3D" parent="Paving" unique_id=1988985678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_3bnwq")
+mesh = SubResource("BoxMesh_7fg46")
+
+[node name="Stone_5_5" type="MeshInstance3D" parent="Paving" unique_id=1557365371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_rimad")
+
+[node name="Stone_6_5" type="MeshInstance3D" parent="Paving" unique_id=124245706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23, 0.024, 2.05)
+material_override = SubResource("ShaderMaterial_cftrg")
+mesh = SubResource("BoxMesh_j2btq")
+
+[node name="CourtyardProps" type="Node3D" parent="." unique_id=131070658]
+
+[node name="LowWall_-1_0" type="Node3D" parent="CourtyardProps" unique_id=1109582134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2, 0.23, -3.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/LowWall_-1_0" unique_id=186098283]
+material_override = SubResource("ShaderMaterial_w7al8")
+mesh = SubResource("BoxMesh_vcthw")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/LowWall_-1_0" unique_id=854121428]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/LowWall_-1_0/Solid" unique_id=525034559]
+shape = SubResource("BoxShape3D_5tott")
+
+[node name="WallCap_-1_0" type="MeshInstance3D" parent="CourtyardProps" unique_id=334556355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2, 0.5, -3.8)
+material_override = SubResource("ShaderMaterial_b5wjy")
+mesh = SubResource("BoxMesh_2dvq4")
+
+[node name="LowWall_-1_1" type="Node3D" parent="CourtyardProps" unique_id=1598193395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95, 0.23, -3.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/LowWall_-1_1" unique_id=50672291]
+material_override = SubResource("ShaderMaterial_w7al8")
+mesh = SubResource("BoxMesh_vcthw")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/LowWall_-1_1" unique_id=298477046]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/LowWall_-1_1/Solid" unique_id=2007603123]
+shape = SubResource("BoxShape3D_xol77")
+
+[node name="WallCap_-1_1" type="MeshInstance3D" parent="CourtyardProps" unique_id=1676435779]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95, 0.5, -3.8)
+material_override = SubResource("ShaderMaterial_b5wjy")
+mesh = SubResource("BoxMesh_2dvq4")
+
+[node name="LowWall_-1_2" type="Node3D" parent="CourtyardProps" unique_id=288112424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7, 0.23, -3.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/LowWall_-1_2" unique_id=590276822]
+material_override = SubResource("ShaderMaterial_w7al8")
+mesh = SubResource("BoxMesh_vcthw")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/LowWall_-1_2" unique_id=391360427]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/LowWall_-1_2/Solid" unique_id=66119070]
+shape = SubResource("BoxShape3D_ix5xq")
+
+[node name="WallCap_-1_2" type="MeshInstance3D" parent="CourtyardProps" unique_id=1902995137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7, 0.5, -3.8)
+material_override = SubResource("ShaderMaterial_b5wjy")
+mesh = SubResource("BoxMesh_2dvq4")
+
+[node name="LowWall_-1_3" type="Node3D" parent="CourtyardProps" unique_id=508478024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.45, 0.23, -3.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/LowWall_-1_3" unique_id=271003287]
+material_override = SubResource("ShaderMaterial_w7al8")
+mesh = SubResource("BoxMesh_vcthw")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/LowWall_-1_3" unique_id=1171521741]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/LowWall_-1_3/Solid" unique_id=1995193745]
+shape = SubResource("BoxShape3D_bilqj")
+
+[node name="WallCap_-1_3" type="MeshInstance3D" parent="CourtyardProps" unique_id=1781566547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.45, 0.5, -3.8)
+material_override = SubResource("ShaderMaterial_b5wjy")
+mesh = SubResource("BoxMesh_2dvq4")
+
+[node name="LowWall_-1_4" type="Node3D" parent="CourtyardProps" unique_id=1369963606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2, 0.23, -3.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/LowWall_-1_4" unique_id=641099895]
+material_override = SubResource("ShaderMaterial_w7al8")
+mesh = SubResource("BoxMesh_vcthw")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/LowWall_-1_4" unique_id=1034755907]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/LowWall_-1_4/Solid" unique_id=521940747]
+shape = SubResource("BoxShape3D_yv6r1")
+
+[node name="WallCap_-1_4" type="MeshInstance3D" parent="CourtyardProps" unique_id=2136118635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2, 0.5, -3.8)
+material_override = SubResource("ShaderMaterial_b5wjy")
+mesh = SubResource("BoxMesh_2dvq4")
+
+[node name="LowWall_1_0" type="Node3D" parent="CourtyardProps" unique_id=1486276564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2, 0.23, -3.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/LowWall_1_0" unique_id=1779264190]
+material_override = SubResource("ShaderMaterial_w7al8")
+mesh = SubResource("BoxMesh_vcthw")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/LowWall_1_0" unique_id=1703723633]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/LowWall_1_0/Solid" unique_id=477265447]
+shape = SubResource("BoxShape3D_p68vm")
+
+[node name="WallCap_1_0" type="MeshInstance3D" parent="CourtyardProps" unique_id=1690278236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2, 0.5, -3.8)
+material_override = SubResource("ShaderMaterial_b5wjy")
+mesh = SubResource("BoxMesh_2dvq4")
+
+[node name="LowWall_1_1" type="Node3D" parent="CourtyardProps" unique_id=491309745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95, 0.23, -3.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/LowWall_1_1" unique_id=1747530965]
+material_override = SubResource("ShaderMaterial_w7al8")
+mesh = SubResource("BoxMesh_vcthw")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/LowWall_1_1" unique_id=1615380087]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/LowWall_1_1/Solid" unique_id=1389334715]
+shape = SubResource("BoxShape3D_ilxkd")
+
+[node name="WallCap_1_1" type="MeshInstance3D" parent="CourtyardProps" unique_id=101801569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95, 0.5, -3.8)
+material_override = SubResource("ShaderMaterial_b5wjy")
+mesh = SubResource("BoxMesh_2dvq4")
+
+[node name="LowWall_1_2" type="Node3D" parent="CourtyardProps" unique_id=357190193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7, 0.23, -3.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/LowWall_1_2" unique_id=1569055483]
+material_override = SubResource("ShaderMaterial_w7al8")
+mesh = SubResource("BoxMesh_vcthw")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/LowWall_1_2" unique_id=460278552]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/LowWall_1_2/Solid" unique_id=1550206629]
+shape = SubResource("BoxShape3D_pvjrj")
+
+[node name="WallCap_1_2" type="MeshInstance3D" parent="CourtyardProps" unique_id=1516475288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7, 0.5, -3.8)
+material_override = SubResource("ShaderMaterial_b5wjy")
+mesh = SubResource("BoxMesh_2dvq4")
+
+[node name="LowWall_1_3" type="Node3D" parent="CourtyardProps" unique_id=2145111685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.45, 0.23, -3.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/LowWall_1_3" unique_id=1299028997]
+material_override = SubResource("ShaderMaterial_w7al8")
+mesh = SubResource("BoxMesh_vcthw")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/LowWall_1_3" unique_id=891902617]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/LowWall_1_3/Solid" unique_id=2121437233]
+shape = SubResource("BoxShape3D_ycgex")
+
+[node name="WallCap_1_3" type="MeshInstance3D" parent="CourtyardProps" unique_id=2046066033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.45, 0.5, -3.8)
+material_override = SubResource("ShaderMaterial_b5wjy")
+mesh = SubResource("BoxMesh_2dvq4")
+
+[node name="LowWall_1_4" type="Node3D" parent="CourtyardProps" unique_id=1395340056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2, 0.23, -3.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/LowWall_1_4" unique_id=1486946977]
+material_override = SubResource("ShaderMaterial_w7al8")
+mesh = SubResource("BoxMesh_vcthw")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/LowWall_1_4" unique_id=869515439]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/LowWall_1_4/Solid" unique_id=2043369075]
+shape = SubResource("BoxShape3D_30dq3")
+
+[node name="WallCap_1_4" type="MeshInstance3D" parent="CourtyardProps" unique_id=1046442326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2, 0.5, -3.8)
+material_override = SubResource("ShaderMaterial_b5wjy")
+mesh = SubResource("BoxMesh_2dvq4")
+
+[node name="Planter" type="Node3D" parent="CourtyardProps" unique_id=753538041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4, 0, 1.5)
+
+[node name="StoneBase" type="Node3D" parent="CourtyardProps/Planter" unique_id=32797493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/Planter/StoneBase" unique_id=1781344955]
+material_override = SubResource("ShaderMaterial_rd0ks")
+mesh = SubResource("BoxMesh_n4dls")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/Planter/StoneBase" unique_id=611148223]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/Planter/StoneBase/Solid" unique_id=612344789]
+shape = SubResource("BoxShape3D_5jhx3")
+
+[node name="Soil" type="MeshInstance3D" parent="CourtyardProps/Planter" unique_id=1077906837]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52, 0)
+material_override = SubResource("ShaderMaterial_ay5rv")
+mesh = SubResource("BoxMesh_i3bty")
+
+[node name="Leaves0" type="MeshInstance3D" parent="CourtyardProps/Planter" unique_id=552403669]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, -0.3157906, 0.7953301, 0.01743257)
+material_override = SubResource("ShaderMaterial_aenfl")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Leaves1" type="MeshInstance3D" parent="CourtyardProps/Planter" unique_id=39558190]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, 0.008426189, 0.8007176, -0.054238483)
+material_override = SubResource("ShaderMaterial_lc87b")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Leaves2" type="MeshInstance3D" parent="CourtyardProps/Planter" unique_id=1383602965]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, -0.06171748, 0.88109803, 0.20009798)
+material_override = SubResource("ShaderMaterial_uw1gw")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Leaves3" type="MeshInstance3D" parent="CourtyardProps/Planter" unique_id=1981501824]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, 0.27877668, 0.6639299, 0.29916805)
+material_override = SubResource("ShaderMaterial_aenfl")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Leaves4" type="MeshInstance3D" parent="CourtyardProps/Planter" unique_id=155281772]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, 0.14215687, 0.72881186, -0.14921531)
+material_override = SubResource("ShaderMaterial_lc87b")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Leaves5" type="MeshInstance3D" parent="CourtyardProps/Planter" unique_id=1655274762]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, 0.04293561, 0.71055037, 0.07883963)
+material_override = SubResource("ShaderMaterial_uw1gw")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Planter2" type="Node3D" parent="CourtyardProps" unique_id=43727491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8, 0, -1.6)
+
+[node name="StoneBase" type="Node3D" parent="CourtyardProps/Planter2" unique_id=548762722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="CourtyardProps/Planter2/StoneBase" unique_id=500965427]
+material_override = SubResource("ShaderMaterial_rd0ks")
+mesh = SubResource("BoxMesh_n4dls")
+
+[node name="Solid" type="StaticBody3D" parent="CourtyardProps/Planter2/StoneBase" unique_id=1581305685]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/Planter2/StoneBase/Solid" unique_id=343217284]
+shape = SubResource("BoxShape3D_18a8v")
+
+[node name="Soil" type="MeshInstance3D" parent="CourtyardProps/Planter2" unique_id=1789115904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52, 0)
+material_override = SubResource("ShaderMaterial_ay5rv")
+mesh = SubResource("BoxMesh_i3bty")
+
+[node name="Leaves0" type="MeshInstance3D" parent="CourtyardProps/Planter2" unique_id=991118456]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, -0.25186443, 0.7614936, -0.10438594)
+material_override = SubResource("ShaderMaterial_aenfl")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Leaves1" type="MeshInstance3D" parent="CourtyardProps/Planter2" unique_id=331417437]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, -0.1118492, 0.88244885, -0.03531617)
+material_override = SubResource("ShaderMaterial_lc87b")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Leaves2" type="MeshInstance3D" parent="CourtyardProps/Planter2" unique_id=1091689552]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, -0.11342332, 0.68246716, 0.20011443)
+material_override = SubResource("ShaderMaterial_uw1gw")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Leaves3" type="MeshInstance3D" parent="CourtyardProps/Planter2" unique_id=1625840941]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, 0.08914128, 0.77173716, -0.05645226)
+material_override = SubResource("ShaderMaterial_aenfl")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Leaves4" type="MeshInstance3D" parent="CourtyardProps/Planter2" unique_id=1031222756]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, 0.2850134, 0.7429224, 0.12577173)
+material_override = SubResource("ShaderMaterial_lc87b")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Leaves5" type="MeshInstance3D" parent="CourtyardProps/Planter2" unique_id=1768527910]
+transform = Transform3D(0.42, 0, 0, 0, 0.35, 0, 0, 0, 0.38, -0.30699912, 0.86223316, 0.23213434)
+material_override = SubResource("ShaderMaterial_uw1gw")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Tree" type="Node3D" parent="CourtyardProps" unique_id=362047842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, 0, -5.1)
+
+[node name="Trunk" type="MeshInstance3D" parent="CourtyardProps/Tree" unique_id=375221539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+material_override = SubResource("ShaderMaterial_u61mr")
+mesh = SubResource("CylinderMesh_vn5lw")
+
+[node name="TrunkCollision" type="StaticBody3D" parent="CourtyardProps/Tree" unique_id=409802846]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/Tree/TrunkCollision" unique_id=71441741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CylinderShape3D_ivqwd")
+
+[node name="Canopy0" type="MeshInstance3D" parent="CourtyardProps/Tree" unique_id=1415053897]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0, 2.2, 0.45)
+material_override = SubResource("ShaderMaterial_lqvm3")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy1" type="MeshInstance3D" parent="CourtyardProps/Tree" unique_id=1227588150]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0.3377316, 2.32, -0.33182716)
+material_override = SubResource("ShaderMaterial_151j4")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy2" type="MeshInstance3D" parent="CourtyardProps/Tree" unique_id=1268621316]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, -0.4980823, 2.44, 0.03937454)
+material_override = SubResource("ShaderMaterial_168qq")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy3" type="MeshInstance3D" parent="CourtyardProps/Tree" unique_id=510859271]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0.39683393, 2.56, 0.27375808)
+material_override = SubResource("ShaderMaterial_lqvm3")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy4" type="MeshInstance3D" parent="CourtyardProps/Tree" unique_id=1473768831]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, -0.08716339, 2.68, -0.44310954)
+material_override = SubResource("ShaderMaterial_151j4")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Tree2" type="Node3D" parent="CourtyardProps" unique_id=2111283358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9, 0, 4.5)
+
+[node name="Trunk" type="MeshInstance3D" parent="CourtyardProps/Tree2" unique_id=2046526955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+material_override = SubResource("ShaderMaterial_u61mr")
+mesh = SubResource("CylinderMesh_vn5lw")
+
+[node name="TrunkCollision" type="StaticBody3D" parent="CourtyardProps/Tree2" unique_id=1253916623]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/Tree2/TrunkCollision" unique_id=659658277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CylinderShape3D_5rxph")
+
+[node name="Canopy0" type="MeshInstance3D" parent="CourtyardProps/Tree2" unique_id=1270183595]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0, 2.2, 0.45)
+material_override = SubResource("ShaderMaterial_lqvm3")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy1" type="MeshInstance3D" parent="CourtyardProps/Tree2" unique_id=1053665704]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0.3377316, 2.32, -0.33182716)
+material_override = SubResource("ShaderMaterial_151j4")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy2" type="MeshInstance3D" parent="CourtyardProps/Tree2" unique_id=1724916284]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, -0.4980823, 2.44, 0.03937454)
+material_override = SubResource("ShaderMaterial_168qq")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy3" type="MeshInstance3D" parent="CourtyardProps/Tree2" unique_id=1059504427]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0.39683393, 2.56, 0.27375808)
+material_override = SubResource("ShaderMaterial_lqvm3")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy4" type="MeshInstance3D" parent="CourtyardProps/Tree2" unique_id=1513675021]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, -0.08716339, 2.68, -0.44310954)
+material_override = SubResource("ShaderMaterial_151j4")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Tree3" type="Node3D" parent="CourtyardProps" unique_id=2130845724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 4)
+
+[node name="Trunk" type="MeshInstance3D" parent="CourtyardProps/Tree3" unique_id=851595463]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+material_override = SubResource("ShaderMaterial_u61mr")
+mesh = SubResource("CylinderMesh_vn5lw")
+
+[node name="TrunkCollision" type="StaticBody3D" parent="CourtyardProps/Tree3" unique_id=1486463707]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/Tree3/TrunkCollision" unique_id=864165960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CylinderShape3D_up637")
+
+[node name="Canopy0" type="MeshInstance3D" parent="CourtyardProps/Tree3" unique_id=1631474702]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0, 2.2, 0.45)
+material_override = SubResource("ShaderMaterial_lqvm3")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy1" type="MeshInstance3D" parent="CourtyardProps/Tree3" unique_id=476347957]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0.3377316, 2.32, -0.33182716)
+material_override = SubResource("ShaderMaterial_151j4")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy2" type="MeshInstance3D" parent="CourtyardProps/Tree3" unique_id=1516671770]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, -0.4980823, 2.44, 0.03937454)
+material_override = SubResource("ShaderMaterial_168qq")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy3" type="MeshInstance3D" parent="CourtyardProps/Tree3" unique_id=943606535]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0.39683393, 2.56, 0.27375808)
+material_override = SubResource("ShaderMaterial_lqvm3")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy4" type="MeshInstance3D" parent="CourtyardProps/Tree3" unique_id=574476222]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, -0.08716339, 2.68, -0.44310954)
+material_override = SubResource("ShaderMaterial_151j4")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Tree4" type="Node3D" parent="CourtyardProps" unique_id=702276689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -6.2)
+
+[node name="Trunk" type="MeshInstance3D" parent="CourtyardProps/Tree4" unique_id=111974666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+material_override = SubResource("ShaderMaterial_u61mr")
+mesh = SubResource("CylinderMesh_vn5lw")
+
+[node name="TrunkCollision" type="StaticBody3D" parent="CourtyardProps/Tree4" unique_id=1333101853]
+
+[node name="Shape" type="CollisionShape3D" parent="CourtyardProps/Tree4/TrunkCollision" unique_id=441604016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CylinderShape3D_0d5lu")
+
+[node name="Canopy0" type="MeshInstance3D" parent="CourtyardProps/Tree4" unique_id=572965554]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0, 2.2, 0.45)
+material_override = SubResource("ShaderMaterial_lqvm3")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy1" type="MeshInstance3D" parent="CourtyardProps/Tree4" unique_id=1747518477]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0.3377316, 2.32, -0.33182716)
+material_override = SubResource("ShaderMaterial_151j4")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy2" type="MeshInstance3D" parent="CourtyardProps/Tree4" unique_id=1185459816]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, -0.4980823, 2.44, 0.03937454)
+material_override = SubResource("ShaderMaterial_168qq")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy3" type="MeshInstance3D" parent="CourtyardProps/Tree4" unique_id=1366937061]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, 0.39683393, 2.56, 0.27375808)
+material_override = SubResource("ShaderMaterial_lqvm3")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="Canopy4" type="MeshInstance3D" parent="CourtyardProps/Tree4" unique_id=373370558]
+transform = Transform3D(0.95, 0, 0, 0, 0.72, 0, 0, 0, 0.9, -0.08716339, 2.68, -0.44310954)
+material_override = SubResource("ShaderMaterial_151j4")
+mesh = SubResource("SphereMesh_gj1ry")
+
+[node name="GroundDetails" type="Node3D" parent="." unique_id=1420788367]
+
+[node name="Grass01" type="Node3D" parent="GroundDetails" unique_id=1630551073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2311783, 0, -8.999631)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass01" unique_id=1278843067]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass01" unique_id=568876896]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass01" unique_id=438939711]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass05" type="Node3D" parent="GroundDetails" unique_id=852301211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5872116, 0, -6.857764)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass05" unique_id=205094388]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass05" unique_id=502232242]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass05" unique_id=1281318678]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass07" type="Node3D" parent="GroundDetails" unique_id=73588128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8805656, 0, -11.6713705)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass07" unique_id=1607679972]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass07" unique_id=1326357283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass07" unique_id=457514958]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass09" type="Node3D" parent="GroundDetails" unique_id=834859002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9154205, 0, 10.131483)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass09" unique_id=1674189991]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass09" unique_id=1650284436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass09" unique_id=1722566124]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass10" type="Node3D" parent="GroundDetails" unique_id=955211907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.885044, 0, 9.436829)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass10" unique_id=526315252]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass10" unique_id=743412272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass10" unique_id=1480014868]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass12" type="Node3D" parent="GroundDetails" unique_id=1870585694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6320524, 0, 5.5171413)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass12" unique_id=1117158062]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass12" unique_id=557538086]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass12" unique_id=1486876008]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass13" type="Node3D" parent="GroundDetails" unique_id=1016351196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4595075, 0, -6.3187704)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass13" unique_id=954776372]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass13" unique_id=867478488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass13" unique_id=1858235542]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass14" type="Node3D" parent="GroundDetails" unique_id=490586735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.333433, 0, -6.827526)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass14" unique_id=641962467]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass14" unique_id=252977742]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass14" unique_id=1379554687]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass15" type="Node3D" parent="GroundDetails" unique_id=689263809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8301125, 0, 6.062639)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass15" unique_id=1662112450]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass15" unique_id=1664914140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass15" unique_id=1813988700]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass18" type="Node3D" parent="GroundDetails" unique_id=1319775200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.702099, 0, 10.143852)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass18" unique_id=1274752229]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass18" unique_id=438476699]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass18" unique_id=411276499]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass19" type="Node3D" parent="GroundDetails" unique_id=2133650092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0167675, 0, -9.395337)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass19" unique_id=1340010854]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass19" unique_id=788728970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass19" unique_id=465890297]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass21" type="Node3D" parent="GroundDetails" unique_id=335715028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.306501, 0, 10.371487)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass21" unique_id=910988415]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass21" unique_id=1165543908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass21" unique_id=768669642]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass23" type="Node3D" parent="GroundDetails" unique_id=359712993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.341347, 0, -5.26118)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass23" unique_id=483905565]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass23" unique_id=159637923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass23" unique_id=1573565998]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass24" type="Node3D" parent="GroundDetails" unique_id=22838957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9142895, 0, 9.447048)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass24" unique_id=1684677834]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass24" unique_id=1755848076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass24" unique_id=1942010633]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass25" type="Node3D" parent="GroundDetails" unique_id=1929857858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.147624, 0, 3.0255527)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass25" unique_id=469511379]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass25" unique_id=161802862]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass25" unique_id=316869673]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass26" type="Node3D" parent="GroundDetails" unique_id=1547757371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7912045, 0, -6.9613934)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass26" unique_id=541625125]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass26" unique_id=1409571675]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass26" unique_id=697107234]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass28" type="Node3D" parent="GroundDetails" unique_id=1371420462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.834833, 0, -5.4813786)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass28" unique_id=1152378970]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass28" unique_id=174167273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass28" unique_id=512924803]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass29" type="Node3D" parent="GroundDetails" unique_id=827337571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.129061, 0, -10.834524)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass29" unique_id=1374106423]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass29" unique_id=639238159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass29" unique_id=197677761]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass31" type="Node3D" parent="GroundDetails" unique_id=1594700929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.614208, 0, 8.946093)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass31" unique_id=1870467637]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass31" unique_id=1608252142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass31" unique_id=220496946]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass32" type="Node3D" parent="GroundDetails" unique_id=380861297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.468843, 0, 9.862671)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass32" unique_id=1319228109]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass32" unique_id=1216724232]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass32" unique_id=983862933]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass36" type="Node3D" parent="GroundDetails" unique_id=900223842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31271, 0, 4.0764904)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass36" unique_id=1211413135]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass36" unique_id=536611618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass36" unique_id=1406214849]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass42" type="Node3D" parent="GroundDetails" unique_id=65156411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.559505, 0, -7.2927036)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass42" unique_id=504194617]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass42" unique_id=159180718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass42" unique_id=971902612]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass44" type="Node3D" parent="GroundDetails" unique_id=687628155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.004524, 0, -11.432964)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass44" unique_id=1898659274]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass44" unique_id=616649538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass44" unique_id=1492316810]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass45" type="Node3D" parent="GroundDetails" unique_id=251559872]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.426321, 0, -9.663371)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass45" unique_id=1563510304]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass45" unique_id=436392586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass45" unique_id=1326033534]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass48" type="Node3D" parent="GroundDetails" unique_id=1218278054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2654285, 0, 6.1824894)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass48" unique_id=900438465]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass48" unique_id=490538355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass48" unique_id=1635035760]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass49" type="Node3D" parent="GroundDetails" unique_id=213596734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.421013, 0, -7.1608763)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass49" unique_id=195362688]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass49" unique_id=1098757924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass49" unique_id=1769765401]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass50" type="Node3D" parent="GroundDetails" unique_id=1229437974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.539215, 0, -4.061763)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass50" unique_id=1948057550]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass50" unique_id=647659998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass50" unique_id=939078584]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass52" type="Node3D" parent="GroundDetails" unique_id=1484478210]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6918278, 0, 4.959547)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass52" unique_id=248009168]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass52" unique_id=910804605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass52" unique_id=360258744]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass53" type="Node3D" parent="GroundDetails" unique_id=1987268815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.814763, 0, -5.4666452)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass53" unique_id=2008336576]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass53" unique_id=2049522123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass53" unique_id=1454042655]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass54" type="Node3D" parent="GroundDetails" unique_id=935629597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8765745, 0, 8.188923)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass54" unique_id=250359755]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass54" unique_id=1958809190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass54" unique_id=1600496674]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass55" type="Node3D" parent="GroundDetails" unique_id=1525136519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.374144, 0, -6.424736)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass55" unique_id=1813749092]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass55" unique_id=1876466793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass55" unique_id=679018633]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass56" type="Node3D" parent="GroundDetails" unique_id=234495639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.075094, 0, 8.136782)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass56" unique_id=98241105]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass56" unique_id=2016787664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass56" unique_id=1755176551]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass57" type="Node3D" parent="GroundDetails" unique_id=790487405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.868023, 0, -11.095785)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass57" unique_id=735245532]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass57" unique_id=1559875286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass57" unique_id=620413010]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass58" type="Node3D" parent="GroundDetails" unique_id=2110790599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4256706, 0, -3.2688217)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass58" unique_id=426258275]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass58" unique_id=437559653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass58" unique_id=521426263]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass59" type="Node3D" parent="GroundDetails" unique_id=1575258852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.543586, 0, 8.601898)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass59" unique_id=1606180311]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass59" unique_id=1049449636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass59" unique_id=685582589]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass60" type="Node3D" parent="GroundDetails" unique_id=699351679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.078459, 0, -7.6121607)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass60" unique_id=2032625399]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass60" unique_id=161792403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass60" unique_id=270547304]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass62" type="Node3D" parent="GroundDetails" unique_id=1288174546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.354702, 0, -11.701082)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass62" unique_id=2146631133]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass62" unique_id=1568930259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass62" unique_id=952609653]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass63" type="Node3D" parent="GroundDetails" unique_id=795690727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.65726, 0, -5.6514683)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass63" unique_id=366545297]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass63" unique_id=1680513702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass63" unique_id=1197276182]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass64" type="Node3D" parent="GroundDetails" unique_id=952424398]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.670951, 0, 5.2138405)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass64" unique_id=1079720195]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass64" unique_id=1949068839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass64" unique_id=2033383655]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass68" type="Node3D" parent="GroundDetails" unique_id=95065570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0865593, 0, 9.021976)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass68" unique_id=91630147]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass68" unique_id=981515760]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass68" unique_id=2106201911]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass70" type="Node3D" parent="GroundDetails" unique_id=1967339293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.469212, 0, -10.862731)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass70" unique_id=485794564]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass70" unique_id=588911233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass70" unique_id=494627380]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass71" type="Node3D" parent="GroundDetails" unique_id=655535361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7265697, 0, 10.612898)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass71" unique_id=2053357990]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass71" unique_id=1851549938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass71" unique_id=2105465713]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass74" type="Node3D" parent="GroundDetails" unique_id=1774449912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.221189, 0, 4.3697376)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass74" unique_id=336587329]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass74" unique_id=94013932]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass74" unique_id=1213805402]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass76" type="Node3D" parent="GroundDetails" unique_id=1218528928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3405895, 0, -4.7524767)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass76" unique_id=1648712988]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass76" unique_id=1981889062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass76" unique_id=721935557]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass78" type="Node3D" parent="GroundDetails" unique_id=988537428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0312805, 0, -8.181009)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass78" unique_id=434138077]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass78" unique_id=1947392959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass78" unique_id=211221705]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass79" type="Node3D" parent="GroundDetails" unique_id=1310953830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.710772, 0, -6.5243073)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass79" unique_id=1322455964]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass79" unique_id=500881010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass79" unique_id=1130073617]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass80" type="Node3D" parent="GroundDetails" unique_id=1381961954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7902002, 0, -5.559636)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass80" unique_id=262149995]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass80" unique_id=1737358178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass80" unique_id=38893358]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass83" type="Node3D" parent="GroundDetails" unique_id=658787868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.199106, 0, -8.17952)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass83" unique_id=892322461]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass83" unique_id=1526789209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass83" unique_id=470417221]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass84" type="Node3D" parent="GroundDetails" unique_id=602406623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4005322, 0, -11.530311)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass84" unique_id=1337759262]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass84" unique_id=1640839223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass84" unique_id=421224857]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass85" type="Node3D" parent="GroundDetails" unique_id=462641542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.458416, 0, -8.509611)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass85" unique_id=1761242296]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass85" unique_id=861594384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass85" unique_id=1742545419]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass86" type="Node3D" parent="GroundDetails" unique_id=483049809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.088705, 0, 9.49795)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass86" unique_id=911434244]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass86" unique_id=1980709271]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass86" unique_id=97348101]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass87" type="Node3D" parent="GroundDetails" unique_id=434266845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.262689, 0, -6.5601296)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass87" unique_id=1950649202]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass87" unique_id=1551437518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass87" unique_id=1747853478]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Grass88" type="Node3D" parent="GroundDetails" unique_id=1475730034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8092914, 0, 8.325447)
+
+[node name="Blade0" type="MeshInstance3D" parent="GroundDetails/Grass88" unique_id=1321866767]
+transform = Transform3D(0.971338, 0.23770262, 0, -0.23770262, 0.971338, 0, 0, 0, 1, 0, 0.095, 0)
+material_override = SubResource("ShaderMaterial_qrese")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade1" type="MeshInstance3D" parent="GroundDetails/Grass88" unique_id=1385088510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Blade2" type="MeshInstance3D" parent="GroundDetails/Grass88" unique_id=121234555]
+transform = Transform3D(0.971338, -0.23770262, 0, 0.23770262, 0.971338, 0, 0, 0, 1, 0.11, 0.095, 0)
+material_override = SubResource("ShaderMaterial_acvhn")
+mesh = SubResource("BoxMesh_v7jmd")
+
+[node name="Bounds" type="Node3D" parent="." unique_id=826754260]
+
+[node name="Boundary" type="Node3D" parent="Bounds" unique_id=1904824624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 1, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bounds/Boundary" unique_id=2116235695]
+visible = false
+material_override = SubResource("ShaderMaterial_ls1ni")
+mesh = SubResource("BoxMesh_pqk1v")
+
+[node name="Solid" type="StaticBody3D" parent="Bounds/Boundary" unique_id=1421597555]
+
+[node name="Shape" type="CollisionShape3D" parent="Bounds/Boundary/Solid" unique_id=237101802]
+shape = SubResource("BoxShape3D_ly7fo")
+
+[node name="Boundary2" type="Node3D" parent="Bounds" unique_id=183534013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 1, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bounds/Boundary2" unique_id=1010315489]
+visible = false
+material_override = SubResource("ShaderMaterial_ls1ni")
+mesh = SubResource("BoxMesh_pqk1v")
+
+[node name="Solid" type="StaticBody3D" parent="Bounds/Boundary2" unique_id=145550120]
+
+[node name="Shape" type="CollisionShape3D" parent="Bounds/Boundary2/Solid" unique_id=202942873]
+shape = SubResource("BoxShape3D_0tvks")
+
+[node name="Boundary3" type="Node3D" parent="Bounds" unique_id=1414706559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -15.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bounds/Boundary3" unique_id=37008233]
+visible = false
+material_override = SubResource("ShaderMaterial_ls1ni")
+mesh = SubResource("BoxMesh_5y8b7")
+
+[node name="Solid" type="StaticBody3D" parent="Bounds/Boundary3" unique_id=136047598]
+
+[node name="Shape" type="CollisionShape3D" parent="Bounds/Boundary3/Solid" unique_id=868889911]
+shape = SubResource("BoxShape3D_3ock7")
+
+[node name="Boundary4" type="Node3D" parent="Bounds" unique_id=610442542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 15.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bounds/Boundary4" unique_id=1949817379]
+visible = false
+material_override = SubResource("ShaderMaterial_ls1ni")
+mesh = SubResource("BoxMesh_5y8b7")
+
+[node name="Solid" type="StaticBody3D" parent="Bounds/Boundary4" unique_id=406102686]
+
+[node name="Shape" type="CollisionShape3D" parent="Bounds/Boundary4/Solid" unique_id=623972805]
+shape = SubResource("BoxShape3D_28yfb")
+
+[node name="Traveler" type="CharacterBody3D" parent="." unique_id=1424300172 node_paths=PackedStringArray("movement_camera") groups=["player"] instance=ExtResource("2_oi42k")]
+floor_max_angle = 0.80285144
+floor_snap_length = 0.25
+script = ExtResource("3_2ujlq")
+movement_camera = NodePath("../FollowCamera")
+
+[node name="FollowCamera" type="Camera3D" parent="." unique_id=671438331 node_paths=PackedStringArray("target")]
+transform = Transform3D(0.9349975, -0.17352034, 0.3093062, 0, 0.87213445, 0.48926622, -0.35465425, -0.4574627, 0.8154436, 5.5, 9.6, 14.5)
+projection = 1
+current = true
+size = 7.0
+near = 0.1
+far = 100.0
+script = ExtResource("4_2d6qq")
+target = NodePath("../Traveler")

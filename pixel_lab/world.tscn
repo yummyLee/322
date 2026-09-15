@@ -1,0 +1,2425 @@
+[gd_scene format=3 uid="uid://r3nb0bnpmigl"]
+
+[ext_resource type="Shader" uid="uid://djh1momt7ltne" path="res://pixel_lab/toon.gdshader" id="1_qc21j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nobym"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.39215687, 0.36862746, 0.3137255, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3eavc"]
+size = Vector3(11.6, 1.4, 8.3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l2iql"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4117647, 0.5137255, 0.34117648, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_pry6s"]
+size = Vector3(11.8, 0.18, 8.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qso4b"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.24705882, 0.5372549, 0.5803922, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_yjn4a"]
+size = Vector3(2.7, 0.12, 7.9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tve5h"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.68235296, 0.5411765, 0.34509805, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_tpuu4"]
+size = Vector3(3.1, 0.16, 0.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j60xs"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.68235296, 0.5411765, 0.34509805, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ycb1"]
+size = Vector3(3.1, 0.16, 0.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hs1i5"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.68235296, 0.5411765, 0.34509805, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ewyvg"]
+size = Vector3(3.1, 0.16, 0.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5n61h"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.68235296, 0.5411765, 0.34509805, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_8s43i"]
+size = Vector3(3.1, 0.16, 0.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slyio"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.68235296, 0.5411765, 0.34509805, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_whpii"]
+size = Vector3(3.1, 0.16, 0.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3hyk5"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.68235296, 0.5411765, 0.34509805, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_q0f7x"]
+size = Vector3(3.1, 0.16, 0.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yamku"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.68235296, 0.5411765, 0.34509805, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_knf1p"]
+size = Vector3(3.1, 0.16, 0.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ypf6"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.68235296, 0.5411765, 0.34509805, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_uclcg"]
+size = Vector3(3.1, 0.16, 0.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fd0do"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.68235296, 0.5411765, 0.34509805, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_225dj"]
+size = Vector3(3.1, 0.16, 0.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvqsv"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.68235296, 0.5411765, 0.34509805, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_5lgnf"]
+size = Vector3(3.1, 0.16, 0.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_62nlw"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.68235296, 0.5411765, 0.34509805, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_osshy"]
+size = Vector3(3.1, 0.16, 0.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_13d80"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4509804, 0.3254902, 0.24705882, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_u6wxt"]
+size = Vector3(0.12, 0.8, 0.12)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yskot"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4509804, 0.3254902, 0.24705882, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_5hyf7"]
+size = Vector3(0.12, 0.8, 0.12)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h3oap"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6745098, 0.52156866, 0.33333334, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_mtedy"]
+size = Vector3(0.1, 0.12, 2.6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ew74s"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4509804, 0.3254902, 0.24705882, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_k61mw"]
+size = Vector3(0.12, 0.8, 0.12)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5tg3"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4509804, 0.3254902, 0.24705882, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ul0bg"]
+size = Vector3(0.12, 0.8, 0.12)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_55n1p"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6745098, 0.52156866, 0.33333334, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_s320f"]
+size = Vector3(0.1, 0.12, 2.6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ey8ra"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.8392157, 0.7372549, 0.5254902, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_nchi4"]
+size = Vector3(3, 2, 2.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uxuor"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4627451, 0.32941177, 0.2627451, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_madj6"]
+size = Vector3(0.14, 2.2, 0.14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_txf7h"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4627451, 0.32941177, 0.2627451, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_orkep"]
+size = Vector3(0.14, 2.2, 0.14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60w13"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4627451, 0.32941177, 0.2627451, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ynbam"]
+size = Vector3(0.14, 2.2, 0.14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4i750"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4627451, 0.32941177, 0.2627451, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_31dsn"]
+size = Vector3(0.14, 2.2, 0.14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8fgv"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.65882355, 0.38039216, 0.29411766, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_qc7ls"]
+size = Vector3(2.12, 0.17, 3.05)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r74he"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.65882355, 0.38039216, 0.29411766, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_b46cy"]
+size = Vector3(2.12, 0.17, 3.05)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j053w"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.72156864, 0.6509804, 0.54901963, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_qht13"]
+size = Vector3(0.4, 1, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e3qvm"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.40784314, 0.31764707, 0.25490198, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_5bhm7"]
+size = Vector3(0.7, 1.4, 0.12)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h76s3"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.44705883, 0.34509805, 0.27450982, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_35hkg"]
+size = Vector3(0.56, 0.66, 0.14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rs2hj"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.9372549, 0.78039217, 0.46666667, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_q4fpn"]
+size = Vector3(0.4, 0.48, 0.06)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l664l"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.44705883, 0.34509805, 0.27450982, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_owk2d"]
+size = Vector3(0.56, 0.66, 0.14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bpanu"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.9372549, 0.78039217, 0.46666667, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3itg0"]
+size = Vector3(0.4, 0.48, 0.06)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7auwo"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.69411767, 0.6666667, 0.52156866, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4jnm5"]
+size = Vector3(0.85, 0.13, 0.27)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lw04p"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.69411767, 0.6666667, 0.52156866, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_uknww"]
+size = Vector3(0.85, 0.13, 0.27)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bifwy"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.69411767, 0.6666667, 0.52156866, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_0cej3"]
+size = Vector3(0.85, 0.13, 0.27)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_igvpl"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.69411767, 0.6666667, 0.52156866, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_e0oqm"]
+size = Vector3(0.85, 0.13, 0.27)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ci04m"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.69411767, 0.6666667, 0.52156866, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_clgc1"]
+size = Vector3(0.85, 0.13, 0.27)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2fmor"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.69411767, 0.6666667, 0.52156866, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_y2m3f"]
+size = Vector3(0.85, 0.13, 0.27)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lfj66"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.69411767, 0.6666667, 0.52156866, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cj4uh"]
+size = Vector3(0.85, 0.13, 0.27)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_owgcs"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.69411767, 0.6666667, 0.52156866, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_k8w2p"]
+size = Vector3(0.85, 0.13, 0.27)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g04xm"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.69411767, 0.6666667, 0.52156866, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ur1r3"]
+size = Vector3(0.85, 0.13, 0.27)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5nvbd"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4, 0.31764707, 0.25882354, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bhph8"]
+top_radius = 0.13643771
+bottom_radius = 0.22414768
+height = 1.6567438
+radial_segments = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8g56t"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.27450982, 0.46666667, 0.35686275, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_texab"]
+top_radius = 0.0
+bottom_radius = 1.1207384
+height = 1.5105605
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxuy6"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.34509805, 0.5254902, 0.39607844, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_y6qea"]
+top_radius = 0.0
+bottom_radius = 0.90633625
+height = 1.5105605
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_itvyg"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.44705883, 0.6039216, 0.4117647, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_re4ub"]
+top_radius = 0.0
+bottom_radius = 0.69193417
+height = 1.5105605
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wm0xk"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4, 0.31764707, 0.25882354, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_we4h1"]
+top_radius = 0.123751596
+bottom_radius = 0.2033062
+height = 1.502698
+radial_segments = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxh47"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.27450982, 0.46666667, 0.35686275, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_b372j"]
+top_radius = 0.0
+bottom_radius = 1.016531
+height = 1.3701069
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vhi7"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.34509805, 0.5254902, 0.39607844, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ad4d8"]
+top_radius = 0.0
+bottom_radius = 0.82206416
+height = 1.3701069
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_56k6v"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.44705883, 0.6039216, 0.4117647, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ex5gg"]
+top_radius = 0.0
+bottom_radius = 0.6275974
+height = 1.3701069
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2v8t"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4, 0.31764707, 0.25882354, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1nttn"]
+top_radius = 0.15033846
+bottom_radius = 0.2469846
+height = 1.8255384
+radial_segments = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_732q3"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.27450982, 0.46666667, 0.35686275, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uxdnm"]
+top_radius = 0.0
+bottom_radius = 1.234923
+height = 1.6644615
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_skh86"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.34509805, 0.5254902, 0.39607844, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gukug"]
+top_radius = 0.0
+bottom_radius = 0.9986769
+height = 1.6644615
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ito0i"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.44705883, 0.6039216, 0.4117647, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0l63v"]
+top_radius = 0.0
+bottom_radius = 0.7624307
+height = 1.6644615
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2j3qk"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4, 0.31764707, 0.25882354, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lr1tj"]
+top_radius = 0.14184274
+bottom_radius = 0.23302734
+height = 1.722376
+radial_segments = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idg2h"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.27450982, 0.46666667, 0.35686275, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r8q6o"]
+top_radius = 0.0
+bottom_radius = 1.1651367
+height = 1.5704017
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qn8ck"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.34509805, 0.5254902, 0.39607844, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bac3b"]
+top_radius = 0.0
+bottom_radius = 0.942241
+height = 1.5704017
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6436a"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.44705883, 0.6039216, 0.4117647, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yrjjp"]
+top_radius = 0.0
+bottom_radius = 0.7193453
+height = 1.5704017
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qcff3"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.4, 0.31764707, 0.25882354, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dq6ba"]
+top_radius = 0.13197313
+bottom_radius = 0.21681301
+height = 1.602531
+radial_segments = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mh81k"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.27450982, 0.46666667, 0.35686275, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x6c1h"]
+top_radius = 0.0
+bottom_radius = 1.0840651
+height = 1.4611312
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yybfc"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.34509805, 0.5254902, 0.39607844, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_44f0a"]
+top_radius = 0.0
+bottom_radius = 0.8766787
+height = 1.4611312
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jduid"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.44705883, 0.6039216, 0.4117647, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ag47f"]
+top_radius = 0.0
+bottom_radius = 0.66929233
+height = 1.4611312
+radial_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64aer"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_i7cgo"]
+radius = 0.12577817
+height = 0.18866725
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ax16x"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_llmy1"]
+radius = 0.21670066
+height = 0.32505098
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_atou7"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_37ywl"]
+radius = 0.18032864
+height = 0.27049297
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ore0k"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_ujrvj"]
+radius = 0.2756578
+height = 0.41348672
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uk7io"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_ojhsd"]
+radius = 0.24984658
+height = 0.37476987
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f62ro"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_evo0i"]
+radius = 0.21314025
+height = 0.31971037
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vbwdk"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_vs4d1"]
+radius = 0.12303535
+height = 0.18455303
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4g6w6"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_gl4ad"]
+radius = 0.22863394
+height = 0.3429509
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8du4w"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_ugk3h"]
+radius = 0.1594692
+height = 0.23920381
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcq24"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_0uucr"]
+radius = 0.15056309
+height = 0.22584464
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_adn0r"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_cgvv3"]
+radius = 0.19881591
+height = 0.29822385
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4d5kc"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_8iigb"]
+radius = 0.16369218
+height = 0.24553826
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrl7v"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_y5qbu"]
+radius = 0.22727783
+height = 0.34091675
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1irm"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_xs4ca"]
+radius = 0.25998184
+height = 0.38997275
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vcyp3"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_xfp7n"]
+radius = 0.3329088
+height = 0.4993632
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qj604"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_8hvbb"]
+radius = 0.21752104
+height = 0.32628155
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64hhr"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_4ctds"]
+radius = 0.22484227
+height = 0.3372634
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n3stx"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_cuwn3"]
+radius = 0.20865113
+height = 0.3129767
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3wuh5"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_dgxva"]
+radius = 0.27417707
+height = 0.4112656
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qkfsf"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_wsobh"]
+radius = 0.30574855
+height = 0.4586228
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ee6r6"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.6, 0.6431373, 0.54509807, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_6pqc5"]
+radius = 0.3080584
+height = 0.46208763
+radial_segments = 5
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6r4bi"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_88ed8"]
+size = Vector3(0.055, 0.27625233, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w17k5"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_tasbn"]
+size = Vector3(0.055, 0.21859616, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1eyq"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3a10i"]
+size = Vector3(0.055, 0.25688112, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grtjn"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_5uyjs"]
+size = Vector3(0.055, 0.27770567, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0gst"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_x5rn8"]
+size = Vector3(0.055, 0.25488207, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dypob"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_o55qj"]
+size = Vector3(0.055, 0.19791898, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7a78q"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_rc3jo"]
+size = Vector3(0.055, 0.19980614, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v0shs"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_mnehy"]
+size = Vector3(0.055, 0.25541976, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hpoxq"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_8spwo"]
+size = Vector3(0.055, 0.27344927, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rfqu0"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_08de3"]
+size = Vector3(0.055, 0.17163172, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xe23m"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_j878e"]
+size = Vector3(0.055, 0.14965793, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_veufq"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_06ol7"]
+size = Vector3(0.055, 0.20626704, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8bw1"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_725um"]
+size = Vector3(0.055, 0.27423397, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r40bw"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_lukyb"]
+size = Vector3(0.055, 0.15558684, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6gcia"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_wcy3k"]
+size = Vector3(0.055, 0.13811462, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l1p27"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_y2ac8"]
+size = Vector3(0.055, 0.29201496, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_axgqb"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_qmur3"]
+size = Vector3(0.055, 0.16728112, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j60us"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_gmvye"]
+size = Vector3(0.055, 0.2828702, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_folf0"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ny7wu"]
+size = Vector3(0.055, 0.28481045, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qucs2"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ij1sw"]
+size = Vector3(0.055, 0.25472504, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wi18e"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_pt3tq"]
+size = Vector3(0.055, 0.20500198, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8disv"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_on56i"]
+size = Vector3(0.055, 0.22023277, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m26dn"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_1gqd2"]
+size = Vector3(0.055, 0.17294765, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jr8ij"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3f8bg"]
+size = Vector3(0.055, 0.23008934, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_huw5d"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_al561"]
+size = Vector3(0.055, 0.18939252, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kqa58"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_q5pt5"]
+size = Vector3(0.055, 0.29303503, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qh3j3"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_k5yxs"]
+size = Vector3(0.055, 0.13623118, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iclsg"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_we0gg"]
+size = Vector3(0.055, 0.19124141, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t632j"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_oi5pg"]
+size = Vector3(0.055, 0.24574298, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_orh4j"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_f4jdh"]
+size = Vector3(0.055, 0.21604368, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6p0ve"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_yw0oi"]
+size = Vector3(0.055, 0.23604622, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffrej"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ajd5"]
+size = Vector3(0.055, 0.25055432, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h1vm7"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_taccl"]
+size = Vector3(0.055, 0.25005478, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8nn1f"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3fqwu"]
+size = Vector3(0.055, 0.29484072, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qh0n"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_gkmx8"]
+size = Vector3(0.055, 0.2007123, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60b0b"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_om1xm"]
+size = Vector3(0.055, 0.12750793, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0rgm"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_aaiib"]
+size = Vector3(0.055, 0.23636106, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ilmy3"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_mip35"]
+size = Vector3(0.055, 0.29282358, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n2tde"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_uekyn"]
+size = Vector3(0.055, 0.28882176, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nsowf"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_oydo6"]
+size = Vector3(0.055, 0.15137984, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_85ko6"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_0k134"]
+size = Vector3(0.055, 0.12157323, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_65a4k"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_q0i74"]
+size = Vector3(0.055, 0.2033701, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l0gv8"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_44fr4"]
+size = Vector3(0.055, 0.22885433, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvhs2"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_0hnjk"]
+size = Vector3(0.055, 0.15236579, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hfkir"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_j2o8f"]
+size = Vector3(0.055, 0.24268264, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ebva"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cjsxm"]
+size = Vector3(0.055, 0.22376934, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5s15"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_m5rbr"]
+size = Vector3(0.055, 0.27792448, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_la5qo"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_olhtn"]
+size = Vector3(0.055, 0.27563372, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40qpw"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_v5ngb"]
+size = Vector3(0.055, 0.15926933, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwd0s"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_42s5m"]
+size = Vector3(0.055, 0.20774764, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cebtj"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cwcwu"]
+size = Vector3(0.055, 0.28084484, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ybneh"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cfkwt"]
+size = Vector3(0.055, 0.22723109, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51l1q"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_kayta"]
+size = Vector3(0.055, 0.18627876, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mct38"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_oiurd"]
+size = Vector3(0.055, 0.22737856, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cwk1w"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_a5fen"]
+size = Vector3(0.055, 0.19439927, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glfvu"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_1pl37"]
+size = Vector3(0.055, 0.23059633, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wugtw"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_knpt7"]
+size = Vector3(0.055, 0.18379755, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1u7kq"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_jpbtw"]
+size = Vector3(0.055, 0.29220968, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3me8h"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_lghnr"]
+size = Vector3(0.055, 0.29483926, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2g3wj"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3pxxt"]
+size = Vector3(0.055, 0.14360082, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5ii6"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_8yrbh"]
+size = Vector3(0.055, 0.2766138, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dm6xa"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_jhvri"]
+size = Vector3(0.055, 0.27442536, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eaiyi"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ku4e"]
+size = Vector3(0.055, 0.1723504, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d6who"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_k3vi3"]
+size = Vector3(0.055, 0.2715806, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glqgs"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_fj4qs"]
+size = Vector3(0.055, 0.16950895, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_45dc3"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_8j1os"]
+size = Vector3(0.055, 0.27094695, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3on8b"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_x4310"]
+size = Vector3(0.055, 0.20765904, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8l6p5"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_7jos1"]
+size = Vector3(0.055, 0.22746481, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i61jf"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_r5dp6"]
+size = Vector3(0.055, 0.27975136, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2mrh"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_j2a47"]
+size = Vector3(0.055, 0.1201299, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_buvgk"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_l3mm5"]
+size = Vector3(0.055, 0.25671554, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wrxy"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_63w8p"]
+size = Vector3(0.055, 0.26869202, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d7n2u"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_j8ufc"]
+size = Vector3(0.055, 0.13487598, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ks6nt"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_gfcwx"]
+size = Vector3(0.055, 0.17528392, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1tt5b"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4akyx"]
+size = Vector3(0.055, 0.1407837, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ntljh"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_awh0c"]
+size = Vector3(0.055, 0.1735622, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u1x5u"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_s1rt2"]
+size = Vector3(0.055, 0.2370658, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmqou"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_1wulv"]
+size = Vector3(0.055, 0.2932574, 0.055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7sp8o"]
+render_priority = 0
+shader = ExtResource("1_qc21j")
+shader_parameter/base_color = Color(0.627451, 0.6666667, 0.39215687, 1)
+shader_parameter/toon_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_tmjb3"]
+size = Vector3(0.055, 0.23033205, 0.055)
+
+[node name="World" type="Node3D" unique_id=1237801688]
+
+[node name="Terrain" type="Node3D" parent="." unique_id=62796973]
+
+[node name="Earth0" type="MeshInstance3D" parent="Terrain" unique_id=1095485591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+material_override = SubResource("ShaderMaterial_nobym")
+mesh = SubResource("BoxMesh_3eavc")
+
+[node name="GrassGround1" type="MeshInstance3D" parent="Terrain" unique_id=1498844359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03, 0)
+material_override = SubResource("ShaderMaterial_l2iql")
+mesh = SubResource("BoxMesh_pry6s")
+
+[node name="Water2" type="MeshInstance3D" parent="Terrain" unique_id=1453950363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.09, 0.25)
+material_override = SubResource("ShaderMaterial_qso4b")
+mesh = SubResource("BoxMesh_yjn4a")
+
+[node name="Bridge" type="Node3D" parent="." unique_id=1851221631]
+
+[node name="Plank3" type="MeshInstance3D" parent="Bridge" unique_id=1981194104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.12, -2.8)
+material_override = SubResource("ShaderMaterial_tve5h")
+mesh = SubResource("BoxMesh_tpuu4")
+
+[node name="Plank4" type="MeshInstance3D" parent="Bridge" unique_id=1615835693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.12, -2.58)
+material_override = SubResource("ShaderMaterial_j60xs")
+mesh = SubResource("BoxMesh_5ycb1")
+
+[node name="Plank5" type="MeshInstance3D" parent="Bridge" unique_id=759058567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.12, -2.36)
+material_override = SubResource("ShaderMaterial_hs1i5")
+mesh = SubResource("BoxMesh_ewyvg")
+
+[node name="Plank6" type="MeshInstance3D" parent="Bridge" unique_id=299581712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.12, -2.14)
+material_override = SubResource("ShaderMaterial_5n61h")
+mesh = SubResource("BoxMesh_8s43i")
+
+[node name="Plank7" type="MeshInstance3D" parent="Bridge" unique_id=1422964658]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.12, -1.92)
+material_override = SubResource("ShaderMaterial_slyio")
+mesh = SubResource("BoxMesh_whpii")
+
+[node name="Plank8" type="MeshInstance3D" parent="Bridge" unique_id=1200899623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.12, -1.7)
+material_override = SubResource("ShaderMaterial_3hyk5")
+mesh = SubResource("BoxMesh_q0f7x")
+
+[node name="Plank9" type="MeshInstance3D" parent="Bridge" unique_id=1554600944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.12, -1.48)
+material_override = SubResource("ShaderMaterial_yamku")
+mesh = SubResource("BoxMesh_knf1p")
+
+[node name="Plank10" type="MeshInstance3D" parent="Bridge" unique_id=1109433154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.12, -1.26)
+material_override = SubResource("ShaderMaterial_3ypf6")
+mesh = SubResource("BoxMesh_uclcg")
+
+[node name="Plank11" type="MeshInstance3D" parent="Bridge" unique_id=402210539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.12, -1.04)
+material_override = SubResource("ShaderMaterial_fd0do")
+mesh = SubResource("BoxMesh_225dj")
+
+[node name="Plank12" type="MeshInstance3D" parent="Bridge" unique_id=478843274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.12, -0.82)
+material_override = SubResource("ShaderMaterial_kvqsv")
+mesh = SubResource("BoxMesh_5lgnf")
+
+[node name="Plank13" type="MeshInstance3D" parent="Bridge" unique_id=1512323747]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0.12, -0.6)
+material_override = SubResource("ShaderMaterial_62nlw")
+mesh = SubResource("BoxMesh_osshy")
+
+[node name="Railing14" type="MeshInstance3D" parent="Bridge" unique_id=744899648]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12, 0.45, -2.9)
+material_override = SubResource("ShaderMaterial_13d80")
+mesh = SubResource("BoxMesh_u6wxt")
+
+[node name="Railing15" type="MeshInstance3D" parent="Bridge" unique_id=1480913718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12, 0.45, -0.5)
+material_override = SubResource("ShaderMaterial_yskot")
+mesh = SubResource("BoxMesh_5hyf7")
+
+[node name="Railing16" type="MeshInstance3D" parent="Bridge" unique_id=2135319197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12, 0.7, -1.7)
+material_override = SubResource("ShaderMaterial_h3oap")
+mesh = SubResource("BoxMesh_mtedy")
+
+[node name="Railing17" type="MeshInstance3D" parent="Bridge" unique_id=878776407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.98, 0.45, -2.9)
+material_override = SubResource("ShaderMaterial_ew74s")
+mesh = SubResource("BoxMesh_k61mw")
+
+[node name="Railing18" type="MeshInstance3D" parent="Bridge" unique_id=977157144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.98, 0.45, -0.5)
+material_override = SubResource("ShaderMaterial_m5tg3")
+mesh = SubResource("BoxMesh_ul0bg")
+
+[node name="Railing19" type="MeshInstance3D" parent="Bridge" unique_id=1836507317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.98, 0.7, -1.7)
+material_override = SubResource("ShaderMaterial_55n1p")
+mesh = SubResource("BoxMesh_s320f")
+
+[node name="House" type="Node3D" parent="." unique_id=1918340873]
+
+[node name="HousePart20" type="MeshInstance3D" parent="House" unique_id=1469262447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1, -0.6)
+material_override = SubResource("ShaderMaterial_ey8ra")
+mesh = SubResource("BoxMesh_nchi4")
+
+[node name="HousePart21" type="MeshInstance3D" parent="House" unique_id=1129020790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68, 1.05, -1.82)
+material_override = SubResource("ShaderMaterial_uxuor")
+mesh = SubResource("BoxMesh_madj6")
+
+[node name="HousePart22" type="MeshInstance3D" parent="House" unique_id=1463521052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68, 1.05, 0.62)
+material_override = SubResource("ShaderMaterial_txf7h")
+mesh = SubResource("BoxMesh_orkep")
+
+[node name="HousePart23" type="MeshInstance3D" parent="House" unique_id=87135701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28, 1.05, -1.82)
+material_override = SubResource("ShaderMaterial_60w13")
+mesh = SubResource("BoxMesh_ynbam")
+
+[node name="HousePart24" type="MeshInstance3D" parent="House" unique_id=796975260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28, 1.05, 0.62)
+material_override = SubResource("ShaderMaterial_4i750")
+mesh = SubResource("BoxMesh_31dsn")
+
+[node name="HousePart25" type="MeshInstance3D" parent="House" unique_id=1365443856]
+transform = Transform3D(0.87758255, -0.47942555, 0, 0.47942555, 0.87758255, 0, 0, 0, 1, -2.05, 2.38, -0.6)
+material_override = SubResource("ShaderMaterial_w8fgv")
+mesh = SubResource("BoxMesh_qc7ls")
+
+[node name="HousePart26" type="MeshInstance3D" parent="House" unique_id=1106728229]
+transform = Transform3D(0.87758255, 0.47942555, 0, -0.47942555, 0.87758255, 0, 0, 0, 1, -0.35, 2.38, -0.6)
+material_override = SubResource("ShaderMaterial_r74he")
+mesh = SubResource("BoxMesh_b46cy")
+
+[node name="HousePart27" type="MeshInstance3D" parent="House" unique_id=1276897360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 2.9, -1.2)
+material_override = SubResource("ShaderMaterial_j053w")
+mesh = SubResource("BoxMesh_qht13")
+
+[node name="HousePart28" type="MeshInstance3D" parent="House" unique_id=659944165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.7, 0.68)
+material_override = SubResource("ShaderMaterial_e3qvm")
+mesh = SubResource("BoxMesh_5bhm7")
+
+[node name="HousePart29" type="MeshInstance3D" parent="House" unique_id=374981365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 1.22, 0.68)
+material_override = SubResource("ShaderMaterial_h76s3")
+mesh = SubResource("BoxMesh_35hkg")
+
+[node name="HousePart30" type="MeshInstance3D" parent="House" unique_id=2005113005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 1.24, 0.77)
+material_override = SubResource("ShaderMaterial_rs2hj")
+mesh = SubResource("BoxMesh_q4fpn")
+
+[node name="HousePart31" type="MeshInstance3D" parent="House" unique_id=1344993556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.22, 0.68)
+material_override = SubResource("ShaderMaterial_l664l")
+mesh = SubResource("BoxMesh_owk2d")
+
+[node name="HousePart32" type="MeshInstance3D" parent="House" unique_id=1684335821]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.24, 0.77)
+material_override = SubResource("ShaderMaterial_bpanu")
+mesh = SubResource("BoxMesh_3itg0")
+
+[node name="Path" type="Node3D" parent="." unique_id=1548836627]
+
+[node name="Step33" type="MeshInstance3D" parent="Path" unique_id=1180195197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.12, 1)
+material_override = SubResource("ShaderMaterial_7auwo")
+mesh = SubResource("BoxMesh_4jnm5")
+
+[node name="Step34" type="MeshInstance3D" parent="Path" unique_id=1483918669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0565288, 0.12, 1.35)
+material_override = SubResource("ShaderMaterial_lw04p")
+mesh = SubResource("BoxMesh_uknww")
+
+[node name="Step35" type="MeshInstance3D" parent="Path" unique_id=783584127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0000852, 0.12, 1.7)
+material_override = SubResource("ShaderMaterial_bifwy")
+mesh = SubResource("BoxMesh_0cej3")
+
+[node name="Step36" type="MeshInstance3D" parent="Path" unique_id=1614416678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0649073, 0.12, 2.05)
+material_override = SubResource("ShaderMaterial_igvpl")
+mesh = SubResource("BoxMesh_e0oqm")
+
+[node name="Step37" type="MeshInstance3D" parent="Path" unique_id=1819558222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2116748, 0.12, 2.4)
+material_override = SubResource("ShaderMaterial_ci04m")
+mesh = SubResource("BoxMesh_clgc1")
+
+[node name="Step38" type="MeshInstance3D" parent="Path" unique_id=1268830442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3513604, 0.12, 2.75)
+material_override = SubResource("ShaderMaterial_2fmor")
+mesh = SubResource("BoxMesh_y2m3f")
+
+[node name="Step39" type="MeshInstance3D" parent="Path" unique_id=2069056891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3992329, 0.12, 3.1)
+material_override = SubResource("ShaderMaterial_lfj66")
+mesh = SubResource("BoxMesh_cj4uh")
+
+[node name="Step40" type="MeshInstance3D" parent="Path" unique_id=1539993165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3262533, 0.12, 3.45)
+material_override = SubResource("ShaderMaterial_owgcs")
+mesh = SubResource("BoxMesh_k8w2p")
+
+[node name="Step41" type="MeshInstance3D" parent="Path" unique_id=1926955545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1766901, 0.12, 3.8)
+material_override = SubResource("ShaderMaterial_g04xm")
+mesh = SubResource("BoxMesh_ur1r3")
+
+[node name="Trees" type="Node3D" parent="." unique_id=1990557935]
+
+[node name="Tree1" type="Node3D" parent="Trees" unique_id=1222861370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2.7)
+
+[node name="Trunk42" type="MeshInstance3D" parent="Trees/Tree1" unique_id=114252042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8283719, 0)
+material_override = SubResource("ShaderMaterial_5nvbd")
+mesh = SubResource("CylinderMesh_bhph8")
+
+[node name="Foliage43" type="MeshInstance3D" parent="Trees/Tree1" unique_id=1794356189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.413105, 0)
+material_override = SubResource("ShaderMaterial_8g56t")
+mesh = SubResource("CylinderMesh_texab")
+
+[node name="Foliage44" type="MeshInstance3D" parent="Trees/Tree1" unique_id=487652190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0465658, 0)
+material_override = SubResource("ShaderMaterial_sxuy6")
+mesh = SubResource("CylinderMesh_y6qea")
+
+[node name="Foliage45" type="MeshInstance3D" parent="Trees/Tree1" unique_id=1748786184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6800265, 0)
+material_override = SubResource("ShaderMaterial_itvyg")
+mesh = SubResource("CylinderMesh_re4ub")
+
+[node name="Tree2" type="Node3D" parent="Trees" unique_id=343029193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7, 0, 0)
+
+[node name="Trunk46" type="MeshInstance3D" parent="Trees/Tree2" unique_id=393020680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.751349, 0)
+material_override = SubResource("ShaderMaterial_wm0xk")
+mesh = SubResource("CylinderMesh_we4h1")
+
+[node name="Foliage47" type="MeshInstance3D" parent="Trees/Tree2" unique_id=1004727129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.281713, 0)
+material_override = SubResource("ShaderMaterial_sxh47")
+mesh = SubResource("CylinderMesh_b372j")
+
+[node name="Foliage48" type="MeshInstance3D" parent="Trees/Tree2" unique_id=105046171]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8562739, 0)
+material_override = SubResource("ShaderMaterial_2vhi7")
+mesh = SubResource("CylinderMesh_ad4d8")
+
+[node name="Foliage49" type="MeshInstance3D" parent="Trees/Tree2" unique_id=2005121299]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.430835, 0)
+material_override = SubResource("ShaderMaterial_56k6v")
+mesh = SubResource("CylinderMesh_ex5gg")
+
+[node name="Tree3" type="Node3D" parent="Trees" unique_id=284625744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, -3)
+
+[node name="Trunk50" type="MeshInstance3D" parent="Trees/Tree3" unique_id=946448061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9127692, 0)
+material_override = SubResource("ShaderMaterial_i2v8t")
+mesh = SubResource("CylinderMesh_1nttn")
+
+[node name="Foliage51" type="MeshInstance3D" parent="Trees/Tree3" unique_id=607737064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5570769, 0)
+material_override = SubResource("ShaderMaterial_732q3")
+mesh = SubResource("CylinderMesh_uxdnm")
+
+[node name="Foliage52" type="MeshInstance3D" parent="Trees/Tree3" unique_id=1353099666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2550766, 0)
+material_override = SubResource("ShaderMaterial_skh86")
+mesh = SubResource("CylinderMesh_gukug")
+
+[node name="Foliage53" type="MeshInstance3D" parent="Trees/Tree3" unique_id=1599720800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9530768, 0)
+material_override = SubResource("ShaderMaterial_ito0i")
+mesh = SubResource("CylinderMesh_0l63v")
+
+[node name="Tree4" type="Node3D" parent="Trees" unique_id=743168698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4, 0, 2.7)
+
+[node name="Trunk54" type="MeshInstance3D" parent="Trees/Tree4" unique_id=1903919653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.861188, 0)
+material_override = SubResource("ShaderMaterial_2j3qk")
+mesh = SubResource("CylinderMesh_lr1tj")
+
+[node name="Foliage55" type="MeshInstance3D" parent="Trees/Tree4" unique_id=656488252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4690855, 0)
+material_override = SubResource("ShaderMaterial_idg2h")
+mesh = SubResource("CylinderMesh_r8q6o")
+
+[node name="Foliage56" type="MeshInstance3D" parent="Trees/Tree4" unique_id=150950721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.127641, 0)
+material_override = SubResource("ShaderMaterial_qn8ck")
+mesh = SubResource("CylinderMesh_bac3b")
+
+[node name="Foliage57" type="MeshInstance3D" parent="Trees/Tree4" unique_id=1420685724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7861965, 0)
+material_override = SubResource("ShaderMaterial_6436a")
+mesh = SubResource("CylinderMesh_yrjjp")
+
+[node name="Tree5" type="Node3D" parent="Trees" unique_id=516791556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 0, 2.6)
+
+[node name="Trunk58" type="MeshInstance3D" parent="Trees/Tree5" unique_id=211889087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8012655, 0)
+material_override = SubResource("ShaderMaterial_qcff3")
+mesh = SubResource("CylinderMesh_dq6ba")
+
+[node name="Foliage59" type="MeshInstance3D" parent="Trees/Tree5" unique_id=1560812163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3668647, 0)
+material_override = SubResource("ShaderMaterial_mh81k")
+mesh = SubResource("CylinderMesh_x6c1h")
+
+[node name="Foliage60" type="MeshInstance3D" parent="Trees/Tree5" unique_id=1980555930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.979597, 0)
+material_override = SubResource("ShaderMaterial_yybfc")
+mesh = SubResource("CylinderMesh_44f0a")
+
+[node name="Foliage61" type="MeshInstance3D" parent="Trees/Tree5" unique_id=1450739686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5923295, 0)
+material_override = SubResource("ShaderMaterial_jduid")
+mesh = SubResource("CylinderMesh_ag47f")
+
+[node name="Rocks" type="Node3D" parent="." unique_id=788258301]
+
+[node name="Rock62" type="MeshInstance3D" parent="Rocks" unique_id=1331896011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6087503, 0.13, -3.6099536)
+material_override = SubResource("ShaderMaterial_64aer")
+mesh = SubResource("SphereMesh_i7cgo")
+
+[node name="Rock63" type="MeshInstance3D" parent="Rocks" unique_id=1229201420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6166573, 0.13, -1.4656014)
+material_override = SubResource("ShaderMaterial_ax16x")
+mesh = SubResource("SphereMesh_llmy1")
+
+[node name="Rock64" type="MeshInstance3D" parent="Rocks" unique_id=1237081936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29030037, 0.13, -2.1813447)
+material_override = SubResource("ShaderMaterial_atou7")
+mesh = SubResource("SphereMesh_37ywl")
+
+[node name="Rock65" type="MeshInstance3D" parent="Rocks" unique_id=1133104228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6411562, 0.13, -1.5966058)
+material_override = SubResource("ShaderMaterial_ore0k")
+mesh = SubResource("SphereMesh_ujrvj")
+
+[node name="Rock66" type="MeshInstance3D" parent="Rocks" unique_id=2111783451]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5067914, 0.13, -3.3948495)
+material_override = SubResource("ShaderMaterial_uk7io")
+mesh = SubResource("SphereMesh_ojhsd")
+
+[node name="Rock67" type="MeshInstance3D" parent="Rocks" unique_id=217804602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.751362, 0.13, 1.5425107)
+material_override = SubResource("ShaderMaterial_f62ro")
+mesh = SubResource("SphereMesh_evo0i")
+
+[node name="Rock68" type="MeshInstance3D" parent="Rocks" unique_id=1463296774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8330784, 0.13, 1.088341)
+material_override = SubResource("ShaderMaterial_vbwdk")
+mesh = SubResource("SphereMesh_vs4d1")
+
+[node name="Rock69" type="MeshInstance3D" parent="Rocks" unique_id=366693709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.395254, 0.13, -1.7247871)
+material_override = SubResource("ShaderMaterial_4g6w6")
+mesh = SubResource("SphereMesh_gl4ad")
+
+[node name="Rock70" type="MeshInstance3D" parent="Rocks" unique_id=1958355672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1058316, 0.13, -0.5313463)
+material_override = SubResource("ShaderMaterial_8du4w")
+mesh = SubResource("SphereMesh_ugk3h")
+
+[node name="Rock71" type="MeshInstance3D" parent="Rocks" unique_id=1835836185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8367081, 0.13, 2.783365)
+material_override = SubResource("ShaderMaterial_rcq24")
+mesh = SubResource("SphereMesh_0uucr")
+
+[node name="Rock72" type="MeshInstance3D" parent="Rocks" unique_id=2122032602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.54515123, 0.13, -0.40713573)
+material_override = SubResource("ShaderMaterial_adn0r")
+mesh = SubResource("SphereMesh_cgvv3")
+
+[node name="Rock73" type="MeshInstance3D" parent="Rocks" unique_id=1994007966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0441289, 0.13, -2.7013953)
+material_override = SubResource("ShaderMaterial_4d5kc")
+mesh = SubResource("SphereMesh_8iigb")
+
+[node name="Rock74" type="MeshInstance3D" parent="Rocks" unique_id=1410467355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.80059576, 0.13, -0.5189707)
+material_override = SubResource("ShaderMaterial_mrl7v")
+mesh = SubResource("SphereMesh_y5qbu")
+
+[node name="Rock75" type="MeshInstance3D" parent="Rocks" unique_id=1430617450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1345401, 0.13, -3.0087564)
+material_override = SubResource("ShaderMaterial_p1irm")
+mesh = SubResource("SphereMesh_xs4ca")
+
+[node name="Rock76" type="MeshInstance3D" parent="Rocks" unique_id=703267477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9691749, 0.13, 1.6625416)
+material_override = SubResource("ShaderMaterial_vcyp3")
+mesh = SubResource("SphereMesh_xfp7n")
+
+[node name="Rock77" type="MeshInstance3D" parent="Rocks" unique_id=2075002700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.355257, 0.13, 0.9271209)
+material_override = SubResource("ShaderMaterial_qj604")
+mesh = SubResource("SphereMesh_8hvbb")
+
+[node name="Rock78" type="MeshInstance3D" parent="Rocks" unique_id=846557043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6454937, 0.13, 1.2148592)
+material_override = SubResource("ShaderMaterial_64hhr")
+mesh = SubResource("SphereMesh_4ctds")
+
+[node name="Rock79" type="MeshInstance3D" parent="Rocks" unique_id=308757249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0973864, 0.13, -3.4080956)
+material_override = SubResource("ShaderMaterial_n3stx")
+mesh = SubResource("SphereMesh_cuwn3")
+
+[node name="Rock80" type="MeshInstance3D" parent="Rocks" unique_id=588942221]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2599473, 0.13, -3.4851484)
+material_override = SubResource("ShaderMaterial_3wuh5")
+mesh = SubResource("SphereMesh_dgxva")
+
+[node name="Rock81" type="MeshInstance3D" parent="Rocks" unique_id=1641175013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.541199, 0.13, 2.680844)
+material_override = SubResource("ShaderMaterial_qkfsf")
+mesh = SubResource("SphereMesh_wsobh")
+
+[node name="Rock82" type="MeshInstance3D" parent="Rocks" unique_id=883002279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7276931, 0.13, -0.59772706)
+material_override = SubResource("ShaderMaterial_ee6r6")
+mesh = SubResource("SphereMesh_6pqc5")
+
+[node name="Grass" type="Node3D" parent="." unique_id=1227995536]
+
+[node name="Tuft83" type="MeshInstance3D" parent="Grass" unique_id=1636911292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4823835, 0.17, 2.602195)
+material_override = SubResource("ShaderMaterial_6r4bi")
+mesh = SubResource("BoxMesh_88ed8")
+
+[node name="Tuft84" type="MeshInstance3D" parent="Grass" unique_id=827862629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1253219, 0.17, -0.086372375)
+material_override = SubResource("ShaderMaterial_w17k5")
+mesh = SubResource("BoxMesh_tasbn")
+
+[node name="Tuft85" type="MeshInstance3D" parent="Grass" unique_id=2078065207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4496803, 0.17, 0.06485796)
+material_override = SubResource("ShaderMaterial_v1eyq")
+mesh = SubResource("BoxMesh_3a10i")
+
+[node name="Tuft86" type="MeshInstance3D" parent="Grass" unique_id=149579142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8636532, 0.17, -0.43364668)
+material_override = SubResource("ShaderMaterial_grtjn")
+mesh = SubResource("BoxMesh_5uyjs")
+
+[node name="Tuft87" type="MeshInstance3D" parent="Grass" unique_id=1840017899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6169376, 0.17, 3.1183765)
+material_override = SubResource("ShaderMaterial_p0gst")
+mesh = SubResource("BoxMesh_x5rn8")
+
+[node name="Tuft88" type="MeshInstance3D" parent="Grass" unique_id=883723117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28550053, 0.17, 2.621538)
+material_override = SubResource("ShaderMaterial_dypob")
+mesh = SubResource("BoxMesh_o55qj")
+
+[node name="Tuft89" type="MeshInstance3D" parent="Grass" unique_id=818715500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2366595, 0.17, -3.3577428)
+material_override = SubResource("ShaderMaterial_7a78q")
+mesh = SubResource("BoxMesh_rc3jo")
+
+[node name="Tuft90" type="MeshInstance3D" parent="Grass" unique_id=1106004140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3259053, 0.17, 1.7604988)
+material_override = SubResource("ShaderMaterial_v0shs")
+mesh = SubResource("BoxMesh_mnehy")
+
+[node name="Tuft91" type="MeshInstance3D" parent="Grass" unique_id=1814496704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5918732, 0.17, 0.82917666)
+material_override = SubResource("ShaderMaterial_hpoxq")
+mesh = SubResource("BoxMesh_8spwo")
+
+[node name="Tuft92" type="MeshInstance3D" parent="Grass" unique_id=625684172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6513712, 0.17, -2.8493729)
+material_override = SubResource("ShaderMaterial_rfqu0")
+mesh = SubResource("BoxMesh_08de3")
+
+[node name="Tuft93" type="MeshInstance3D" parent="Grass" unique_id=1985772353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0668325, 0.17, 3.1765692)
+material_override = SubResource("ShaderMaterial_xe23m")
+mesh = SubResource("BoxMesh_j878e")
+
+[node name="Tuft94" type="MeshInstance3D" parent="Grass" unique_id=605984783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5360217, 0.17, -2.7128296)
+material_override = SubResource("ShaderMaterial_veufq")
+mesh = SubResource("BoxMesh_06ol7")
+
+[node name="Tuft95" type="MeshInstance3D" parent="Grass" unique_id=746827669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1946306, 0.17, 2.64098)
+material_override = SubResource("ShaderMaterial_v8bw1")
+mesh = SubResource("BoxMesh_725um")
+
+[node name="Tuft96" type="MeshInstance3D" parent="Grass" unique_id=1643152837]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2768264, 0.17, 0.9251592)
+material_override = SubResource("ShaderMaterial_r40bw")
+mesh = SubResource("BoxMesh_lukyb")
+
+[node name="Tuft97" type="MeshInstance3D" parent="Grass" unique_id=132054367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8618207, 0.17, 3.7307584)
+material_override = SubResource("ShaderMaterial_6gcia")
+mesh = SubResource("BoxMesh_wcy3k")
+
+[node name="Tuft98" type="MeshInstance3D" parent="Grass" unique_id=1267365182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.34491, 0.17, 2.2855084)
+material_override = SubResource("ShaderMaterial_l1p27")
+mesh = SubResource("BoxMesh_y2ac8")
+
+[node name="Tuft99" type="MeshInstance3D" parent="Grass" unique_id=57606652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0678592, 0.17, 2.5526059)
+material_override = SubResource("ShaderMaterial_axgqb")
+mesh = SubResource("BoxMesh_qmur3")
+
+[node name="Tuft100" type="MeshInstance3D" parent="Grass" unique_id=706312841]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.909844, 0.17, -0.17050767)
+material_override = SubResource("ShaderMaterial_j60us")
+mesh = SubResource("BoxMesh_gmvye")
+
+[node name="Tuft101" type="MeshInstance3D" parent="Grass" unique_id=1488461421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.475941, 0.17, 3.3157732)
+material_override = SubResource("ShaderMaterial_folf0")
+mesh = SubResource("BoxMesh_ny7wu")
+
+[node name="Tuft102" type="MeshInstance3D" parent="Grass" unique_id=750031276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.971354, 0.17, -1.6645944)
+material_override = SubResource("ShaderMaterial_qucs2")
+mesh = SubResource("BoxMesh_ij1sw")
+
+[node name="Tuft103" type="MeshInstance3D" parent="Grass" unique_id=1983877039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.282898, 0.17, 3.3312676)
+material_override = SubResource("ShaderMaterial_wi18e")
+mesh = SubResource("BoxMesh_pt3tq")
+
+[node name="Tuft104" type="MeshInstance3D" parent="Grass" unique_id=1096093659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2318308, 0.17, -2.4969182)
+material_override = SubResource("ShaderMaterial_8disv")
+mesh = SubResource("BoxMesh_on56i")
+
+[node name="Tuft105" type="MeshInstance3D" parent="Grass" unique_id=286325989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6653907, 0.17, 3.5492432)
+material_override = SubResource("ShaderMaterial_m26dn")
+mesh = SubResource("BoxMesh_1gqd2")
+
+[node name="Tuft106" type="MeshInstance3D" parent="Grass" unique_id=2043757305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0829892, 0.17, 0.52186465)
+material_override = SubResource("ShaderMaterial_jr8ij")
+mesh = SubResource("BoxMesh_3f8bg")
+
+[node name="Tuft107" type="MeshInstance3D" parent="Grass" unique_id=2034065754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9947467, 0.17, -3.5846338)
+material_override = SubResource("ShaderMaterial_huw5d")
+mesh = SubResource("BoxMesh_al561")
+
+[node name="Tuft108" type="MeshInstance3D" parent="Grass" unique_id=1479063396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9285345, 0.17, 2.4892948)
+material_override = SubResource("ShaderMaterial_kqa58")
+mesh = SubResource("BoxMesh_q5pt5")
+
+[node name="Tuft109" type="MeshInstance3D" parent="Grass" unique_id=1145905957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.70137167, 0.17, 2.7255085)
+material_override = SubResource("ShaderMaterial_qh3j3")
+mesh = SubResource("BoxMesh_k5yxs")
+
+[node name="Tuft110" type="MeshInstance3D" parent="Grass" unique_id=784959303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38764763, 0.17, 3.608382)
+material_override = SubResource("ShaderMaterial_iclsg")
+mesh = SubResource("BoxMesh_we0gg")
+
+[node name="Tuft111" type="MeshInstance3D" parent="Grass" unique_id=1118492094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.049725, 0.17, 3.3025682)
+material_override = SubResource("ShaderMaterial_t632j")
+mesh = SubResource("BoxMesh_oi5pg")
+
+[node name="Tuft112" type="MeshInstance3D" parent="Grass" unique_id=1504605988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34993505, 0.17, 1.8496878)
+material_override = SubResource("ShaderMaterial_orh4j")
+mesh = SubResource("BoxMesh_f4jdh")
+
+[node name="Tuft113" type="MeshInstance3D" parent="Grass" unique_id=1276037899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.038659096, 0.17, 3.2554286)
+material_override = SubResource("ShaderMaterial_6p0ve")
+mesh = SubResource("BoxMesh_yw0oi")
+
+[node name="Tuft114" type="MeshInstance3D" parent="Grass" unique_id=1576614123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2436042, 0.17, 1.9877608)
+material_override = SubResource("ShaderMaterial_ffrej")
+mesh = SubResource("BoxMesh_7ajd5")
+
+[node name="Tuft115" type="MeshInstance3D" parent="Grass" unique_id=1627838296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41353178, 0.17, 1.4872615)
+material_override = SubResource("ShaderMaterial_h1vm7")
+mesh = SubResource("BoxMesh_taccl")
+
+[node name="Tuft116" type="MeshInstance3D" parent="Grass" unique_id=273939526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4659977, 0.17, 0.9633472)
+material_override = SubResource("ShaderMaterial_8nn1f")
+mesh = SubResource("BoxMesh_3fqwu")
+
+[node name="Tuft117" type="MeshInstance3D" parent="Grass" unique_id=1542124864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8771915, 0.17, 3.140793)
+material_override = SubResource("ShaderMaterial_1qh0n")
+mesh = SubResource("BoxMesh_gkmx8")
+
+[node name="Tuft118" type="MeshInstance3D" parent="Grass" unique_id=323167529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5857644, 0.17, -3.0180717)
+material_override = SubResource("ShaderMaterial_60b0b")
+mesh = SubResource("BoxMesh_om1xm")
+
+[node name="Tuft119" type="MeshInstance3D" parent="Grass" unique_id=714897693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4351335, 0.17, 2.8061626)
+material_override = SubResource("ShaderMaterial_b0rgm")
+mesh = SubResource("BoxMesh_aaiib")
+
+[node name="Tuft120" type="MeshInstance3D" parent="Grass" unique_id=2008772521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1599588, 0.17, -3.0095918)
+material_override = SubResource("ShaderMaterial_ilmy3")
+mesh = SubResource("BoxMesh_mip35")
+
+[node name="Tuft121" type="MeshInstance3D" parent="Grass" unique_id=769308595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2716327, 0.17, 3.6862404)
+material_override = SubResource("ShaderMaterial_n2tde")
+mesh = SubResource("BoxMesh_uekyn")
+
+[node name="Tuft122" type="MeshInstance3D" parent="Grass" unique_id=708510137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2399182, 0.17, -1.558511)
+material_override = SubResource("ShaderMaterial_nsowf")
+mesh = SubResource("BoxMesh_oydo6")
+
+[node name="Tuft123" type="MeshInstance3D" parent="Grass" unique_id=964634716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5246024, 0.17, 2.604748)
+material_override = SubResource("ShaderMaterial_85ko6")
+mesh = SubResource("BoxMesh_0k134")
+
+[node name="Tuft124" type="MeshInstance3D" parent="Grass" unique_id=266101788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6433992, 0.17, 2.0292675)
+material_override = SubResource("ShaderMaterial_65a4k")
+mesh = SubResource("BoxMesh_q0i74")
+
+[node name="Tuft125" type="MeshInstance3D" parent="Grass" unique_id=1439438564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2857375, 0.17, 3.288028)
+material_override = SubResource("ShaderMaterial_l0gv8")
+mesh = SubResource("BoxMesh_44fr4")
+
+[node name="Tuft126" type="MeshInstance3D" parent="Grass" unique_id=533881343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5587106, 0.17, -3.7033694)
+material_override = SubResource("ShaderMaterial_nvhs2")
+mesh = SubResource("BoxMesh_0hnjk")
+
+[node name="Tuft127" type="MeshInstance3D" parent="Grass" unique_id=1601177640]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.113606, 0.17, -2.2185936)
+material_override = SubResource("ShaderMaterial_hfkir")
+mesh = SubResource("BoxMesh_j2o8f")
+
+[node name="Tuft128" type="MeshInstance3D" parent="Grass" unique_id=671313804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.64306927, 0.17, -3.7326746)
+material_override = SubResource("ShaderMaterial_4ebva")
+mesh = SubResource("BoxMesh_cjsxm")
+
+[node name="Tuft129" type="MeshInstance3D" parent="Grass" unique_id=907705156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.166604, 0.17, -1.0451293)
+material_override = SubResource("ShaderMaterial_w5s15")
+mesh = SubResource("BoxMesh_m5rbr")
+
+[node name="Tuft130" type="MeshInstance3D" parent="Grass" unique_id=1640349412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.659256, 0.17, 0.9181392)
+material_override = SubResource("ShaderMaterial_la5qo")
+mesh = SubResource("BoxMesh_olhtn")
+
+[node name="Tuft131" type="MeshInstance3D" parent="Grass" unique_id=326273854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3489985, 0.17, 2.1890619)
+material_override = SubResource("ShaderMaterial_40qpw")
+mesh = SubResource("BoxMesh_v5ngb")
+
+[node name="Tuft132" type="MeshInstance3D" parent="Grass" unique_id=773256753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8068936, 0.17, -3.618671)
+material_override = SubResource("ShaderMaterial_lwd0s")
+mesh = SubResource("BoxMesh_42s5m")
+
+[node name="Tuft133" type="MeshInstance3D" parent="Grass" unique_id=860804518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.63096094, 0.17, -1.9989231)
+material_override = SubResource("ShaderMaterial_cebtj")
+mesh = SubResource("BoxMesh_cwcwu")
+
+[node name="Tuft134" type="MeshInstance3D" parent="Grass" unique_id=655474276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7284384, 0.17, 2.1831343)
+material_override = SubResource("ShaderMaterial_ybneh")
+mesh = SubResource("BoxMesh_cfkwt")
+
+[node name="Tuft135" type="MeshInstance3D" parent="Grass" unique_id=2000030074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.616309, 0.17, 1.9653332)
+material_override = SubResource("ShaderMaterial_51l1q")
+mesh = SubResource("BoxMesh_kayta")
+
+[node name="Tuft136" type="MeshInstance3D" parent="Grass" unique_id=1230671127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.730128, 0.17, 2.9017198)
+material_override = SubResource("ShaderMaterial_mct38")
+mesh = SubResource("BoxMesh_oiurd")
+
+[node name="Tuft137" type="MeshInstance3D" parent="Grass" unique_id=1575719788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2500086, 0.17, -2.911476)
+material_override = SubResource("ShaderMaterial_cwk1w")
+mesh = SubResource("BoxMesh_a5fen")
+
+[node name="Tuft138" type="MeshInstance3D" parent="Grass" unique_id=13562028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4907146, 0.17, 1.122441)
+material_override = SubResource("ShaderMaterial_glfvu")
+mesh = SubResource("BoxMesh_1pl37")
+
+[node name="Tuft139" type="MeshInstance3D" parent="Grass" unique_id=826815644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.029233, 0.17, -1.7899308)
+material_override = SubResource("ShaderMaterial_wugtw")
+mesh = SubResource("BoxMesh_knpt7")
+
+[node name="Tuft140" type="MeshInstance3D" parent="Grass" unique_id=638264071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0705624, 0.17, -2.7190218)
+material_override = SubResource("ShaderMaterial_1u7kq")
+mesh = SubResource("BoxMesh_jpbtw")
+
+[node name="Tuft141" type="MeshInstance3D" parent="Grass" unique_id=834313357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.243538, 0.17, -1.3879957)
+material_override = SubResource("ShaderMaterial_3me8h")
+mesh = SubResource("BoxMesh_lghnr")
+
+[node name="Tuft142" type="MeshInstance3D" parent="Grass" unique_id=1735566506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120812416, 0.17, 1.6611183)
+material_override = SubResource("ShaderMaterial_2g3wj")
+mesh = SubResource("BoxMesh_3pxxt")
+
+[node name="Tuft143" type="MeshInstance3D" parent="Grass" unique_id=1895031679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72014, 0.17, 3.6556737)
+material_override = SubResource("ShaderMaterial_k5ii6")
+mesh = SubResource("BoxMesh_8yrbh")
+
+[node name="Tuft144" type="MeshInstance3D" parent="Grass" unique_id=864025366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3686943, 0.17, -0.7695885)
+material_override = SubResource("ShaderMaterial_dm6xa")
+mesh = SubResource("BoxMesh_jhvri")
+
+[node name="Tuft145" type="MeshInstance3D" parent="Grass" unique_id=1942533914]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7057204, 0.17, -3.5167553)
+material_override = SubResource("ShaderMaterial_eaiyi")
+mesh = SubResource("BoxMesh_6ku4e")
+
+[node name="Tuft146" type="MeshInstance3D" parent="Grass" unique_id=1674413106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.093891, 0.17, -2.9240098)
+material_override = SubResource("ShaderMaterial_d6who")
+mesh = SubResource("BoxMesh_k3vi3")
+
+[node name="Tuft147" type="MeshInstance3D" parent="Grass" unique_id=1924962003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6947494, 0.17, -2.2867641)
+material_override = SubResource("ShaderMaterial_glqgs")
+mesh = SubResource("BoxMesh_fj4qs")
+
+[node name="Tuft148" type="MeshInstance3D" parent="Grass" unique_id=1693214513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2990217, 0.17, -1.8216995)
+material_override = SubResource("ShaderMaterial_45dc3")
+mesh = SubResource("BoxMesh_8j1os")
+
+[node name="Tuft149" type="MeshInstance3D" parent="Grass" unique_id=586100044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0521474, 0.17, -1.3565073)
+material_override = SubResource("ShaderMaterial_3on8b")
+mesh = SubResource("BoxMesh_x4310")
+
+[node name="Tuft150" type="MeshInstance3D" parent="Grass" unique_id=1827834012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4938872, 0.17, 2.502025)
+material_override = SubResource("ShaderMaterial_8l6p5")
+mesh = SubResource("BoxMesh_7jos1")
+
+[node name="Tuft151" type="MeshInstance3D" parent="Grass" unique_id=677641622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0586028, 0.17, 3.4860785)
+material_override = SubResource("ShaderMaterial_i61jf")
+mesh = SubResource("BoxMesh_r5dp6")
+
+[node name="Tuft152" type="MeshInstance3D" parent="Grass" unique_id=1908208081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5656133, 0.17, 3.1532757)
+material_override = SubResource("ShaderMaterial_t2mrh")
+mesh = SubResource("BoxMesh_j2a47")
+
+[node name="Tuft153" type="MeshInstance3D" parent="Grass" unique_id=118207514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32976532, 0.17, 2.8864682)
+material_override = SubResource("ShaderMaterial_buvgk")
+mesh = SubResource("BoxMesh_l3mm5")
+
+[node name="Tuft154" type="MeshInstance3D" parent="Grass" unique_id=682575569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4615085, 0.17, -3.5701473)
+material_override = SubResource("ShaderMaterial_6wrxy")
+mesh = SubResource("BoxMesh_63w8p")
+
+[node name="Tuft155" type="MeshInstance3D" parent="Grass" unique_id=1537266930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6704993, 0.17, -0.34197736)
+material_override = SubResource("ShaderMaterial_d7n2u")
+mesh = SubResource("BoxMesh_j8ufc")
+
+[node name="Tuft156" type="MeshInstance3D" parent="Grass" unique_id=1942425691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7962465, 0.17, 1.8199527)
+material_override = SubResource("ShaderMaterial_ks6nt")
+mesh = SubResource("BoxMesh_gfcwx")
+
+[node name="Tuft157" type="MeshInstance3D" parent="Grass" unique_id=612018762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7501466, 0.17, 1.8294308)
+material_override = SubResource("ShaderMaterial_1tt5b")
+mesh = SubResource("BoxMesh_4akyx")
+
+[node name="Tuft158" type="MeshInstance3D" parent="Grass" unique_id=611793189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6956489, 0.17, -3.2529402)
+material_override = SubResource("ShaderMaterial_ntljh")
+mesh = SubResource("BoxMesh_awh0c")
+
+[node name="Tuft159" type="MeshInstance3D" parent="Grass" unique_id=905806654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4509096, 0.17, 2.5020483)
+material_override = SubResource("ShaderMaterial_u1x5u")
+mesh = SubResource("BoxMesh_s1rt2")
+
+[node name="Tuft160" type="MeshInstance3D" parent="Grass" unique_id=1700029902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.673297, 0.17, -2.1738634)
+material_override = SubResource("ShaderMaterial_dmqou")
+mesh = SubResource("BoxMesh_1wulv")
+
+[node name="Tuft161" type="MeshInstance3D" parent="Grass" unique_id=249736359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4992032, 0.17, -1.8859893)
+material_override = SubResource("ShaderMaterial_7sp8o")
+mesh = SubResource("BoxMesh_tmjb3")
