@@ -2,8 +2,6 @@ extends CharacterBody3D
 ## A saved, articulated 3D character. Forward is local +Z; feet are at Y=0.
 @export var walk_speed: float = 2.0
 @export var run_speed: float = 4.4
-@export var acceleration: float = 18.0
-@export var turn_speed: float = 14.0
 @export var controls_enabled: bool = true
 @export var movement_camera: Camera3D
 @onready var facing: Node3D = $Facing
@@ -32,15 +30,16 @@ func _physics_process(delta: float) -> void:
 	var direction := right * axis.x + back * axis.y
 	var running := controls_enabled and Input.is_physical_key_pressed(KEY_SHIFT)
 	var speed := run_speed if running else walk_speed
-	velocity.x = move_toward(velocity.x, direction.x * speed, acceleration * delta)
-	velocity.z = move_toward(velocity.z, direction.z * speed, acceleration * delta)
+	# Direct screen-space velocity: reversing a key never spends time braking first.
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		velocity.y = 0.0
 	move_and_slide()
 	if direction.length_squared() > 0.01:
-		facing.rotation.y = lerp_angle(facing.rotation.y, atan2(direction.x, direction.z), 1.0 - exp(-turn_speed * delta))
+		facing.rotation.y = atan2(direction.x, direction.z)
 	var actual_speed := Vector2(get_real_velocity().x, get_real_velocity().z).length()
 	var next: StringName = &"idle" if actual_speed < 0.08 else (&"run" if running else &"walk")
 	if next != locomotion:

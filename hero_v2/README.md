@@ -1,81 +1,98 @@
-# 行旅者 02 · 独立 3D 主角
+# 行旅者 02 · 骨骼蒙皮版
 
-根据提供的像素人物图重新搭建的低多边形 3D 版本。模型、动作、控制器、材质和试走场景独立保存在 `hero_v2`，没有引用项目旧主角或旧世界。参考黑发、灰褐衣服、交叉背带、绑腿和靴子的造型，并用三维关节重做走路、跑步和呼吸动作；不是原图逐帧像素的完全复刻。
+中国古代布衣风格的可编辑角色。采用更接近人体的头身比例、收窄的头肩、曲面躯干与四肢、手掌与分指、独立服装和发型。仍是风格化模型，并非扫描级写实人体。
 
-## 运行
+## 运行与检查
 
-项目默认入口已设为 `res://hero_v2/main.tscn`，在 Godot 按 **F5**。也可以打开这个场景按 F6。
+项目入口 `res://hero_v2/main.tscn`，按 F5。
 
-| 操作 | 按键 |
+| 按键 | 功能 |
 | --- | --- |
-| 按屏幕方向行走 | 方向键，可斜向移动 |
-| 跑步 | 按住 Shift，同时按方向键 |
-| 左右旋转镜头 | Q / E，每次 45° |
-| 缩放 | 鼠标滚轮 |
-| 人物近景 / 世界视野 | F |
-| 像素画面 / 原始 3D | P |
-| 恢复默认镜头 | R |
+| 方向键 / Shift | 行走 / 按住跑步 |
+| Q、E / 滚轮 | 旋转镜头 / 缩放 |
+| F | 近景（2.8 米）/ 世界视野 |
+| P | 像素画面 / 原始 3D |
+| B | 稳定像素 / 旧方案对比 |
+| C | 麻布短袍 → 靛青配色短袍 → 基础人体 |
+| H | 显示 / 隐藏头发 |
+| R | 重置镜头 |
 
-## 编辑入口
+F + P 适合检查曲面、手指和衣料。C 切到基础人体后，H 可查看独立头型。基础人体保留中性底裤。
 
-- **`traveler.tscn`**：独立人物，100 个子节点。根节点是 CharacterBody3D，脚底为原点，本地 +Z 为脸部朝向，高约 2 米。
-- **`world.tscn`**：可编辑试走庭院、碰撞、人物实例、灯光和 FollowCamera。
-- **`main.tscn`**：低分辨率 SubViewport、最近邻整数放大和界面。
+## 文件和可编辑结构
 
-人物结构：
+| 文件 | 内容 |
+| --- | --- |
+| `traveler.tscn` | 完整人物装配、碰撞、控制器、主动画和随动 |
+| `model/body_rig.tscn` | Skeleton3D 的 31 根骨骼、人体、五官和手指 |
+| `outfits/linen_robe.tscn` | 独立麻布短袍、袖子、衣摆、裤子、绑腿、鞋 |
+| `outfits/indigo_robe.tscn` | 同款短袍的独立靛青配色换装示例 |
+| `hair/tied_hair.tscn` | 独立发帽、发髻、发簪和可弯曲的发束 |
+| `model/traveler_editable.glb` | 可用 Blender 等软件编辑的网格、蒙皮、骨架和四组动画；含人体、麻布装、头发 |
+| `world.tscn` / `main.tscn` | 保存的庭院 / 像素显示与界面 |
+
+Godot 中可编辑网格节点、材质、骨骼、动画和场景结构。要修改顶点、拓扑或雕刻形体，使用 GLB 在 Blender 等软件中修改。GLB 使用通用材质，Godot 中的像素效果由项目着色器实现。
+
+单套完整装配共有 **54 个网格、10,096 个顶点、17,164 个三角面**。人体、服装和头发均为独立几何。四肢使用跨关节的蒙皮权重，弯曲时周围网格连续变形。
 
 ```text
-Traveler
+Traveler (CharacterBody3D)
 ├─ BodyCollision
-├─ Facing                  ← 控制器只负责这个节点的朝向
-│  └─ Visual               ← 动画中的上下起伏
-│     └─ Body
-│        ├─ Jacket / LeatherBelt / HipPouch / …
-│        ├─ Head
-│        │  ├─ Face / Eyes / …
-│        │  └─ Hair        ← 各发束可单独选择
-│        ├─ LeftArm / RightArm
-│        │  └─ Elbow       ← 前臂、袖口和手
-│        ├─ LeftLeg / RightLeg
-│        │  └─ Knee
-│        │     └─ Ankle    ← 靴子
-│        ├─ ScarfTails
-│        └─ BackAttachment
-└─ AnimationPlayer
+├─ Facing
+│  └─ Visual (wardrobe.gd)
+│     ├─ Rig          ← body_rig.tscn，骨架与人体
+│     ├─ LinenRobe    ← linen_robe.tscn
+│     ├─ IndigoRobe   ← indigo_robe.tscn，默认隐藏
+│     └─ Hair         ← tied_hair.tscn
+├─ AnimationPlayer
+└─ SecondaryMotion
 ```
 
-展开节点即可改位置、比例和材质。共用材质需要单独改色时，先在 Inspector 中选择“设为独立”。这是一套分件网格和 Node3D 关节结构，没有使用二维贴图替身。
+这些节点全部保存于场景中，运行时不创建网格或重建场景。
 
-选择 AnimationPlayer，可以直接预览和修改 `idle`、`walk`、`run` 的关键帧。`RESET` 用于恢复建模姿态。关键帧会控制 Visual 的位置和关节旋转；改动作时编辑动画轨道，改外形时编辑关节下的 Mesh 节点，避免外形调整被动画覆盖。
+## 更换衣服和发型
 
-## 动画与移动
+1. 打开服装场景并另存为，独立修改网格和材质。
+2. 将新衣服场景放到完整人物的 `Facing/Visual` 下，保持实例 Transform 为单位变换。
+3. 服装 Mesh 的 `skeleton` 指向 `../../Rig`；沿用同一骨架、静止姿态和 Skin 绑定，不要重排骨骼索引。
+4. 选择 Visual，将新服装节点路径添加到 Inspector 的 `outfit_nodes`。C 会自动纳入该衣服；最后一项为基础人体。
+5. `outfit` 设置默认服装序号，`show_hair` 设置头发显隐。替换 Hair 实例即可换发型。
 
-- 待机：2.4 秒呼吸循环，轻微上下起伏、头部与前臂运动。
-- 行走：0.86 秒步态循环，交替摆臂、髋关节与膝关节弯曲、踝关节补偿。
-- 跑步：0.58 秒循环，更大跨步，身体前倾、屈肘摆臂和围巾摆动。
-- 动画切换有 0.16 秒混合；移动加速和刹停平滑，斜走不加速。
-- 根节点 Inspector 可改 `walk_speed`（2.0）、`run_speed`（4.4）、加速度和转向速度。
-- 有重力、地面吸附和 CharacterBody3D 碰撞；顶住障碍物停止位移时回到待机。
+独立打开服装场景可编辑静止网格，在完整人物场景中预览蒙皮。服装与身体预留间隙；大幅修改身材、衣型或动作后，仍需检查穿插并调整权重。
 
-## 镜头与 3 渲 2
+## 动作与轻微随动
 
-人物保持正常直立。默认镜头为正交投影，俯视约 29°，水平偏转约 21°，可视高度 7 米。用镜头调整展示角度，不需要倾斜人物或碰撞体。
+AnimationPlayer 保存 `RESET`、`idle`、`walk`、`run`。待机有轻微呼吸；走跑包含摆臂、屈肘、髋膝和踝部动作。主动画有 0.16 秒姿态混合，人物朝向和移动方向在下一次物理更新直接响应，不采用转向渐变或移动惯性。
 
-渲染采用约 480 × 270 起步的 SubViewport、最近邻整数放大、分阶光照和相机平移像素吸附。窗口尺寸不同，内部像素分辨率会随整数倍率适配。P 可检查原始 3D 几何。
+SecondaryMotion 驱动专用辅助骨骼：
 
-FollowCamera 跟随人物插值后的世界坐标。方向键根据当前镜头的水平轴换算，所以旋转镜头后仍按屏幕方向走。像素吸附减少平移抖动；旋转和四肢运动仍会出现正常的像素边缘跳变。
+- `HemFrontL/R`、`HemBackL/R`：衣摆跟随迈步，并有少量延迟回摆。
+- `CuffL/R`：袖口轻微形变。
+- `SashTail`：布带尾端随加减速和转向摆动。
+- `HairFrontL/R`、`HairSideL/R`、`HairTail`：发梢轻微随动，发根和发帽保持稳定。
 
-## 放入之后的世界
+这是带阻尼的辅助骨骼动画，并非带自碰撞的布料或毛发物理模拟。停步后会回稳。
 
-1. 将 `traveler.tscn` 拖入目标 3D 世界，放在具有碰撞体的地面上。
-2. 在人物 Inspector 中将 `movement_camera` 指向世界的相机；留空会查找当前视口相机。
-3. 若需要本版本的跟随视角，将 `world.tscn` 中的 FollowCamera 复制到目标世界，设置 `target` 为人物，调整相机的编辑器位置、旋转和 Size。
-4. 在目标世界自己的低分辨率渲染流程中展示人物，或保留本版本 main 的 SubViewport 结构并替换里面的世界实例。
+Inspector 参数：`enabled` 开关；`strength` 强度（0.75）；`stiffness` 恢复力度（85）；`damping` 衰减（16）。主动画不写辅助骨骼，避免覆盖随动结果。
 
-## 制作与验证
+## 镜头与像素稳定
 
-运行时只加载已经保存的 `.tscn`，不重新生成模型或覆盖编辑器修改。`tools/build_traveler.gd` 是可选的一次性制作脚本；日常请直接编辑场景。脚本必须传 `--bake` 才能运行，覆盖现有场景还必须额外传 `--overwrite`。
+人物直立。默认正交镜头俯视约 29°、水平偏转约 21°，可视高度 7 米。
 
-`tools/verify_traveler.gd` 检查物理按键、走跑切换、实际动画关节、镜头输入及跟随、斜向速度、场景障碍碰撞。`preview` 中保存 RTX 5080 / D3D12 实际运行截图和验证日志。
+稳定模式以人物插值位置为基准量化相机偏移，减少人物和相机采样不同步导致的闪动。每个逻辑像素使用四个空间采样后整数放大，没有 MSAA、TAA 或历史帧混合；渲染像素数约为旧方案四倍。B 可比较新旧模式。
 
-旧村庄入口仍为 `res://village/main.tscn`，可单独打开按 F6。
+正常动作、衣发形变、转身和背景滚动仍会改变像素边缘，不能保证完全无闪动。
+
+相关资料：[Godot 骨骼蒙皮关联](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d-property-skeleton)、[相机物理插值](https://docs.godotengine.org/en/4.4/tutorials/physics/interpolation/advanced_physics_interpolation.html)。
+
+## 放入目标世界
+
+将 traveler.tscn 拖入带地面碰撞的世界，设置 `movement_camera`。如需本版跟随镜头，复制 world 中的 FollowCamera，并设置 target。脚底为原点，本地 +Z 为正面。根节点的 `walk_speed`、`run_speed` 控制速度。
+
+## 制作和验证
+
+日常直接编辑保存的场景。`tools/refine_skinned_character.gd` 是本次使用的一次性作者工具，要求 `--bake --overwrite`；重跑会覆盖模型和动作编辑。较早的 build_traveler 和 revise_ancient_costume 是历史工具，不应用来刷新当前版本。
+
+`tools/verify_traveler.gd` 验证骨架、全部蒙皮权重与绑定、人体比例、走跑与转向、衣发随动与停步回稳、换装、碰撞和镜头控制。`tools/verify_pixel_stability.gd` 使用 GPU 检查固定姿态平移的轮廓稳定性。
+
+preview 中有实际渲染截图：08_model_detail（原始 3D 近景）、09_indigo_outfit（靛青装）、10_anatomy_study（基础人体），以及像素视图和走跑截图。日志只留在本机，不纳入 Git。
