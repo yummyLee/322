@@ -7,6 +7,7 @@ extends Control
 @onready var outline: MeshInstance3D = $WorldViewport/YaoVillage/RenderRig/VillageCamera/PixelOutline
 @onready var status: Label = $Status
 @onready var hero: CharacterBody3D = world.get_node_or_null("Hero")
+@onready var character_rendering: Node = $CharacterRendering
 var follow_position := Vector3.ZERO
 var picture_home := Vector2.ZERO
 var display_scale := 1.0
@@ -62,6 +63,7 @@ func _ready() -> void:
 	if "--detail" in args:
 		set_zoom(0.58)
 		pan.z = 1.0
+	character_rendering.configure()
 
 func collect_materials(node: Node) -> void:
 	if node is MeshInstance3D and node.mesh:
@@ -107,6 +109,7 @@ func layout_view() -> void:
 	picture.position = picture_home
 	$Settings/Panel/Margin/Content/Resolution.text = "%d × %d · 整数倍像素显示" % [viewport.size.x, viewport.size.y]
 	status.position = Vector2(24,size.y-34)
+	character_rendering.sync_layout()
 
 func set_settings_open(open: bool) -> void:
 	settings.visible = open
