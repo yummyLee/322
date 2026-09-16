@@ -1,0 +1,126 @@
+---
+description: 过场动画系统的架构设计、文件约定与新增过场的操作流程
+globs: scripts/cutscenes/**,dialogic/**,resources/cutscenes/**
+alwaysApply: false
+---
+
+# 过场动画系统
+
+基于 Dialogic 2 时间线的数据驱动过场动画框架。新增过场只需创建数据文件（`.dtl` + `.tres`），无需改框架代码。
+
+## 文件结构
+
+```
+scripts/cutscenes/
+  cutscene_manager.gd       # Autoload 单例，统一 play/skip，管理玩家输入锁定
+  cutscene_player.gd        # 通用播放器：生成演员→启动时间线→响应信号→清理
+  cutscene_data.gd          # Resource：一个 .tres = 一段过场配置
+  cutscene_actor_data.gd    # Resource：单个演员的颜色/位置/入场离场信号
+  cutscene_move_event.gd    # Resource：信号触发的自由移动指令（可移动玩家）
+  cutscene_actor.gd         # Node2D：纯视觉演员（彩色矩形+名字）
+  cutscene_npc.gd           # 触发器：靠近按 E 触发
+  cutscene_hit_trigger.gd   # 触发器：父节点被打时触发
+
+dialogic/
+  characters/*.dch           # Dialogic 角色（display_name + color）
+  timelines/*.dtl            # Dialogic 时间线（对话 + [signal] + [wait]）
+
+resources/cutscenes/*.tres   # CutsceneData 过场配置资源
+```
+
+## 核心数据流
+
+```
+触发器 → CutsceneManager.play_cutscene(data, anchor)
+           ├─ 锁定玩家输入
+           ├─ 创建 CutscenePlayer
+           │    ├─ 按 CutsceneData.actors 生成 CutsceneActor
+           │    ├─ Dialogic.start(timeline_id) 启动时间线
+           │    ├─ [signal] 事件 → 匹配 actor enter/leave + move_events
+           │    └─ timeline_ended → _cleanup() → finished 信号
+           └─ finished → 释放 CutscenePlayer，恢复玩家输入
+```
+
+## 关键资源类型
+
+### CutsceneActorData — 演员定义
+| 属性 | 用途 |
+|---|---|
+| `actor_name` | 演员标识（同时显示为名字标签） |
+| `actor_color` | 彩色矩形颜色 |
+| `enter_signal` | DTL 中触发入场的 `[signal arg="..."]` |
+| `leave_signal` | DTL 中触发离场的信号（留空则不自动离场） |
+| `start_offset` | 场外待机位置（相对锚点偏移） |
+| `stage_offset` | 舞台表演位置（相对锚点偏移） |
+| `move_duration` | 入场/离场 Tween 时长 |
+
+### CutsceneMoveEvent — 自由移动指令
+| 属性 | 用途 |
+|---|---|
+| `trigger_signal` | 触发信号名 |
+| `target_name` | `"player"` = 移动真实玩家，其他 = 匹配 actor_name |
+| `target_offset` | 目标位置（相对锚点） |
+| `duration` | Tween 时长 |
+
+同一个信号可绑定多条 MoveEvent，实现多人同时移动。
+
+## DTL 时间线语法
+
+```
+角色标识符: 对话文本             # 文本事件（标识符 = dch 文件名去掉后缀）
+[signal arg="信号名"]           # 发出信号，CutscenePlayer 据此移动演员
+[wait time="1.5" hide_text="true"]  # 等待（隐藏文本框）
+```
+
+角色标识符通过 `project.godot` 的 `dialogic/directories/dch_directory` 映射到 `.dch` 文件。
+
+## 新增过场的步骤
+
+1. **创建 Dialogic 角色**（如需新角色）：`dialogic/characters/xxx.dch`，在 `project.godot` 的 `dch_directory` 注册
+2. **创建时间线**：`dialogic/timelines/xxx.dtl`，写对话和 `[signal]` 事件，在 `dtl_directory` 注册
+3. **创建 .tres 配置**：`resources/cutscenes/xxx.tres`，类型 CutsceneData，配置 actors 和 move_events
+4. **放置触发器**：在场景中添加 CutsceneNpc（按 E 触发）或 CutsceneHitTrigger（被打触发），Inspector 中拖入 .tres
+
+不需要写任何 GDScript。
+
+## .dch 文件格式
+
+```
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+"color": Color(r, g, b, 1),
+"custom_info": {},
+"default_portrait": "",
+"description": "",
+"display_name": "显示名称",
+"mirror": false,
+"nicknames": [],
+"offset": Vector2(0, 0),
+"portraits": {},
+"scale": 1.0
+}
+```
+
+## 跳过机制
+
+长按 ESC 1 秒触发跳过。`CutscenePlayer.skip()` 会：
+1. 调用 `_apply_final_positions()` 把所有 `move_events` 的最终位置瞬间应用到目标（确保玩家到达最终位置）
+2. 调用 `Dialogic.end_timeline()` 结束时间线
+3. `_cleanup()` 释放临时演员，恢复玩家控制
+
+## 触发器类型
+
+| 触发器 | 场景 | 触发条件 |
+|---|---|---|
+| `CutsceneNpc` | 蓝色守卫等可交互 NPC | 玩家靠近 + 按 E |
+| `CutsceneHitTrigger` | 挂在带 `CombatantComponent` 的角色下 | 同级 `CombatantComponent.damage_received` 信号 |
+
+扩展新触发方式只需创建新脚本调用 `CutsceneManager.play_cutscene(data, anchor)`。
+
+## 现有过场实例
+
+| 过场 | 触发 | 演员 | 特殊机制 |
+|---|---|---|---|
+| `intro_cutscene` | 守卫 NPC 按 E | 旅行者(黄)+商人(绿) 入场→对话→离场 | 标准入场/离场 |
+| `fighter_encounter` | 打 TestDummy3 | 红色武者从上方来 | `move_events` 带玩家一起向北走 |
