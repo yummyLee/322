@@ -70,7 +70,7 @@ movement_camera = NodePath("../RenderRig/VillageCamera")
 own_world_3d = true
 handle_input_locally = false
 transparent_bg = true
-size = Vector2i(1280, 720)
+size = Vector2i(640, 360)
 render_target_update_mode = 4
 
 [node name="CharacterWorld" parent="CharacterViewport" instance=ExtResource("4")]

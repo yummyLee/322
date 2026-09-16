@@ -48,7 +48,7 @@ func run() -> void:
 	check(hero.is_on_floor(),"New hero stands on existing village collision ground")
 	check(app.world.scene_file_path=="res://village/yao_village.tscn","Original village scene is instanced unchanged")
 	check(app.start_size==36 and app.zoom==1.0 and app.camera.global_basis.x.is_equal_approx(Vector3.RIGHT),"Original camera angle and default framing are retained")
-	check(app.pixel_block_size==3 and app.outline.visible,"Original pixel size and environment outline remain active")
+	check(app.pixel_block_size==3 and app.outline.visible and layer.outline.visible,"Original pixel size and character/environment outline remain active")
 	check(app.world.get_world_3d()!=layer.display_hero.get_world_3d(),"Character lighting remains independent")
 	check(hero.movement_camera==app.camera,"Character follows original village camera controls")
 	var image := await rendered_frame()
@@ -73,9 +73,13 @@ func run() -> void:
 	check(Vector2(hero.position.x-start.x,hero.position.z-start.z).length()<0.01,"Arrow keys cannot move hero while menu is open")
 	image = await rendered_frame()
 	image.save_png("res://village/preview_with_character_settings.png")
+	app.options.get_node("outline").button_pressed = false
+	await frames(5)
+	check(not layer.outline.material_override.get_shader_parameter("outlines"),"Menu outline toggle synchronizes character outline")
+	app.options.get_node("outline").button_pressed = true
 	app.pixel_slider.value = 6
 	await frames(10)
-	check(app.viewport.size==Vector2i(app.size/6.0) and layer.viewport.size==app.viewport.size*2,"Existing pixel slider adjusts both aligned layers")
+	check(app.viewport.size==Vector2i(app.size/6.0) and layer.viewport.size==app.viewport.size,"Existing pixel slider adjusts both aligned 1:1 layers")
 	app.options.get_node("pixel").button_pressed = false
 	await frames(10)
 	check(layer.viewport.size==app.viewport.size and layer.picture.material.get_shader_parameter("depth_ready"),"Original pixel switch also retains native-resolution occlusion")

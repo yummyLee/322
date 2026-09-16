@@ -74,13 +74,18 @@ func collect_materials(node: Node) -> void:
 	for child in node.get_children():
 		collect_materials(child)
 
+
 func option_changed(enabled: bool, option: String) -> void:
 	match option:
 		"pixel":
 			pixels = enabled
 			apply_pixel_effect()
-		"outline": outline.material_override.set_shader_parameter("outlines",enabled)
-		"highlight": outline.material_override.set_shader_parameter("highlights",enabled)
+		"outline":
+			outline.material_override.set_shader_parameter("outlines", enabled)
+			character_rendering.set_outlines(enabled)
+		"highlight":
+			outline.material_override.set_shader_parameter("highlights", enabled)
+			character_rendering.set_highlights(enabled)
 		"toon":
 			for material in materials:
 				material.set_shader_parameter("toon_enabled",enabled)

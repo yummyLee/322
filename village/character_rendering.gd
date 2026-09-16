@@ -8,6 +8,7 @@ extends Node
 @onready var picture: TextureRect = $"../CharacterPicture"
 @onready var display_hero: CharacterBody3D = $"../CharacterViewport/CharacterWorld/Traveler"
 @onready var camera: Camera3D = $"../CharacterViewport/CharacterWorld/Camera"
+@onready var outline: MeshInstance3D = camera.get_node_or_null("PixelOutline")
 var hero: CharacterBody3D
 var source_rig: Skeleton3D
 var display_rig: Skeleton3D
@@ -35,6 +36,8 @@ func configure() -> void:
 	camera.compositor = character_compositor
 	environment_compositor.compositor_effects[0].texture_ready.connect(_depth_texture_ready.bind("environment_depth"))
 	character_compositor.compositor_effects[0].texture_ready.connect(_depth_texture_ready.bind("character_depth"))
+	if outline:
+		outline.visible = true
 	configured = true
 	sync_layout()
 	sync_pose()
@@ -56,15 +59,25 @@ func _update_depth_ready() -> void:
 func sync_layout() -> void:
 	if not configured:
 		return
-	# The village still renders on its original grid. Only the independent hero
-	# retains its four-point sampling; both layers share the existing UI pixel size.
-	viewport.size = viewer.viewport.size * (2 if viewer.pixels else 1)
+	# Align character layer exactly with village pixel resolution so character outlines
+	# and pixel grid match the village objects with zero blur.
+	viewport.size = viewer.viewport.size
 	picture.size = viewer.picture.size
 	picture.position = viewer.picture.position
 	picture.material.set_shader_parameter("pixel_grid", Vector2(viewer.viewport.size))
 	picture.material.set_shader_parameter("pixel_enabled", viewer.pixels)
-	picture.material.set_shader_parameter("coverage_filter", true)
+	picture.material.set_shader_parameter("coverage_filter", false)
+	if outline and outline.material_override:
+		outline.material_override.set_shader_parameter("pixel_size", 1.0)
 	_update_depth_ready()
+
+func set_outlines(enabled: bool) -> void:
+	if outline and outline.material_override:
+		outline.material_override.set_shader_parameter("outlines", enabled)
+
+func set_highlights(enabled: bool) -> void:
+	if outline and outline.material_override:
+		outline.material_override.set_shader_parameter("highlights", enabled)
 
 func sync_pose() -> void:
 	display_hero.global_transform = hero.global_transform

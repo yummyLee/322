@@ -1,12 +1,26 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="PackedScene" path="res://hero_v2/traveler.tscn" id="1"]
+[ext_resource type="Shader" path="res://hero_v2/character_outline.gdshader" id="2"]
 
 [sub_resource type="Environment" id="CharacterEnvironment"]
 background_mode = 0
 ambient_light_source = 2
 ambient_light_color = Color(0.85098, 0.78039, 0.64706, 1)
 ambient_light_energy = 0.85
+
+[sub_resource type="ShaderMaterial" id="CharacterOutlineMat"]
+render_priority = 0
+shader = ExtResource("2")
+shader_parameter/outlines = true
+shader_parameter/highlights = true
+shader_parameter/pixel_size = 1.0
+shader_parameter/depth_threshold = 0.12
+shader_parameter/normal_threshold = 0.28
+shader_parameter/outline_tint = Vector3(0.42, 0.46, 0.57)
+
+[sub_resource type="QuadMesh" id="QuadMesh_outline"]
+size = Vector2(2, 2)
 
 [node name="CharacterWorld" type="Node3D"]
 
@@ -33,3 +47,11 @@ current = true
 size = 7.0
 near = 0.1
 far = 100.0
+
+[node name="PixelOutline" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+visible = false
+extra_cull_margin = 16384.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_outline")
+material_override = SubResource("CharacterOutlineMat")
