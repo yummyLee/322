@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3]
+
+[sub_resource type="StandardMaterial3D" id="Clay"]
+albedo_color = Color(0.42, 0.3, 0.19, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="Wall"]
+size = Vector3(3.2, 3.2, 0.18)
+material = SubResource("Clay")
+
+[node name="OcclusionTestWall" type="Node3D"]
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.6, 0)
+mesh = SubResource("Wall")

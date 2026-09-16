@@ -1,13 +1,25 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Script" path="res://hero_v2/presentation.gd" id="1"]
 [ext_resource type="PackedScene" path="res://hero_v2/world.tscn" id="2"]
 [ext_resource type="Shader" path="res://hero_v2/pixel_resolve.gdshader" id="3"]
 [ext_resource type="PackedScene" path="res://hero_v2/character_stage.tscn" id="4"]
+[ext_resource type="Script" path="res://hero_v2/depth_capture.gd" id="5"]
+[sub_resource type="CompositorEffect" id="EnvironmentDepth"]
+resource_local_to_scene = true
+script = ExtResource("5")
+[sub_resource type="Compositor" id="EnvironmentCompositor"]
+compositor_effects = Array[CompositorEffect]([SubResource("EnvironmentDepth")])
+[sub_resource type="CompositorEffect" id="CharacterDepth"]
+resource_local_to_scene = true
+script = ExtResource("5")
+[sub_resource type="Compositor" id="CharacterCompositor"]
+compositor_effects = Array[CompositorEffect]([SubResource("CharacterDepth")])
 [sub_resource type="ShaderMaterial" id="PixelResolve"]
 shader = ExtResource("3")
 [sub_resource type="ShaderMaterial" id="CharacterResolve"]
 shader = ExtResource("3")
+shader_parameter/occlusion_enabled = true
 [sub_resource type="StyleBoxFlat" id="Panel"]
 bg_color = Color(0.065, 0.095, 0.083, 0.9)
 border_width_left = 3
@@ -25,6 +37,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
+environment_compositor = SubResource("EnvironmentCompositor")
+character_compositor = SubResource("CharacterCompositor")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15

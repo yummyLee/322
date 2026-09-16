@@ -91,7 +91,11 @@ Inspector 参数：`enabled` 开关；`strength` 强度（0.75）；`stiffness` 
 - 两个 Viewport 使用独立 World3D；人物照明不受庭院环境色和太阳变化影响。人物相机在世界跟随相机更新后复制最终参数，避免一帧滞后。
 - 世界、角色、灯光和相机均为可编辑的保存节点。独立打开 `world.tscn` 仍可以看到完整人物，`main.tscn` 负责运行时的分层显示。
 
-当前透明人物图层叠加在环境上方，没有跨图层深度遮挡；接入需要树木或建筑遮住人物的地图时，还需添加遮挡合成。
+两层通过 GPU 深度比较保留真实前后遮挡：`depth_capture.gd` 从两台相机的当前帧各复制一张 R32F 深度纹理，`pixel_resolve.gdshader` 在原有采样位置逐点比较距离，剔除被前景物体挡住的人物样本，再执行原有四点采样和整数放大。人物颜色、材质、灯光与采样设置保持不变；真实阴影仍在环境层。
+
+遮挡使用环境的实际渲染网格，不依赖物体碰撞盒、手工排序或额外遮挡替身。当前不透明庭院物体支持完整和局部遮挡；后续玻璃、烟雾等不写入深度的透明材质需要专门处理。此实现使用项目已有的 Forward+ 渲染器，不支持 Compatibility。窗口缩放或 P/B 切换会重新配置深度纹理，不读取 CPU 图像，也不使用历史帧。
+
+两个 Compositor 资源保存在 `main.tscn` 的根节点导出属性中，分别绑定世界和人物相机。深度比较采用相同投影下的 reverse-Z 值，偏差为 0.00002（默认正交镜头约 2 毫米），避免接触面精度误差。[Godot Compositor 官方说明](https://docs.godotengine.org/en/stable/tutorials/rendering/compositor.html)。
 
 正常动作、衣发形变和背景滚动仍会改变像素边缘，不能保证完全无闪动；8 方向方案会用 45° 离散转向替代连续转向。
 
@@ -105,6 +109,6 @@ Inspector 参数：`enabled` 开关；`strength` 强度（0.75）；`stiffness` 
 
 日常直接编辑保存的场景。`tools/refine_skinned_character.gd` 是本次使用的一次性作者工具，要求 `--bake --overwrite`；重跑会覆盖模型和动作编辑。较早的 build_traveler 和 revise_ancient_costume 是历史工具，不应用来刷新当前版本。
 
-`tools/verify_traveler.gd` 验证骨架、全部蒙皮权重与绑定、人体比例、走跑步态、8 方向立即转向、衣发随动与停步回稳、换装、碰撞和镜头控制。`tools/verify_pixel_stability.gd` 使用 GPU 检查固定姿态平移的轮廓稳定性。`tools/verify_render_layers.gd` 使用 GPU 对比真实投影开关、人物透明边缘、环境光独立性，以及两层相机、动作和换装同步。
+`tools/verify_traveler.gd` 验证骨架、全部蒙皮权重与绑定、人体比例、走跑步态、8 方向立即转向、衣发随动与停步回稳、换装、碰撞和镜头控制。`tools/verify_pixel_stability.gd` 使用 GPU 检查固定姿态平移的轮廓稳定性。`tools/verify_render_layers.gd` 使用 GPU 对比真实投影开关、人物透明边缘、环境光独立性，以及两层相机、动作和换装同步。`tools/verify_occlusion.gd` 验证高墙全遮挡、矮墙局部遮挡、人物在前时原样显示，以及 P/B、相机旋转和分辨率变化后的遮挡；专用测试墙保存在 `tools/occlusion_fixture.tscn`，不加入游戏场景。
 
 preview 中有实际渲染截图：08_model_detail（原始 3D 近景）、09_indigo_outfit（靛青装）、10_anatomy_study（基础人体），以及像素视图和走跑截图。日志只留在本机，不纳入 Git。

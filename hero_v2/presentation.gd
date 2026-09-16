@@ -1,5 +1,7 @@
 extends Control
 ## The world owns movement and real shadows. The separate stage displays the same pose.
+@export var environment_compositor: Compositor
+@export var character_compositor: Compositor
 @onready var environment_viewport: SubViewport = $EnvironmentViewport
 @onready var character_viewport: SubViewport = $CharacterViewport
 @onready var environment_world: Node3D = $EnvironmentViewport/EnvironmentWorld
@@ -23,11 +25,30 @@ func _ready() -> void:
 	environment_picture.texture = environment_viewport.get_texture()
 	character_picture.texture = character_viewport.get_texture()
 	configure_character_layer()
+	configure_depth_capture()
 	resized.connect(layout_picture)
 	layout_picture()
 	sync_pose()
 	display_hero.reset_physics_interpolation()
 	sync_camera()
+
+func configure_depth_capture() -> void:
+	environment_camera.compositor = environment_compositor
+	character_camera.compositor = character_compositor
+	environment_compositor.compositor_effects[0].texture_ready.connect(_depth_texture_ready.bind("environment_depth"))
+	character_compositor.compositor_effects[0].texture_ready.connect(_depth_texture_ready.bind("character_depth"))
+
+func _depth_texture_ready(texture: Texture2DRD, parameter: String) -> void:
+	character_picture.material.set_shader_parameter(parameter, texture)
+	_update_depth_ready()
+
+func _update_depth_ready() -> void:
+	var environment_depth: Texture2D = character_picture.material.get_shader_parameter("environment_depth")
+	var character_depth: Texture2D = character_picture.material.get_shader_parameter("character_depth")
+	var ready := environment_depth != null and character_depth != null
+	if ready:
+		ready = Vector2i(environment_depth.get_size()) == environment_viewport.size and Vector2i(character_depth.get_size()) == character_viewport.size
+	character_picture.material.set_shader_parameter("depth_ready", ready)
 
 func configure_character_layer() -> void:
 	# Keep the world model visible to the shadow pass, but omit its color pass.
@@ -52,6 +73,7 @@ func layout_picture() -> void:
 	environment_viewport.size = logical_size * (2 if pixels and stable_edges else 1)
 	# Preserve the character's original supersampling and resolve settings.
 	character_viewport.size = environment_viewport.size
+	_update_depth_ready()
 	for picture in [environment_picture, character_picture]:
 		picture.size = Vector2(logical_size) * integer_scale
 		picture.position = ((size - picture.size) / 2.0).floor()
