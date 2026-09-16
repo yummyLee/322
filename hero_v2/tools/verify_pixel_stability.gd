@@ -28,10 +28,12 @@ func run() -> void:
 	demo = load("res://hero_v2/main.tscn").instantiate()
 	root.add_child(demo)
 	demo.get_node("HUD").hide()
-	var world := demo.get_node("WorldViewport/TravelerWorld")
+	var world := demo.get_node("EnvironmentViewport/EnvironmentWorld")
 	hero = world.get_node("Traveler")
 	camera = world.get_node("FollowCamera")
 	hero.set_physics_process(false)
+	hero.get_node("SecondaryMotion").set_physics_process(false)
+	demo.set_physics_process(false)
 	hero.get_node("AnimationPlayer").play("RESET")
 	hero.get_node("AnimationPlayer").advance(0)
 	hero.get_node("AnimationPlayer").pause()
@@ -43,7 +45,8 @@ func run() -> void:
 	var material := StandardMaterial3D.new()
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.albedo_color = Color.WHITE
-	mask(hero,material)
+	mask(demo.display_hero,material)
+	demo.sync_pose()
 	await frame()
 	for zoom in [7.0,3.8]:
 		camera.size = zoom
@@ -53,6 +56,8 @@ func run() -> void:
 			for direction in [Vector3(1,0,0),Vector3(0.6,0,0.8)]:
 				hero.position = Vector3(0,0,0)
 				hero.reset_physics_interpolation()
+				demo.sync_pose()
+				demo.display_hero.reset_physics_interpolation()
 				await frame()
 				var unique_frames := {}
 				var low := Vector2(INF,INF)
@@ -60,11 +65,13 @@ func run() -> void:
 				for i in range(40):
 					hero.position += direction * 4.4 / 60.0
 					hero.reset_physics_interpolation()
+					demo.sync_pose()
+					demo.display_hero.reset_physics_interpolation()
 					await frame()
-					var p := camera.unproject_position(hero.get_global_transform_interpolated().origin) / (2.0 if mode else 1.0)
+					var p: Vector2 = demo.character_camera.unproject_position(hero.get_global_transform_interpolated().origin)
 					low = low.min(p)
 					high = high.max(p)
-					var im := root.get_texture().get_image()
+					var im: Image = demo.character_viewport.get_texture().get_image()
 					unique_frames[hash(im.get_data())] = true
 				var span := high-low
 				print("STABILITY mode=", "NEW" if mode else "OLD", " size=",zoom," direction=",direction," anchor_span_pixels=",span," distinct_masks=",unique_frames.size()," /40")

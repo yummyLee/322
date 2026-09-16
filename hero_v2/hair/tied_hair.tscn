@@ -320,93 +320,93 @@ _surfaces = [{
 "vertex_data": PackedByteArray("uB6FPX+I4T+ryam9OtNJPaw34T/xvK69jqsaPQoX4T9ijLm9BWkJPVgv4T92Use9jqsaPRJ64T9cXtS9OtNJPTLj4T8rMd29uB6FPY1O4j+hbd+901OlPWCf4j9betq9qee8PQLA4j/qqs+97ojFPbSn4j/W5MG9qee8Pfpc4j/w2LS901OlPdrz4T8hBqy9mpmZPfE82z9lGsW9Ut15Pb1F2z8hUsi9XeRPPfZN2z/5ING9cIdAPWZT2z++Kt29XeRPPZpU2z+vNem9Ut15PT9R2z+5B/K9mpmZPTtK2z/RQ/W9i0S2PW9B2z8VDPK9BkHLPTY52z89Pem9fO/SPcYz2z94M929BkHLPZIy2z+HKNG9i0S2Pe012z99Vsi9JQaBPY8U0z+p2se9YwSAPTkX0z8u/8e9Y49+PZoY0z82VMi9QQV+PVUY0z/3wsi9Y49+PXoW0z/GLcm9YwSAPYsT0z8CeMm9JQaBPU8Q0z/Jjcm95weCPaUN0z9Eacm9mMSCPUQM0z88FMm9qQmDPYkM0z97pci9mMSCPWQO0z+sOsi95weCPVMR0z9w8Me92YM3ZstdAYVAbyplpKS+hCBZA2XWsiOX6ShaYzqDRM87Adg5zVU/pxYMr+aHX66N6RMn/WZmMoOP63Lt0KGyh9ns8tVxr3icZ/Fbn3yPNcZfuHN3s1RjpTCZzG3BWFiOrH2SbtFtPoDbZ0JwHaLxi3hNAW/wsbymfBVuXcxuYMmoCJEuQFjto28EoxXNavqO7fzXAsOC8oJw/NcaGJmvkfL3dzY8pjGm1N4Va5VvDLX3q9lvzlPLm9WTA3AvXiKLqXPcfzyMs4YPW1Z/aKE7lyg5nHZ8rBW1sBWtQltREL9MFwUgtltTo6MbUQsQbUyXBuGFCKN9YJHp3wsbXIu8mbDZszSlhx2ld7yiYGJS8qhXoldyBlqLk/GMHXthb52G")
 }]
 
-[node name="Hair" type="Node3D" unique_id=808582958]
+[node name="Hair" type="Node3D" unique_id=203205319]
 
-[node name="FittedHairCap" type="MeshInstance3D" parent="." unique_id=883271901]
+[node name="FittedHairCap" type="MeshInstance3D" parent="." unique_id=1665337869]
 material_override = SubResource("ShaderMaterial_wbxyw")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_wh5il")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="BoundBun" type="MeshInstance3D" parent="." unique_id=172555806]
+[node name="BoundBun" type="MeshInstance3D" parent="." unique_id=1442754646]
 material_override = SubResource("ShaderMaterial_5ie80")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_bamlq")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="WoodHairpin" type="MeshInstance3D" parent="." unique_id=662759909]
+[node name="WoodHairpin" type="MeshInstance3D" parent="." unique_id=334325924]
 material_override = SubResource("ShaderMaterial_q2hd0")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_hldjw")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="SweptFringeL0" type="MeshInstance3D" parent="." unique_id=264705445]
+[node name="SweptFringeL0" type="MeshInstance3D" parent="." unique_id=777683645]
 material_override = SubResource("ShaderMaterial_r3n7t")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_we0ii")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="SweptFringeL1" type="MeshInstance3D" parent="." unique_id=674357743]
+[node name="SweptFringeL1" type="MeshInstance3D" parent="." unique_id=491035781]
 material_override = SubResource("ShaderMaterial_5i24f")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_r0fgf")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="SweptFringeL2" type="MeshInstance3D" parent="." unique_id=409748382]
+[node name="SweptFringeL2" type="MeshInstance3D" parent="." unique_id=2039318242]
 material_override = SubResource("ShaderMaterial_bplg0")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_rja2k")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="TempleLockL" type="MeshInstance3D" parent="." unique_id=1531651855]
+[node name="TempleLockL" type="MeshInstance3D" parent="." unique_id=288573136]
 material_override = SubResource("ShaderMaterial_f65qo")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_pnx61")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="NapeLockL" type="MeshInstance3D" parent="." unique_id=1554148155]
+[node name="NapeLockL" type="MeshInstance3D" parent="." unique_id=739839000]
 material_override = SubResource("ShaderMaterial_igxqi")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_5gg2x")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="SweptFringeR0" type="MeshInstance3D" parent="." unique_id=12606713]
+[node name="SweptFringeR0" type="MeshInstance3D" parent="." unique_id=803961866]
 material_override = SubResource("ShaderMaterial_r3n7t")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_du7sm")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="SweptFringeR1" type="MeshInstance3D" parent="." unique_id=1165020359]
+[node name="SweptFringeR1" type="MeshInstance3D" parent="." unique_id=1867549346]
 material_override = SubResource("ShaderMaterial_5i24f")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_ex31d")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="SweptFringeR2" type="MeshInstance3D" parent="." unique_id=70068018]
+[node name="SweptFringeR2" type="MeshInstance3D" parent="." unique_id=545266740]
 material_override = SubResource("ShaderMaterial_bplg0")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_chx50")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="TempleLockR" type="MeshInstance3D" parent="." unique_id=1107079625]
+[node name="TempleLockR" type="MeshInstance3D" parent="." unique_id=1290627166]
 material_override = SubResource("ShaderMaterial_f65qo")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_h5oaj")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="NapeLockR" type="MeshInstance3D" parent="." unique_id=1207608448]
+[node name="NapeLockR" type="MeshInstance3D" parent="." unique_id=132961472]
 material_override = SubResource("ShaderMaterial_igxqi")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_mr0tn")

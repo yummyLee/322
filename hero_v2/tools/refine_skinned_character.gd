@@ -352,17 +352,20 @@ func clip(state: String) -> Animation:
 		var phase := TAU*i/32.0
 		var move := state=="walk" or state=="run"
 		var running := state=="run"
-		var poses := {"Hips":Vector3(0.095 if running else 0.0,0.014*sin(phase) if move else 0,0),"Spine":Vector3.ZERO,"Chest":Vector3(0, -0.022*sin(phase) if move else 0,0),"Neck":Vector3.ZERO,"Head":Vector3(-0.065 if running else 0,0,0)}
+		# Walk/run uses heel-strike, toe-off, pelvic sway and counter-rotation.
+		var stride := sin(phase)
+		var step_contact := (cos(phase)+1.0)*0.5
+		var poses := {"Hips":Vector3(0.095 if running else 0.0,0.014*sin(phase*2.0) if move else 0,0.018*sin(phase) if move else 0),"Spine":Vector3(0.025 if running else 0.008, -0.015*sin(phase) if move else 0, -0.012*sin(phase) if move else 0),"Chest":Vector3(0, -0.022*sin(phase) if move else 0,0.016*sin(phase) if move else 0),"Neck":Vector3.ZERO,"Head":Vector3(-0.065 if running else 0,0.008*sin(phase) if move else 0,0)}
 		for side in [-1,1]:
 			var s := "L" if side==-1 else "R"
 			var wave := sin(phase+(PI if side==1 else 0.0)) if move else 0.0
 			poses["Clavicle"+s] = Vector3.ZERO
-			poses["UpperArm"+s] = Vector3(wave*(0.75 if running else 0.41),0,side*0.05)
+			poses["UpperArm"+s] = Vector3(wave*(0.75 if running else 0.41),0,side*(0.055+0.014*absf(wave)))
 			poses["Forearm"+s] = Vector3((-1.03+0.15*wave) if running else -0.13-0.11*wave,0,0)
 			poses["Hand"+s] = Vector3(0,0,side*0.03)
 			poses["Thigh"+s] = Vector3(-wave*(0.79 if running else 0.43)-(0.06 if running else 0),0,0)
-			poses["Shin"+s] = Vector3((0.09+maxf(0,wave)*1.32) if running else (0.025+maxf(0,wave)*0.7 if move else 0),0,0)
-			poses["Foot"+s] = Vector3(-maxf(0,wave)*(0.47 if running else 0.25),0,0)
+			poses["Shin"+s] = Vector3((0.10+maxf(0,wave)*1.26) if running else (0.028+maxf(0,wave)*0.72 if move else 0),0,0)
+			poses["Foot"+s] = Vector3((-0.22*step_contact-maxf(0,wave)*(0.47 if running else 0.25)) if move else 0,0,0)
 		for name in poses:
 			if not values.has(name):
 				values[name] = []

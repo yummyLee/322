@@ -439,142 +439,142 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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")
 }]
 
-[node name="LinenRobe" type="Node3D" unique_id=1348686904]
+[node name="LinenRobe" type="Node3D" unique_id=730246360]
 
-[node name="CrossCollarTorso" type="MeshInstance3D" parent="." unique_id=1375697420]
+[node name="CrossCollarTorso" type="MeshInstance3D" parent="." unique_id=1529338576]
 material_override = SubResource("ShaderMaterial_ypd7e")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_ljtwg")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="FoldedLinenCollar" type="MeshInstance3D" parent="." unique_id=528024177]
+[node name="FoldedLinenCollar" type="MeshInstance3D" parent="." unique_id=1253379947]
 material_override = SubResource("ShaderMaterial_ddgj1")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_ta3nb")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="WovenSash" type="MeshInstance3D" parent="." unique_id=336735520]
+[node name="WovenSash" type="MeshInstance3D" parent="." unique_id=590028131]
 material_override = SubResource("ShaderMaterial_iml1n")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_jvijw")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="KnotAndSoftSashEnd" type="MeshInstance3D" parent="." unique_id=378705060]
+[node name="KnotAndSoftSashEnd" type="MeshInstance3D" parent="." unique_id=494400345]
 material_override = SubResource("ShaderMaterial_xgbi2")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_mna7w")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="ContinuousSleeveL" type="MeshInstance3D" parent="." unique_id=430177602]
+[node name="ContinuousSleeveL" type="MeshInstance3D" parent="." unique_id=881357783]
 material_override = SubResource("ShaderMaterial_ypd7e")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_rvxel")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="SoftCuffL" type="MeshInstance3D" parent="." unique_id=1896791106]
+[node name="SoftCuffL" type="MeshInstance3D" parent="." unique_id=1376648403]
 material_override = SubResource("ShaderMaterial_ddgj1")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_q3uad")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="TrousersL" type="MeshInstance3D" parent="." unique_id=1208638566]
+[node name="TrousersL" type="MeshInstance3D" parent="." unique_id=1509586783]
 material_override = SubResource("ShaderMaterial_psvcu")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_58rhy")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="HemFrontLPanel" type="MeshInstance3D" parent="." unique_id=1672120642]
+[node name="HemFrontLPanel" type="MeshInstance3D" parent="." unique_id=39499305]
 material_override = SubResource("ShaderMaterial_8qem2")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_dles4")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="HemBackLPanel" type="MeshInstance3D" parent="." unique_id=2070521160]
+[node name="HemBackLPanel" type="MeshInstance3D" parent="." unique_id=991717043]
 material_override = SubResource("ShaderMaterial_bo6pf")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_m3j37")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="WovenLegWrapsL" type="MeshInstance3D" parent="." unique_id=2026420572]
+[node name="WovenLegWrapsL" type="MeshInstance3D" parent="." unique_id=181031447]
 material_override = SubResource("ShaderMaterial_b1fy8")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_vd2kx")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="RoundedClothShoeL" type="MeshInstance3D" parent="." unique_id=904862187]
+[node name="RoundedClothShoeL" type="MeshInstance3D" parent="." unique_id=853067221]
 material_override = SubResource("ShaderMaterial_6sspf")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_n0i2l")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="LayeredSoleL" type="MeshInstance3D" parent="." unique_id=1763933813]
+[node name="LayeredSoleL" type="MeshInstance3D" parent="." unique_id=1354159141]
 material_override = SubResource("ShaderMaterial_ky8uj")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_x6qxv")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="ContinuousSleeveR" type="MeshInstance3D" parent="." unique_id=1430622378]
+[node name="ContinuousSleeveR" type="MeshInstance3D" parent="." unique_id=1383813080]
 material_override = SubResource("ShaderMaterial_ypd7e")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_fspdo")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="SoftCuffR" type="MeshInstance3D" parent="." unique_id=596205821]
+[node name="SoftCuffR" type="MeshInstance3D" parent="." unique_id=112739418]
 material_override = SubResource("ShaderMaterial_ddgj1")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_2mxum")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="TrousersR" type="MeshInstance3D" parent="." unique_id=2019442094]
+[node name="TrousersR" type="MeshInstance3D" parent="." unique_id=86330837]
 material_override = SubResource("ShaderMaterial_psvcu")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_8doqm")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="HemFrontRPanel" type="MeshInstance3D" parent="." unique_id=1715098126]
+[node name="HemFrontRPanel" type="MeshInstance3D" parent="." unique_id=1399050295]
 material_override = SubResource("ShaderMaterial_se1v5")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_o783l")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="HemBackRPanel" type="MeshInstance3D" parent="." unique_id=3478404]
+[node name="HemBackRPanel" type="MeshInstance3D" parent="." unique_id=1147134437]
 material_override = SubResource("ShaderMaterial_mnke2")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_t0ss8")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="WovenLegWrapsR" type="MeshInstance3D" parent="." unique_id=677045095]
+[node name="WovenLegWrapsR" type="MeshInstance3D" parent="." unique_id=549006071]
 material_override = SubResource("ShaderMaterial_b1fy8")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_ap2ch")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="RoundedClothShoeR" type="MeshInstance3D" parent="." unique_id=1086059450]
+[node name="RoundedClothShoeR" type="MeshInstance3D" parent="." unique_id=695175561]
 material_override = SubResource("ShaderMaterial_6sspf")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_cnoau")
 skin = SubResource("Skin_vg8ac")
 skeleton = NodePath("../../Rig")
 
-[node name="LayeredSoleR" type="MeshInstance3D" parent="." unique_id=811926684]
+[node name="LayeredSoleR" type="MeshInstance3D" parent="." unique_id=201547078]
 material_override = SubResource("ShaderMaterial_ky8uj")
 custom_aabb = AABB(-1, -0.2, -1, 2, 2.6, 2)
 mesh = SubResource("ArrayMesh_irc8f")

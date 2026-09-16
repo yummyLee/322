@@ -10,6 +10,7 @@ var authored_transform: Transform3D
 var authored_size: float
 var orbit: float = 0.0
 var close_up: bool = false
+@export var snap_angle_step: float = PI / 4.0
 
 func _ready() -> void:
 	authored_transform = transform

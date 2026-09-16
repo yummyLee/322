@@ -39,7 +39,7 @@ func verify() -> void:
 	demo = load("res://hero_v2/main.tscn").instantiate()
 	root.add_child(demo)
 	current_scene = demo
-	world = demo.get_node("WorldViewport/TravelerWorld")
+	world = demo.get_node("EnvironmentViewport/EnvironmentWorld")
 	hero = world.get_node("Traveler")
 	camera = world.get_node("FollowCamera")
 	await frames(30)
@@ -128,12 +128,20 @@ func verify() -> void:
 	check(walking_distance > 1.6 and walking_distance < 2.2,"Walk speed / displacement")
 	check((hero.position-origin).normalized().dot(Vector3(camera.global_basis.x.x,0,camera.global_basis.x.z).normalized()) > 0.98,"Right moves screen right")
 	check(camera.position.distance_to(camera_origin) > 1.5,"Camera follows movement")
+	await process_frame
+	# The display copy and real shadow must interpolate from identical physics poses.
+	check(hero.get_global_transform_interpolated().is_equal_approx(demo.display_hero.get_global_transform_interpolated()),"Moving body and environment shadow stay spatially synchronized")
+	var poses_match := true
+	for bone in rig.get_bone_count():
+		poses_match = poses_match and rig.get_bone_pose(bone).is_equal_approx(demo.display_rig.get_bone_pose(bone))
+	check(poses_match,"Moving body and environment shadow use identical bone poses")
 	key(KEY_RIGHT,false)
 	key(KEY_LEFT,true)
 	await frames(2)
 	var wanted := -Vector3(camera.global_basis.x.x,0,camera.global_basis.x.z).normalized()
 	check(hero.velocity.normalized().dot(wanted)>0.999,"Opposite key changes movement within one physics tick")
-	check(absf(angle_difference(hero.facing.rotation.y,atan2(wanted.x,wanted.z)))<0.0001,"Facing changes immediately without turn smoothing")
+	var snapped_yaw := roundf(atan2(wanted.x,wanted.z)/(TAU/8.0))*(TAU/8.0)
+	check(absf(angle_difference(hero.facing.rotation.y,snapped_yaw))<0.0001,"Facing switches immediately to a discrete 8-direction pose")
 	key(KEY_LEFT,false)
 	await frames(2)
 	check(Vector2(hero.velocity.x,hero.velocity.z).length()<0.001,"Release stops without drifting")

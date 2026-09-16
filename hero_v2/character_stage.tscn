@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://hero_v2/traveler.tscn" id="1"]
+
+[sub_resource type="Environment" id="CharacterEnvironment"]
+background_mode = 0
+ambient_light_source = 2
+ambient_light_color = Color(0.85098, 0.78039, 0.64706, 1)
+ambient_light_energy = 0.85
+
+[node name="CharacterWorld" type="Node3D"]
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("CharacterEnvironment")
+
+[node name="PortraitLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.7880108, 0.48514786, -0.37903908, 0, 0.6156615, 0.7880107, 0.6156615, -0.62096095, 0.4851479, 0, 0, 0)
+light_color = Color(1, 0.8862745, 0.7176471, 1)
+light_energy = 1.25
+shadow_enabled = true
+directional_shadow_max_distance = 55.0
+
+[node name="Traveler" parent="." instance=ExtResource("1")]
+collision_layer = 0
+collision_mask = 0
+controls_enabled = false
+
+[node name="Camera" type="Camera3D" parent="."]
+physics_interpolation_mode = 2
+transform = Transform3D(0.9349975, -0.17352034, 0.3093062, 0, 0.87213445, 0.48926622, -0.35465425, -0.4574627, 0.8154436, 5.5, 9.6, 14.5)
+projection = 1
+current = true
+size = 7.0
+near = 0.1
+far = 100.0

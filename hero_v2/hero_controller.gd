@@ -4,10 +4,13 @@ extends CharacterBody3D
 @export var run_speed: float = 4.4
 @export var controls_enabled: bool = true
 @export var movement_camera: Camera3D
+@export var eight_direction_visual: bool = true
+@export_range(4,8,1) var direction_count: int = 8
 @onready var facing: Node3D = $Facing
 @onready var animator: AnimationPlayer = $AnimationPlayer
 var locomotion: StringName = &"idle"
 var gravity: float = float(ProjectSettings.get_setting("physics/3d/default_gravity", 9.8))
+var direction_index: int = 0
 
 func _ready() -> void:
 	animator.play(&"idle")
@@ -39,7 +42,14 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0.0
 	move_and_slide()
 	if direction.length_squared() > 0.01:
-		facing.rotation.y = atan2(direction.x, direction.z)
+		var wanted_yaw := atan2(direction.x, direction.z)
+		if eight_direction_visual:
+			var step := TAU / float(direction_count)
+			direction_index = posmod(roundi(wanted_yaw / step), direction_count)
+			# Discrete 45° presentation: world movement stays continuous, visual rotation does not.
+			facing.rotation.y = direction_index * step
+		else:
+			facing.rotation.y = wanted_yaw
 	var actual_speed := Vector2(get_real_velocity().x, get_real_velocity().z).length()
 	var next: StringName = &"idle" if actual_speed < 0.08 else (&"run" if running else &"walk")
 	if next != locomotion:
