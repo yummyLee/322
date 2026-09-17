@@ -69,7 +69,7 @@ func collect_materials(node: Node) -> void:
 	if node is MeshInstance3D and node.mesh:
 		for i in range(node.mesh.get_surface_count()):
 			var material = node.get_active_material(i)
-			if material is ShaderMaterial and material.shader == preload("res://village/style.gdshader") and material not in materials:
+			if material is ShaderMaterial and (material.shader == preload("res://village/style.gdshader") or material.get_meta("village_toon",false)) and material not in materials:
 				materials.append(material)
 	for child in node.get_children():
 		collect_materials(child)
