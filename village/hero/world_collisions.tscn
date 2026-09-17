@@ -439,15 +439,15 @@ transform = Transform3D(1.0825639, 0, 0, 0, 1.0825639, 0, 0, 0, 1.0825639, -29, 
 shape = SubResource("ConvexPolygonShape3D_1cf3y")
 
 [node name="BroadleafTree22_Trunk" type="CollisionShape3D" parent="." unique_id=590631316]
-transform = Transform3D(1.3316319, 0, 0, 0, 1.3316319, 0, 0, 0, 1.3316319, -29, 1.9974478, 3.5)
+transform = Transform3D(1.3316319, 0, 0, 0, 1.3316319, 0, 0, 0, 1.3316319, -32, 1.9974478, 12)
 shape = SubResource("ConvexPolygonShape3D_qmauk")
 
 [node name="BroadleafTree23_Trunk" type="CollisionShape3D" parent="." unique_id=541311359]
-transform = Transform3D(1.3309503, 0, 0, 0, 1.3309503, 0, 0, 0, 1.3309503, -29, 1.9964254, 6.8)
+transform = Transform3D(1.3309503, 0, 0, 0, 1.3309503, 0, 0, 0, 1.3309503, -34, 1.9964254, 13)
 shape = SubResource("ConvexPolygonShape3D_47yum")
 
 [node name="BroadleafTree24_Trunk" type="CollisionShape3D" parent="." unique_id=774662811]
-transform = Transform3D(1.141589, 0, 0, 0, 1.141589, 0, 0, 0, 1.141589, -29, 1.7123835, 10.1)
+transform = Transform3D(1.141589, 0, 0, 0, 1.141589, 0, 0, 0, 1.141589, -32, 1.7123835, 16)
 shape = SubResource("ConvexPolygonShape3D_jhf0l")
 
 [node name="BroadleafTree25_Trunk" type="CollisionShape3D" parent="." unique_id=1129736632]
@@ -571,15 +571,15 @@ transform = Transform3D(0.888501, 0, 0, 0, 0.888501, 0, 0, 0, 0.888501, -24.8669
 shape = SubResource("ConvexPolygonShape3D_fmrr0")
 
 [node name="BroadleafTree55_Trunk" type="CollisionShape3D" parent="." unique_id=942974132]
-transform = Transform3D(1.2450761, 0, 0, 0, 1.2450761, 0, 0, 0, 1.2450761, -24.766113, 1.867614, 3.4)
+transform = Transform3D(1.2450761, 0, 0, 0, 1.2450761, 0, 0, 0, 1.2450761, -29, 1.867614, 15)
 shape = SubResource("ConvexPolygonShape3D_1ctpn")
 
 [node name="BroadleafTree56_Trunk" type="CollisionShape3D" parent="." unique_id=239233698]
-transform = Transform3D(0.9518943, 0, 0, 0, 0.9518943, 0, 0, 0, 0.9518943, -25.256893, 1.4278414, 6.3)
+transform = Transform3D(0.9518943, 0, 0, 0, 0.9518943, 0, 0, 0, 0.9518943, -30, 1.4278414, 18)
 shape = SubResource("ConvexPolygonShape3D_4t83x")
 
 [node name="BroadleafTree57_Trunk" type="CollisionShape3D" parent="." unique_id=1523183690]
-transform = Transform3D(0.8696909, 0, 0, 0, 0.8696909, 0, 0, 0, 0.8696909, -25.856524, 1.3045363, 9.2)
+transform = Transform3D(0.8696909, 0, 0, 0, 0.8696909, 0, 0, 0, 0.8696909, -28, 1.3045363, 20)
 shape = SubResource("ConvexPolygonShape3D_mrqta")
 
 [node name="BroadleafTree58_Trunk" type="CollisionShape3D" parent="." unique_id=1293760205]
@@ -661,6 +661,7 @@ shape = SubResource("ConvexPolygonShape3D_up6aa")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1865796719]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
 shape = SubResource("BoxShape3D_d3bdv")
+disabled = true
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1819164674]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)

@@ -1,5 +1,7 @@
 [gd_scene format=4]
 
+[ext_resource type="PackedScene" path="res://burial_ridge/world.tscn" id="WesternRidgeScene"]
+
 [ext_resource type="PackedScene" path="res://village/hero/world_collisions.tscn" id="WalkCollisionScene"]
 
 [ext_resource type="Shader" path="res://village/style.gdshader" id="1_yk2ox"]
@@ -44837,7 +44839,7 @@ material_override = SubResource("ShaderMaterial_pmic2")
 mesh = SubResource("SphereMesh_is60m")
 
 [node name="BroadleafTree22" type="Node3D" parent="ForestBoundary" unique_id=1406095568]
-transform = Transform3D(1.3316319, 0, 0, 0, 1.3316319, 0, 0, 0, 1.3316319, -29, 0, 3.5)
+transform = Transform3D(1.3316319, 0, 0, 0, 1.3316319, 0, 0, 0, 1.3316319, -32, 0, 12)
 
 [node name="Trunk" type="MeshInstance3D" parent="ForestBoundary/BroadleafTree22" unique_id=461521334]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -45145,7 +45147,7 @@ material_override = SubResource("ShaderMaterial_pmic2")
 mesh = SubResource("SphereMesh_is60m")
 
 [node name="BroadleafTree23" type="Node3D" parent="ForestBoundary" unique_id=344882221]
-transform = Transform3D(1.3309503, 0, 0, 0, 1.3309503, 0, 0, 0, 1.3309503, -29, 0, 6.8)
+transform = Transform3D(1.3309503, 0, 0, 0, 1.3309503, 0, 0, 0, 1.3309503, -34, 0, 13)
 
 [node name="Trunk" type="MeshInstance3D" parent="ForestBoundary/BroadleafTree23" unique_id=1513686764]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -45453,7 +45455,7 @@ material_override = SubResource("ShaderMaterial_pmic2")
 mesh = SubResource("SphereMesh_is60m")
 
 [node name="BroadleafTree24" type="Node3D" parent="ForestBoundary" unique_id=1662993621]
-transform = Transform3D(1.141589, 0, 0, 0, 1.141589, 0, 0, 0, 1.141589, -29, 0, 10.1)
+transform = Transform3D(1.141589, 0, 0, 0, 1.141589, 0, 0, 0, 1.141589, -32, 0, 16)
 
 [node name="Trunk" type="MeshInstance3D" parent="ForestBoundary/BroadleafTree24" unique_id=2078791484]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -55001,7 +55003,7 @@ material_override = SubResource("ShaderMaterial_pmic2")
 mesh = SubResource("SphereMesh_is60m")
 
 [node name="BroadleafTree55" type="Node3D" parent="ForestBoundary" unique_id=1392532932]
-transform = Transform3D(1.2450761, 0, 0, 0, 1.2450761, 0, 0, 0, 1.2450761, -24.766113, 0, 3.4)
+transform = Transform3D(1.2450761, 0, 0, 0, 1.2450761, 0, 0, 0, 1.2450761, -29, 0, 15)
 
 [node name="Trunk" type="MeshInstance3D" parent="ForestBoundary/BroadleafTree55" unique_id=2047454276]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -55309,7 +55311,7 @@ material_override = SubResource("ShaderMaterial_pmic2")
 mesh = SubResource("SphereMesh_is60m")
 
 [node name="BroadleafTree56" type="Node3D" parent="ForestBoundary" unique_id=1596602981]
-transform = Transform3D(0.9518943, 0, 0, 0, 0.9518943, 0, 0, 0, 0.9518943, -25.256893, 0, 6.3)
+transform = Transform3D(0.9518943, 0, 0, 0, 0.9518943, 0, 0, 0, 0.9518943, -30, 0, 18)
 
 [node name="Trunk" type="MeshInstance3D" parent="ForestBoundary/BroadleafTree56" unique_id=811525780]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -55617,7 +55619,7 @@ material_override = SubResource("ShaderMaterial_pmic2")
 mesh = SubResource("SphereMesh_is60m")
 
 [node name="BroadleafTree57" type="Node3D" parent="ForestBoundary" unique_id=751153743]
-transform = Transform3D(0.8696909, 0, 0, 0, 0.8696909, 0, 0, 0, 0.8696909, -25.856524, 0, 9.2)
+transform = Transform3D(0.8696909, 0, 0, 0, 0.8696909, 0, 0, 0, 0.8696909, -28, 0, 20)
 
 [node name="Trunk" type="MeshInstance3D" parent="ForestBoundary/BroadleafTree57" unique_id=1114724212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -66310,3 +66312,7 @@ mesh = SubResource("QuadMesh_6qad3")
 
 
 
+
+[node name="WesternBurialRidge" parent="." instance=ExtResource("WesternRidgeScene")]
+
+[editable path="WesternBurialRidge"]

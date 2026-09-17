@@ -1,5 +1,9 @@
 # 窑村：参考图 3D 像素场景
 
+## 西侧乱葬岭扩展
+
+`yao_village.tscn` 已接入 `WesternBurialRidge`，向左连接乱葬岭墓地、枯树林、芦草坡和两座林间茅屋。新区可直接展开子节点编辑，也可打开 `burial_ridge/world.tscn` 单独调整。运行入口、出生点、原菜单与默认镜头沿用现有设置；沿西侧菜地外围道路向左走即可进入。详细节点分组和截图见 `burial_ridge/README.md`。
+
 ## 接入新版人物
 
 F5 仍使用原有 `main.tscn`，菜单、村庄布局、原相机角度、默认视野与环境采样设置保持原样。只在 `WorldViewport/YaoVillage/Hero` 下加入新版 `hero_v2/traveler.tscn`，出生位置为 (-4, 0.15, 5)，可在主场景中直接编辑。
