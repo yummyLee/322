@@ -23,7 +23,7 @@ func run() -> void:
 				bad_nodes += 1
 	check(bad_nodes == 0 and ridge.get_script() == null,"All extension nodes are saved, owned and have no runtime generator")
 	check(mesh_count > 5000,"Actual editable 3D meshes: %d" % mesh_count)
-	for path in ["Graveyard/RidgeStoneShrine","Graveyard/TallBoundaryStele","Graveyard/CollapsedStoneTomb","Graveyard/AbandonedHandcart","BareRidgeTrees","ForestHomesteads/GraveKeeperCottage","ForestHomesteads/WoodcutterCottage","MeadowAndGroundDetails","TerrainAndPaths/VillageLink","SavedWalkCollisions"]:
+	for path in ["Graveyard/RidgeStoneShrine","Graveyard/TallBoundaryStele","Graveyard/CollapsedStoneTomb","Graveyard/AbandonedHandcart","BareRidgeTrees","ForestHomesteads/GraveKeeperCottage","ForestHomesteads/WoodcutterCottage","MeadowAndGroundDetails","TerrainAndPaths/HandWorkedRoads/VillageLink","AncientRoadsideDetails","SavedWalkCollisions"]:
 		check(ridge.has_node(path),"Reference landmark: "+path)
 	var edited := ridge.get_node("Graveyard/Grave_01") as Node3D
 	edited.position += Vector3(0.33,0,0.28)

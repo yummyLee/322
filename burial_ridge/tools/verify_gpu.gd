@@ -40,6 +40,21 @@ func run() -> void:
 	app.camera.position = Vector3(-72,39,21)
 	app.camera.size = 23
 	await capture("detail")
+	app.hero.position = Vector3(-70.7,0.08,-18.4)
+	app.hero.reset_physics_interpolation()
+	app.camera.position = Vector3(-72,27,7)
+	app.camera.size = 11
+	app.status.text = "乱葬岭 · 玩家与墓碑、石龛比例"
+	await capture("human_scale")
+	app.hero.position = Vector3(-51,0.08,-0.3)
+	app.hero.reset_physics_interpolation()
+	app.camera.position = Vector3(-49,25,22.5)
+	app.camera.size = 13
+	app.status.text = "乱葬岭 · 土路、车辙与入户踏石"
+	await capture("road_detail")
+	app.hero.position = Vector3(-54,0.08,0)
+	app.hero.reset_physics_interpolation()
+	app.status.text = "窑村西侧 · 乱葬岭"
 	app.camera.position = Vector3(-28,42,44)
 	app.camera.size = 27
 	await capture("seam")
