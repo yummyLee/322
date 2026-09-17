@@ -1,5 +1,17 @@
 # 窑村：参考图 3D 像素场景
 
+## 地面、旧屋与北侧调整（2026-09-17）
+
+- `Terrain/BlendedVillageGround`：已保存的地表分块，草地、黄土、暗土与腐叶土连续混合，加入深浅斑驳；保留原平地高度与通行关系。复用乱葬岭四类地表材质，西侧接口色彩一致。
+- `LivedInGroundDetails`：墙脚草、林缘草簇、零散砾石与陶土碎屑。
+- `Buildings/<房屋>/AgeAndRepairs`：13 座原房屋的灰泥脱落、露砖、细裂缝、窗户补木、旧木料、陶罐与墙脚苔色；`weathered_plaster.gdshader` 补充受潮和雨痕，旧瓦与茅草束做了局部错位和色差。原有门口与通路保持清晰。
+- 北院两座房屋、院墙和菜地向北移动 5 单位；北侧 32 棵边界树随碰撞向北退让，移除 7 棵树，留出院落与林缘之间的空间。
+- 编辑入口仍是 `yao_village.tscn`，运行入口仍是 `main.tscn`，无需运行制作脚本。
+
+`tools/validate_lived_in.gd` 验证移动后的树与房屋碰撞、北院通行，以及乱葬岭两座新建筑门洞的往返行走。`tools/verify_lived_in_gpu.gd` 验证原菜单、像素设置和新材质开关，并输出实际截图。均已通过 `failures=0`。
+
+本轮截图位于 `burial_ridge/preview_village_weathered_overview.png`、`preview_village_weathered_house.png`、`preview_village_north.png`。`tools/refine_lived_in_environment.gd` 及对应 `finish_*`、`fit_entry_floors.gd` 为已应用的离线制作记录，日常编辑不要重复执行。
+
 ## 西侧乱葬岭扩展
 
 `yao_village.tscn` 已接入 `WesternBurialRidge`，向左连接乱葬岭墓地、枯树林、芦草坡和两座林间茅屋。新区可直接展开子节点编辑，也可打开 `burial_ridge/world.tscn` 单独调整。运行入口、出生点、原菜单与默认镜头沿用现有设置；沿西侧菜地外围道路向左走即可进入。详细节点分组和截图见 `burial_ridge/README.md`。

@@ -292,9 +292,3 @@ func lighting() -> void:
 	camera.add_child(quad)
 	quad.owner = scene_root
 	quad.position.z = -1
-
-
-
-
-
-

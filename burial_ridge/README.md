@@ -2,6 +2,18 @@
 
 按 `乱葬岭左1完全.png` 在原村庄西侧扩展，运行入口仍是 `res://village/main.tscn`。
 
+## 坟地荒草与可探索建筑（2026-09-17）
+
+`GraveyardWildGrass` 增加高低混合、疏密不均的枯草岛，与南侧荒坡的植被语言一致，主要小径和墓碑周围保留可读空间。
+
+`ExplorationLandmarks/DomeStoneTomb`（圆顶石墓）与 `StoneAncestralShrine`（石祠小庙）参考 `openworldtest/resources/map/architecture/乱葬岭` 的对应素材和 `yaocun_v1_map.tscn` 门口连接方式制作。圆顶石墓为石砌穹顶，顶端使用古代石质宝顶；石祠为石墙、石板坡顶和敞开的旧木门。两者均为独立可编辑的 3D 构件，不依赖参考工程资源。墓地北侧两条短岔路接到门口，碎石和树枝已让开入口。
+
+每座建筑保留 `ReservedEntrance/TriggerVolume`、`EntryPoint` 和 `ExitSpawn`。入口区域不阻挡角色，墙体碰撞分开配置，门前铺地贴合原坡面。已用真实玩家碰撞体验证从小径进入门洞并返回。
+
+后续室内接入：`ReservedEntrance` 的 `door_link_id` 沿用 `burial_dome_tomb_door` / `burial_shici_door`，`destination_id` 分别为 `burial_dome_tomb_room` / `burial_shici_room`；`target_scene` 留空，`monitoring=false`。新室内准备好后再绑定目标场景和交互逻辑、开启入口检测。`ExitSpawn` 已放在门外并包含对应返回点名称。当前不触发跳转，也未移植参考工程的 2D 室内。
+
+最新截图：`preview_exploration_landmarks.png`、`preview_dome_tomb_entry.png`、`preview_stone_shrine_entry.png`。原有 `preview_overview.png` 等保留为上一轮地形细化记录。
+
 ## 编辑
 
 - 整体编辑：`village/yao_village.tscn` → `WesternBurialRidge`（已启用可编辑子节点）。
@@ -34,7 +46,7 @@
 
 ## 验证与截图
 
-本次验证：Godot 4.7.2 / D3D12 Forward+ / RTX 5080。静态场景与通行、连续地形、GPU 和原菜单检查均为 `failures=0`。之前的人物比例检查已通过，本次保留物体尺寸。细化后新区共 12,365 个保存节点，其中 10,310 个为真实 MeshInstance3D。通行验证覆盖村西接口到墓地的九段连续主路，不代表所有装饰区域均可通行。
+本次验证：Godot 4.7.2 / D3D12 Forward+ / RTX 5080。静态场景与通行、连续地形、GPU 和原菜单检查均为 `failures=0`。之前的人物比例检查已通过，本次保留原物体尺寸。加入荒草与两座建筑后，新区共 17,332 个保存节点，其中 12,833 个为真实 MeshInstance3D。通行验证覆盖村西接口到墓地的九段连续主路，以及两座新建筑的入口往返，不代表所有装饰区域均可通行。
 
 - `tools/validate.gd`：保存节点/归属、地标、磁盘编辑重载、原入口集成、旧树碰撞同步，以及使用真实角色碰撞体从村西通路连续走到墓地。
 - `tools/verify_gpu.gd`：加载原 `village/main.tscn`，检查原出生点、设置开关、像素网格同步，并输出实际 D3D12 Forward+ 截图。

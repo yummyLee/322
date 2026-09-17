@@ -10,6 +10,7 @@ uniform bool toon_enabled = true;
 uniform float variation_strength : hint_range(0.0,0.5) = 0.23;
 uniform float transition_breakup : hint_range(0.0,0.4) = 0.12;
 uniform float village_seam_x = -26.0;
+uniform float seam_direction = 1.0;
 varying vec3 world_position;
 varying vec4 weights;
 
@@ -27,7 +28,7 @@ void vertex() {
 }
 void fragment() {
  vec2 p=world_position.xz;
- float seam=smoothstep(0.0,5.5,village_seam_x-p.x);
+ float seam=smoothstep(0.0,5.5,(village_seam_x-p.x)*seam_direction);
  float wide=landscape_noise(p*0.19);
  float mid=landscape_noise(p*0.83+vec2(17.0));
  float fine=noise2(p*9.7);
