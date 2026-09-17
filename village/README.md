@@ -47,7 +47,7 @@ Esc、关闭按钮或点击面板外关闭；菜单打开时暂停键盘平移�
 - 复用 pixel_lab/outline.gdshader；旧测试场景保留在 pixel_lab。
 - tools/build_village.gd：可选的制作源代码，不是运行依赖。
 - tools/bake_helpers.gd：通用几何与 tscn 烘焙助手。
-- 个人 skill：C:/Users/Administrator/.codex/skills/godot-editable-pixel-scene/SKILL.md。
+- 个人 skill：C:/Users/Administrator/.codex/skills/godot-reference-to-pixel3d/SKILL.md（使用本对话的建模构件、渲染资产和独立项目验证流程）。
 
 仅在明确需要重新制作时运行生成器。它要求 -- --bake，已有输出还要求 --overwrite；
 重建会覆盖 yao_village.tscn 的手动修改。日常直接编辑 tscn。

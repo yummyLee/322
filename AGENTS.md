@@ -11,5 +11,5 @@
 
 ## 可复用场景制作流程
 
-- 根据参考图制作 3D 像素场景时，可使用个人 skill：`C:/Users/Administrator/.codex/skills/godot-editable-pixel-scene/SKILL.md`。先读精简说明，只有修改工具时才读取完整辅助脚本，避免重复消耗上下文。
+- 根据参考图制作 3D 像素场景时，使用新的个人 skill：`C:/Users/Administrator/.codex/skills/godot-reference-to-pixel3d/SKILL.md`，不使用旧的 `godot-editable-pixel-scene`。先读精简说明，只有修改工具时才读取完整辅助脚本，避免重复消耗上下文。
 - 当前窑村的编辑入口为 `village/yao_village.tscn`，运行入口为 `village/main.tscn`。日常修改直接编辑已保存场景，不重跑 `village/tools/build_village.gd`。
