@@ -30,6 +30,7 @@ func _initialize() -> void:
 	herb_hollow()
 	north_forest()
 	ground_ecology()
+	understory_details()
 	collision_box(obstacle_root,"NorthernLimit",Vector3(-63,2,-77),Vector3(52,8,0.6))
 	collision_box(obstacle_root,"WesternLimit",Vector3(-87,2,-54.5),Vector3(0.6,8,45))
 	collision_box(obstacle_root,"EasternLimit",Vector3(-26,2,-54.5),Vector3(0.6,8,45))
@@ -45,7 +46,14 @@ func elevation(x: float,z: float) -> float:
 	var rise:=0.72+0.58*exp(-pow((x+78)/14,2)-pow((z+60)/17,2))
 	var slope:=0.32*(1+natural_noise.get_noise_2d(x*0.8,z*0.8))
 	var hollow:=0.31*exp(-pow((x+74)/5.5,2)-pow((z+43)/6,2))
-	return super.elevation(x,z)+maxf(0,rise+slope-hollow)*blend
+	# The cave is a fold in the same terrain: a high northern shelf, a lower southern floor,
+	# and a broad sloped fold between them. The doorway sits in that fold instead of on a prop slab.
+	var gate_fade: float=0.0 if z>-42.25 else 1.0-smoothstep(-43.5,-42.25,z)
+	var gate_width:=1.0-smoothstep(7.5,12.5,absf(x+55.0))
+	var gate_terrace:=2.05*(1.0-smoothstep(-55.0,-48.5,z))*gate_width*gate_fade
+	var gate_shoulder:=0.34*exp(-pow((x+55)/9.0,2)-pow((z+53)/7.5,2))*gate_fade
+	var gate_cut:=0.26*exp(-pow((x+55)/2.8,2)-pow((z+48)/2.2,2))*gate_fade
+	return super.elevation(x,z)+maxf(0,rise+slope-hollow)*blend+gate_terrace+gate_shoulder-gate_cut
 
 func weights_at(x: float,z: float) -> Color:
 	var old:=super.weights_at(x,z)
@@ -133,6 +141,10 @@ func tapered_root(parent: Node,label: String,points: Array,radius: float,color: 
 		var segment:=cylinder(g,"TaperingWood",(a+b)/2,r0,a.distance_to(b)+0.025,color,r1,7)
 		segment.quaternion=Quaternion(Vector3.UP,(b-a).normalized())
 
+func gate_local_point(x: float,z: float,lift: float=0.04) -> Vector3:
+	var base:=elevation(-55,-48)
+	return Vector3(x,elevation(-55+x,-48+z)-base+lift,z)
+
 func root_gate() -> void:
 	var hill:=group(scene_root,"RootWrappedStoneGate",ground(-55,-48))
 	var body:=StaticBody3D.new()
@@ -149,52 +161,41 @@ func root_gate() -> void:
 	collision_box(body,"LintelClearOfHead",Vector3(0,2.50,0.71),Vector3(2.88,0.38,0.94))
 	box(hill,"DarkRecessBack",Vector3(0,1.16,-1.1),Vector3(2.0,2.32,0.08),"30382d")
 	collision_box(body,"TunnelEnd",Vector3(0,1.16,-1.14),Vector3(2.0,2.32,0.10))
-	# Hollow-sided earthen shoulders keep the passage genuinely open.
-	for side in [-1,1]:
-		var verts:=PackedVector3Array([Vector3(side*1.3,0,1.2),Vector3(side*5,0,1),Vector3(side*4.7,1.3,-2.8),Vector3(side*1.1,3.5,-1.5),Vector3(side*1.3,2.7,0.2),Vector3(side*5.6,0,-4.2),Vector3(side*0.6,3.2,-4.2)])
-		var ids:=PackedInt32Array([0,1,2,0,2,4,2,3,4,2,5,6,2,6,3])
-		var doubled:=PackedInt32Array()
-		for i in range(0,ids.size(),3): doubled.append_array(PackedInt32Array([ids[i],ids[i+1],ids[i+2],ids[i+2],ids[i+1],ids[i]]))
-		solid(hill,"RootBoundEarthShoulder",verts,doubled,"747b5d")
-		collision_box(body,"EarthShoulder",Vector3(side*3.0,1.1,-1.5),Vector3(3.1,2.2,3.7))
 	var roots:=group(hill,"WrappingRoots")
 	for side in [-1,1]:
-		for i in range(5):
-			var shift:=i*0.34
-			var start:=Vector3(side*(0.8+shift),3.45+rng.randf_range(-0.2,0.3),-2.8+rng.randf_range(-0.7,0.4))
-			var bend:=Vector3(side*(1.60+shift+rng.randf_range(-0.24,0.35)),2.8-i*0.22,-0.7+rng.randf_range(-0.4,0.3))
-			var foot:=Vector3(side*(1.7+shift+sin(i*2.4)*0.32),0.16,1.8+rng.randf_range(-0.6,0.4))
-			var tip:=Vector3(side*(3.1+shift+rng.randf_range(-0.5,1.6)),0.06,2.6+rng.randf_range(-0.6,1.4))
-			tapered_root(roots,"CascadingRoot",[start,bend,Vector3(side*(1.44+shift),1.5,0.8),foot,tip],0.14+i*0.022,["706449","837257","635e45"][i%3])
-			tapered_root(roots,"TwistedRootFork",[bend,Vector3(side*(2.2+shift),1.2,0.5),Vector3(side*(3.2+shift),0.13,0.9),Vector3(side*(4.4+shift),0.06,1.7)],0.10,"75684f")
-		for i in range(4):
-			tapered_root(roots,"SpreadingRoot",[Vector3(side*1.7,3.6,-2.6),Vector3(side*3.4,1.8,-2.0-i*0.5),Vector3(side*4.5,0.25,-1.5-i),Vector3(side*(6.0+i*0.45),0.10,-2.2-i*0.6)],0.22,["786b50","665c45"][i%2])
-	# An irregular earthen surface breaks up the flat structural roof behind the roots.
-	var mound_vs:=PackedVector3Array()
-	var mound_ids:=PackedInt32Array()
-	for iz in range(15):
-		for ix in range(23):
-			var x: float=-5.5+ix*0.5
-			var z: float=-5.5+iz*0.5
-			var y:=3.30*exp(-pow(x/3.8,2)-pow((z+2.0)/3.6,2))
-			y+=0.11*natural_noise.get_noise_2d(x*8,z*8)
-			mound_vs.append(Vector3(x,y,z))
-	for iz in range(14):
-		for ix in range(22):
-			var x: float=-5.5+ix*0.5+0.25
-			var z: float=-5.5+iz*0.5+0.25
-			if absf(x)<1.5 and z>0.4:continue
-			var a:=iz*23+ix
-			mound_ids.append_array(PackedInt32Array([a,a+1,a+23,a+1,a+24,a+23]))
-	solid(hill,"UnevenMossAndEarthMound",mound_vs,mound_ids,"788062")
-	for i in range(32):
-		var x:=rng.randf_range(-3.5,3.5)
-		var z:=rng.randf_range(-3.8,-0.4)
-		var y:=3.30*exp(-pow(x/3.8,2)-pow((z+2.0)/3.6,2))+0.11*natural_noise.get_noise_2d(x*8,z*8)
-		ball(hill,"MossyBuriedShale",Vector3(x,y,z),Vector3(rng.randf_range(0.12,0.28),0.09,rng.randf_range(0.13,0.31)),["747d60","8b9371","667456"][i%3])
+		# Three short primaries with several bends read as roots pressed into the mound.
+		var root_paths: Array = [
+			[gate_local_point(side*0.82,-2.30,0.22),gate_local_point(side*1.35,-1.92,0.16),gate_local_point(side*1.18,-1.16,0.11),gate_local_point(side*1.62,-0.20,0.07),gate_local_point(side*2.72,0.72,0.045)],
+			[gate_local_point(side*1.42,-2.62,0.20),gate_local_point(side*2.18,-2.42,0.15),gate_local_point(side*2.42,-1.72,0.10),gate_local_point(side*2.95,-1.56,0.065),gate_local_point(side*4.02,-2.05,0.04)],
+			[gate_local_point(side*1.90,-1.50,0.18),gate_local_point(side*2.72,-1.15,0.13),gate_local_point(side*2.92,-0.42,0.09),gate_local_point(side*3.72,0.42,0.06),gate_local_point(side*4.76,1.40,0.04)]
+		]
+		for i in range(root_paths.size()):
+			tapered_root(roots,"UnevenPrimaryRoot",root_paths[i],0.13+i*0.018,["706449","837257","635e45"][i%3])
+			var branch_path: Array = [root_paths[i][1],root_paths[i][2]+Vector3(side*(0.42 if i%2==0 else -0.32),-0.10,0.28),root_paths[i][3]+Vector3(side*(0.40 if i==1 else -0.28),-0.08,0.44)]
+			tapered_root(roots,"BrokenSideRoot",branch_path,0.065+i*0.012,"75684f")
+	var distant_roots:=group(hill,"RootsFromAncientTree")
+	for path in [
+		[gate_local_point(-3.6,-3.0,0.11),gate_local_point(-4.4,-4.1,0.08),gate_local_point(-5.7,-4.7,0.06),gate_local_point(-7.0,-5.9,0.045),gate_local_point(-8.7,-6.2,0.035)],
+		[gate_local_point(2.8,-3.4,0.11),gate_local_point(3.3,-4.4,0.08),gate_local_point(2.4,-5.4,0.06),gate_local_point(1.3,-6.3,0.045),gate_local_point(-0.4,-7.2,0.035)],
+		[gate_local_point(-1.4,-3.8,0.10),gate_local_point(-2.4,-5.0,0.075),gate_local_point(-3.6,-5.7,0.055),gate_local_point(-4.7,-6.9,0.04),gate_local_point(-6.0,-7.6,0.03)]
+	]:
+		tapered_root(distant_roots,"DistantGiantTreeRoot",path,0.12,"705f49")
+		tapered_root(distant_roots,"DistantFineFork",[path[1],path[2]+Vector3(0,0.02,0.35),path[3]+Vector3(0,0.02,0.52)],0.055,"665b45")
+	# Small contour stones and moss tufts sit on the transition, never forming a new hard-edged slab.
+	for i in range(30):
+		var a:=rng.randf()*TAU
+		var r:=rng.randf_range(2.5,6.3)
+		var x:=cos(a)*r
+		var z:=-1.5+sin(a)*3.8
+		var y:=elevation(-55+x,-48+z)-elevation(-55,-48)
+		ball(hill,"ApronContourStone",Vector3(x,y+0.05,z),Vector3(rng.randf_range(0.12,0.28),0.08,rng.randf_range(0.12,0.30)),["737b67","8f9279","66705c"][i%3])
+	for p in [Vector3(-3.6,0,-2.0),Vector3(3.4,0,-2.4),Vector3(-4.8,0,-4.7),Vector3(4.8,0,-4.0)]:
+		var tuft_root:=group(hill,"ApronMossTuft",Vector3(p.x,elevation(-55+p.x,-48+p.z)-elevation(-55,-48)+0.02,p.z))
+		tuft(tuft_root,Vector3.ZERO,rng.randi_range(0,1)==0,p.x<0)
 	# Canopies sit behind and beside the lintel, never directly over its silhouette.
-	for p in [Vector3(-3.6,1.2,-2.0),Vector3(-1.1,3.0,-3.4),Vector3(2.3,2.2,-3.1),Vector3(4.1,0.6,-1.8)]:
-		conifer(hill,p,0.78+rng.randf()*0.16,false)
+	for base in [Vector2(-3.6,-2.0),Vector2(-1.1,-3.4),Vector2(2.3,-3.1),Vector2(4.1,-1.8)]:
+		var local_y:=elevation(-55+base.x,-48+base.y)-elevation(-55,-48)
+		conifer(hill,Vector3(base.x,local_y,base.y),0.78+rng.randf()*0.16,false)
 	var portal:=Area3D.new()
 	portal.name="ReservedEntrance"
 	portal.collision_layer=0
@@ -418,6 +419,58 @@ func ground_ecology() -> void:
 		soft_patch(patch_root,"BlendedPatch",Vector2(rng.randf_range(0.5,1.4),rng.randf_range(0.4,1.05)),["96a18b","8a987d","8c9478"][i%3])
 	# Branching roots spread over the red shoulder beside the route.
 	var roots:=group(ecology,"ExposedRedSlopeRoots",ground(-68,-48))
-	for i in range(6):
-		var end:=Vector3(-5.0-i*0.25,0.04,-1.0+i*0.8)
-		tapered_root(roots,"TrailingRoot",[Vector3(0,0.22,-2.0),Vector3(-1.8,0.15,-1.7+i*0.15),Vector3(-3.2,0.12,-0.8+i*0.4),end],0.18,"76694f")
+	var root_origins: Array[Vector3]=[Vector3(-0.15,0.24,-2.10),Vector3(-0.48,0.18,-1.55),Vector3(0.22,0.20,-1.18),Vector3(-0.82,0.16,-0.78)]
+	var root_tips: Array[Vector3]=[Vector3(-5.25,0.04,-0.55),Vector3(-4.25,0.05,0.85),Vector3(-5.70,0.04,1.70),Vector3(-3.65,0.05,2.45)]
+	for i in range(4):
+		var o:=root_origins[i]
+		var t:=root_tips[i]
+		var mid:=Vector3(-1.35-rng.randf()*0.45,0.16,-1.62+i*0.72)
+		var low:=Vector3(-2.65+rng.randf_range(-0.35,0.25),0.10,-0.80+i*0.76)
+		tapered_root(roots,"IrregularSlopePrimaryRoot",[o,mid,low,t],0.16+i*0.025,["76694f","6d624b","84704f"][i%3])
+		if i%2==0:
+			tapered_root(roots,"SlopeRootFork",[mid,Vector3(-2.0,0.12,-1.05+i*0.65),Vector3(-3.25,0.06,0.15+i*0.85)],0.075,"665b45")
+
+func understory_details() -> void:
+	# Fill the open middle ground with low, readable layers while preserving clear routes.
+	var under:=group(scene_root,"MidgroundUnderstory")
+	var shrubs:=group(under,"LowShrubClusters")
+	var stones:=group(under,"WeatheredStonePockets")
+	var deadfall:=group(under,"FallenBranchesAndDeadfall")
+	var shrub_positions: Array[Vector2]=[]
+	for i in range(180):
+		var p:=Vector2(rng.randf_range(-86,-29),rng.randf_range(-76,-36))
+		if path_distance(p)<2.05:continue
+		if p.distance_to(Vector2(-55,-48))<7.0 or p.distance_to(Vector2(-63,-36.5))<5.0 or p.distance_to(Vector2(-77,-68))<5.0:continue
+		var near:=false
+		for old in shrub_positions:
+			if p.distance_to(old)<1.35:near=true;break
+		if near:continue
+		shrub_positions.append(p)
+		var clump:=group(shrubs,"MossyShrubClump",ground(p.x,p.y))
+		var scale_value:=rng.randf_range(0.72,1.12)
+		for j in range(3+rng.randi_range(0,2)):
+			var a:=rng.randf()*TAU
+			var offset:=Vector3(cos(a)*rng.randf_range(0.15,0.52),rng.randf_range(0.28,0.48),sin(a)*rng.randf_range(0.15,0.52))
+			ball(clump,"RoundedShrubLeaf",offset,Vector3(0.42,0.30,0.40)*scale_value,["566a4b","66774e","788259","4e634a"][rng.randi_range(0,3)])
+		if i%4==0:
+			var stem:=cylinder(clump,"DryShrubStem",Vector3(0,0.30,0),0.045,0.60,"655c45",0.025,6)
+			stem.rotation.y=rng.randf()*TAU
+	for i in range(115):
+		var p:=Vector2(rng.randf_range(-88,-29),rng.randf_range(-78,-35))
+		if path_distance(p)<1.55 or p.distance_to(Vector2(-55,-48))<6.0:continue
+		var pocket:=group(stones,"BrokenStonePocket",ground(p.x,p.y))
+		var count:=2+rng.randi_range(0,3)
+		for j in range(count):
+			var a:=rng.randf()*TAU
+			var r:=rng.randf_range(0.15,0.75)
+			ball(pocket,"HalfBuriedStone",Vector3(cos(a)*r,0.06+rng.randf_range(0,0.04),sin(a)*r),Vector3(rng.randf_range(0.16,0.38),rng.randf_range(0.08,0.18),rng.randf_range(0.14,0.34)),["858b7c","989b87","747d70"][j%3])
+	for i in range(42):
+		var p:=Vector2(rng.randf_range(-86,-31),rng.randf_range(-75,-37))
+		if path_distance(p)<2.6 or p.distance_to(Vector2(-55,-48))<7.0:continue
+		var log:=group(deadfall,"WeatheredFallenBranch",ground(p.x,p.y))
+		var length:=rng.randf_range(1.2,2.8)
+		var angle:=rng.randf()*TAU
+		var end:=Vector3(cos(angle)*length,0.16,sin(angle)*length)
+		beam(log,"FallenTrunk",Vector3(-end.x*0.5,0.16,-end.z*0.5),Vector3(end.x*0.5,0.16,end.z*0.5),rng.randf_range(0.07,0.13),["6b6049","76684d","5b5744"][i%3])
+		if i%2==0:
+			beam(log,"BrokenTwig",end*0.35+Vector3(0,0.08,0),end*0.75+Vector3(0,0.10,0),0.045,"665b45")

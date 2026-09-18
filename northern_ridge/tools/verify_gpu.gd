@@ -28,6 +28,22 @@ func run() -> void:
 	app.camera.size=13
 	app.status.text="树根石门 · 保留入口与返回点"
 	await capture("root_gate")
+	# Profile view for terrain verification: elevated north shelf, lower apron, and side slopes.
+	app.camera.position=Vector3(-55,10,-31)
+	app.camera.look_at(Vector3(-55,1.6,-53))
+	app.camera.size=16
+	app.status.text="洞口地形剖面 · 北高南低与两侧斜坡"
+	await capture("root_gate_profile")
+	app.camera.position=Vector3(-42,10,-48)
+	app.camera.look_at(Vector3(-55,2,-49))
+	app.camera.size=12
+	app.status.text="嵌坡洞口 · 侧面覆土与通道"
+	await capture("root_gate_side")
+	app.camera.position=Vector3(-50,14,-65)
+	app.camera.look_at(Vector3(-55,2,-49))
+	app.camera.size=14
+	app.status.text="嵌坡洞口 · 北侧连续地面"
+	await capture("root_gate_back")
 	place_hero(Vector3(-64,0,-34.5))
 	app.camera.position=Vector3(-67,15,-21)
 	app.camera.look_at(Vector3(-63,0.7,-36.5))

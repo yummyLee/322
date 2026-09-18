@@ -1,5 +1,19 @@
 extends "res://village/tools/validate_lived_in.gd"
 
+func terrain_height(north: Node3D,target: Vector2) -> float:
+	var best:=INF
+	var result:=0.0
+	for chunk in north.get_node("ContinuousForestGround").get_children():
+		if not chunk.has_node("BlendedTerrain"):continue
+		var arr: Array=chunk.get_node("BlendedTerrain").mesh.surface_get_arrays(0)
+		for vertex in arr[Mesh.ARRAY_VERTEX]:
+			var p: Vector3=vertex+chunk.position
+			var d:=Vector2(p.x,p.z).distance_to(target)
+			if d<best:
+				best=d
+				result=p.y
+	return result
+
 func run() -> void:
 	world=load("res://village/yao_village.tscn").instantiate()
 	root.add_child(world)
@@ -40,15 +54,30 @@ func run() -> void:
 				seam_count+=1
 				var old: Array=old_edges[snappedf(p.x,0.5)]
 				max_normal_error=maxf(max_normal_error,(old[1] as Vector3).distance_to(arr[Mesh.ARRAY_NORMAL][i]))
-				if absf(p.y-old[0])>0.0001 or not (old[2] as Color).is_equal_approx(arr[Mesh.ARRAY_COLOR][i]):seams_bad+=1
+				if absf(p.y-old[0])>0.0001 or not (old[2] as Color).is_equal_approx(arr[Mesh.ARRAY_COLOR][i]):
+					seams_bad+=1
 		samples.append(arr[Mesh.ARRAY_VERTEX][arr[Mesh.ARRAY_VERTEX].size()/2]+chunk.position)
 	check(seam_count>170 and seams_bad==0 and max_normal_error<0.005,"New/old terrain joins without height or material-weight gaps (%d vertices; normal delta %.5f)" % [seam_count,max_normal_error])
+	var cave_front:=terrain_height(north,Vector2(-55,-47))
+	var cave_mid:=terrain_height(north,Vector2(-55,-52))
+	var cave_north:=terrain_height(north,Vector2(-55,-56))
+	var cave_side:=(terrain_height(north,Vector2(-67,-52))+terrain_height(north,Vector2(-43,-52)))*0.5
+	check(cave_north-cave_front>0.80 and cave_mid-cave_side>0.35,"Cave terrain forms a raised north shelf with sloped side transitions (front %.2f, north %.2f, side %.2f)" % [cave_front,cave_north,cave_side])
 	hero=load("res://hero_v2/traveler.tscn").instantiate()
 	hero.set_script(load("res://hero_v2/hero_controller.gd"))
 	world.add_child(hero)
 	hero.set_physics_process(false)
 	await physics_frame
 	await physics_frame
+	var gate: Node3D=north.get_node("RootWrappedStoneGate")
+	check(terrain_height(north,Vector2(-55,-48.5))>gate.position.y+2.55,"Continuous earth covers the passage roof behind the lintel")
+	var passage_clear:=true
+	for x in [-55.45,-55.0,-54.55]:
+		for h in [0.5,1.2,2.0]:
+			var q:=PhysicsRayQueryParameters3D.create(Vector3(x,gate.position.y+h,-46.6),Vector3(x,gate.position.y+h,-48.7))
+			q.exclude=[hero.get_rid()]
+			if not world.get_world_3d().direct_space_state.intersect_ray(q).is_empty():passage_clear=false
+	check(passage_clear,"Embedded entrance has clear body/head space below the terrain roof")
 	var missed:=0
 	for p in samples:
 		var q:=PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.2,p-Vector3.UP*0.2)
