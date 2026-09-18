@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" path="res://village/hero/world_collisions.tscn" id="WalkCollisionScene"]
 [ext_resource type="PackedScene" path="res://burial_ridge/world.tscn" id="WesternRidgeScene"]
 
+[ext_resource type="PackedScene" path="res://northern_ridge/world.tscn" id="NorthernRidgeScene"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lai22"]
 render_priority = 0
 shader = ExtResource("1_yk2ox")
@@ -101311,4 +101313,8 @@ mesh = SubResource("SphereMesh_4babn")
 
 [node name="WesternBurialRidge" parent="." unique_id=1569874886 instance=ExtResource("WesternRidgeScene")]
 
+[node name="NorthernRidge" parent="." instance=ExtResource("NorthernRidgeScene")]
+
 [editable path="WesternBurialRidge"]
+
+[editable path="NorthernRidge"]

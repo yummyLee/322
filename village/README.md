@@ -74,3 +74,7 @@ Godot 4.7.2 / D3D12 Forward+ / RTX 5080，实际 GPU 验证像素和普通 3D �
 validate_scene.gd 检查节点归属、关键地标、编辑器后处理隐藏和编辑变换的持久化。
 preview.png、preview_plain.png 为两种模式实际运行截图；render.png 为低分辨率原始画面。
 截图命令附加 -- --capture；普通模式再附加 --plain；局部放大可附加 --detail。
+
+## 乱葬岭北侧扩展
+
+现已接入可编辑的 NorthernRidge（northern_ridge/world.tscn），包含根缠石门、旧路亭、药草洼地、古树红土坡与北侧林道。运行入口和原玩家、相机不变；具体节点、通路与洞室接口见 ../northern_ridge/README.md。

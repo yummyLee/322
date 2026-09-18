@@ -50026,6 +50026,7 @@ metadata/terrain_height_range = Vector2(0.07, 1.661973)
 metadata/terrain_faces_corrected = true
 metadata/exploration_landmarks_revision = 1
 metadata/landmark_access_finished = true
+metadata/northern_connection_revision = 1
 
 [node name="TerrainAndPaths" type="Node3D" parent="." unique_id=2128676857]
 
@@ -75616,7 +75617,7 @@ material_override = SubResource("ShaderMaterial_bcsoj")
 mesh = SubResource("SphereMesh_4tm7r")
 
 [node name="BroadleafTree19" type="Node3D" parent="LivingForest" unique_id=471888641]
-transform = Transform3D(1.1403908, 0, 0, 0, 1.1403908, 0, 0, 0, 1.1403908, -42.042557, 0, -26.676104)
+transform = Transform3D(1.1403908, 0, 0, 0, 1.1403908, 0, 0, 0, 1.1403908, -45.542557, 2.8673497e-10, -26.676104)
 
 [node name="Trunk" type="MeshInstance3D" parent="LivingForest/BroadleafTree19" unique_id=608319150]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -75924,7 +75925,7 @@ material_override = SubResource("ShaderMaterial_bcsoj")
 mesh = SubResource("SphereMesh_4tm7r")
 
 [node name="BroadleafTree20" type="Node3D" parent="LivingForest" unique_id=1825243435]
-transform = Transform3D(1.1385527, 0, 0, 0, 1.1385527, 0, 0, 0, 1.1385527, -42.27026, 0, -22.14587)
+transform = Transform3D(1.1385527, 0, 0, 0, 1.1385527, 0, 0, 0, 1.1385527, -45.77026, 4.112348e-09, -22.14587)
 
 [node name="Trunk" type="MeshInstance3D" parent="LivingForest/BroadleafTree20" unique_id=1493707923]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -76232,7 +76233,7 @@ material_override = SubResource("ShaderMaterial_bcsoj")
 mesh = SubResource("SphereMesh_4tm7r")
 
 [node name="BroadleafTree21" type="Node3D" parent="LivingForest" unique_id=1756601706]
-transform = Transform3D(0.8881804, 0, 0, 0, 0.8881804, 0, 0, 0, 0.8881804, -40.344624, 0, -25.334305)
+transform = Transform3D(0.8881804, 0, 0, 0, 0.8881804, 0, 0, 0, 0.8881804, -43.844624, 2.8034153e-11, -25.334305)
 
 [node name="Trunk" type="MeshInstance3D" parent="LivingForest/BroadleafTree21" unique_id=365179482]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -76540,7 +76541,7 @@ material_override = SubResource("ShaderMaterial_bcsoj")
 mesh = SubResource("SphereMesh_4tm7r")
 
 [node name="BroadleafTree22" type="Node3D" parent="LivingForest" unique_id=378163008]
-transform = Transform3D(1.2128508, 0, 0, 0, 1.2128508, 0, 0, 0, 1.2128508, -40.937588, 0, -23.371914)
+transform = Transform3D(1.2128508, 0, 0, 0, 1.2128508, 0, 0, 0, 1.2128508, -44.437588, 2.9215463e-10, -23.371914)
 
 [node name="Trunk" type="MeshInstance3D" parent="LivingForest/BroadleafTree22" unique_id=1346581466]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -76848,7 +76849,7 @@ material_override = SubResource("ShaderMaterial_bcsoj")
 mesh = SubResource("SphereMesh_4tm7r")
 
 [node name="BroadleafTree23" type="Node3D" parent="LivingForest" unique_id=1576682089]
-transform = Transform3D(0.9950609, 0, 0, 0, 0.9950609, 0, 0, 0, 0.9950609, -38.96609, 0, -26.737482)
+transform = Transform3D(0.9950609, 0, 0, 0, 0.9950609, 0, 0, 0, 0.9950609, -35.46609, 0, -26.737482)
 
 [node name="Trunk" type="MeshInstance3D" parent="LivingForest/BroadleafTree23" unique_id=1754701593]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -77156,7 +77157,7 @@ material_override = SubResource("ShaderMaterial_bcsoj")
 mesh = SubResource("SphereMesh_4tm7r")
 
 [node name="BroadleafTree24" type="Node3D" parent="LivingForest" unique_id=1347808048]
-transform = Transform3D(0.9982339, 0, 0, 0, 0.9982339, 0, 0, 0, 0.9982339, -38.965637, 0, -22.194874)
+transform = Transform3D(0.9982339, 0, 0, 0, 0.9982339, 0, 0, 0, 0.9982339, -35.465637, 0, -22.194874)
 
 [node name="Trunk" type="MeshInstance3D" parent="LivingForest/BroadleafTree24" unique_id=1497529691]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -98817,6 +98818,7 @@ shape = SubResource("BoxShape3D_4gggq")
 [node name="NorthLimit" type="CollisionShape3D" parent="SavedWalkCollisions" unique_id=1337440444]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 0.11466021, -32)
 shape = SubResource("BoxShape3D_sg1bj")
+disabled = true
 
 [node name="SouthLimit" type="CollisionShape3D" parent="SavedWalkCollisions" unique_id=108294292]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 0.005509053, 32)
@@ -98951,27 +98953,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.01229, 1.0200001, -22.890
 shape = SubResource("BoxShape3D_b6bq8")
 
 [node name="BroadleafTree19_Trunk" type="CollisionShape3D" parent="SavedWalkCollisions" unique_id=1478571282]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.042557, 1.0200001, -26.676104)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.542557, 1.0200001, -26.676104)
 shape = SubResource("BoxShape3D_eg3ek")
 
 [node name="BroadleafTree20_Trunk" type="CollisionShape3D" parent="SavedWalkCollisions" unique_id=603320729]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.27026, 1.0200001, -22.14587)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.77026, 1.0200001, -22.14587)
 shape = SubResource("BoxShape3D_83if0")
 
 [node name="BroadleafTree21_Trunk" type="CollisionShape3D" parent="SavedWalkCollisions" unique_id=1088896874]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.344624, 1.0200001, -25.334305)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.844624, 1.0200001, -25.334305)
 shape = SubResource("BoxShape3D_102cu")
 
 [node name="BroadleafTree22_Trunk" type="CollisionShape3D" parent="SavedWalkCollisions" unique_id=930492339]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.937588, 1.0200001, -23.371914)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.437588, 1.0200001, -23.371914)
 shape = SubResource("BoxShape3D_nb85t")
 
 [node name="BroadleafTree23_Trunk" type="CollisionShape3D" parent="SavedWalkCollisions" unique_id=214515857]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.96609, 1.0200001, -26.737482)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.46609, 1.0200001, -26.737482)
 shape = SubResource("BoxShape3D_1srxr")
 
 [node name="BroadleafTree24_Trunk" type="CollisionShape3D" parent="SavedWalkCollisions" unique_id=909290251]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.965637, 1.0200001, -22.194874)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.465637, 1.0200001, -22.194874)
 shape = SubResource("BoxShape3D_h3xg5")
 
 [node name="BroadleafTree25_Trunk" type="CollisionShape3D" parent="SavedWalkCollisions" unique_id=1957567420]

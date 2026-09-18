@@ -62,3 +62,7 @@
 `tools/build_scene.gd` 是初版制作留档，重跑会丢失后续细化；日常直接编辑保存的 tscn。`tools/refine_saved_scene.gd` 是本次对已保存节点的局部修改记录，带版本标记防止重复缩放，运行时不引用。不要重新运行原 `village/tools/build_village.gd`。`tools/integrate_west.py` 是初次接入记录，已接入后拒绝再次执行。
 
 `tools/sculpt_saved_terrain.gd` 是本次地形制作记录，已应用并带版本保护；`tools/finish_ground_decals.gd` 是道路叠层材质修整记录。两者均为离线制作工具，运行入口不引用，日常调整无需执行。
+
+## 北侧接续
+
+地图草稿乙对应的新区域保存为 ../northern_ridge/world.tscn，由窑村总场景加载。原 NorthLimit 碰撞已禁用，北侧道路延伸至 Z=-77；东侧接入口六棵旧树与碰撞同步移开。旧墓地与原两座探索建筑保留。新区编辑和验证说明见 ../northern_ridge/README.md。
