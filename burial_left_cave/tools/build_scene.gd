@@ -1,7 +1,7 @@
 extends "scene_parts.gd"
 const OUTPUT := "res://burial_left_cave/world.tscn"
 const ROCK_PALETTE := ["25343d","30414a","3a4b52","46545a","526066"]
-const TERRAIN_CELL := 0.90
+const TERRAIN_CELL := 0.60
 var portal_points: Array[Vector3] = []
 
 func _initialize() -> void:
@@ -109,39 +109,67 @@ func rim(parent: Node, points: Array, y: float, height: float, density: int = 2)
 			var size := Vector3(rng.randf_range(0.30,0.78),height*h_factor,rng.randf_range(0.30,0.78))
 			rock(parent,"RimRock",Vector3(q.x,y+size.y*0.38,q.z),size)
 
+func smooth_route(points: Array) -> Array:
+	var out: Array = []
+	if points.size() < 2: return points
+	for i in range(points.size()-1):
+		var p0: Vector3 = points[maxi(0,i-1)]
+		var p1: Vector3 = points[i]
+		var p2: Vector3 = points[i+1]
+		var p3: Vector3 = points[mini(points.size()-1,i+2)]
+		var steps := maxi(4,ceili(p1.distance_to(p2)/0.65))
+		for j in range(steps):
+			var t := j/float(steps)
+			var t2 := t*t
+			var t3 := t2*t
+			var q: Vector3 = 0.5*((2.0*p1)+(-p0+p2)*t+(2.0*p0-5.0*p1+4.0*p2-p3)*t2+(-p0+3.0*p1-3.0*p2+p3)*t3)
+			out.append(q)
+	out.append(points[points.size()-1])
+	return out
+
+func path_wall_edge(parent: Node, label: String, a: Vector3, b: Vector3, width: float) -> void:
+	var g := group(parent,label)
+	var dir := Vector3(b.x-a.x,0,b.z-a.z).normalized()
+	var side := Vector3(-dir.z,0,dir.x)
+	var steps := maxi(3,int(a.distance_to(b)/0.96))
+	for k in range(steps+1):
+		var t := clampf(k/float(steps)+rng.randf_range(-0.08,0.08),0.0,1.0)
+		var p := a.lerp(b,t)
+		for sign in [-1,1]:
+			if rng.randf() < 0.36: continue
+			var q: Vector3 = p+side*(width*0.5*rng.randf_range(0.90,1.10)*sign)+side*rng.randf_range(-0.10,0.10)
+			var h := rng.randf_range(0.28,0.66)
+			rock(g,"RoadsideWallStone",Vector3(q.x,p.y+h*0.36,q.z),Vector3(rng.randf_range(0.28,0.56),h,rng.randf_range(0.28,0.60)),["59615f","6d6b5e","4e5758"][rng.randi_range(0,2)])
+
 func slope_quad(parent: Node, label: String, a: Vector3, b: Vector3, width: float, color: String) -> void:
 	var dir := Vector3(b.x-a.x,0,b.z-a.z).normalized()
 	var side := Vector3(-dir.z,0,dir.x)
 	var length := a.distance_to(b)
-	var steps := maxi(4,ceili(length/0.58))
+	var steps := maxi(5,ceili(length/0.48))
+	var lanes := maxi(3,ceili(width/0.72))
 	for i in range(steps):
 		var t0 := i/float(steps); var t1 := (i+1)/float(steps)
-		var p0 := a.lerp(b,t0)+side*rng.randf_range(-0.34,0.34)+Vector3(0,0.06,0)
-		var p1 := a.lerp(b,t1)+side*rng.randf_range(-0.34,0.34)+Vector3(0,0.06,0)
-		var w0 := width*rng.randf_range(0.72,1.18); var w1 := width*rng.randf_range(0.72,1.18)
-		var verts := PackedVector3Array([p0+side*w0*0.5,p1+side*w1*0.5,p1-side*w1*0.5,p0-side*w0*0.5])
-		var indices := PackedInt32Array([0,1,2,0,2,3] if i%2==0 else [0,1,3,1,2,3])
-		solid(parent,"%s_Cell_%02d"%[label,i],verts,indices,tone(color,i))
+		var center0 := a.lerp(b,t0)+side*rng.randf_range(-0.18,0.18)+Vector3(0,0.06,0)
+		var center1 := a.lerp(b,t1)+side*rng.randf_range(-0.18,0.18)+Vector3(0,0.06,0)
+		for lane in range(lanes):
+			var u0 := -0.5+lane/float(lanes)
+			var u1 := -0.5+(lane+1)/float(lanes)
+			var lateral0 := side*rng.randf_range(-0.08,0.08)
+			var lateral1 := side*rng.randf_range(-0.08,0.08)
+			# Four corners are ordered around one small cell; this prevents diagonal
+			# gaps and the apparent pair of floating wall lines from the old mesh.
+			var v0 := center0+side*(u0*width)+lateral0+Vector3(0,rng.randf_range(-0.015,0.02),0)
+			var v1 := center1+side*(u0*width)+lateral1+Vector3(0,rng.randf_range(-0.015,0.02),0)
+			var v2 := center1+side*(u1*width)+lateral1+Vector3(0,rng.randf_range(-0.015,0.02),0)
+			var v3 := center0+side*(u1*width)+lateral0+Vector3(0,rng.randf_range(-0.015,0.02),0)
+			var verts := PackedVector3Array([v0,v1,v2,v3])
+			var indices := PackedInt32Array([0,1,2,0,2,3] if (i+lane)%2==0 else [0,1,3,1,2,3])
+			solid(parent,"%s_Cell_%03d_%02d"%[label,i,lane],verts,indices,tone(color,i+lane))
 
 func corridor_edges(parent: Node, label: String, points: Array, width: float) -> void:
 	var g := group(parent,label)
-	# Boundaries are a broken chain of low stones. Continuous beams made the path
-	# read as a rectangle and also hid the actual region mouths.
 	for i in range(points.size()-1):
-		var a: Vector3 = points[i]
-		var b: Vector3 = points[i+1]
-		var dir := Vector3(b.x-a.x,0,b.z-a.z).normalized()
-		var side := Vector3(-dir.z,0,dir.x)
-		var steps := maxi(3,int(a.distance_to(b)*1.35))
-		for k in range(steps+1):
-			var t := clampf(k/float(steps)+rng.randf_range(-0.07,0.07),0.0,1.0)
-			var p := a.lerp(b,t)
-			var edge_offset := width*0.5*rng.randf_range(0.90,1.12)
-			for s in [-1,1]:
-				if rng.randf() < 0.12: continue
-				var q: Vector3 = p+side*edge_offset*s+side*rng.randf_range(-0.12,0.12)
-				var h := rng.randf_range(0.12,0.34)
-				rock(g,"PathEdgeCobble",Vector3(q.x,p.y+h*0.32,q.z),Vector3(rng.randf_range(0.20,0.42),h,rng.randf_range(0.16,0.34)),["686356","787263","555950"][rng.randi_range(0,2)])
+		path_wall_edge(g,"SegmentWall_%02d"%i,points[i],points[i+1],width)
 
 func carve_opening(parent: Node, p: Vector3, radius: float = 2.7) -> void:
 	var stones := parent.find_children("RimRock","MeshInstance3D",true,false)
@@ -151,8 +179,10 @@ func carve_opening(parent: Node, p: Vector3, radius: float = 2.7) -> void:
 			node.free()
 
 func stalagmite(parent: Node, label: String, p: Vector3, h: float, r: float, color := "46545a") -> void:
-	var s := cylinder(parent,label,Vector3(p.x,p.y+h/2,p.z),r,h,color,0.06,7)
-	s.rotation.z = rng.randf_range(-0.16,0.16); s.rotation.x = rng.randf_range(-0.10,0.10)
+	var lower := cylinder(parent,label+"_Lower",Vector3(p.x,p.y+h*0.30,p.z),r*1.08,h*0.58,color, r*0.76,7)
+	lower.rotation.z = rng.randf_range(-0.12,0.12); lower.rotation.x = rng.randf_range(-0.08,0.08)
+	var upper := cylinder(parent,label+"_Upper",Vector3(p.x+rng.randf_range(-0.08,0.08),p.y+h*0.72,p.z+rng.randf_range(-0.08,0.08)),r*0.72,h*0.42,color,r*0.20,7)
+	upper.rotation.z = rng.randf_range(-0.16,0.16); upper.rotation.x = rng.randf_range(-0.10,0.10)
 	rock(parent,"BrokenTip",Vector3(p.x,p.y+h+0.04,p.z),Vector3(r*0.42,0.16,r*0.42),color)
 
 func stalactite(parent: Node, label: String, p: Vector3, h: float, r: float, color := "33434b") -> void:
@@ -163,6 +193,8 @@ func torch(parent: Node, label: String, p: Vector3, warm := true) -> void:
 	var t := group(parent,label,p)
 	beam(t,"IronStake",Vector3(0,0.15,0),Vector3(0,1.18,0),0.07,"3b3026")
 	box(t,"Brazier",Vector3(0,1.18,0),Vector3(0.32,0.13,0.32),"725039")
+	cylinder(t,"BrazierRim",Vector3(0,1.27,0),0.19,0.06,"8b6842",0.14,7)
+	beam(t,"WrapBand",Vector3(-0.06,0.32,0),Vector3(0.06,0.32,0),0.035,"9b754d")
 	ball(t,"Ember",Vector3(0,1.31,0),Vector3(0.16,0.20,0.16),"d98a45")
 	var light := OmniLight3D.new()
 	light.name = "WarmLight"; light.omni_range = 5.2; light.light_energy = 2.0 if warm else 1.2
@@ -185,9 +217,10 @@ func portal_mouth(parent: Node, label: String, p: Vector3, facing: Vector3) -> v
 
 func bridge_path(parent: Node, label: String, points: Array) -> void:
 	var g := group(parent,label)
-	for i in range(points.size()-1):
-		var a: Vector3 = points[i]
-		var b: Vector3 = points[i+1]
+	var route := smooth_route(points)
+	for i in range(route.size()-1):
+		var a: Vector3 = route[i]
+		var b: Vector3 = route[i+1]
 		beam(g,"BridgeBeamA_%02d"%i,a+Vector3(0,0.0,0),b+Vector3(0,0.0,0),0.14,"6b513b")
 		beam(g,"BridgeBeamB_%02d"%i,a+Vector3(0,0.18,-0.7),b+Vector3(0,0.18,-0.7),0.14,"6b513b")
 		var steps := maxi(2,ceili(a.distance_to(b)/0.9))
@@ -201,31 +234,67 @@ func bridge_path(parent: Node, label: String, points: Array) -> void:
 				var rail_p := p+Vector3(0,0.15,side*0.82)
 				beam(g,"RopeRail",rail_p,rail_p+Vector3(0,0.72,0),0.045,"a08a5e")
 
+func path_wear(parent: Node, label: String, route: Array, width: float, color: String) -> void:
+	var g := group(parent,label)
+	for i in range(1,route.size()-1,3):
+		var p: Vector3 = route[i]
+		var dir := Vector3(route[i+1].x-route[i-1].x,0,route[i+1].z-route[i-1].z).normalized()
+		var side := Vector3(-dir.z,0,dir.x)
+		for j in range(rng.randi_range(1,3)):
+			var q := p+side*rng.randf_range(-width*0.38,width*0.38)+dir*rng.randf_range(-0.40,0.40)
+			rock(g,"PathWearStone",Vector3(q.x,p.y+0.08,q.z),Vector3(rng.randf_range(0.12,0.30),0.08,rng.randf_range(0.12,0.28)),tone(color,i+j))
+		if rng.randf() < 0.65:
+			var q0 := p+side*rng.randf_range(-width*0.28,width*0.28)-dir*0.30
+			var q1 := q0+dir*rng.randf_range(0.28,0.62)+side*rng.randf_range(-0.16,0.16)
+			beam(g,"BrokenWearGroove",q0+Vector3(0,0.07,0),q1+Vector3(0,0.07,0),0.018,"4d4a43")
+
 func corridor(parent: Node, label: String, points: Array, width: float, y: float, color := "57534a") -> void:
 	var g := group(parent,label)
-	for i in range(points.size()-1):
-		var a: Vector3 = points[i]; var b: Vector3 = points[i+1]
-		slope_quad(g,"Segment_%02d"%i,a,b,width,color)
-		if absf(a.y-b.y) > 0.18:
-			for step in range(1,3):
-				var t := step/3.0
-				var p := a.lerp(b,t)
-				var marker := box(g,"SlopeMarker",p+Vector3(0,0.055,0),Vector3(width*0.78,0.07,0.16),"7b7463")
-				marker.rotation.y = atan2(b.x-a.x,b.z-a.z)
-		corridor_edges(g,"StonePathBoundary",[a,b],width)
+	var route := smooth_route(points)
+	for i in range(route.size()-1):
+		var a: Vector3 = route[i]; var b: Vector3 = route[i+1]
+		slope_quad(g,"Segment_%03d"%i,a,b,width*(0.84+rng.randf_range(-0.08,0.18)),color)
+	corridor_edges(g,"StonePathBoundary",route,width*(0.90+rng.randf_range(-0.05,0.12)))
+	path_wear(g,"SurfaceWear",route,width,color)
 
 func crate(parent: Node, label: String, p: Vector3, scale := Vector3.ONE) -> void:
 	var c := group(parent,label,p)
-	box(c,"Body",Vector3(0,0.42,0),Vector3(0.9,0.84,0.72)*scale,"624d3b")
-	box(c,"BandA",Vector3(0,0.43,-0.38),Vector3(0.98,0.08,0.05)*scale,"9b7b50")
-	box(c,"BandB",Vector3(0,0.43,0.38),Vector3(0.98,0.08,0.05)*scale,"9b7b50")
+	# Short boards keep every component below the player half-height scale.
+	for x in [-0.30,0.30]:
+		box(c,"BodyBoard",Vector3(x,0.42,0),Vector3(0.52,0.78,0.72)*scale,"624d3b")
+	for z in [-0.31,0.31]:
+		box(c,"SideBoard",Vector3(0,0.42,z),Vector3(0.72,0.78,0.12)*scale,"6e5740")
+	for x in [-0.34,0.34]:
+		for z in [-0.34,0.34]:
+			beam(c,"CornerPeg",Vector3(x,0.08,z),Vector3(x,0.82,z),0.055,"9b7b50")
+	box(c,"LidSlatA",Vector3(-0.22,0.85,0),Vector3(0.42,0.08,0.76)*scale,"806447")
+	box(c,"LidSlatB",Vector3(0.22,0.86,0),Vector3(0.42,0.08,0.76)*scale,"75583f")
 	c.rotation.y = rng.randf_range(-0.35,0.35)
+
+func coffin(parent: Node, label: String, p: Vector3, scale := Vector3.ONE) -> void:
+	var c := group(parent,label,p)
+	# A broken coffin is assembled from short boards, never a single long box.
+	for x in [-0.62,-0.20,0.22,0.64]:
+		var board := box(c,"BaseBoard",Vector3(x,0.16,0),Vector3(0.38,0.20,0.72)*scale,["4c4036","574638","463b34"][int(abs(x*10))%3])
+		board.rotation.y = rng.randf_range(-0.05,0.05)
+	for z in [-0.39,0.39]:
+		beam(c,"CoffinSide",Vector3(-0.68,0.38,z),Vector3(0.68,0.38,z),0.10,"5a4839")
+	for x in [-0.63,0.63]:
+		beam(c,"EndRail",Vector3(x,0.34,-0.34),Vector3(x,0.34,0.34),0.08,"6f5742")
+	box(c,"BrokenLidA",Vector3(-0.25,0.54,-0.02),Vector3(0.70,0.10,0.72)*scale,"67513d")
+	box(c,"BrokenLidB",Vector3(0.43,0.50,0.04),Vector3(0.46,0.08,0.62)*scale,"4b4036")
+	beam(c,"LidStrap",Vector3(-0.56,0.60,-0.42),Vector3(-0.56,0.60,0.42),0.035,"8a6f4b")
+	for x in [-0.60,0.60]:
+		ball(c,"Nail",Vector3(x,0.62,0),Vector3(0.055,0.055,0.055),"b08a58")
+	c.rotation.y = rng.randf_range(-0.22,0.22)
 
 func cart(parent: Node, p: Vector3) -> void:
 	var c := group(parent,"OverturnedCorpseCart",p)
-	box(c,"Bed",Vector3(0,0.62,0),Vector3(2.2,0.22,1.15),"5a4938")
-	box(c,"SideRail",Vector3(0,1.02,-0.54),Vector3(2.1,0.62,0.10),"6e5740")
-	box(c,"SideRail2",Vector3(0,1.02,0.54),Vector3(2.1,0.62,0.10),"6e5740")
+	for x in [-0.78,0,0.78]:
+		box(c,"BedPlank",Vector3(x,0.62,0),Vector3(0.68,0.22,1.05),["5a4938","634b38","4b4034"][int(x+1)%3])
+	for z in [-0.54,0.54]:
+		for x in [-0.72,0,0.72]:
+			beam(c,"SideRailSegment",Vector3(x,0.98,z),Vector3(x+0.62,0.98,z),0.08,"6e5740")
 	beam(c,"Axle",Vector3(-1.05,0.34,0),Vector3(1.05,0.34,0),0.10,"46392e")
 	for x in [-1.1,1.1]:
 		var w := cylinder(c,"WoodWheel",Vector3(x,0.47,0),0.52,0.16,"6b513b",0.52,10)
@@ -280,11 +349,13 @@ func spider_web(parent: Node, label: String, p: Vector3, size: float) -> void:
 		for j in range(8): beam(g,"WebArc",pts[j],pts[j+1],0.009,"717a78")
 
 func stone_pillar_cluster(parent: Node, label: String, p: Vector3, y: float) -> void:
-	var g := group(parent,label)
+	var g := group(parent,label,p)
 	for i in range(3):
 		var q := p+Vector3(rng.randf_range(-1.0,1.0),0,rng.randf_range(-0.8,0.8))
-		stalagmite(g,"NaturalPillar",Vector3(q.x,y,q.z),rng.randf_range(1.7,3.8),rng.randf_range(0.28,0.60),["465960","52636a","3d5058"][i])
-		rock(g,"PillarFoot",Vector3(q.x,y+0.12,q.z),Vector3(rng.randf_range(0.45,0.8),0.24,rng.randf_range(0.42,0.72)),"59666a")
+		var pillar := group(g,"StonePillar_%02d"%i,q)
+		stalagmite(pillar,"PillarBody",Vector3(0,y,0),rng.randf_range(1.7,3.8),rng.randf_range(0.28,0.60),["465960","52636a","3d5058"][i])
+		rock(pillar,"PillarFoot",Vector3(0,y+0.12,0),Vector3(rng.randf_range(0.45,0.8),0.24,rng.randf_range(0.42,0.72)),"59666a")
+		cylinder(pillar,"PillarCollar",Vector3(0,y+0.72,0),rng.randf_range(0.30,0.50),0.10,["59666a","697379"][i%2],rng.randf_range(0.18,0.28),7)
 
 func broken_rail(parent: Node, label: String, a: Vector3, b: Vector3, y: float) -> void:
 	var g := group(parent,label)
@@ -310,47 +381,45 @@ func build_layout() -> void:
 
 	var j0_points=[Vector3(-6,0,25),Vector3(4,0,27),Vector3(8,0,23),Vector3(6,0,17),Vector3(1,0,14),Vector3(-5,0,16),Vector3(-9,0,21)]
 	patch(terrain,"J0_EntranceHall",j0_points,0.0,"625e52"); rim(rock_shell,j0_points,0.0,1.4)
-	corridor(terrain,"J1_LowerMainS",[Vector3(0,0,16),Vector3(-2,0,11),Vector3(2,0,6),Vector3(-1,0,1)],5.0,0.0,"57564c")
+	corridor(terrain,"J0_J1_J8_MainCorridor",[Vector3(0,0,22),Vector3(-1.8,0,19.5),Vector3(1.8,0,15.5),Vector3(-2.0,0,11),Vector3(2.1,0,6.2),Vector3(-1.4,0,2.4),Vector3(-1,0,-2)],4.6,0.0,"625d51")
 	var j8_points=[Vector3(-12,0,6),Vector3(-8,0,12),Vector3(3,0,13),Vector3(12,0,8),Vector3(12,0,-2),Vector3(6,0,-7),Vector3(-6,0,-7),Vector3(-13,0,-2)]
 	patch(terrain,"J8_OldCartYard",j8_points,0.0,"6c6252"); rim(rock_shell,j8_points,0.0,2.6)
-	corridor(terrain,"J0_to_J1",[Vector3(0,0,22),Vector3(-1.8,0,20.8),Vector3(1.5,0,19.2),Vector3(-1.2,0,17.5),Vector3(0,0,16)],4.5,0.0,"5d5a4e")
-	corridor(terrain,"J1_to_J8",[Vector3(-1,0,2),Vector3(-3.0,0,1.6),Vector3(-0.2,0,0.3),Vector3(-2.4,0,-1.1),Vector3(-1,0,-2)],5.0,0.0,"57564c")
 
 	var j2_points=[Vector3(12,0,7),Vector3(19,0,8),Vector3(23,0,4),Vector3(22,0,-1),Vector3(17,0,-4),Vector3(12,0,-2)]
 	patch(terrain,"J2_BoneSortingLedge",j2_points,1.8,"575650"); rim(rock_shell,j2_points,1.75,1.1)
-	corridor(terrain,"J8_to_J2",[Vector3(8,0,4),Vector3(8.6,0.2,6.3),Vector3(11.6,0.8,6.1),Vector3(13.4,1.3,4.0),Vector3(12.7,1.6,2.4),Vector3(14,1.8,3)],4.0,1.0,"615c50")
-	corridor(terrain,"J2_to_J4",[Vector3(18,1.8,-3),Vector3(16.7,2.0,-4.0),Vector3(19.4,2.5,-5.4),Vector3(17.7,2.8,-6.8),Vector3(19,3,-8)],3.4,2.4,"4d5050")
+	corridor(terrain,"J8_to_J2",[Vector3(8,0,4),Vector3(9.4,0.45,5.4),Vector3(11.4,0.9,5.2),Vector3(13.1,1.35,4.5),Vector3(14,1.8,3)],3.8,1.0,"625f54")
+	corridor(terrain,"J2_to_J4",[Vector3(18,1.8,-3),Vector3(16.7,2.0,-4.0),Vector3(19.4,2.5,-5.4),Vector3(17.7,2.8,-6.8),Vector3(19,3,-8)],3.4,2.4,"565957")
 	var j4_points=[Vector3(12,0,-9),Vector3(18,0,-10),Vector3(25,0,-8),Vector3(29,0,-11),Vector3(27,0,-15),Vector3(18,0,-16),Vector3(13,0,-13)]
 	patch(terrain,"J4_UpperFissureWalk",j4_points,3.8,"454d52"); rim(rock_shell,j4_points,3.75,3.1)
-	corridor(terrain,"J4_to_J11",[Vector3(24,3.8,-12),Vector3(25,3.8,-13.2),Vector3(27.2,3.7,-14.4),Vector3(28,3.6,-16)],2.8,3.7,"40494e")
+	corridor(terrain,"J4_to_J11",[Vector3(24,3.8,-12),Vector3(25,3.8,-13.2),Vector3(27.2,3.7,-14.4),Vector3(28,3.6,-16)],2.8,3.7,"4e5558")
 
-	bridge_path(terrain,"J11_SuspendedBoneBridge",[Vector3(25,4.0,-16),Vector3(26.5,4.0,-16.8),Vector3(28.0,4.0,-16.1),Vector3(29.5,4.0,-17.5),Vector3(31,4.0,-18)])
-	corridor(terrain,"J11_to_J5",[Vector3(30,3.8,-18),Vector3(28.3,3.4,-18.6),Vector3(25.5,2.9,-19.6),Vector3(22.5,2.5,-20.2),Vector3(19,2.4,-20)],3.0,3.0,"4e4e4a")
+	bridge_path(terrain,"J11_SuspendedBoneBridge",[Vector3(27.0,4.0,-15.6),Vector3(28.0,4.0,-16.4),Vector3(29.2,4.0,-16.3),Vector3(30.2,4.0,-17.2),Vector3(31,4.0,-18)])
+	corridor(terrain,"J11_to_J5",[Vector3(30,3.8,-18),Vector3(28.3,3.4,-18.6),Vector3(25.5,2.9,-19.6),Vector3(22.5,2.5,-20.2),Vector3(19,2.4,-20)],3.0,3.0,"56564f")
 	var j5_points=[Vector3(6,0,-22),Vector3(15,0,-20),Vector3(21,0,-21),Vector3(23,0,-27),Vector3(18,0,-31),Vector3(7,0,-31),Vector3(1,0,-27),Vector3(1,0,-24)]
 	patch(terrain,"J5_BoneCairnHall",j5_points,2.4,"5b5449"); rim(rock_shell,j5_points,2.35,2.4)
 	var j6_points=[Vector3(-27,0,-12),Vector3(-19,0,-10),Vector3(-15,0,-14),Vector3(-16,0,-21),Vector3(-23,0,-23),Vector3(-29,0,-19)]
 	patch(terrain,"J6_SunkenPit",j6_points,-2.2,"3d4b50"); rim(rock_shell,j6_points,-2.1,3.8)
-	corridor(terrain,"J6_to_J5_OneWay",[Vector3(-17,-2,-16),Vector3(-16.0,-1.8,-17.0),Vector3(-13.4,-0.8,-18.0),Vector3(-10,0,-19),Vector3(-5.0,1.2,-21),Vector3(1,2.4,-23)],2.8,0.0,"4e4d49")
+	corridor(terrain,"J6_to_J5_OneWay",[Vector3(-17,-2,-16),Vector3(-16.0,-1.8,-17.0),Vector3(-13.4,-0.8,-18.0),Vector3(-10,0,-19),Vector3(-5.0,1.2,-21),Vector3(1,2.4,-23)],2.8,0.0,"545550")
 
 	var j3_points=[Vector3(-28,0,7),Vector3(-20,0,11),Vector3(-13,0,8),Vector3(-12,0,1),Vector3(-17,0,-4),Vector3(-26,0,-4),Vector3(-32,0,1)]
 	patch(terrain,"J3_SeepingThroat",j3_points,-0.8,"2f5b61"); rim(rock_shell,j3_points,-0.65,2.0)
-	corridor(terrain,"J8_to_J3",[Vector3(-9.0,0,4),Vector3(-10.7,-0.1,5.0),Vector3(-13.0,-0.3,4.4),Vector3(-16,-0.6,4)],3.6,-0.4,"38545a")
+	corridor(terrain,"J8_to_J3",[Vector3(-9.0,0,4),Vector3(-10.7,-0.1,5.0),Vector3(-13.0,-0.3,4.4),Vector3(-16,-0.6,4)],3.6,-0.4,"416068")
 	var j9_points=[Vector3(-30,0,-4),Vector3(-25,0,-7),Vector3(-16,0,-7),Vector3(-11,0,-12),Vector3(-15,0,-18),Vector3(-24,0,-18),Vector3(-31,0,-14)]
 	patch(terrain,"J9_StonePillarForest",j9_points,-1.4,"3d5055"); rim(rock_shell,j9_points,-1.3,3.4)
-	corridor(terrain,"J3_to_J9",[Vector3(-21,-0.8,-3),Vector3(-20.0,-0.9,-4.5),Vector3(-21.5,-1.0,-6.4),Vector3(-22,-1.2,-8)],3.5,-1.0,"36545a")
-	corridor(terrain,"J9_to_J6",[Vector3(-22,-1.4,-15),Vector3(-21,-1.5,-16),Vector3(-22.3,-1.8,-17.3),Vector3(-23,-2,-18)],3.0,-1.6,"35484e")
+	corridor(terrain,"J3_to_J9",[Vector3(-21,-0.8,-3),Vector3(-21.6,-0.95,-4.4),Vector3(-21.2,-1.1,-6.2),Vector3(-22,-1.2,-8)],3.3,-1.0,"416068")
+	corridor(terrain,"J9_to_J6",[Vector3(-22,-1.4,-15),Vector3(-22.3,-1.55,-16.0),Vector3(-22.6,-1.8,-17.0),Vector3(-23,-2,-18)],2.8,-1.6,"465b5c")
 
 	var j10_points=[Vector3(-28,0,-22),Vector3(-20,0,-24),Vector3(-12,0,-23),Vector3(-9,0,-27),Vector3(-13,0,-33),Vector3(-22,0,-34),Vector3(-29,0,-30)]
 	patch(terrain,"J10_GreyWaterTerraces",j10_points,0.8,"565852"); rim(rock_shell,j10_points,0.75,2.2)
-	corridor(terrain,"J5_to_J10",[Vector3(4,2.4,-26),Vector3(2.1,2.1,-26.8),Vector3(-1.0,1.8,-26.2),Vector3(-5,1.4,-27),Vector3(-8.5,1.0,-27.5),Vector3(-12,0.8,-28)],3.8,1.6,"55564f")
+	corridor(terrain,"J5_to_J10",[Vector3(4,2.4,-26),Vector3(2.1,2.1,-26.8),Vector3(-1.0,1.8,-26.2),Vector3(-5,1.4,-27),Vector3(-8.5,1.0,-27.5),Vector3(-12,0.8,-28)],3.8,1.6,"5a5a51")
 	var j7_points=[Vector3(-33,0,-24),Vector3(-29,0,-24),Vector3(-29,0,-29),Vector3(-34,0,-31)]
 	patch(terrain,"J7_SealedWestFissure",j7_points,0.9,"252d32"); rim(rock_shell,j7_points,0.8,3.5)
 	var j12_points=[Vector3(21,0,-24),Vector3(28,0,-23),Vector3(34,0,-25),Vector3(36,0,-30),Vector3(31,0,-34),Vector3(22,0,-33),Vector3(18,0,-28)]
 	patch(terrain,"J12_CollapseQuarry",j12_points,3.0,"50504c"); rim(rock_shell,j12_points,2.95,1.7)
-	corridor(terrain,"J10_to_J12",[Vector3(-9,0.8,-29),Vector3(-7,0.9,-30.4),Vector3(-3,1.2,-31.0),Vector3(2,1.7,-30),Vector3(8,2.2,-28.8),Vector3(14,2.6,-29.2),Vector3(19,3,-29)],3.4,2.0,"4d4e4a")
+	corridor(terrain,"J10_to_J12",[Vector3(-9,0.8,-29),Vector3(-5.0,1.0,-30.0),Vector3(0.0,1.5,-30.5),Vector3(5.0,2.0,-30.0),Vector3(11.0,2.5,-29.2),Vector3(19,3,-29)],3.2,2.0,"56574f")
 	var j13_points=[Vector3(35,0,-25),Vector3(42,0,-25),Vector3(45,0,-29),Vector3(43,0,-34),Vector3(36,0,-34),Vector3(33,0,-30)]
 	patch(terrain,"J13_NameWallChamber",j13_points,3.0,"494b49"); rim(rock_shell,j13_points,2.95,2.6)
-	corridor(terrain,"J12_to_J13",[Vector3(34,3,-29),Vector3(34.8,3,-27.9),Vector3(36.2,3,-28.5),Vector3(36.4,3,-29.6),Vector3(37,3,-29)],2.5,3.0,"474a47")
+	corridor(terrain,"J12_to_J13",[Vector3(34,3,-29),Vector3(34.8,3,-27.9),Vector3(36.2,3,-28.5),Vector3(36.4,3,-29.6),Vector3(37,3,-29)],2.5,3.0,"52554e")
 
 	var ceiling := group(scene_root,"CeilingFormations")
 	for p in [Vector3(-31,5,18),Vector3(-18,6,14),Vector3(10,6,15),Vector3(27,7,6),Vector3(-35,5,-2),Vector3(-34,6,-17),Vector3(-27,6,-34),Vector3(-7,7,-37),Vector3(17,7,-37),Vector3(39,7,-36),Vector3(47,7,-27)]:
@@ -369,14 +438,17 @@ func build_layout() -> void:
 	beam(entrance,"DoorHeader",Vector3(-2.35,2.65,27.1),Vector3(2.35,2.65,27.1),0.18,"544335")
 	for z in [26.2,26.8]: beam(entrance,"DoorBar",Vector3(-2.1,0.5,z),Vector3(2.1,0.5,z),0.07,"8d704b")
 	for x in [-3.1,0,3.1]: pot(entrance,Vector3(x,0.05,23.1),0.42)
-	rock(entrance,"ColdLightStone",Vector3(0,0.06,27.35),Vector3(2.2,0.04,0.55),"9db7c0")
+	for i in range(5):
+		var q := Vector3(-1.6+i*0.72,0.07,27.30+rng.randf_range(-0.22,0.22))
+		rock(entrance,"ColdLightPebble",q,Vector3(rng.randf_range(0.18,0.34),0.06,rng.randf_range(0.16,0.28)),"9db7c0")
 	torch(lights,"J0_LanternWest",Vector3(-4.6,0.0,23.0),false); torch(lights,"J0_LanternEast",Vector3(4.6,0.0,23.0),false)
 
-	cart(props,Vector3(-1.0,0.0,3.6)); crate(props,"J8_LimePallet",Vector3(4.7,0.0,0.9),Vector3(1.1,1.0,1.0)); crate(props,"J8_BrokenCrate",Vector3(-5.0,0.0,-1.0),Vector3(0.8,0.8,0.8))
+	cart(props,Vector3(-1.0,0.0,3.6)); coffin(props,"J1_AbandonedCoffin",Vector3(-4.0,0.0,8.0),Vector3(0.85,0.85,0.85)); crate(props,"J8_LimePallet",Vector3(4.7,0.0,0.9),Vector3(1.1,1.0,1.0)); crate(props,"J8_BrokenCrate",Vector3(-5.0,0.0,-1.0),Vector3(0.8,0.8,0.8))
 	for p in [Vector3(-8,0,7),Vector3(8,0,5),Vector3(0,0,9)]: torch(lights,"J8_WorkLantern",p)
 	for p in [Vector3(15,1.8,3),Vector3(19,1.8,1),Vector3(16,1.8,-1)]: bone_pile(props,"J2_ScatteredBones",p,6)
 	wall_marker(props,Vector3(21,1.8,0.2),1.2)
 
+	coffin(props,"J5_BrokenCoffin",Vector3(16.0,2.4,-25.5),Vector3(0.90,0.90,0.90))
 	for p in [Vector3(6,2.4,-25),Vector3(10,2.4,-27),Vector3(14,2.4,-24)]: bone_pile(props,"J5_OrderedBoneRack",p,12)
 	for p in [Vector3(4,2.4,-29),Vector3(16,2.4,-29),Vector3(18,2.4,-27)]: bone_pile(props,"J5_DisturbedDragPile",p,10)
 	for p in [Vector3(5,2.4,-24),Vector3(18,2.4,-25),Vector3(12,2.4,-29)]: wall_marker(props,p,1.1)
@@ -386,15 +458,25 @@ func build_layout() -> void:
 	cylinder(pit,"RustBell",Vector3(0,0.4,0),0.16,0.34,"89644a",0.10,8); torch(lights,"J6_BottomLantern",Vector3(-22,-2.1,-16),false)
 	for p in [Vector3(27,3.8,-16),Vector3(31,3.8,-18)]: torch(lights,"J11_BridgeLantern",p,true)
 
-	for i in range(3): box(props,"J10_CalcifiedStep",Vector3(-20,0.35+i*0.24,-27.0-i*0.8),Vector3(7.0,0.18,0.55),"a6a18b")
+	for i in range(4):
+		var step := group(props,"J10_CalcifiedTerrace_%02d"%i,Vector3(-20+i*1.5,0.30+i*0.20,-27.0-i*0.65))
+		for j in range(5):
+			rock(step,"CalcifiedRock",Vector3((j-2)*0.62+rng.randf_range(-0.18,0.18),0.08,rng.randf_range(-0.28,0.28)),Vector3(rng.randf_range(0.22,0.42),0.16,rng.randf_range(0.24,0.44)),["a6a18b","918f7d","b0aa91"][j%3])
 	for p in [Vector3(-14,0.8,-30),Vector3(-23,0.8,-31)]: torch(lights,"J10_WaterLantern",p,false)
 	var quarry := group(props,"J12_QuarrySupports")
 	for z in [-26.0,-30.5,-33.0]:
-		beam(quarry,"OldSupport",Vector3(23,3,z),Vector3(23,5.4,z),0.12,"6b5540"); beam(quarry,"OldCrossbeam",Vector3(22,5.2,z),Vector3(31,5.2,z),0.14,"6b5540")
+		beam(quarry,"OldSupport",Vector3(23,3,z),Vector3(23,5.4,z),0.12,"6b5540")
+		for x in [22.0,24.1,26.2,28.3,30.4]:
+			var a := Vector3(x,5.15+rng.randf_range(-0.08,0.08),z+rng.randf_range(-0.08,0.08))
+			var b := Vector3(x+1.55,5.15+rng.randf_range(-0.08,0.08),z+rng.randf_range(-0.08,0.08))
+			beam(quarry,"OldCrossbeamSegment",a,b,0.10,"6b5540")
 	crate(props,"J12_ToolCrate",Vector3(27,3,-27),Vector3(0.9,0.9,0.9)); crate(props,"J12_ToolCrate2",Vector3(30,3,-31),Vector3(0.65,0.65,0.65))
 	for p in [Vector3(37,3,-27),Vector3(41,3,-31),Vector3(37,3,-32)]: wall_marker(props,p,1.55)
 	torch(lights,"J12_WorkLight",Vector3(27,3,-25),true); torch(lights,"J13_QuietLantern",Vector3(39,3,-29),true)
-	for i in range(5): box(props,"J13_NameBox",Vector3(36.0+i*1.45,3.35,-32.6),Vector3(1.0,0.55,0.55),"725a43")
+	for i in range(5):
+		var plaque := group(props,"J13_NamePlaque_%02d"%i,Vector3(36.0+i*1.05,3.2,-32.6+rng.randf_range(-0.14,0.14)))
+		rock(plaque,"CarvedStone",Vector3(0,0.30,0),Vector3(0.38,0.30,0.24),"725a43")
+		beam(plaque,"NameCut",Vector3(-0.14,0.39,0.23),Vector3(0.14,0.39,0.23),0.018,"b9a27b")
 
 	# Carve deliberate openings after the natural wall rims are built. These are
 	# the actual visual thresholds used by the future collision/portal pass.
