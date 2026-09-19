@@ -1,7 +1,7 @@
 extends "scene_parts.gd"
 const OUTPUT := "res://burial_left_cave/world.tscn"
 const ROCK_PALETTE := ["25343d","30414a","3a4b52","46545a","526066"]
-const TERRAIN_CELL := 1.10
+const TERRAIN_CELL := 0.90
 
 func _initialize() -> void:
 	var args := OS.get_cmdline_args()
@@ -33,12 +33,12 @@ func _initialize() -> void:
 
 func tone(base: String, index: int) -> String:
 	var c := Color(base)
-	var delta: float = [-0.035,0.0,0.025,0.045][posmod(index,4)]
+	var delta: float = [-0.022,0.0,0.016,0.030][posmod(index,4)]
 	return Color(clampf(c.r+delta,0.0,1.0),clampf(c.g+delta,0.0,1.0),clampf(c.b+delta,0.0,1.0),1.0).to_html(false)
 
 func grid_jitter(ix: int, iz: int) -> Vector2:
 	var seed := float(ix*9283+iz*6899)
-	return Vector2(sin(seed*0.017)*0.36,cos(seed*0.013)*0.36)
+	return Vector2(sin(seed*0.017)*0.28,cos(seed*0.013)*0.28)
 
 func cell_height(ix: int, iz: int, base_y: float, water := false) -> float:
 	if water:
@@ -213,9 +213,9 @@ func ground_detail(parent: Node, label: String, center: Vector3, extent: Vector2
 		var p := Vector3(center.x+rng.randf_range(-extent.x,extent.x),center.y+0.035,center.z+rng.randf_range(-extent.y,extent.y))
 		var s := Vector3(rng.randf_range(0.12,0.42),rng.randf_range(0.035,0.10),rng.randf_range(0.10,0.32))
 		rock(g,"LooseCaveStone",p,s,stone_colors[i%stone_colors.size()])
-	for i in range(4):
+	for i in range(8):
 		var p := Vector3(center.x+rng.randf_range(-extent.x*0.8,extent.x*0.8),center.y+0.018,center.z+rng.randf_range(-extent.y*0.8,extent.y*0.8))
-		var patch_stone := ball(g,"SoilVariation",p,Vector3(rng.randf_range(0.6,1.4),0.025,rng.randf_range(0.35,0.9)),soil_colors[i%soil_colors.size()])
+		var patch_stone := ball(g,"SoilVariation",p,Vector3(rng.randf_range(0.22,0.62),0.020,rng.randf_range(0.12,0.36)),soil_colors[i%soil_colors.size()])
 		patch_stone.rotation.y = rng.randf_range(0,TAU)
 	for i in range(5):
 		var p := Vector3(center.x+rng.randf_range(-extent.x*0.75,extent.x*0.75),center.y+0.075,center.z+rng.randf_range(-extent.y*0.75,extent.y*0.75))
