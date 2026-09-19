@@ -270,18 +270,42 @@ func v3_zone_shell(parent: Node, colliders: Node, label: String, points: Array[V
 	for i in range(points.size()):
 		if i % 2 == 0:
 			var p := points[i].lerp(points[(i + 1) % points.size()], 0.5)
-			faceted_rock(zone, "CliffFootStone", Vector3(p.x, y - depth + 0.14, p.y), Vector3(0.30, 0.28, 0.38), ["394640", "515e55", "5d685e"][i % 3], 7)
+			# Keep the lip stone seated against the walkable rim; the cliff face itself continues downward into the void.
+			faceted_rock(zone, "CliffLipStone", Vector3(p.x, y - 0.16, p.y), Vector3(0.30, 0.22, 0.38), ["394640", "515e55", "5d685e"][i % 3], 7)
 	v3_top_collision(colliders, label + "WalkSurface", points, y - 0.02)
 
 func v3_passage_tunnel(parent: Node, colliders: Node, label: String, points: Array[Vector3], width: float, color: String) -> void:
 	var tunnel := group(parent, label)
+	# Build one ribbon for the whole route. Independent segment meshes left gaps at bends.
+	var left_points := PackedVector3Array()
+	var right_points := PackedVector3Array()
+	for i in range(points.size()):
+		var previous := points[maxi(0, i - 1)]
+		var next := points[mini(points.size() - 1, i + 1)]
+		var incoming := Vector2(points[i].x - previous.x, points[i].z - previous.z).normalized()
+		var outgoing := Vector2(next.x - points[i].x, next.z - points[i].z).normalized()
+		var tangent := (incoming + outgoing).normalized()
+		if tangent.length_squared() < 0.01:
+			tangent = outgoing if outgoing.length_squared() > 0.01 else incoming
+		var normal := Vector2(-tangent.y, tangent.x)
+		left_points.append(Vector3(points[i].x + normal.x * width * 0.5, 0.0, points[i].z + normal.y * width * 0.5))
+		right_points.append(Vector3(points[i].x - normal.x * width * 0.5, 0.0, points[i].z - normal.y * width * 0.5))
+	var ribbon_vertices := PackedVector3Array()
+	for p in left_points:
+		ribbon_vertices.append(p)
+	for p in right_points:
+		ribbon_vertices.append(p)
+	var ribbon_indices := PackedInt32Array()
+	for i in range(points.size() - 1):
+		var r := points.size() + i
+		ribbon_indices.append_array(PackedInt32Array([i, i + 1, r + 1, i, r + 1, r]))
+	solid(tunnel, "ContinuousTunnelFloor", ribbon_vertices, ribbon_indices, color, Vector3.UP)
 	for i in range(points.size() - 1):
 		var a := points[i]
 		var b := points[i + 1]
 		var direction := Vector2(b.x - a.x, b.z - a.z).normalized()
 		var normal := Vector3(-direction.y, 0, direction.x)
 		var mid := (a + b) * 0.5
-		sloped_strip(tunnel, "ContinuousTunnelFloor", a, b, width, color)
 		var left_a := a + normal * width * 0.54
 		var left_b := b + normal * width * 0.54
 		var right_a := a - normal * width * 0.54
