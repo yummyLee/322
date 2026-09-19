@@ -19,6 +19,7 @@ func _initialize() -> void:
 	scene_root.set_meta("layout_scale", 2.8)
 	make_floor()
 	make_walls_and_ceiling()
+	make_zone_architecture()
 	make_waterfalls_and_pools()
 	make_burial_fields()
 	make_mine_works()
@@ -96,6 +97,88 @@ func faceted_rock(parent: Node, label: String, pos: Vector3, size: Vector3, colo
 	var node := solid(parent, label, vertices, indices, color)
 	node.position = pos
 	return node
+
+func cave_wall_band(parent: Node, label: String, a: Vector2, b: Vector2, floor_y: float, height: float, thickness: float, color: String) -> void:
+	# A continuous, scalloped wall surface gives each chamber a real boundary.
+	# It is intentionally made from several uneven sections so the silhouette reads as limestone, not a box.
+	var direction := (b - a).normalized()
+	var normal := Vector2(-direction.y, direction.x)
+	var steps := maxi(3, ceili(a.distance_to(b) / 1.15))
+	var vertices := PackedVector3Array()
+	for i in range(steps + 1):
+		var t := float(i) / steps
+		var center := a.lerp(b, t)
+		var wave := sin(float(i) * 2.17 + a.x * 0.41 + b.y * 0.17)
+		var top_y := floor_y + height * (0.74 + 0.18 * wave + 0.05 * sin(float(i) * 4.7))
+		var front := center + normal * thickness * 0.5
+		var back := center - normal * thickness * 0.5
+		vertices.append(Vector3(front.x, floor_y, front.y))
+		vertices.append(Vector3(back.x, floor_y, back.y))
+		vertices.append(Vector3(front.x, top_y, front.y))
+		vertices.append(Vector3(back.x, top_y - 0.08 * (1.0 - t), back.y))
+	var indices := PackedInt32Array()
+	for i in range(steps):
+		var base := i * 4
+		var next := (i + 1) * 4
+		indices.append_array(PackedInt32Array([base, next, next + 2, base, next + 2, base + 2]))
+		indices.append_array(PackedInt32Array([base + 1, base + 3, next + 3, base + 1, next + 3, next + 1]))
+		indices.append_array(PackedInt32Array([base + 2, next + 2, next + 3, base + 2, next + 3, base + 3]))
+	indices.append_array(PackedInt32Array([0, 1, 3, 0, 3, 2]))
+	var end_base := steps * 4
+	indices.append_array(PackedInt32Array([end_base, end_base + 2, end_base + 3, end_base, end_base + 3, end_base + 1]))
+	solid(parent, label, vertices, indices, color)
+	# Vertical ribs break up the long wall and make the top profile easier to read at the orthographic scale.
+	for i in range(1, steps, 2):
+		var t := float(i) / steps
+		var p := a.lerp(b, t)
+		var rib_height := height * (0.60 + 0.12 * sin(float(i) * 2.3))
+		faceted_rock(parent, "WallRib", Vector3(p.x + normal.x * thickness * 0.42, floor_y + rib_height * 0.50, p.y + normal.y * thickness * 0.42), Vector3(thickness * 0.38, rib_height * 0.55, thickness * 0.34), "4e5a53", 7)
+
+func cave_stone_pillar(parent: Node, label: String, pos: Vector3, height: float, radius: float, color: String) -> MeshInstance3D:
+	# Multi-ring limestone column: each ring changes radius and centre slightly, creating a carved natural profile.
+	var segments := 8
+	var ring_heights := [0.0, 0.13, 0.31, 0.53, 0.72, 0.90]
+	var ring_radius := [1.12, 0.92, 1.02, 0.78, 0.66, 0.40]
+	var vertices := PackedVector3Array()
+	for r in range(ring_heights.size()):
+		var sway := Vector2(sin(float(r) * 1.7 + pos.x), cos(float(r) * 1.35 + pos.z)) * radius * 0.10
+		for i in range(segments):
+			var angle := TAU * float(i) / segments + float(r % 2) * 0.16
+			var jitter := 0.90 + 0.10 * sin(float(i) * 4.1 + float(r) * 2.2 + pos.z)
+			var rr: float = radius * ring_radius[r] * jitter
+			vertices.append(Vector3(sway.x + cos(angle) * rr, height * ring_heights[r], sway.y + sin(angle) * rr))
+	var bottom := vertices.size()
+	vertices.append(Vector3(0, -0.04, 0))
+	var top := vertices.size()
+	vertices.append(Vector3(0, height * 0.99, 0))
+	var indices := PackedInt32Array()
+	for r in range(ring_heights.size() - 1):
+		for i in range(segments):
+			var a := r * segments + i
+			var b := r * segments + ((i + 1) % segments)
+			var c := (r + 1) * segments + i
+			var d := (r + 1) * segments + ((i + 1) % segments)
+			indices.append_array(PackedInt32Array([a, c, b, b, c, d]))
+	for i in range(segments):
+		var a := i
+		var b := (i + 1) % segments
+		indices.append_array(PackedInt32Array([bottom, b, a]))
+		var c := (ring_heights.size() - 1) * segments + i
+		var d := (ring_heights.size() - 1) * segments + ((i + 1) % segments)
+		indices.append_array(PackedInt32Array([top, c, d]))
+	var node := solid(parent, label, vertices, indices, color)
+	node.position = pos
+	return node
+
+func cave_arch(parent: Node, label: String, pos: Vector3, opening_axis: Vector2, clear_width: float, height: float, color: String) -> void:
+	var axis := opening_axis.normalized()
+	for side in [-1.0, 1.0]:
+		var p := pos + Vector3(axis.x * side * clear_width * 0.5, 0, axis.y * side * clear_width * 0.5)
+		cave_stone_pillar(parent, label + "Pillar", p, height * (0.80 + 0.05 * side), clear_width * 0.17, color)
+	for i in range(4):
+		var t := float(i) / 3.0
+		var p := pos + Vector3(axis.x * lerpf(-clear_width * 0.54, clear_width * 0.54, t), height * (0.78 + 0.06 * sin(float(i) * 2.1)), axis.y * lerpf(-clear_width * 0.54, clear_width * 0.54, t))
+		faceted_rock(parent, label + "LintelStone", p, Vector3(clear_width * 0.18, height * 0.15, clear_width * 0.20), color, 7)
 
 func cave_platform(parent: Node, colliders: Node, label: String, points: Array[Vector2], y: float, color: String) -> void:
 	var platform := group(parent, label)
@@ -215,6 +298,40 @@ func make_walls_and_ceiling() -> void:
 	for p in [Vector3(-1.65, 1.2, -10.0), Vector3(-0.75, 2.7, -10.08), Vector3(0.75, 2.55, -10.02), Vector3(1.65, 1.15, -10.0)]:
 		faceted_rock(rock_root, "TunnelMouthRim", p, Vector3(0.55, 1.35, 0.52), "4f5b53", 8)
 	collision_box(scene_root.get_node("CaveTerrain/SavedWalkCollisions"), "BackWall", Vector3(0, 2.0, -10.4), Vector3(25, 4.0, 0.7))
+
+func make_zone_architecture() -> void:
+	var architecture := group(scene_root, "CaveArchitecture")
+	var walls := group(architecture, "ChamberWallBands")
+	# J0 entrance throat and J1 central hall are bounded by broken wall runs, with openings left at each route.
+	cave_wall_band(walls, "WestWaterWall", Vector2(-11.0, -8.0), Vector2(-11.0, -3.2), 0.48, 3.7, 0.75, "526057")
+	cave_wall_band(walls, "WestWaterWallLower", Vector2(-11.0, -2.2), Vector2(-10.7, 2.4), 0.92, 3.1, 0.70, "5a675f")
+	cave_wall_band(walls, "LowerPoolOuterWall", Vector2(-10.9, 3.1), Vector2(-10.6, 8.0), -0.35, 2.8, 0.76, "4e5b55")
+	cave_wall_band(walls, "EastMineWall", Vector2(11.9, -3.0), Vector2(12.2, -0.8), 0.76, 3.3, 0.70, "59645a")
+	cave_wall_band(walls, "EastMineWallSouth", Vector2(12.1, 0.8), Vector2(12.0, 2.5), 0.76, 2.8, 0.70, "59645a")
+	cave_wall_band(walls, "EastTombOuterWall", Vector2(12.2, 4.0), Vector2(12.7, 8.1), 0.06, 3.0, 0.82, "505c55")
+	cave_wall_band(walls, "NorthBoneWallLeft", Vector2(-10.0, -9.4), Vector2(-4.6, -9.7), 1.12, 3.0, 0.85, "4c5952")
+	cave_wall_band(walls, "NorthBoneWallCentre", Vector2(-3.3, -9.8), Vector2(4.0, -9.5), 1.30, 3.35, 0.88, "4b5750")
+	cave_wall_band(walls, "NorthQuarryWall", Vector2(8.5, -9.0), Vector2(14.8, -8.7), 1.18, 3.1, 0.82, "4c5951")
+	# Short divider walls create alcoves and force the player through the intended narrow mouths.
+	cave_wall_band(walls, "WaterToBurialDivider", Vector2(-5.0, -3.5), Vector2(-4.6, -1.15), 0.86, 2.5, 0.64, "59645b")
+	cave_wall_band(walls, "BurialToMineDivider", Vector2(5.1, -2.6), Vector2(5.25, -0.85), 0.88, 2.6, 0.66, "59645b")
+	cave_wall_band(walls, "RavineNorthLip", Vector2(5.1, 2.8), Vector2(7.0, 3.0), 0.32, 2.0, 0.64, "505e56")
+	cave_wall_band(walls, "RavineSouthLip", Vector2(4.3, 4.2), Vector2(6.9, 4.15), 0.12, 2.2, 0.64, "505e56")
+	var pillars := group(architecture, "FineStonePillars")
+	for item in [
+		[Vector3(-9.7, -0.34, 5.0), 2.15, 0.46], [Vector3(-7.9, -0.34, 6.2), 2.7, 0.58],
+		[Vector3(-6.0, -0.34, 7.1), 2.25, 0.42], [Vector3(-9.8, 0.48, -6.0), 3.3, 0.52],
+		[Vector3(-11.8, 0.08, -8.5), 2.7, 0.43], [Vector3(5.6, 0.30, 3.6), 2.1, 0.40],
+		[Vector3(10.8, 0.06, 6.4), 2.55, 0.48], [Vector3(13.6, 1.2, -6.2), 2.6, 0.44]
+	]:
+		cave_stone_pillar(pillars, "LimestoneColumn", item[0], item[1], item[2], ["657168", "707b70", "59665e"][pillars.get_child_count() % 3])
+	# Rock arches mark the change from one chamber to the next; the openings remain wider than the hero capsule.
+	var arches := group(architecture, "ChamberMouths")
+	cave_arch(arches, "WaterMouth", Vector3(-4.8, 0.88, -0.35), Vector2(1, 0), 1.45, 2.7, "59665d")
+	cave_arch(arches, "MineMouth", Vector3(4.9, 0.90, -0.05), Vector2(0, 1), 1.55, 2.75, "5c665c")
+	cave_arch(arches, "LowerForkMouth", Vector3(2.3, 0.05, 5.85), Vector2(0, 1), 1.35, 2.35, "59645b")
+	cave_arch(arches, "BoneHallMouth", Vector3(0.0, 1.30, -4.1), Vector2(1, 0), 1.55, 2.85, "4f5b53")
+	cave_arch(arches, "NameWallMouth", Vector3(13.0, 1.40, -8.8), Vector2(0, 1), 1.25, 2.6, "505b53")
 
 func make_waterfalls_and_pools() -> void:
 	var water_root := group(scene_root, "WaterfallsAndPools", Vector3(0, 0.92, 0))
@@ -379,7 +496,7 @@ func make_scene_details() -> void:
 
 func enlarge_layout() -> void:
 	var factor := Vector3(2.8, 1.0, 2.8)
-	for path in ["CaveTerrain", "CaveRockShell", "WaterfallsAndPools", "BoneBurialFields", "MineWorks", "LowerStalactitePools", "CaveLifeAndRemains", "EntranceTransition"]:
+	for path in ["CaveTerrain", "CaveRockShell", "CaveArchitecture", "WaterfallsAndPools", "BoneBurialFields", "MineWorks", "LowerStalactitePools", "CaveLifeAndRemains", "EntranceTransition"]:
 		var section := scene_root.get_node_or_null(path) as Node3D
 		if section:
 			section.scale = factor

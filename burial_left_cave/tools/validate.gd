@@ -6,8 +6,10 @@ func _initialize() -> void:
 	var world := load("res://burial_left_cave/world.tscn").instantiate() as Node3D
 	check(world != null, "saved cave scene instantiates")
 	check(world.scene_file_path == "res://burial_left_cave/world.tscn", "cave is a saved editable scene")
-	for path in ["CaveTerrain", "CaveRockShell", "WaterfallsAndPools", "BoneBurialFields", "MineWorks", "LowerStalactitePools", "EntranceTransition", "RenderRig/VillageCamera"]:
+	for path in ["CaveTerrain", "CaveRockShell", "CaveArchitecture", "WaterfallsAndPools", "BoneBurialFields", "MineWorks", "LowerStalactitePools", "EntranceTransition", "RenderRig/VillageCamera"]:
 		check(world.get_node_or_null(path) != null, path + " is present as an editable group")
+	check(world.get_node_or_null("CaveArchitecture/ChamberWallBands") != null and world.get_node_or_null("CaveArchitecture/ChamberMouths") != null, "cave has authored wall bands and chamber mouths")
+	check(world.get_node_or_null("CaveArchitecture/FineStonePillars") != null and world.get_node("CaveArchitecture/FineStonePillars").get_child_count() >= 8, "cave has detailed multi-ring stone pillars")
 	var portal := world.get_node_or_null("EntranceTransition/ExitToNorthernRidge") as Area3D
 	check(portal != null and portal.monitoring and portal.get_meta("target_scene") == "res://village/main.tscn", "cave exit portal is linked to the outdoor entry")
 	check(world.find_children("*", "MeshInstance3D", true, false).size() > 250, "cave has substantial saved geometry")
