@@ -59,8 +59,45 @@ func rim(parent: Node, points: Array, y: float, height: float, density: int = 2)
 		var steps := maxi(1,int(edge.length()*density))
 		for k in range(steps):
 			var q := p.lerp(next,(k+0.35)/float(steps))
-			var size := Vector3(rng.randf_range(0.35,0.8),rng.randf_range(height*0.45,height),rng.randf_range(0.35,0.8))
+			var h_factor := rng.randf_range(0.28,1.18)
+			var size := Vector3(rng.randf_range(0.30,0.78),height*h_factor,rng.randf_range(0.30,0.78))
 			rock(parent,"RimRock",Vector3(q.x,y+size.y*0.38,q.z),size)
+
+func slope_quad(parent: Node, label: String, a: Vector3, b: Vector3, width: float, color: String) -> void:
+	var dir := Vector3(b.x-a.x,0,b.z-a.z).normalized()
+	var side := Vector3(-dir.z,0,dir.x)
+	var w0 := width*rng.randf_range(0.88,1.06)
+	var w1 := width*rng.randf_range(0.88,1.06)
+	var verts := PackedVector3Array([
+		a+side*w0*0.5, b+side*w1*0.5, b-side*w1*0.5, a-side*w0*0.5
+	])
+	solid(parent,label,verts,PackedInt32Array([0,1,2,0,2,3]),color)
+
+func corridor_edges(parent: Node, label: String, points: Array, width: float) -> void:
+	var g := group(parent,label)
+	for i in range(points.size()-1):
+		var a: Vector3 = points[i]
+		var b: Vector3 = points[i+1]
+		var dir := Vector3(b.x-a.x,0,b.z-a.z).normalized()
+		var side := Vector3(-dir.z,0,dir.x)
+		var kerb_offset := width*0.5
+		beam(g,"LowStoneKerbA",a+side*kerb_offset+Vector3(0,0.12,0),b+side*kerb_offset+Vector3(0,0.12,0),0.085,"5d5c50")
+		beam(g,"LowStoneKerbB",a-side*kerb_offset+Vector3(0,0.12,0),b-side*kerb_offset+Vector3(0,0.12,0),0.085,"5d5c50")
+		var steps := maxi(2,int(a.distance_to(b)*0.9))
+		for k in range(steps+1):
+			var t := k/float(steps)
+			var p := a.lerp(b,t)
+			var edge_offset := width*0.5*rng.randf_range(0.92,1.08)
+			for s in [-1,1]:
+				var q: Vector3 = p+side*edge_offset*s
+				var h := rng.randf_range(0.16,0.42)
+				rock(g,"PathEdgeCobble",Vector3(q.x,p.y+h*0.32,q.z),Vector3(rng.randf_range(0.18,0.34),h,rng.randf_range(0.16,0.30)),["686356","787263","555950"][rng.randi_range(0,2)])
+
+func carve_opening(parent: Node, p: Vector3, radius: float = 2.0) -> void:
+	var stones := parent.find_children("RimRock","MeshInstance3D",true,false)
+	for node in stones:
+		if node.position.distance_to(p) < radius:
+			node.free()
 
 func stalagmite(parent: Node, label: String, p: Vector3, h: float, r: float, color := "46545a") -> void:
 	var s := cylinder(parent,label,Vector3(p.x,p.y+h/2,p.z),r,h,color,0.06,7)
@@ -85,8 +122,14 @@ func corridor(parent: Node, label: String, points: Array, width: float, y: float
 	var g := group(parent,label)
 	for i in range(points.size()-1):
 		var a: Vector3 = points[i]; var b: Vector3 = points[i+1]
-		var dir := (b-a).normalized(); var side := Vector3(-dir.z,0,dir.x)
-		patch(g,"Segment_%02d"%i,[a+side*width*0.5,b+side*width*0.5,b-side*width*0.5,a-side*width*0.5],y+lerpf(a.y,b.y,0.5),color)
+		slope_quad(g,"Segment_%02d"%i,a,b,width,color)
+		if absf(a.y-b.y) > 0.18:
+			for step in range(1,3):
+				var t := step/3.0
+				var p := a.lerp(b,t)
+				var marker := box(g,"SlopeMarker",p+Vector3(0,0.055,0),Vector3(width*0.78,0.07,0.16),"7b7463")
+				marker.rotation.y = atan2(b.x-a.x,b.z-a.z)
+		corridor_edges(g,"StonePathBoundary",[a,b],width)
 
 func crate(parent: Node, label: String, p: Vector3, scale := Vector3.ONE) -> void:
 	var c := group(parent,label,p)
@@ -120,6 +163,54 @@ func wall_marker(parent: Node, p: Vector3, h := 1.8) -> void:
 	box(m,"StoneSlab",Vector3(0,h/2,0),Vector3(0.42,h,0.22),"7c7b6d")
 	box(m,"DarkCarving",Vector3(0,h*0.64,0.12),Vector3(0.23,0.055,0.03),"3c3a35")
 
+func ground_detail(parent: Node, label: String, center: Vector3, extent: Vector2, wet := false, count := 14) -> void:
+	var g := group(parent,label)
+	var stone_colors := ["777362","625f55","85806e","514f49"] if not wet else ["6b7b78","536b6c","82908a"]
+	var soil_colors := ["6d6658","80745f","554f47"] if not wet else ["3d5b5e","42696a","536f6c"]
+	for i in range(count):
+		var p := Vector3(center.x+rng.randf_range(-extent.x,extent.x),center.y+0.035,center.z+rng.randf_range(-extent.y,extent.y))
+		var s := Vector3(rng.randf_range(0.12,0.42),rng.randf_range(0.035,0.10),rng.randf_range(0.10,0.32))
+		rock(g,"LooseCaveStone",p,s,stone_colors[i%stone_colors.size()])
+	for i in range(4):
+		var p := Vector3(center.x+rng.randf_range(-extent.x*0.8,extent.x*0.8),center.y+0.018,center.z+rng.randf_range(-extent.y*0.8,extent.y*0.8))
+		var patch_stone := ball(g,"SoilVariation",p,Vector3(rng.randf_range(0.6,1.4),0.025,rng.randf_range(0.35,0.9)),soil_colors[i%soil_colors.size()])
+		patch_stone.rotation.y = rng.randf_range(0,TAU)
+	for i in range(5):
+		var p := Vector3(center.x+rng.randf_range(-extent.x*0.75,extent.x*0.75),center.y+0.075,center.z+rng.randf_range(-extent.y*0.75,extent.y*0.75))
+		var footprint := cylinder(g,"Footprint",p,rng.randf_range(0.07,0.12),0.025,"403f3a",rng.randf_range(0.03,0.07),7)
+		footprint.rotation.x = rng.randf_range(-0.12,0.12); footprint.rotation.z = rng.randf_range(-0.12,0.12)
+	for i in range(3):
+		var a := Vector3(center.x+rng.randf_range(-extent.x*0.6,extent.x*0.6),center.y+0.08,center.z+rng.randf_range(-extent.y*0.6,extent.y*0.6))
+		beam(g,"ErosionCrack",a,a+Vector3(rng.randf_range(-0.8,0.8),0,rng.randf_range(-0.4,0.4)),0.018,"3f4140")
+
+func spider_web(parent: Node, label: String, p: Vector3, size: float) -> void:
+	var g := group(parent,label,p)
+	for i in range(4):
+		var a := i*TAU/4.0
+		beam(g,"WebRadial",Vector3.ZERO,Vector3(cos(a)*size,0,sin(a)*size),0.012,"8a9390")
+	for i in range(3):
+		var r := size*(0.35+i*0.22)
+		var pts := []
+		for j in range(9):
+			var a := j*TAU/8.0
+			pts.append(Vector3(cos(a)*r,0.01,sin(a)*r))
+		for j in range(8): beam(g,"WebArc",pts[j],pts[j+1],0.009,"717a78")
+
+func stone_pillar_cluster(parent: Node, label: String, p: Vector3, y: float) -> void:
+	var g := group(parent,label)
+	for i in range(3):
+		var q := p+Vector3(rng.randf_range(-1.0,1.0),0,rng.randf_range(-0.8,0.8))
+		stalagmite(g,"NaturalPillar",Vector3(q.x,y,q.z),rng.randf_range(1.7,3.8),rng.randf_range(0.28,0.60),["465960","52636a","3d5058"][i])
+		rock(g,"PillarFoot",Vector3(q.x,y+0.12,q.z),Vector3(rng.randf_range(0.45,0.8),0.24,rng.randf_range(0.42,0.72)),"59666a")
+
+func broken_rail(parent: Node, label: String, a: Vector3, b: Vector3, y: float) -> void:
+	var g := group(parent,label)
+	beam(g,"LowRail",a+Vector3(0,y,0),b+Vector3(0,y+0.12,0),0.06,"6c5943")
+	var mid := a.lerp(b,0.5)
+	beam(g,"PostA",a+Vector3(0,0,0),a+Vector3(0,0.8,0),0.065,"574938")
+	beam(g,"PostB",b+Vector3(0,0,0),b+Vector3(0,0.8,0),0.065,"574938")
+	beam(g,"BrokenPost",mid+Vector3(0,0,0),mid+Vector3(0,0.42,0),0.05,"78634c")
+
 func build_layout() -> void:
 	var terrain := group(scene_root,"CaveTerrain")
 	var rock_shell := group(scene_root,"CaveRockShell")
@@ -127,19 +218,19 @@ func build_layout() -> void:
 	var lights := group(scene_root,"Lanterns")
 
 	var j0_points=[Vector3(-6,0,25),Vector3(4,0,27),Vector3(8,0,23),Vector3(6,0,17),Vector3(1,0,14),Vector3(-5,0,16),Vector3(-9,0,21)]
-	patch(terrain,"J0_EntranceHall",j0_points,0.0,"625e52"); rim(rock_shell,j0_points,0.0,1.8)
+	patch(terrain,"J0_EntranceHall",j0_points,0.0,"625e52"); rim(rock_shell,j0_points,0.0,1.4)
 	corridor(terrain,"J1_LowerMainS",[Vector3(0,0,16),Vector3(-2,0,11),Vector3(2,0,6),Vector3(-1,0,1)],5.0,0.0,"57564c")
 	var j8_points=[Vector3(-12,0,6),Vector3(-8,0,12),Vector3(3,0,13),Vector3(12,0,8),Vector3(12,0,-2),Vector3(6,0,-7),Vector3(-6,0,-7),Vector3(-13,0,-2)]
-	patch(terrain,"J8_OldCartYard",j8_points,0.0,"6c6252"); rim(rock_shell,j8_points,0.0,2.4)
+	patch(terrain,"J8_OldCartYard",j8_points,0.0,"6c6252"); rim(rock_shell,j8_points,0.0,2.6)
 	corridor(terrain,"J0_to_J1",[Vector3(0,0,22),Vector3(0,0,16)],4.5,0.0,"5d5a4e")
 	corridor(terrain,"J1_to_J8",[Vector3(-1,0,2),Vector3(-1,0,-2)],5.0,0.0,"57564c")
 
 	var j2_points=[Vector3(12,0,7),Vector3(19,0,8),Vector3(23,0,4),Vector3(22,0,-1),Vector3(17,0,-4),Vector3(12,0,-2)]
-	patch(terrain,"J2_BoneSortingLedge",j2_points,1.8,"575650"); rim(rock_shell,j2_points,1.75,1.6)
-	corridor(terrain,"J8_to_J2",[Vector3(9,1,4),Vector3(14,1.8,3)],4.0,1.0,"615c50")
+	patch(terrain,"J2_BoneSortingLedge",j2_points,1.8,"575650"); rim(rock_shell,j2_points,1.75,1.1)
+	corridor(terrain,"J8_to_J2",[Vector3(9,0,4),Vector3(14,1.8,3)],4.0,1.0,"615c50")
 	corridor(terrain,"J2_to_J4",[Vector3(18,1.8,-3),Vector3(19,3.0,-8)],3.4,2.4,"4d5050")
 	var j4_points=[Vector3(12,0,-9),Vector3(18,0,-10),Vector3(25,0,-8),Vector3(29,0,-11),Vector3(27,0,-15),Vector3(18,0,-16),Vector3(13,0,-13)]
-	patch(terrain,"J4_UpperFissureWalk",j4_points,3.8,"454d52"); rim(rock_shell,j4_points,3.75,2.4)
+	patch(terrain,"J4_UpperFissureWalk",j4_points,3.8,"454d52"); rim(rock_shell,j4_points,3.75,3.1)
 	corridor(terrain,"J4_to_J11",[Vector3(24,3.8,-12),Vector3(28,3.6,-16)],2.8,3.7,"40494e")
 
 	var j11 := group(terrain,"J11_SuspendedBoneBridge")
@@ -151,26 +242,26 @@ func build_layout() -> void:
 		for side in [-1,1]: beam(j11,"RopeRail",p+Vector3(0,0.15,side*0.85),p+Vector3(0,1.05,side*0.70),0.05,"a08a5e")
 	corridor(terrain,"J11_to_J5",[Vector3(30,3.8,-18),Vector3(19,2.4,-20)],3.0,3.0,"4e4e4a")
 	var j5_points=[Vector3(6,0,-22),Vector3(15,0,-20),Vector3(21,0,-21),Vector3(23,0,-27),Vector3(18,0,-31),Vector3(7,0,-31),Vector3(1,0,-27),Vector3(1,0,-24)]
-	patch(terrain,"J5_BoneCairnHall",j5_points,2.4,"5b5449"); rim(rock_shell,j5_points,2.35,2.8)
+	patch(terrain,"J5_BoneCairnHall",j5_points,2.4,"5b5449"); rim(rock_shell,j5_points,2.35,2.4)
 	var j6_points=[Vector3(-27,0,-12),Vector3(-19,0,-10),Vector3(-15,0,-14),Vector3(-16,0,-21),Vector3(-23,0,-23),Vector3(-29,0,-19)]
-	patch(terrain,"J6_SunkenPit",j6_points,-2.2,"3d4b50"); rim(rock_shell,j6_points,-2.1,3.0)
+	patch(terrain,"J6_SunkenPit",j6_points,-2.2,"3d4b50"); rim(rock_shell,j6_points,-2.1,3.8)
 	corridor(terrain,"J6_to_J5_OneWay",[Vector3(-17,-2,-16),Vector3(-10,0,-19),Vector3(1,2.4,-23)],2.8,0.0,"4e4d49")
 
 	var j3_points=[Vector3(-28,0,7),Vector3(-20,0,11),Vector3(-13,0,8),Vector3(-12,0,1),Vector3(-17,0,-4),Vector3(-26,0,-4),Vector3(-32,0,1)]
-	patch(terrain,"J3_SeepingThroat",j3_points,-0.8,"2f5b61"); rim(rock_shell,j3_points,-0.65,2.5)
+	patch(terrain,"J3_SeepingThroat",j3_points,-0.8,"2f5b61"); rim(rock_shell,j3_points,-0.65,2.0)
 	corridor(terrain,"J8_to_J3",[Vector3(-10,-0.2,4),Vector3(-16,-0.6,4)],3.6,-0.4,"38545a")
 	var j9_points=[Vector3(-30,0,-4),Vector3(-25,0,-7),Vector3(-16,0,-7),Vector3(-11,0,-12),Vector3(-15,0,-18),Vector3(-24,0,-18),Vector3(-31,0,-14)]
-	patch(terrain,"J9_StonePillarForest",j9_points,-1.4,"3d5055"); rim(rock_shell,j9_points,-1.3,2.8)
+	patch(terrain,"J9_StonePillarForest",j9_points,-1.4,"3d5055"); rim(rock_shell,j9_points,-1.3,3.4)
 	corridor(terrain,"J3_to_J9",[Vector3(-21,-0.8,-3),Vector3(-22,-1.2,-8)],3.5,-1.0,"36545a")
 	corridor(terrain,"J9_to_J6",[Vector3(-22,-1.4,-15),Vector3(-23,-2.0,-18)],3.0,-1.6,"35484e")
 
 	var j10_points=[Vector3(-28,0,-22),Vector3(-20,0,-24),Vector3(-12,0,-23),Vector3(-9,0,-27),Vector3(-13,0,-33),Vector3(-22,0,-34),Vector3(-29,0,-30)]
-	patch(terrain,"J10_GreyWaterTerraces",j10_points,0.8,"565852"); rim(rock_shell,j10_points,0.75,2.6)
+	patch(terrain,"J10_GreyWaterTerraces",j10_points,0.8,"565852"); rim(rock_shell,j10_points,0.75,2.2)
 	corridor(terrain,"J5_to_J10",[Vector3(4,2.4,-26),Vector3(-5,1.4,-27),Vector3(-12,0.8,-28)],3.8,1.6,"55564f")
 	var j7_points=[Vector3(-33,0,-24),Vector3(-29,0,-24),Vector3(-29,0,-29),Vector3(-34,0,-31)]
-	patch(terrain,"J7_SealedWestFissure",j7_points,0.9,"252d32"); rim(rock_shell,j7_points,0.8,3.0)
+	patch(terrain,"J7_SealedWestFissure",j7_points,0.9,"252d32"); rim(rock_shell,j7_points,0.8,3.5)
 	var j12_points=[Vector3(21,0,-24),Vector3(28,0,-23),Vector3(34,0,-25),Vector3(36,0,-30),Vector3(31,0,-34),Vector3(22,0,-33),Vector3(18,0,-28)]
-	patch(terrain,"J12_CollapseQuarry",j12_points,3.0,"50504c"); rim(rock_shell,j12_points,2.95,2.3)
+	patch(terrain,"J12_CollapseQuarry",j12_points,3.0,"50504c"); rim(rock_shell,j12_points,2.95,1.7)
 	corridor(terrain,"J10_to_J12",[Vector3(-9,0.8,-29),Vector3(4,1.7,-30),Vector3(19,3,-29)],3.4,2.0,"4d4e4a")
 	var j13_points=[Vector3(35,0,-25),Vector3(42,0,-25),Vector3(45,0,-29),Vector3(43,0,-34),Vector3(36,0,-34),Vector3(33,0,-30)]
 	patch(terrain,"J13_NameWallChamber",j13_points,3.0,"494b49"); rim(rock_shell,j13_points,2.95,2.6)
@@ -219,6 +310,48 @@ func build_layout() -> void:
 	for p in [Vector3(37,3,-27),Vector3(41,3,-31),Vector3(37,3,-32)]: wall_marker(props,p,1.55)
 	torch(lights,"J12_WorkLight",Vector3(27,3,-25),true); torch(lights,"J13_QuietLantern",Vector3(39,3,-29),true)
 	for i in range(5): box(props,"J13_NameBox",Vector3(36.0+i*1.45,3.35,-32.6),Vector3(1.0,0.55,0.55),"725a43")
+
+	# Carve deliberate openings after the natural wall rims are built. These are
+	# the actual visual thresholds used by the future collision/portal pass.
+	for opening in [
+		Vector3(0,0,25),Vector3(0,0,16),Vector3(-1,0,1),Vector3(11,1.8,4),
+		Vector3(18,2.4,-4),Vector3(26,3.8,-14),Vector3(22,3.0,-20),
+		Vector3(-12,-1.8,-20),Vector3(-12,-0.5,4),Vector3(-22,-1.0,-6),
+		Vector3(-22,-1.6,-16),Vector3(-5,1.5,-27),Vector3(10,2.2,-29),
+		Vector3(35,3.0,-29)
+	]:
+		carve_opening(rock_shell,opening,2.0)
+
+	# Surface language is shared across zones but tuned by use: dry cart wear,
+	# wet silt, bone-room drag marks, and quarry rubble.
+	ground_detail(props,"J0_FloorWear",Vector3(0,0.0,21),Vector2(5.4,3.8),false,18)
+	ground_detail(props,"J1_SiltAndWheelWear",Vector3(-1,0.0,8),Vector2(2.8,7.0),false,20)
+	ground_detail(props,"J8_CartYardSurface",Vector3(0,0.0,4),Vector2(8.0,5.4),false,26)
+	ground_detail(props,"J2_SortingSurface",Vector3(17,1.8,2),Vector2(4.8,3.8),false,16)
+	ground_detail(props,"J4_FissureSurface",Vector3(20,3.8,-12),Vector2(5.0,2.4),false,14)
+	ground_detail(props,"J11_BridgeLandingSurface",Vector3(25,3.7,-17),Vector2(3.2,2.0),false,10)
+	ground_detail(props,"J5_BoneRoomSurface",Vector3(12,2.4,-26),Vector2(8.0,4.2),false,24)
+	ground_detail(props,"J6_PitFloorSurface",Vector3(-22,-2.2,-16),Vector2(3.6,3.4),true,12)
+	ground_detail(props,"J3_WetSiltSurface",Vector3(-22,-0.8,4),Vector2(7.2,4.5),true,20)
+	ground_detail(props,"J9_PillarForestSurface",Vector3(-22,-1.4,-12),Vector2(7.0,4.2),true,20)
+	ground_detail(props,"J10_CalcifiedSurface",Vector3(-19,0.8,-28),Vector2(7.0,4.0),true,18)
+	ground_detail(props,"J12_QuarrySurface",Vector3(27,3.0,-29),Vector2(7.2,4.0),false,20)
+	ground_detail(props,"J13_NameRoomSurface",Vector3(39,3.0,-30),Vector2(4.2,3.0),false,12)
+
+	# Region-specific formations and edge language.
+	stone_pillar_cluster(props,"J3_StalagmiteCluster",Vector3(-25,0,4),-0.8)
+	stone_pillar_cluster(props,"J9_StalagmiteClusterA",Vector3(-25,0,-11),-1.4)
+	stone_pillar_cluster(props,"J9_StalagmiteClusterB",Vector3(-17,0,-15),-1.4)
+	spider_web(props,"J9_Web",Vector3(-28,-0.9,-14),1.2)
+	spider_web(props,"J7_Web",Vector3(-31,0.95,-27),1.0)
+	broken_rail(props,"J8_EastEdgeRail",Vector3(6,0,7),Vector3(10,0,5),0.18)
+	broken_rail(props,"J8_WetEdgeRail",Vector3(-7,0,5),Vector3(-10,0,3),0.16)
+	broken_rail(props,"J12_CollapseRail",Vector3(19,3,-27),Vector3(23,3,-31),0.20)
+	for p in [Vector3(-4,0.08,8),Vector3(0,0.08,5),Vector3(3,0.08,2)]:
+		beam(props,"WheelRut",p,p+Vector3(0,0,3.2),0.045,"3f403d")
+		beam(props,"WheelRut2",p+Vector3(0.72,0,0),p+Vector3(0.72,0,3.2),0.045,"3f403d")
+	for p in [Vector3(8,2.5,-26),Vector3(15,2.5,-28),Vector3(6,2.5,-29)]:
+		beam(props,"BoneDragMark",p,p+Vector3(1.4,0,-0.5),0.035,"3c3936")
 
 	var scale_ref := group(scene_root,"ScaleReference")
 	cylinder(scale_ref,"PlayerHeightMarker",Vector3(-7,1.0,22),0.06,2.0,"c6b08a",0.06,6)
