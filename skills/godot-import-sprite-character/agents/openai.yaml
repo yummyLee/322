@@ -1,0 +1,4 @@
+interface:
+  display_name: "Godot 精灵角色导入"
+  short_description: "抠除精灵图白底并导入 Godot 预设角色插件进行管理"
+  default_prompt: "Use $godot-import-sprite-character to remove sprite-sheet backgrounds and register the characters in my Godot Preset Character plugin."

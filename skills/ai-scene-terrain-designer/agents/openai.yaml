@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 场景地形设计"
+  short_description: "为 AI 生图设计复杂场景、地形结构与位置关系描述"
+  default_prompt: "Use $ai-scene-terrain-designer to design a complex environment-only scene prompt without plot or explicit measurements."
