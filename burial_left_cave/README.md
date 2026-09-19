@@ -1,12 +1,13 @@
 # 乱葬岭左山洞
 
-这是独立的 Godot 4.x 3D 场景，用于窑村同款 3 渲 2 预览。分区父节点按建模指导保留了 `J0`～`J13` 的空间身份；洞壁、地面、桥、浅水、车、骨堆、门、支撑木和灯光都是写入 `world.tscn` 的可编辑节点。
+这是独立的 Godot 4.x 3D 可编辑场景。J0～J13 的原有区域位置、多个墙体围合关系和连接账本均保留；本轮只把各区域地面和道路改为连续表面，并保留洞壁、洞口、台阶和区域间高差。
 
 - 编辑入口：[world.tscn](world.tscn)
 - 运行入口：[main.tscn](main.tscn)
-- 生成辅助脚本：`tools/build_scene.gd`（仅用于本轮烘焙，不在运行时生成或覆盖场景）
-- GPU 预览：`preview.png`、`preview_plain.png`
+- 生成辅助脚本：`tools/build_scene.gd`（仅用于显式 `--overwrite` 的一次性烘焙）
+- 静态规范验证：`tools/validate_scene_spec.gd`
+- 玩家路径验证：`tools/validate_walk.gd`
 
-场景保持现有项目启动入口不变；后续若要接入地图、角色碰撞或 J12→J8 的交互开关，再以这些语义节点为连接点添加。
+`CaveTerrain/J0_...J13_...` 是独立区域节点；`CaveRockShell` 保存围合墙体和石缘；`SavedWallCollisions` 保存洞壁、区域边界、连续区域地面和道路碰撞；`RegionEntrances` 保存入口连接标记。查看器支持方向键平移、滚轮缩放，以及鼠标右键选中并拖动镜头。
 
-本场景遵守项目地形限制：地面由细分、带高度扰动的三角单元组成，区域之间使用坡面和低矮石缘连接；禁止恢复大面积纯色平面、长方形路面或共面重叠面片。
+本场景不替换 `village/main.tscn`，也不依赖运行时脚本生成或覆盖模型。

@@ -21,6 +21,8 @@ var pixels := true
 var pixel_size := 3
 var snap := true
 var orbit := false
+var camera_selected := false
+var camera_dragging := false
 var elapsed := 0.0
 var captured := false
 
@@ -122,7 +124,8 @@ func _process(delta: float) -> void:
 		p.x = snappedf(p.x,step_size)
 		p.y = snappedf(p.y,step_size)
 		camera.position = camera.basis*p
-	$Status.text = "1920 × 1080  ·  方向键平移 / 滚轮缩放 / R 复位 / Esc 设置  ·  %d FPS" % Engine.get_frames_per_second()
+	var camera_hint := "镜头已选中 · 右键拖动旋转" if camera_selected else "右键选中镜头"
+	$Status.text = "1920 × 1080  ·  方向键平移 / 滚轮缩放 / %s / R 复位 / Esc 设置  ·  %d FPS" % [camera_hint,Engine.get_frames_per_second()]
 	if "--capture" in OS.get_cmdline_user_args() and elapsed > 3 and not captured:
 		captured = true
 		capture.call_deferred()
@@ -143,10 +146,24 @@ func _unhandled_input(event: InputEvent) -> void:
 	if settings.visible:
 		return
 	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			camera_selected = true
+			camera_dragging = true
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			get_viewport().set_input_as_handled()
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			set_zoom(zoom-0.1)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			set_zoom(zoom+0.1)
+	elif event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		camera_dragging = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		get_viewport().set_input_as_handled()
+	elif event is InputEventMouseMotion and camera_dragging:
+		angle += event.relative.x * 0.004
+		pan += camera.basis.x * (-event.relative.x * 0.012)
+		pan += Vector3(0,0,event.relative.y * 0.012)
+		get_viewport().set_input_as_handled()
 	if event is InputEventKey and event.pressed and not event.echo:
 		var mapping := {KEY_1:"pixel",KEY_2:"outline",KEY_3:"toon",KEY_4:"highlight",KEY_5:"snap",KEY_SPACE:"orbit"}
 		if event.keycode in mapping:

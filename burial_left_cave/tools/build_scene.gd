@@ -6,7 +6,7 @@ var boundary_collisions: Node3D
 var route_registry: Array[String] = []
 
 func _initialize() -> void:
-	var args := OS.get_cmdline_args()
+	var args := OS.get_cmdline_user_args()
 	if FileAccess.file_exists(OUTPUT) and not "--overwrite" in args:
 		push_error("Saved editable cave exists. Remove it only for authoring revisions or pass --overwrite.")
 		quit(1)
@@ -61,7 +61,24 @@ func patch(parent: Node, label: String, points: Array, y: float, color: String) 
 	var surface := solid(g,"TerrainSurface_%s" % label,verts,tris,color)
 	surface.set_meta("surface_kind","continuous_region")
 	surface.set_meta("region_id",label)
+	mesh_collision(g,surface,"GroundCollision")
 	return g
+
+func mesh_collision(parent: Node, source: MeshInstance3D, label: String) -> void:
+	if source.mesh == null:
+		return
+	var body := StaticBody3D.new()
+	body.name = label
+	body.collision_layer = 1
+	body.collision_mask = 1
+	parent.add_child(body,true)
+	body.owner = scene_root
+	var shape := CollisionShape3D.new()
+	shape.name = "Shape"
+	shape.shape = source.mesh.create_trimesh_shape()
+	body.add_child(shape,true)
+	shape.owner = scene_root
+	body.set_meta("collision_kind","walkable_surface")
 
 func rock(parent: Node, label: String, p: Vector3, s: Vector3, color := "") -> void:
 	var c: String = color if color != "" else ROCK_PALETTE[rng.randi_range(0,ROCK_PALETTE.size()-1)]
@@ -78,7 +95,7 @@ func rim(parent: Node, points: Array, y: float, height: float, density: int = 2)
 			var q := p.lerp(next,(k+0.35)/float(steps))
 			var near_portal := false
 			for portal in portal_points:
-				if Vector2(q.x,q.z).distance_to(Vector2(portal.x,portal.z)) < 2.65:
+				if Vector2(q.x,q.z).distance_to(Vector2(portal.x,portal.z)) < 7.0:
 					near_portal = true
 					break
 			if near_portal:
@@ -88,7 +105,7 @@ func rim(parent: Node, points: Array, y: float, height: float, density: int = 2)
 			rock(parent,"RimRock",Vector3(q.x,y+size.y*0.38,q.z),size)
 		var blocked := false
 		for portal in portal_points:
-			if Geometry2D.get_closest_point_to_segment(Vector2(portal.x,portal.z),Vector2(p.x,p.z),Vector2(next.x,next.z)).distance_to(Vector2(portal.x,portal.z)) < 2.65:
+			if Geometry2D.get_closest_point_to_segment(Vector2(portal.x,portal.z),Vector2(p.x,p.z),Vector2(next.x,next.z)).distance_to(Vector2(portal.x,portal.z)) < 7.0:
 				blocked = true
 				break
 		if not blocked:
@@ -257,11 +274,17 @@ func path_wear(parent: Node, label: String, route: Array, width: float, color: S
 func corridor(parent: Node, label: String, points: Array, width: float, y: float, color := "57534a") -> void:
 	var g := group(parent,label)
 	var route := smooth_route(points)
-	for i in range(route.size()-1):
-		var a: Vector3 = route[i]; var b: Vector3 = route[i+1]
-		slope_quad(g,"Segment_%03d"%i,a,b,width*(0.84+rng.randf_range(-0.08,0.18)),color)
+	var road := route_ribbon(g,"RoadSurface",route,width,color)
+	road.set_meta("connection_id",label)
+	road.set_meta("route_control_points",points.size())
+	road.set_meta("road_role","continuous marked route")
+	if label == "J10_to_J12":
+		mesh_collision(g,road,"RoadCollision")
 	corridor_edges(g,"StonePathBoundary",route,width*(0.90+rng.randf_range(-0.05,0.12)))
 	path_wear(g,"SurfaceWear",route,width,color)
+	route_registry.append(label)
+	road_marker(g,label+"_Start",points[0],points[1]-points[0],"start")
+	road_marker(g,label+"_End",points[points.size()-1],points[points.size()-1]-points[points.size()-2],"end")
 
 func crate(parent: Node, label: String, p: Vector3, scale := Vector3.ONE) -> void:
 	var c := group(parent,label,p)
@@ -376,6 +399,7 @@ func build_layout() -> void:
 	var rock_shell := group(scene_root,"CaveRockShell")
 	var props := group(scene_root,"ExplorationProps")
 	var lights := group(scene_root,"Lanterns")
+	boundary_collisions = group(scene_root,"SavedWallCollisions")
 	portal_points = [
 		Vector3(0,0,22),Vector3(0,0,16),Vector3(-1,0,1),Vector3(9,0,4),
 		Vector3(18,1.8,-3),Vector3(24,3.8,-12),Vector3(30,3.8,-18),
@@ -492,7 +516,7 @@ func build_layout() -> void:
 		Vector3(4,2.4,-26),Vector3(-12,0.8,-28),Vector3(-9,0.8,-29),
 		Vector3(19,3,-29),Vector3(34,3,-29)
 	]:
-		carve_opening(rock_shell,opening,2.7)
+		carve_opening(rock_shell,opening,4.5)
 
 	var mouths := group(props,"RegionEntrances")
 	portal_mouth(mouths,"J0_J1_Entrance",Vector3(0,0,22),Vector3(0,0,-1))
