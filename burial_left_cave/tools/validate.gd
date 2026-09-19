@@ -16,7 +16,7 @@ func _initialize() -> void:
 	check(world.find_children("*", "CollisionShape3D", true, false).size() >= 5, "floor, walls and portal collisions are saved")
 	check(world.get_node("CaveTerrain").get_node_or_null("DisconnectedPlatforms") != null and world.get_node("CaveTerrain/DisconnectedPlatforms").get_child_count() >= 7, "cave uses multiple disconnected platforms")
 	check(world.get_node("CaveTerrain/BranchingStonePaths").get_child_count() >= 6, "cave has branching narrow paths")
-	check(world.get_meta("layout_revision", 0) == 3, "reference-aligned cave layout revision is saved")
+	check(world.get_meta("layout_revision", 0) == 4, "reference-aligned cave layout revision is saved")
 	check(is_equal_approx(world.get_meta("layout_scale", 0.0), 1.0), "cave uses direct reference-aligned world coordinates")
 	check(world.get_node_or_null("CaveLifeAndRemains/BoneBurialFields/J5_BoneRackFrames") != null and world.get_node_or_null("MineWorks/J12_TimberSupport") != null and world.get_node_or_null("CaveLifeAndRemains/J13_NameWallRoom") != null, "cave detail groups are saved")
 	check(world.get_node_or_null("CaveTerrain/MapBoundaries") != null and world.get_node_or_null("CaveTerrain/SavedWalkCollisions/VoidSafetyCatch") != null, "map perimeter and void safety boundaries are saved")
