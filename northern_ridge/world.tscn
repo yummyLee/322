@@ -3,6 +3,7 @@
 [ext_resource type="Shader" path="res://northern_ridge/forest_ground.gdshader" id="1_66j3y"]
 [ext_resource type="Shader" path="res://village/style.gdshader" id="2_rnug4"]
 [ext_resource type="Shader" path="res://burial_ridge/ground_paint.gdshader" id="3_h0gaa"]
+[ext_resource type="Script" path="res://village/scene_portal.gd" id="4_rnug4"]
 [ext_resource type="Shader" path="res://northern_ridge/soft_ground_patch.gdshader" id="4_sc7f3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbra7"]
@@ -72122,11 +72123,13 @@ mesh = SubResource("CylinderMesh_qnois")
 
 [node name="ReservedEntrance" type="Area3D" parent="RootWrappedStoneGate" unique_id=933582162]
 collision_layer = 0
-monitoring = false
 monitorable = false
-metadata/target_scene = ""
+script = ExtResource("4_rnug4")
+metadata/target_scene = "res://burial_left_cave/main.tscn"
 metadata/door_link_id = "northern_root_cave_door"
 metadata/destination_id = "northern_root_cave"
+metadata/target_spawn = "root_cave_entry"
+metadata/portal_enabled = true
 
 [node name="TriggerVolume" type="CollisionShape3D" parent="RootWrappedStoneGate/ReservedEntrance" unique_id=1316786095]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.15)

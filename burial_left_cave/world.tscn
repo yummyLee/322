@@ -1,0 +1,3185 @@
+[gd_scene format=4]
+
+[ext_resource type="Shader" path="res://village/style.gdshader" id="1_fhrg4"]
+[ext_resource type="Script" path="res://village/scene_portal.gd" id="2_nsaia"]
+[ext_resource type="Shader" path="res://pixel_lab/outline.gdshader" id="3_fycw3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chmp1"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.19215687, 0.22745098, 0.20784314, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_dbciw"]
+size = Vector3(29, 0.76, 24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1s5j"]
+size = Vector3(29, 0.76, 24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2qwax"]
+size = Vector3(25, 4, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_inccb"]
+size = Vector3(0.7, 4, 18)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8uawk"]
+size = Vector3(0.7, 4, 18)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64b57"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.43529412, 0.45882353, 0.40784314, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_54bjm"]
+_surfaces = [{
+"aabb": AABB(-12, 0.02, -10, 24, 1e-05, 18.7),
+"format": 34359738375,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 27,
+"vertex_data": PackedByteArray("AABAwQrXozwzMwtBAADAwArXozyamQFBAABAwArXozwzM6NAAABAwQrXozwzMwtBAABAwArXozwzM6NAAACAQArXozwAAKBAAABAwQrXozwzMwtBAACAQArXozwAAKBAAAAgQQrXozwAAOBAAABAwQrXozwzMwtBAAAgQQrXozwAAOBAAABAQQrXozwAAEBAAABAwQrXozwzMwtBAABAQQrXozwAAEBAAAAwQQrXozwAAODAAABAwQrXozwzMwtBAAAwQQrXozwAAODAAADAQArXozwAACDBAABAwQrXozwzMwtBAADAQArXozwAACDBAAAAwArXozwAABDBAABAwQrXozwzMwtBAAAAwArXozwAABDBAAAgwQrXozwAAODAAABAwQrXozwzMwtBAAAgwQrXozwAAODAAABAwQrXozwAAADA/3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+/")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lh8cc"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.38431373, 0.3647059, 0.30588236, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kji7b"]
+_surfaces = [{
+"aabb": AABB(-8.2, 0.035, -4.5, 13.7, 1e-05, 8.9),
+"format": 34359738375,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("ZmamwClcDz3NzIxAMzMzQClcDz0AAIBAAACwQClcDz0AAIA/ZmamwClcDz3NzIxAAACwQClcDz0AAIA/mplZQClcDz0AAIDAZmamwClcDz3NzIxAmplZQClcDz0AAIDAAACAwClcDz0AAJDAZmamwClcDz3NzIxAAACAwClcDz0AAJDAMzMDwSlcDz0AAMC//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+/")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bm48b"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.46666667, 0.47058824, 0.40784314, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_b3xxt"]
+_surfaces = [{
+"aabb": AABB(-1.5, 0.045, 5.1, 2.9, 1e-05, 4.2999997),
+"format": 34359738375,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("MzOTv+xROD1mZhZBMzOTP+xROD1mZhZBMzOzP+xROD0zM6NAMzOTv+xROD1mZhZBMzOzP+xROD0zM6NAAADAv+xROD0zM6NA/3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+/")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kk3jr"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.46666667, 0.47058824, 0.40392157, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h7cm1"]
+_surfaces = [{
+"aabb": AABB(5.8, 0.08, -1.8, 6, 1e-05, 5.6),
+"format": 34359738375,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("ZmbGQArXoz3NzGxAZmY2QQrXoz0zM3NAzcw8QQrXoz3NzMy+ZmbGQArXoz3NzGxAzcw8QQrXoz3NzMy+AADgQArXoz1mZua/ZmbGQArXoz3NzGxAAADgQArXoz1mZua/mpm5QArXoz0AAAA//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+/")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_btf7b"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.5058824, 0.5137255, 0.47058824, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="SphereMesh" id="SphereMesh_2ohjn"]
+radius = 1.0
+height = 2.0
+radial_segments = 7
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oh0gy"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.5882353, 0.59607846, 0.5254902, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nd8uh"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.41960785, 0.44313726, 0.40392157, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ycane"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.34509805, 0.39215687, 0.35686275, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75bpu"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.29803923, 0.34901962, 0.3254902, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3jd1h"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.40392157, 0.4392157, 0.39215687, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q0tuy"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.36078432, 0.40392157, 0.36862746, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8yhe0"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.41960785, 0.45490196, 0.4, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1xn1e"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.30588236, 0.35686275, 0.3254902, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jltk2"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.24705882, 0.28627452, 0.27058825, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3nx5b"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.4627451, 0.5019608, 0.4509804, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7asjm"]
+top_radius = 0.0996968
+bottom_radius = 0.16509071
+height = 0.72215724
+radial_segments = 7
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3rfgf"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.31764707, 0.3647059, 0.3372549, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gd56p"]
+top_radius = 0.2350195
+bottom_radius = 0.08332364
+height = 1.2489612
+radial_segments = 7
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2qnll"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.5294118, 0.5647059, 0.5137255, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ua7ne"]
+top_radius = 0.04295376
+bottom_radius = 0.21959525
+height = 1.6915169
+radial_segments = 7
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t7k4c"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.39607844, 0.44313726, 0.40784314, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g0uu6"]
+top_radius = 0.10172845
+bottom_radius = 0.1591117
+height = 0.68742275
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nipxt"]
+top_radius = 0.273642
+bottom_radius = 0.08873605
+height = 0.8532263
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nsq8y"]
+top_radius = 0.049416065
+bottom_radius = 0.25527862
+height = 1.5493627
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_66nws"]
+top_radius = 0.061219744
+bottom_radius = 0.21756211
+height = 0.6208716
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_viq0n"]
+top_radius = 0.2443273
+bottom_radius = 0.10525386
+height = 1.4063342
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q6gcs"]
+top_radius = 0.11996196
+bottom_radius = 0.22485605
+height = 1.2933426
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wdw0e"]
+top_radius = 0.07021106
+bottom_radius = 0.27048388
+height = 1.3051946
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_oovk1"]
+top_radius = 0.18129054
+bottom_radius = 0.100437626
+height = 0.9175148
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dusfk"]
+top_radius = 0.103705965
+bottom_radius = 0.1740876
+height = 1.1718771
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_22ktp"]
+top_radius = 0.09826319
+bottom_radius = 0.16084671
+height = 1.5089338
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n2jlx"]
+top_radius = 0.2286356
+bottom_radius = 0.040137056
+height = 1.4804803
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u8axx"]
+top_radius = 0.04617118
+bottom_radius = 0.21760571
+height = 0.67907065
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qkj12"]
+top_radius = 0.05284495
+bottom_radius = 0.18661408
+height = 0.6801336
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4e1o0"]
+top_radius = 0.2762049
+bottom_radius = 0.06504814
+height = 1.476642
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8n7sk"]
+top_radius = 0.09816447
+bottom_radius = 0.17855647
+height = 0.9798416
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_okd45"]
+top_radius = 0.19054645
+bottom_radius = 0.061278813
+height = 0.7350099
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vcx8r"]
+top_radius = 0.044365004
+bottom_radius = 0.23284456
+height = 0.70866513
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xsdmj"]
+top_radius = 0.09805174
+bottom_radius = 0.16102853
+height = 1.7878692
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_skbef"]
+top_radius = 0.18687832
+bottom_radius = 0.07751611
+height = 1.2449167
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yqdki"]
+top_radius = 0.06089814
+bottom_radius = 0.13797846
+height = 0.6871011
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qn01b"]
+top_radius = 0.20895465
+bottom_radius = 0.1046578
+height = 0.7787782
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_04seo"]
+top_radius = 0.09196232
+bottom_radius = 0.24765
+height = 0.7532486
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l8omw"]
+top_radius = 0.09780085
+bottom_radius = 0.22510955
+height = 1.7956009
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_drv54"]
+top_radius = 0.05646082
+bottom_radius = 0.12624158
+height = 1.6308057
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r3g3m"]
+top_radius = 0.20826222
+bottom_radius = 0.08421655
+height = 1.1806962
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qkn7c"]
+top_radius = 0.119143285
+bottom_radius = 0.21082959
+height = 1.6553497
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_46ni1"]
+top_radius = 0.2566276
+bottom_radius = 0.10412103
+height = 1.2059085
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fribm"]
+top_radius = 0.054808125
+bottom_radius = 0.18330716
+height = 1.304225
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bhuhe"]
+top_radius = 0.06453128
+bottom_radius = 0.265523
+height = 1.4902656
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sgps7"]
+top_radius = 0.22110167
+bottom_radius = 0.07555214
+height = 1.0178392
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_asib4"]
+top_radius = 0.04332832
+bottom_radius = 0.26417163
+height = 0.5507606
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w6fas"]
+top_radius = 0.117470264
+bottom_radius = 0.12995999
+height = 1.2626826
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dv7w5"]
+top_radius = 0.18128806
+bottom_radius = 0.10377
+height = 1.194624
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jmh4m"]
+top_radius = 0.06663062
+bottom_radius = 0.13591564
+height = 1.5119972
+radial_segments = 7
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bljf6"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.1254902, 0.15686275, 0.13725491, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_62gfi"]
+size = Vector3(3.8, 3.7, 0.22)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_76hrs"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.54509807, 0.5686275, 0.5019608, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_h6vnt"]
+size = Vector3(2.6, 0.34, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qywtd"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.23137255, 0.3764706, 0.38431373, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_uyplh"]
+size = Vector3(1.9, 0.045, 1.42)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kgsep"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.3137255, 0.45490196, 0.46666667, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_6i84c"]
+size = Vector3(0.56, 0.58, 0.12)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ksxny"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.6117647, 0.627451, 0.5529412, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d52ow"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.4627451, 0.49019608, 0.4392157, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0r8q"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.19215687, 0.3372549, 0.35686275, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_ss0co"]
+size = Vector3(3.4, 0.06, 2.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x1t4i"]
+size = Vector3(3.16, 0.06, 2.08)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1bfxu"]
+size = Vector3(2.92, 0.06, 1.96)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rylp1"]
+size = Vector3(2.68, 0.06, 1.84)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_35vyq"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.76862746, 0.7529412, 0.64705884, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sb2x2"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.7307798
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvjb1"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.77254903, 0.7529412, 0.6431373, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gkemk"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.2784314, 0.27058825, 0.23921569, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_16roi"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.64545894
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jwtsn"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 1.1803831
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tptxs"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.7042079
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q5anp"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.8920306
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q38us"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.9595771
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wxcjn"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.6441862
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ypx6s"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 1.1566138
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fl8yx"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.68547684
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f3e7w"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.6047969
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ptd6o"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 1.0836099
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jhyfw"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.68649286
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_85pis"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.62393296
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_s63v6"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.65155417
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tsss8"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 1.1742511
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_e3bul"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.55529344
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tgv5o"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 1.047361
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gp38e"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 1.0304995
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_txkl1"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 1.0694696
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_asx48"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 1.045376
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4o4as"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.96056885
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vi8ta"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.77224267
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4nrbr"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.976196
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p25xi"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.66088647
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ift8v"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 1.1275629
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1wjpe"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.7176471, 0.69803923, 0.6039216, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_01xp0"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.28316748
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rwpu3"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.8156863, 0.78039217, 0.65882355, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qliip"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.5391249
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uqdrp"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.62352943, 0.6117647, 0.5294118, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_imiug"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.7449085
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rdi13"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.7347112
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sjq61"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.82944065
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kyu6v"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.55885905
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g77vr"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.5386094
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l0m7j"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.5637924
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_66x80"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.37787637
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hrrrn"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.58887506
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hd0kf"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.3311195
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_75bo1"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.550227
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kuu7f"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.53497803
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qpycd"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.74552065
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tio6y"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.4125324
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ls18y"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.5958757
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_55uyx"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.8075933
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hi45a"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.5636304
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qkgvt"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.51156574
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4jqnx"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.47471526
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wtiw3"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.70031846
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t51yo"]
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.84654284
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dkpt0"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.31764707, 0.3019608, 0.25882354, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kttgg"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.4, 0.3254902, 0.24313726, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pjswn"]
+top_radius = 0.13
+bottom_radius = 0.13
+height = 2.6
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8jmk"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.45882353, 0.36078432, 0.2627451, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8110w"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 3.2
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvixk"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.35686275, 0.29411766, 0.22745098, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_muadj"]
+top_radius = 0.11
+bottom_radius = 0.11
+height = 2.9
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7mnv"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.5019608, 0.39607844, 0.28235295, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xm2rq"]
+top_radius = 0.065
+bottom_radius = 0.065
+height = 1.4
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3txwn"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.44313726, 0.34901962, 0.2627451, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p2644"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.42745098, 0.32941177, 0.23137255, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_34ven"]
+size = Vector3(1.3, 0.16, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_76xfu"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.30980393, 0.2627451, 0.21568628, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_caqbg"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.12
+radial_segments = 12
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t3svu"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.5019608, 0.37254903, 0.24705882, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u72jr"]
+top_radius = 0.065
+bottom_radius = 0.065
+height = 1.3647343
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iq0p8"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.46666667, 0.48235294, 0.4392157, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjkq3"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.57254905, 0.57254905, 0.5254902, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bs747"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.39215687, 0.41960785, 0.38431373, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u7h2d"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.16078432, 0.30588236, 0.3372549, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_mlkno"]
+size = Vector3(7.2, 0.05, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j08vw"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.3647059, 0.41960785, 0.3882353, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i3eri"]
+top_radius = 0.039812885
+bottom_radius = 0.091992706
+height = 0.3855319
+radial_segments = 7
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swl6e"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.45882353, 0.5019608, 0.46666667, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rrb3q"]
+top_radius = 0.04324907
+bottom_radius = 0.1915248
+height = 0.44350302
+radial_segments = 7
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8k0rd"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.54509807, 0.5568628, 0.49411765, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q6jfy"]
+top_radius = 0.044518944
+bottom_radius = 0.20038298
+height = 1.2726393
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qdb8h"]
+top_radius = 0.063335545
+bottom_radius = 0.1628779
+height = 1.5085592
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qg71e"]
+top_radius = 0.0679668
+bottom_radius = 0.18517074
+height = 0.5200591
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dh0g3"]
+top_radius = 0.039022878
+bottom_radius = 0.08931466
+height = 0.48683012
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ckbrb"]
+top_radius = 0.054905504
+bottom_radius = 0.23232149
+height = 0.91198695
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ungu6"]
+top_radius = 0.048744462
+bottom_radius = 0.24152961
+height = 0.7018049
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bob2n"]
+top_radius = 0.077558145
+bottom_radius = 0.21623449
+height = 0.7021414
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_006pw"]
+top_radius = 0.064680874
+bottom_radius = 0.12196164
+height = 1.290294
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jjkuk"]
+top_radius = 0.058584586
+bottom_radius = 0.12666738
+height = 0.9087212
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fcpk3"]
+top_radius = 0.06578263
+bottom_radius = 0.16677703
+height = 0.810836
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lxvhs"]
+top_radius = 0.04641896
+bottom_radius = 0.116254866
+height = 1.1043739
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_58oq7"]
+top_radius = 0.049279552
+bottom_radius = 0.14863849
+height = 0.66743577
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nranf"]
+top_radius = 0.076738834
+bottom_radius = 0.12891307
+height = 1.2423966
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t4a8i"]
+top_radius = 0.041099563
+bottom_radius = 0.19713178
+height = 1.3479009
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_shx2h"]
+top_radius = 0.076955974
+bottom_radius = 0.089751795
+height = 1.3754011
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_utbdu"]
+top_radius = 0.0517852
+bottom_radius = 0.24553363
+height = 0.58263594
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q3tpv"]
+top_radius = 0.06862662
+bottom_radius = 0.14156282
+height = 1.1807512
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qmvnt"]
+top_radius = 0.07833444
+bottom_radius = 0.12849894
+height = 1.0588198
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h5ig0"]
+top_radius = 0.037463892
+bottom_radius = 0.08691764
+height = 0.6339976
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ohta8"]
+top_radius = 0.02712199
+bottom_radius = 0.15672812
+height = 1.4332852
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_545r3"]
+top_radius = 0.04399641
+bottom_radius = 0.13291161
+height = 0.80925107
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u2vii"]
+top_radius = 0.065271676
+bottom_radius = 0.24772362
+height = 1.4653318
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ib52t"]
+top_radius = 0.05766345
+bottom_radius = 0.20572701
+height = 1.0210431
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7p2nd"]
+top_radius = 0.064263016
+bottom_radius = 0.20132464
+height = 0.6856413
+radial_segments = 7
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j34kv"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.4745098, 0.3647059, 0.25882354, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_wvgrv"]
+size = Vector3(0.22, 0.12, 2.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jflnl"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.5372549, 0.4117647, 0.28235295, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7asie"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.4, 0.31764707, 0.23921569, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8cxl"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.11764706, 0.16078432, 0.15294118, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_otr6c"]
+size = Vector3(2.5, 0.06, 3.4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdaip"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.34901962, 0.39215687, 0.3529412, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_ty456"]
+size = Vector3(1.1, 3.3, 1.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vqwin"]
+render_priority = 0
+shader = ExtResource("1_fhrg4")
+shader_parameter/base_color = Color(0.29411766, 0.34117648, 0.30980393, 1)
+shader_parameter/toon_enabled = null
+shader_parameter/grain = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_c1wiq"]
+size = Vector3(3.8, 0.75, 1.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t3h72"]
+size = Vector3(2.1, 2.5, 0.08)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7jah5"]
+size = Vector3(1.9, 2.2, 1.2)
+
+[sub_resource type="Environment" id="Environment_2ssao"]
+background_mode = 1
+background_color = Color(0.09019608, 0.1254902, 0.11764706, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7176471, 0.77254903, 0.7411765, 1)
+ambient_light_energy = 0.48
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jy2u3"]
+render_priority = 0
+shader = ExtResource("3_fycw3")
+shader_parameter/outlines = null
+shader_parameter/highlights = null
+shader_parameter/pixel_size = null
+
+[sub_resource type="QuadMesh" id="QuadMesh_8x3hx"]
+size = Vector2(2, 2)
+
+[node name="BurialLeftCave" type="Node3D" unique_id=1152914828]
+metadata/reference_image = "E:/GameDev/openworldtest/resources/map/architecture乱葬岭左山洞/乱葬岭左山洞.png"
+metadata/player_height_reference = 1.86
+metadata/scene_id = "northern_root_cave"
+
+[node name="CaveTerrain" type="Node3D" parent="." unique_id=1240491622]
+
+[node name="CaveFloorSolid" type="MeshInstance3D" parent="CaveTerrain" unique_id=841803932]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38, -0.5)
+material_override = SubResource("ShaderMaterial_chmp1")
+mesh = SubResource("BoxMesh_dbciw")
+
+[node name="SavedWalkCollisions" type="StaticBody3D" parent="CaveTerrain" unique_id=148000962]
+
+[node name="CaveFloor" type="CollisionShape3D" parent="CaveTerrain/SavedWalkCollisions" unique_id=1992366750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38, -0.5)
+shape = SubResource("BoxShape3D_m1s5j")
+
+[node name="BackWall" type="CollisionShape3D" parent="CaveTerrain/SavedWalkCollisions" unique_id=620383043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10.4)
+shape = SubResource("BoxShape3D_2qwax")
+
+[node name="LeftWall" type="CollisionShape3D" parent="CaveTerrain/SavedWalkCollisions" unique_id=710798728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, 2, -1)
+shape = SubResource("BoxShape3D_inccb")
+
+[node name="RightWall" type="CollisionShape3D" parent="CaveTerrain/SavedWalkCollisions" unique_id=1550958893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4, 2, -1)
+shape = SubResource("BoxShape3D_8uawk")
+
+[node name="MainWornStoneFloor" type="MeshInstance3D" parent="CaveTerrain" unique_id=531824870]
+material_override = SubResource("ShaderMaterial_64b57")
+mesh = SubResource("ArrayMesh_54bjm")
+
+[node name="BurialLoamPatch" type="MeshInstance3D" parent="CaveTerrain" unique_id=1799847148]
+material_override = SubResource("ShaderMaterial_lh8cc")
+mesh = SubResource("ArrayMesh_kji7b")
+
+[node name="EntryWornRamp" type="MeshInstance3D" parent="CaveTerrain" unique_id=154536247]
+material_override = SubResource("ShaderMaterial_bm48b")
+mesh = SubResource("ArrayMesh_b3xxt")
+
+[node name="RightWorkShelf" type="MeshInstance3D" parent="CaveTerrain" unique_id=1099217642]
+material_override = SubResource("ShaderMaterial_kk3jr")
+mesh = SubResource("ArrayMesh_h7cm1")
+
+[node name="ScatteredCaveGrit" type="Node3D" parent="CaveTerrain" unique_id=753930952]
+
+[node name="HalfBuriedShale" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1694270990]
+transform = Transform3D(-0.09926536, 0, 0.08733884, 0, 0.06628616, 0, -0.090939, 0, -0.09533557, -7.4185534, 0.08594574, -6.8455906)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale2" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1752886573]
+transform = Transform3D(0.06679313, 0, 0.12603389, 0, 0.053386554, 0, -0.08542966, 0, 0.09853952, -1.6738567, 0.105988264, -0.9857669)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale3" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=774174956]
+transform = Transform3D(-0.1709631, 0, -0.024861256, 0, 0.04605384, 0, 0.062960036, 0, -0.06750882, 10.483133, 0.08115813, 7.190318)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale4" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1902257419]
+transform = Transform3D(-0.006290406, 0, -0.15855287, 0, 0.04719852, 0, 0.21678708, 0, -0.004600652, 0.32073402, 0.10313864, 4.2736444)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale5" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=411555738]
+transform = Transform3D(-0.14050528, 0, 0.10370099, 0, 0.06727254, 0, -0.12116372, 0, -0.12025495, 9.256456, 0.09648091, -3.4620786)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale6" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1715022196]
+transform = Transform3D(-0.11309233, 0, -0.08857787, 0, 0.027488437, 0, 0.07607345, 0, -0.13168164, -3.048915, 0.10617784, -2.5070543)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale7" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=939133444]
+transform = Transform3D(0.03800913, 0, -0.058824778, 0, 0.06356914, 0, 0.19359998, 0, 0.01154896, 9.738148, 0.106211804, -0.5997577)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale8" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=798834331]
+transform = Transform3D(-0.015022628, 0, -0.1325743, 0, 0.061920784, 0, 0.17752872, 0, -0.011218548, 9.063101, 0.08026406, 5.943158)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale9" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=876340011]
+transform = Transform3D(0.03229242, 0, -0.06614511, 0, 0.029727364, 0, 0.09876846, 0, 0.02162619, 5.3478937, 0.09016398, 2.7383165)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale10" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=2106175514]
+transform = Transform3D(0.025070447, 0, 0.07378492, 0, 0.025193198, 0, -0.082391106, 0, 0.022451708, -9.7491045, 0.11311743, -0.5976567)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale11" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1232447379]
+transform = Transform3D(0.1132634, 0, 0.09695902, 0, 0.033308707, 0, -0.085809566, 0, 0.12798, 5.4346027, 0.0978392, 5.5973063)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale12" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=286788568]
+transform = Transform3D(0.13617967, 0, 0.04736018, 0, 0.029072165, 0, -0.10450468, 0, 0.06171488, 2.5000181, 0.11454301, 0.058087826)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale13" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1281890796]
+transform = Transform3D(-0.019618526, 0, -0.09691363, 0, 0.044080786, 0, 0.077662826, 0, -0.024481501, 5.4385996, 0.10959757, 2.327898)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale14" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1260368043]
+transform = Transform3D(0.059188746, 0, 0.022379262, 0, 0.04549324, 0, -0.027430408, 0, 0.04828949, -2.1083431, 0.109704055, 4.5355215)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale15" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1390505069]
+transform = Transform3D(-0.13713834, 0, 0.08515473, 0, 0.05173012, 0, -0.07593389, 0, -0.15379137, 4.074503, 0.107636884, -0.66498566)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale16" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=83633570]
+transform = Transform3D(0.086818285, 0, -0.12147733, 0, 0.05884944, 0, 0.11805352, 0, 0.0893362, 9.072224, 0.08076868, 1.3678379)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale17" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1042094090]
+transform = Transform3D(0.1463712, 0, 0.040588398, 0, 0.030643545, 0, -0.04457121, 0, 0.13329169, -10.28713, 0.10103042, -1.5816507)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale18" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=110615790]
+transform = Transform3D(-0.2004275, 0, 0.024924167, 0, 0.056229632, 0, -0.05008868, 0, -0.099732876, -3.1596532, 0.11194795, 4.483737)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale19" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1728917776]
+transform = Transform3D(-0.074241884, 0, -0.04692515, 0, 0.045066968, 0, 0.03342759, 0, -0.104219645, 2.761157, 0.10138512, -5.5077477)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale20" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1230524476]
+transform = Transform3D(-0.12437672, 0, 0.04384194, 0, 0.035480212, 0, -0.09544073, 0, -0.057134062, -9.842062, 0.11319027, -0.9720464)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale21" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1454542604]
+transform = Transform3D(-0.13769124, 0, 0.034824573, 0, 0.069349274, 0, -0.12767914, 0, -0.037555378, -10.3310585, 0.11146453, -6.9609556)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale22" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1199579979]
+transform = Transform3D(-0.024748838, 0, -0.06837115, 0, 0.04054463, 0, 0.18302862, 0, -0.009245037, -3.3527436, 0.081302464, 5.388281)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale23" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=538604464]
+transform = Transform3D(0.027449327, 0, 0.08552711, 0, 0.05066712, 0, -0.104131706, 0, 0.022545116, -0.4354, 0.09663123, 3.8332396)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale24" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=2031882317]
+transform = Transform3D(0.056629542, 0, 0.081529826, 0, 0.05454085, 0, -0.100265935, 0, 0.046047512, -7.2252326, 0.111523844, -7.5787315)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale25" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1918200525]
+transform = Transform3D(-0.13997315, 0, -0.014837035, 0, 0.04578627, 0, 0.016957808, 0, -0.12246787, -9.320861, 0.08840117, -4.3930235)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale26" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1437242413]
+transform = Transform3D(-0.1078654, 0, 0.0015070263, 0, 0.06871652, 0, -0.0014906495, 0, -0.109050445, 6.7251015, 0.10298127, -1.0754523)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale27" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=916384216]
+transform = Transform3D(0.009873103, 0, 0.17974295, 0, 0.048948377, 0, -0.21611859, 0, 0.008211329, -0.5415535, 0.088093854, -2.1015038)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale28" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1192781441]
+transform = Transform3D(-0.03916025, 0, 0.05155737, 0, 0.02655713, 0, -0.15766962, 0, -0.012805254, -9.947926, 0.10933674, -0.90895224)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale29" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1767691263]
+transform = Transform3D(-0.023307433, 0, -0.14547697, 0, 0.055535316, 0, 0.1946182, 0, -0.01742229, 1.0395727, 0.08246805, -2.9441867)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale30" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=142904370]
+transform = Transform3D(0.0605093, 0, 0.08274379, 0, 0.040043026, 0, -0.039131142, 0, 0.12794843, 1.2429657, 0.10271159, 3.0702715)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale31" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=2025361571]
+transform = Transform3D(-0.10192248, 0, -0.006418713, 0, 0.059157558, 0, 0.0048907734, 0, -0.13376436, -2.1991253, 0.106369324, -6.6341677)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale32" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1753657829]
+transform = Transform3D(0.0337817, 0, -0.13857187, 0, 0.059897274, 0, 0.10224788, 0, 0.045782793, 1.7160234, 0.08607132, 0.16240406)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale33" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=162580750]
+transform = Transform3D(-0.008777525, 0, -0.0925648, 0, 0.064422496, 0, 0.09494455, 0, -0.008557519, -3.7208056, 0.100205705, -5.561366)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale34" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=124953297]
+transform = Transform3D(0.007905353, 0, 0.13033475, 0, 0.055087306, 0, -0.13355553, 0, 0.0077147097, 7.1798477, 0.083260514, -0.2179842)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale35" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1738173333]
+transform = Transform3D(0.05751168, 0, -0.11158046, 0, 0.06788134, 0, 0.08535769, 0, 0.07517987, -2.0856209, 0.09502215, 3.256917)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale36" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1932967716]
+transform = Transform3D(-0.14036345, 0, -0.0046092183, 0, 0.05363752, 0, 0.008755277, 0, -0.07389439, 0.27024746, 0.10573046, 1.0374422)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale37" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1029440532]
+transform = Transform3D(0.07436083, 0, 0.11231683, 0, 0.05839563, 0, -0.12090289, 0, 0.06908001, -1.7854881, 0.112980396, 4.3350286)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale38" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1133839626]
+transform = Transform3D(-0.10625259, 0, 0.076338455, 0, 0.042314664, 0, -0.15664938, 0, -0.051779065, -5.34137, 0.08643706, -4.8743157)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale39" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1342663798]
+transform = Transform3D(-0.05039872, 0, 0.15041903, 0, 0.054131377, 0, -0.09515729, 0, -0.079667315, 10.301899, 0.0871542, 4.2280483)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale40" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=983798150]
+transform = Transform3D(0.04940902, 0, 0.05692666, 0, 0.04864312, 0, -0.14801534, 0, 0.019002698, -10.352451, 0.10182499, -6.7017875)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale41" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=2057666254]
+transform = Transform3D(-0.10668102, 0, 0.12511142, 0, 0.052123055, 0, -0.13369928, 0, -0.09982861, -3.8054466, 0.09976789, -4.8575783)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale42" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1600322068]
+transform = Transform3D(-0.0043066083, 0, -0.117109254, 0, 0.06318147, 0, 0.096627034, 0, -0.0052194884, 6.6984234, 0.088705935, -3.7984028)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale43" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1081543880]
+transform = Transform3D(0.12242373, 0, 0.035555128, 0, 0.06503292, 0, -0.060744878, 0, 0.07165693, -9.276599, 0.086405024, -5.054228)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale44" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=678444319]
+transform = Transform3D(-0.024348212, 0, 0.07943481, 0, 0.049907614, 0, -0.066464104, 0, -0.029099856, 8.654455, 0.09589551, -6.903616)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale45" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1958466429]
+transform = Transform3D(0.052773748, 0, -0.02618203, 0, 0.036316037, 0, 0.031659827, 0, 0.04364281, 1.5817804, 0.09950776, 2.6250343)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale46" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=565013128]
+transform = Transform3D(0.021573858, 0, -0.15349124, 0, 0.039603166, 0, 0.18268399, 0, 0.018126374, -7.0113077, 0.110786386, -5.1529207)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale47" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=2003344458]
+transform = Transform3D(0.122135244, 0, 0.06915773, 0, 0.06393817, 0, -0.053323846, 0, 0.15840185, 2.7750149, 0.10661041, -4.366268)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale48" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=242998914]
+transform = Transform3D(0.10947188, 0, 0.011645276, 0, 0.052706257, 0, -0.019654552, 0, 0.06486183, -2.8105316, 0.098600246, 6.164631)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale49" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1443174786]
+transform = Transform3D(0.14373377, 0, 0.0853214, 0, 0.06934184, 0, -0.09781244, 0, 0.12537839, 3.6909103, 0.080185, 7.3994637)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale50" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1522200472]
+transform = Transform3D(0.08112458, 0, -0.1298953, 0, 0.06963402, 0, 0.09465201, 0, 0.11133098, 10.223656, 0.107509956, 1.9991951)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale51" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1139443776]
+transform = Transform3D(0.063033834, 0, -0.048932385, 0, 0.032281287, 0, 0.11513825, 0, 0.026788628, 0.8707142, 0.09442276, 7.027978)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale52" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=306009959]
+transform = Transform3D(-0.06648526, 0, -0.025151866, 0, 0.058837257, 0, 0.034414228, 0, -0.048591197, 4.011016, 0.11152678, 1.9406967)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale53" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1045585387]
+transform = Transform3D(-0.19184841, 0, -0.033053745, 0, 0.06190434, 0, 0.094603114, 0, -0.06703065, -1.8448334, 0.108485796, -2.2551594)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale54" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=932023604]
+transform = Transform3D(0.15163574, 0, 0.04748136, 0, 0.053555094, 0, -0.047076717, 0, 0.15293911, 1.3196421, 0.103676334, -2.760303)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale55" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=343110345]
+transform = Transform3D(0.16981877, 0, 0.010441603, 0, 0.06820241, 0, -0.025728198, 0, 0.068919726, 9.2316265, 0.09467173, -1.911211)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale56" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=905167445]
+transform = Transform3D(-0.008449085, 0, -0.1788554, 0, 0.028362162, 0, 0.16486344, 0, -0.009166159, 0.0141887665, 0.08643068, -4.5301456)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale57" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1331278964]
+transform = Transform3D(-0.062203612, 0, 0.09860045, 0, 0.03199407, 0, -0.0901792, 0, -0.0680124, -9.109144, 0.09231656, -0.35296917)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale58" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1864311083]
+transform = Transform3D(-0.047916282, 0, 0.09727424, 0, 0.033867814, 0, -0.15417674, 0, -0.030231664, 10.316347, 0.09167211, 5.1616564)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale59" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1407414508]
+transform = Transform3D(0.09369074, 0, -0.05403592, 0, 0.058374733, 0, 0.06536093, 0, 0.077457055, -1.970726, 0.09277904, -4.9832306)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale60" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1953570229]
+transform = Transform3D(-0.05859423, 0, 0.08676941, 0, 0.041872874, 0, -0.20983414, 0, -0.024229549, -5.8249106, 0.08632308, -3.234734)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale61" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=500752064]
+transform = Transform3D(0.1302895, 0, 0.060871862, 0, 0.046922825, 0, -0.10385307, 0, 0.076367155, 5.803009, 0.08461422, -2.4599771)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale62" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=178114642]
+transform = Transform3D(-0.008027513, 0, -0.16623929, 0, 0.068582006, 0, 0.11627821, 0, -0.0114766825, 8.126852, 0.09014233, -5.126625)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale63" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=416221630]
+transform = Transform3D(0.07502906, 0, -0.048405215, 0, 0.036317557, 0, 0.030045327, 0, 0.120877296, 9.669807, 0.09252109, 4.875105)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale64" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=189774115]
+transform = Transform3D(-0.09526576, 0, 0.05633407, 0, 0.025567729, 0, -0.067035116, 0, -0.08005816, -8.335261, 0.098569766, -0.4644146)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale65" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1981560434]
+transform = Transform3D(-0.02007731, 0, 0.082305185, 0, 0.033060975, 0, -0.21151148, 0, -0.007812658, 5.403473, 0.08361007, 1.5614243)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale66" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1114698693]
+transform = Transform3D(-0.14587742, 0, 0.009641994, 0, 0.03290899, 0, -0.016068857, 0, -0.087532625, 3.115469, 0.0872326, -1.47012)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale67" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1362764309]
+transform = Transform3D(-0.14037886, 0, -0.029889213, 0, 0.04928423, 0, 0.0726677, 0, -0.05773973, 4.4399185, 0.08471535, 1.058383)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale68" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=488102748]
+transform = Transform3D(-0.10070465, 0, 0.06679257, 0, 0.050485194, 0, -0.052403938, 0, -0.1283553, -5.633826, 0.11125238, 0.830884)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale69" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=706549969]
+transform = Transform3D(-0.10141528, 0, -0.024664732, 0, 0.043818984, 0, 0.014859165, 0, -0.16833924, -3.3548384, 0.09021179, -1.0764399)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale70" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1867542021]
+transform = Transform3D(0.03002684, 0, 0.10639829, 0, 0.062423706, 0, -0.13777699, 0, 0.02318823, -2.1719246, 0.08735596, -0.010242462)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale71" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=2138115618]
+transform = Transform3D(-0.010623438, 0, 0.10658815, 0, 0.060273007, 0, -0.17548247, 0, -0.0064526824, 0.63612366, 0.11237149, -4.240103)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale72" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1687695645]
+transform = Transform3D(-0.06627496, 0, 0.08083282, 0, 0.02567464, 0, -0.040846944, 0, -0.13115282, 0.031253815, 0.084673434, -2.592732)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale73" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1260875164]
+transform = Transform3D(-0.113764055, 0, 0.10710925, 0, 0.033269502, 0, -0.1642675, 0, -0.074178904, 1.8517303, 0.10442393, 6.936262)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale74" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=923546634]
+transform = Transform3D(-0.036790736, 0, -0.125395, 0, 0.06368241, 0, 0.105351776, 0, -0.043790195, 8.156704, 0.09087882, -6.41918)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale75" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=814753675]
+transform = Transform3D(-0.08034608, 0, -0.043797046, 0, 0.057244062, 0, 0.073120534, 0, -0.04812493, 1.1167192, 0.08890104, -0.8777027)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale76" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1999555147]
+transform = Transform3D(-0.06080828, 0, -0.12132411, 0, 0.03686159, 0, 0.12511782, 0, -0.058964506, 8.161221, 0.103434555, 1.1903334)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale77" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=563900092]
+transform = Transform3D(0.03440389, 0, 0.1600018, 0, 0.056662112, 0, -0.14952187, 0, 0.036815245, -0.31975365, 0.10854696, 2.031848)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale78" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=2065639473]
+transform = Transform3D(-0.036826145, 0, 0.14257614, 0, 0.034506314, 0, -0.08246859, 0, -0.06366703, -1.6495085, 0.1040746, 4.2400255)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale79" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1746113309]
+transform = Transform3D(-0.12815735, 0, 0.13685855, 0, 0.065738484, 0, -0.16654333, 0, -0.10531451, 0.49217033, 0.08787026, 3.3395166)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale80" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=150361613]
+transform = Transform3D(0.17611302, 0, 0.066944145, 0, 0.032225206, 0, -0.0980816, 0, 0.12020334, 8.284481, 0.09328499, -2.5424967)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale81" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1199979824]
+transform = Transform3D(-0.067710996, 0, -0.039256167, 0, 0.055181436, 0, 0.07263604, 0, -0.036594428, -10.008884, 0.113185935, -0.037160873)
+material_override = SubResource("ShaderMaterial_nd8uh")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale82" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=313916964]
+transform = Transform3D(0.09784511, 0, -0.1344749, 0, 0.043905944, 0, 0.11406222, 0, 0.115355566, 5.648161, 0.082082786, 2.2854567)
+material_override = SubResource("ShaderMaterial_btf7b")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="HalfBuriedShale83" type="MeshInstance3D" parent="CaveTerrain/ScatteredCaveGrit" unique_id=1271435126]
+transform = Transform3D(0.028732952, 0, -0.15839487, 0, 0.06589451, 0, 0.16673501, 0, 0.027295724, 1.3752661, 0.09914628, -1.8401403)
+material_override = SubResource("ShaderMaterial_oh0gy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="CaveRockShell" type="Node3D" parent="." unique_id=1778449513]
+
+[node name="BackWallRock" type="MeshInstance3D" parent="CaveRockShell" unique_id=773664028]
+transform = Transform3D(1.2435365, 0.060112584, 0, -0.025073914, 2.9812734, 0, 0, 0, 0.9071992, -12.274936, 2.3798738, -10.279082)
+material_override = SubResource("ShaderMaterial_ycane")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock2" type="MeshInstance3D" parent="CaveRockShell" unique_id=1544241086]
+transform = Transform3D(1.4577507, 0.115952045, 0, -0.0777098, 2.1751332, 0, 0, 0, 0.9111492, -9.851877, 2.1883392, -10.050178)
+material_override = SubResource("ShaderMaterial_75bpu")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock3" type="MeshInstance3D" parent="CaveRockShell" unique_id=99443319]
+transform = Transform3D(1.5319047, 0.007699865, 0, -0.006497539, 1.8153734, 0, 0, 0, 0.92621017, -7.774511, 2.3475523, -9.972662)
+material_override = SubResource("ShaderMaterial_3jd1h")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock4" type="MeshInstance3D" parent="CaveRockShell" unique_id=899183864]
+transform = Transform3D(1.4703791, 0.12902871, 0, -0.06499335, 2.919085, 0, 0, 0, 1.0703367, -6.243449, 2.4259102, -10.2093935)
+material_override = SubResource("ShaderMaterial_ycane")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock5" type="MeshInstance3D" parent="CaveRockShell" unique_id=1789299420]
+transform = Transform3D(1.1051474, 0.09901224, 0, -0.035317373, 3.09828, 0, 0, 0, 1.3290796, -3.7383752, 2.0977604, -9.993733)
+material_override = SubResource("ShaderMaterial_75bpu")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock6" type="MeshInstance3D" parent="CaveRockShell" unique_id=15842024]
+transform = Transform3D(1.3406081, -0.3702222, 0, 0.1563416, 3.1746056, 0, 0, 0, 0.8926607, -2.180347, 2.4132166, -10.0915)
+material_override = SubResource("ShaderMaterial_3jd1h")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock7" type="MeshInstance3D" parent="CaveRockShell" unique_id=698767456]
+transform = Transform3D(1.6329621, -0.24778439, 0, 0.19677302, 2.0562909, 0, 0, 0, 1.2362407, 0.055612087, 2.2636538, -10.032867)
+material_override = SubResource("ShaderMaterial_ycane")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock8" type="MeshInstance3D" parent="CaveRockShell" unique_id=2096421189]
+transform = Transform3D(1.2126937, -0.2454117, 0, 0.123661906, 2.4066362, 0, 0, 0, 1.1098337, 2.2210083, 2.5647688, -10.366579)
+material_override = SubResource("ShaderMaterial_75bpu")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock9" type="MeshInstance3D" parent="CaveRockShell" unique_id=910485643]
+transform = Transform3D(1.4085338, -0.14541985, 0, 0.11050258, 1.8536108, 0, 0, 0, 1.21682, 4.010166, 2.601993, -10.141433)
+material_override = SubResource("ShaderMaterial_3jd1h")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock10" type="MeshInstance3D" parent="CaveRockShell" unique_id=265186105]
+transform = Transform3D(1.3605273, -0.058846883, 0, 0.041184627, 1.943997, 0, 0, 0, 0.9404789, 6.1086698, 2.0595613, -10.343159)
+material_override = SubResource("ShaderMaterial_ycane")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock11" type="MeshInstance3D" parent="CaveRockShell" unique_id=473908601]
+transform = Transform3D(1.3329867, 0.22974019, 0, -0.09984238, 3.067241, 0, 0, 0, 1.3363957, 7.9609957, 2.3979805, -10.007539)
+material_override = SubResource("ShaderMaterial_75bpu")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock12" type="MeshInstance3D" parent="CaveRockShell" unique_id=1023816906]
+transform = Transform3D(1.2485366, 0.30411142, 0, -0.12049477, 3.1511261, 0, 0, 0, 0.8586417, 9.899545, 2.4001458, -9.91864)
+material_override = SubResource("ShaderMaterial_3jd1h")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BackWallRock13" type="MeshInstance3D" parent="CaveRockShell" unique_id=1991465769]
+transform = Transform3D(1.1321832, -0.1454375, 0, 0.07383975, 2.22999, 0, 0, 0, 1.0943689, 11.828353, 2.33838, -10.11167)
+material_override = SubResource("ShaderMaterial_ycane")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock" type="MeshInstance3D" parent="CaveRockShell" unique_id=1850875089]
+transform = Transform3D(1.3331143, -0.048801765, 0, 0.022317147, 2.9151723, 0, 0, 0, 1.2854636, -12.108742, 2.5045557, 7.5)
+material_override = SubResource("ShaderMaterial_q0tuy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock2" type="MeshInstance3D" parent="CaveRockShell" unique_id=384079736]
+transform = Transform3D(1.3759762, -0.16119574, 0, 0.09778624, 2.268228, 0, 0, 0, 1.116044, -11.818226, 1.5105405, 5.1)
+material_override = SubResource("ShaderMaterial_8yhe0")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock3" type="MeshInstance3D" parent="CaveRockShell" unique_id=592212870]
+transform = Transform3D(1.1859177, 0.18491639, 0, -0.090244785, 2.430009, 0, 0, 0, 1.0382528, -12.052313, 1.8463862, 2.7)
+material_override = SubResource("ShaderMaterial_1xn1e")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock4" type="MeshInstance3D" parent="CaveRockShell" unique_id=733861251]
+transform = Transform3D(1.287076, -0.14977667, 0, 0.06192636, 3.1129549, 0, 0, 0, 1.6429622, -12.465481, 2.7696905, 0.3)
+material_override = SubResource("ShaderMaterial_q0tuy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock5" type="MeshInstance3D" parent="CaveRockShell" unique_id=1256423748]
+transform = Transform3D(1.7200849, 0.32240286, 0, -0.20598103, 2.6922882, 0, 0, 0, 1.4014022, -12.226525, 2.62964, -2.1)
+material_override = SubResource("ShaderMaterial_8yhe0")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock6" type="MeshInstance3D" parent="CaveRockShell" unique_id=605189904]
+transform = Transform3D(1.6454952, 0.15207486, 0, -0.10021108, 2.4971135, 0, 0, 0, 1.0019116, -12.358656, 1.8468313, -4.5)
+material_override = SubResource("ShaderMaterial_1xn1e")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock7" type="MeshInstance3D" parent="CaveRockShell" unique_id=1343864895]
+transform = Transform3D(1.0340573, -0.118079595, 0, 0.058172338, 2.098954, 0, 0, 0, 1.2493699, -12.161413, 1.6024424, -6.9)
+material_override = SubResource("ShaderMaterial_q0tuy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock8" type="MeshInstance3D" parent="CaveRockShell" unique_id=1135265120]
+transform = Transform3D(1.5638037, 0.1608108, 0, -0.10304026, 2.4405656, 0, 0, 0, 1.5638363, -11.819158, 2.7403533, -9.3)
+material_override = SubResource("ShaderMaterial_8yhe0")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock9" type="MeshInstance3D" parent="CaveRockShell" unique_id=1988435745]
+transform = Transform3D(1.133973, -0.26745632, 0, 0.0921159, 3.292464, 0, 0, 0, 1.3597236, 12.572367, 2.2237198, 7.5)
+material_override = SubResource("ShaderMaterial_q0tuy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock10" type="MeshInstance3D" parent="CaveRockShell" unique_id=1299070093]
+transform = Transform3D(1.6192172, -0.29455417, 0, 0.1644588, 2.9001012, 0, 0, 0, 1.4231184, 12.077436, 1.5704932, 5.1)
+material_override = SubResource("ShaderMaterial_8yhe0")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock11" type="MeshInstance3D" parent="CaveRockShell" unique_id=730078054]
+transform = Transform3D(1.2518108, 0.118031904, 0, -0.08412688, 1.7563186, 0, 0, 0, 1.6157116, 12.540613, 1.9800296, 2.7)
+material_override = SubResource("ShaderMaterial_1xn1e")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock12" type="MeshInstance3D" parent="CaveRockShell" unique_id=1223622475]
+transform = Transform3D(1.3563226, 0.095849216, 0, -0.050272305, 2.5859659, 0, 0, 0, 1.3319124, 12.251118, 2.5473266, 0.3)
+material_override = SubResource("ShaderMaterial_q0tuy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock13" type="MeshInstance3D" parent="CaveRockShell" unique_id=1382541072]
+transform = Transform3D(1.601456, 0.12565553, 0, -0.09278093, 2.168892, 0, 0, 0, 1.5023986, 11.931631, 2.2115846, -2.1)
+material_override = SubResource("ShaderMaterial_8yhe0")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock14" type="MeshInstance3D" parent="CaveRockShell" unique_id=2015922322]
+transform = Transform3D(1.4988211, 0.10798572, 0, -0.100767136, 1.6061912, 0, 0, 0, 1.0181173, 12.045395, 2.4056602, -4.5)
+material_override = SubResource("ShaderMaterial_1xn1e")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock15" type="MeshInstance3D" parent="CaveRockShell" unique_id=272736069]
+transform = Transform3D(1.0769402, -0.22741963, 0, 0.08646756, 2.8324769, 0, 0, 0, 1.7998395, 12.119425, 2.8262591, -6.9)
+material_override = SubResource("ShaderMaterial_q0tuy")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SideCaveRock16" type="MeshInstance3D" parent="CaveRockShell" unique_id=1840010901]
+transform = Transform3D(1.5614432, 0.14827847, 0, -0.12664865, 1.828116, 0, 0, 0, 1.0562122, 11.805839, 2.3143501, -9.3)
+material_override = SubResource("ShaderMaterial_8yhe0")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="LowCeilingFragments" type="Node3D" parent="CaveRockShell" unique_id=1295052464]
+
+[node name="CeilingRockMass" type="MeshInstance3D" parent="CaveRockShell/LowCeilingFragments" unique_id=439622447]
+transform = Transform3D(3.4, 0, 0, 0, 0.8, 0, 0, 0, 2, -8, 5, -7.8)
+material_override = SubResource("ShaderMaterial_jltk2")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="CeilingRockMass2" type="MeshInstance3D" parent="CaveRockShell/LowCeilingFragments" unique_id=593734949]
+transform = Transform3D(3.4, 0, 0, 0, 0.8, 0, 0, 0, 2, -2, 5.4, -9)
+material_override = SubResource("ShaderMaterial_jltk2")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="CeilingRockMass3" type="MeshInstance3D" parent="CaveRockShell/LowCeilingFragments" unique_id=1951138147]
+transform = Transform3D(3.4, 0, 0, 0, 0.8, 0, 0, 0, 2, 4, 5.2, -8)
+material_override = SubResource("ShaderMaterial_jltk2")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="CeilingRockMass4" type="MeshInstance3D" parent="CaveRockShell/LowCeilingFragments" unique_id=1919228366]
+transform = Transform3D(3.4, 0, 0, 0, 0.8, 0, 0, 0, 2, 9, 4.7, -6.8)
+material_override = SubResource("ShaderMaterial_jltk2")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="CeilingRockMass5" type="MeshInstance3D" parent="CaveRockShell/LowCeilingFragments" unique_id=1826999921]
+transform = Transform3D(3.4, 0, 0, 0, 0.8, 0, 0, 0, 2, -10, 4.5, -3)
+material_override = SubResource("ShaderMaterial_jltk2")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="CeilingRockMass6" type="MeshInstance3D" parent="CaveRockShell/LowCeilingFragments" unique_id=1636785905]
+transform = Transform3D(3.4, 0, 0, 0, 0.8, 0, 0, 0, 2, 11, 4.6, 1)
+material_override = SubResource("ShaderMaterial_jltk2")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="StalactiteAndStalagmiteField" type="Node3D" parent="CaveRockShell" unique_id=302879333]
+
+[node name="Stalagmite" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=623630534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.175087, 0.36107862, -4.1764235)
+material_override = SubResource("ShaderMaterial_3nx5b")
+mesh = SubResource("CylinderMesh_7asjm")
+
+[node name="Stalactite" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1842768505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.995087, 3.9755194, -4.0564237)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_gd56p")
+
+[node name="Stalagmite2" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1951881721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9291897, 0.84575844, -7.078206)
+material_override = SubResource("ShaderMaterial_2qnll")
+mesh = SubResource("CylinderMesh_ua7ne")
+
+[node name="Stalagmite3" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=558954448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.876421, 0.34371138, -7.4404197)
+material_override = SubResource("ShaderMaterial_t7k4c")
+mesh = SubResource("CylinderMesh_g0uu6")
+
+[node name="Stalactite2" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1655235456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.696421, 4.173387, -7.32042)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_nipxt")
+
+[node name="Stalagmite4" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=589238031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.668951, 0.7746813, 4.508196)
+material_override = SubResource("ShaderMaterial_3nx5b")
+mesh = SubResource("CylinderMesh_nsq8y")
+
+[node name="Stalagmite5" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=416927203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.873171, 0.3104358, 5.5846357)
+material_override = SubResource("ShaderMaterial_2qnll")
+mesh = SubResource("CylinderMesh_66nws")
+
+[node name="Stalactite3" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1346144216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0531707, 3.896833, 5.7046356)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_viq0n")
+
+[node name="Stalagmite6" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1462801007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4877677, 0.6466713, 4.940093)
+material_override = SubResource("ShaderMaterial_t7k4c")
+mesh = SubResource("CylinderMesh_q6gcs")
+
+[node name="Stalagmite7" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=843819946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.800055, 0.6525973, -4.7941947)
+material_override = SubResource("ShaderMaterial_3nx5b")
+mesh = SubResource("CylinderMesh_wdw0e")
+
+[node name="Stalactite4" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1813731039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.980055, 4.1412425, -4.674195)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_oovk1")
+
+[node name="Stalagmite8" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1573248553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4968967, 0.5859386, 7.029767)
+material_override = SubResource("ShaderMaterial_2qnll")
+mesh = SubResource("CylinderMesh_dusfk")
+
+[node name="Stalagmite9" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=432763011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.710952, 0.7544669, -7.2645903)
+material_override = SubResource("ShaderMaterial_t7k4c")
+mesh = SubResource("CylinderMesh_22ktp")
+
+[node name="Stalactite5" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=2007808631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.530952, 3.8597598, -7.1445904)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_n2jlx")
+
+[node name="Stalagmite10" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1186840769]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.292757, 0.33953533, 0.6717844)
+material_override = SubResource("ShaderMaterial_3nx5b")
+mesh = SubResource("CylinderMesh_u8axx")
+
+[node name="Stalagmite11" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1079367659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.201174, 0.3400668, -4.7552257)
+material_override = SubResource("ShaderMaterial_2qnll")
+mesh = SubResource("CylinderMesh_qkj12")
+
+[node name="Stalactite6" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=302887076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.381174, 3.861679, -4.635226)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_4e1o0")
+
+[node name="Stalagmite12" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=3478158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.421954, 0.4899208, 4.932475)
+material_override = SubResource("ShaderMaterial_3nx5b")
+mesh = SubResource("CylinderMesh_8n7sk")
+
+[node name="Stalactite7" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1503157073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.241954, 4.232495, 5.052475)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_okd45")
+
+[node name="Stalagmite13" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=941348446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55413, 0.35433257, -5.76267)
+material_override = SubResource("ShaderMaterial_2qnll")
+mesh = SubResource("CylinderMesh_vcx8r")
+
+[node name="Stalagmite14" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1121271369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.318543, 0.8939346, -6.0289583)
+material_override = SubResource("ShaderMaterial_t7k4c")
+mesh = SubResource("CylinderMesh_xsdmj")
+
+[node name="Stalactite8" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1990974412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.138543, 3.9775417, -5.9089584)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_skbef")
+
+[node name="Stalagmite15" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=428845890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.185362, 0.34355056, 6.0400467)
+material_override = SubResource("ShaderMaterial_2qnll")
+mesh = SubResource("CylinderMesh_yqdki")
+
+[node name="Stalactite9" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1796741434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3653617, 4.210611, 6.1600466)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_qn01b")
+
+[node name="Stalagmite16" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=519349806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.43381, 0.3766243, -0.5798311)
+material_override = SubResource("ShaderMaterial_t7k4c")
+mesh = SubResource("CylinderMesh_04seo")
+
+[node name="Stalagmite17" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1387264315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.568771, 0.89780045, 2.5903378)
+material_override = SubResource("ShaderMaterial_2qnll")
+mesh = SubResource("CylinderMesh_l8omw")
+
+[node name="Stalagmite18" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=762826981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.557283, 0.81540287, -4.388736)
+material_override = SubResource("ShaderMaterial_t7k4c")
+mesh = SubResource("CylinderMesh_drv54")
+
+[node name="Stalactite10" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=739464331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3772829, 4.0096517, -4.268736)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_r3g3m")
+
+[node name="Stalagmite19" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=584979331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.07419, 0.82767487, -9.231772)
+material_override = SubResource("ShaderMaterial_2qnll")
+mesh = SubResource("CylinderMesh_qkn7c")
+
+[node name="Stalactite11" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1340531416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25419, 3.9970458, -9.111773)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_46ni1")
+
+[node name="Stalagmite20" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1656281508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2844124, 0.6521125, 5.111784)
+material_override = SubResource("ShaderMaterial_t7k4c")
+mesh = SubResource("CylinderMesh_fribm")
+
+[node name="Stalagmite21" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=587233749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.412506, 0.7451328, 0.37856102)
+material_override = SubResource("ShaderMaterial_3nx5b")
+mesh = SubResource("CylinderMesh_bhuhe")
+
+[node name="Stalactite12" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=710449241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.592506, 4.09108, 0.49856102)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_sgps7")
+
+[node name="Stalagmite22" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1751359856]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8309555, 0.2753803, -6.6575537)
+material_override = SubResource("ShaderMaterial_2qnll")
+mesh = SubResource("CylinderMesh_asib4")
+
+[node name="Stalagmite23" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1288554402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.57005596, 0.6313413, -7.1895595)
+material_override = SubResource("ShaderMaterial_t7k4c")
+mesh = SubResource("CylinderMesh_w6fas")
+
+[node name="Stalactite13" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1138681134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39005595, 4.002688, -7.0695596)
+material_override = SubResource("ShaderMaterial_3rfgf")
+mesh = SubResource("CylinderMesh_dv7w5")
+
+[node name="Stalagmite24" type="MeshInstance3D" parent="CaveRockShell/StalactiteAndStalagmiteField" unique_id=1760451964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.540584, 0.7559986, 4.2711363)
+material_override = SubResource("ShaderMaterial_3nx5b")
+mesh = SubResource("CylinderMesh_jmh4m")
+
+[node name="DeepTunnelMouth" type="MeshInstance3D" parent="CaveRockShell" unique_id=1253599633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10)
+material_override = SubResource("ShaderMaterial_bljf6")
+mesh = SubResource("BoxMesh_62gfi")
+
+[node name="WaterfallsAndPools" type="Node3D" parent="." unique_id=838267024]
+
+[node name="TieredWaterfall" type="Node3D" parent="WaterfallsAndPools" unique_id=389857996]
+
+[node name="LimestoneWaterStep" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=1326686609]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0.38, 4.5)
+material_override = SubResource("ShaderMaterial_76hrs")
+mesh = SubResource("BoxMesh_h6vnt")
+
+[node name="BlueGreenWaterTier" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=1003765812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0.59, 4.74)
+material_override = SubResource("ShaderMaterial_qywtd")
+mesh = SubResource("BoxMesh_uyplh")
+
+[node name="WaterfallRibbon" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=737209881]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.55, 0.34, 3.78)
+material_override = SubResource("ShaderMaterial_kgsep")
+mesh = SubResource("BoxMesh_6i84c")
+
+[node name="LimestoneWaterStep2" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=20607570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75, 0.72, 3.35)
+material_override = SubResource("ShaderMaterial_ksxny")
+mesh = SubResource("BoxMesh_h6vnt")
+
+[node name="BlueGreenWaterTier2" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=878720882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75, 0.93, 3.59)
+material_override = SubResource("ShaderMaterial_qywtd")
+mesh = SubResource("BoxMesh_uyplh")
+
+[node name="WaterfallRibbon2" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=1726103684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.7, 0.68, 2.63)
+material_override = SubResource("ShaderMaterial_kgsep")
+mesh = SubResource("BoxMesh_6i84c")
+
+[node name="LimestoneWaterStep3" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=578515437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9, 1.06, 2.2)
+material_override = SubResource("ShaderMaterial_d52ow")
+mesh = SubResource("BoxMesh_h6vnt")
+
+[node name="BlueGreenWaterTier3" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=1576636477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9, 1.27, 2.44)
+material_override = SubResource("ShaderMaterial_qywtd")
+mesh = SubResource("BoxMesh_uyplh")
+
+[node name="WaterfallRibbon3" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=684734095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85, 1.02, 1.48)
+material_override = SubResource("ShaderMaterial_kgsep")
+mesh = SubResource("BoxMesh_6i84c")
+
+[node name="LimestoneWaterStep4" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=70885709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.05, 1.4, 1.05)
+material_override = SubResource("ShaderMaterial_76hrs")
+mesh = SubResource("BoxMesh_h6vnt")
+
+[node name="BlueGreenWaterTier4" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=1014117781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.05, 1.61, 1.29)
+material_override = SubResource("ShaderMaterial_qywtd")
+mesh = SubResource("BoxMesh_uyplh")
+
+[node name="WaterfallRibbon4" type="MeshInstance3D" parent="WaterfallsAndPools/TieredWaterfall" unique_id=1011844194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.36, 0.33)
+material_override = SubResource("ShaderMaterial_kgsep")
+mesh = SubResource("BoxMesh_6i84c")
+
+[node name="ColdPool" type="MeshInstance3D" parent="WaterfallsAndPools" unique_id=55868731]
+transform = Transform3D(0.99680173, 0, -0.07991469, 0, 1, 0, 0.07991469, 0, 0.99680173, -8.4, 0.1, 0.7)
+material_override = SubResource("ShaderMaterial_b0r8q")
+mesh = SubResource("BoxMesh_ss0co")
+
+[node name="ColdPool2" type="MeshInstance3D" parent="WaterfallsAndPools" unique_id=585890349]
+transform = Transform3D(0.9992001, 0, -0.039989334, 0, 1, 0, 0.039989334, 0, 0.9992001, -7.25, 0.1, -0.02)
+material_override = SubResource("ShaderMaterial_b0r8q")
+mesh = SubResource("BoxMesh_x1t4i")
+
+[node name="ColdPool3" type="MeshInstance3D" parent="WaterfallsAndPools" unique_id=1462710229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1, 0.1, -0.74)
+material_override = SubResource("ShaderMaterial_b0r8q")
+mesh = SubResource("BoxMesh_1bfxu")
+
+[node name="ColdPool4" type="MeshInstance3D" parent="WaterfallsAndPools" unique_id=1504644975]
+transform = Transform3D(0.9992001, 0, 0.039989334, 0, 1, 0, -0.039989334, 0, 0.9992001, -4.95, 0.1, -1.46)
+material_override = SubResource("ShaderMaterial_b0r8q")
+mesh = SubResource("BoxMesh_rylp1")
+
+[node name="WaterfallColdGlow" type="OmniLight3D" parent="WaterfallsAndPools" unique_id=251954727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.3, 2.1, 1.5)
+light_color = Color(0.43529412, 0.67058825, 0.6901961, 1)
+light_energy = 1.6
+omni_range = 7.0
+
+[node name="BoneBurialFields" type="Node3D" parent="." unique_id=1539633633]
+
+[node name="ScatteredBone" type="MeshInstance3D" parent="BoneBurialFields" unique_id=385794545]
+transform = Transform3D(0.08655739, 0.94854754, 0.3045742, -0.94854754, -0.014998436, 0.3162794, 0.3045742, -0.3162794, 0.8984442, 1.2763467, 0.07, 1.946403)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_sb2x2")
+
+[node name="SmallSkull" type="Node3D" parent="BoneBurialFields" unique_id=182254434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2105473, 0.07, 1.7852414)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull" unique_id=1233521477]
+transform = Transform3D(0.20349883, 0, 0, 0, 0.16958235, 0, 0, 0, 0.22610979, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull" unique_id=453204276]
+transform = Transform3D(0.04296086, 0, 0, 0, 0.039569214, 0, 0, 0, 0.02034988, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull" unique_id=499777197]
+transform = Transform3D(0.04296086, 0, 0, 0, 0.039569214, 0, 0, 0, 0.02034988, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone2" type="MeshInstance3D" parent="BoneBurialFields" unique_id=2983076]
+transform = Transform3D(0.29268348, 0.8346903, 0.46650675, -0.8346903, -0.014998436, 0.5505154, 0.46650675, -0.5505154, 0.692318, 2.8824315, 0.07, 1.822604)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_16roi")
+
+[node name="ScatteredBone3" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1073842098]
+transform = Transform3D(0.99717104, -0.052787334, 0.05351036, 0.052787334, -0.014998436, -0.99849313, 0.05351036, 0.99849313, -0.01216948, 4.4614825, 0.07, 1.8751823)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_jwtsn")
+
+[node name="SmallSkull2" type="Node3D" parent="BoneBurialFields" unique_id=466647865]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2654896, 0.07, 2.0482895)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull2" unique_id=2028454470]
+transform = Transform3D(0.17655785, 0, 0, 0, 0.14713155, 0, 0, 0, 0.19617538, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull2" unique_id=1859871076]
+transform = Transform3D(0.03727332, 0, 0, 0, 0.034330692, 0, 0, 0, 0.017655784, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull2" unique_id=2009609461]
+transform = Transform3D(0.03727332, 0, 0, 0, 0.034330692, 0, 0, 0, 0.017655784, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone4" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1708778719]
+transform = Transform3D(-0.00013363361, 0.9925388, -0.12192927, -0.9925388, -0.014998436, -0.12100337, -0.12192927, 0.12100337, 0.98513526, 5.990565, 0.07, 1.8698331)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_tptxs")
+
+[node name="ScatteredBone5" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1315205068]
+transform = Transform3D(0.54417944, 0.67006266, -0.5048612, -0.67006266, -0.014998436, -0.7421531, -0.5048612, 0.7421531, 0.44082206, 7.64365, 0.07, 2.1150374)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_q5anp")
+
+[node name="SmallSkull3" type="Node3D" parent="BoneBurialFields" unique_id=819459948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7888455, 0.07, 2.129242)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull3" unique_id=891516117]
+transform = Transform3D(0.14706384, 0, 0, 0, 0.12255319, 0, 0, 0, 0.16340426, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull3" unique_id=133646760]
+transform = Transform3D(0.031046806, 0, 0, 0, 0.028595744, 0, 0, 0, 0.014706382, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull3" unique_id=1509603335]
+transform = Transform3D(0.031046806, 0, 0, 0, 0.028595744, 0, 0, 0, 0.014706382, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone6" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1163770529]
+transform = Transform3D(0.12757903, 0.9270038, -0.35268623, -0.9270038, -0.014998436, -0.37475199, -0.35268623, 0.37475199, 0.85742253, 1.4405727, 0.07, 0.5729283)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_q38us")
+
+[node name="ScatteredBone7" type="MeshInstance3D" parent="BoneBurialFields" unique_id=307571236]
+transform = Transform3D(0.3607713, 0.7934994, 0.4901049, -0.7934994, -0.014998436, 0.6083862, 0.4901049, -0.6083862, 0.62423027, 2.9766347, 0.07, 0.73468596)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_wxcjn")
+
+[node name="SmallSkull4" type="Node3D" parent="BoneBurialFields" unique_id=2055086998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.194044, 0.07, 0.75427985)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull4" unique_id=1759326338]
+transform = Transform3D(0.14754274, 0, 0, 0, 0.12295229, 0, 0, 0, 0.16393638, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull4" unique_id=2119939294]
+transform = Transform3D(0.03114791, 0, 0, 0, 0.028688867, 0, 0, 0, 0.014754273, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull4" unique_id=110835571]
+transform = Transform3D(0.03114791, 0, 0, 0, 0.028688867, 0, 0, 0, 0.014754273, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone8" type="MeshInstance3D" parent="BoneBurialFields" unique_id=785993753]
+transform = Transform3D(0.30528396, 0.82722205, 0.4717047, -0.82722205, -0.014998436, 0.56167483, 0.4717047, -0.56167483, 0.67971766, 4.1942863, 0.07, 0.5814143)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_ypx6s")
+
+[node name="ScatteredBone9" type="MeshInstance3D" parent="BoneBurialFields" unique_id=620466605]
+transform = Transform3D(0.953348, 0.21436486, 0.21254483, -0.21436486, -0.014998555, 0.97663856, 0.21254483, -0.97663856, 0.031653464, 6.005188, 0.07, 0.49506938)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_fl8yx")
+
+[node name="SmallSkull5" type="Node3D" parent="BoneBurialFields" unique_id=379203083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9744997, 0.07, 0.4771676)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull5" unique_id=1797717499]
+transform = Transform3D(0.17796955, 0, 0, 0, 0.14830795, 0, 0, 0, 0.19774394, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull5" unique_id=900801761]
+transform = Transform3D(0.037571345, 0, 0, 0, 0.034605186, 0, 0, 0, 0.017796952, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull5" unique_id=2050376114]
+transform = Transform3D(0.037571345, 0, 0, 0, 0.034605186, 0, 0, 0, 0.017796952, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone10" type="MeshInstance3D" parent="BoneBurialFields" unique_id=373838499]
+transform = Transform3D(0.78117526, -0.4642658, 0.41739967, 0.4642658, -0.014998436, -0.8855689, 0.41739967, 0.8855689, 0.20382637, 7.538954, 0.07, 0.45703703)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_f3e7w")
+
+[node name="ScatteredBone11" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1635719420]
+transform = Transform3D(0.5656801, -0.65406865, -0.5021955, 0.65406865, -0.014998436, 0.75628656, -0.5021955, -0.75628656, 0.41932142, 1.1313125, 0.07, -0.7923267)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_ptd6o")
+
+[node name="SmallSkull6" type="Node3D" parent="BoneBurialFields" unique_id=1162933581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2239809, 0.07, -0.8629639)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull6" unique_id=2141336271]
+transform = Transform3D(0.14637673, 0, 0, 0, 0.121980615, 0, 0, 0, 0.16264081, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull6" unique_id=1383867127]
+transform = Transform3D(0.030901752, 0, 0, 0, 0.028462142, 0, 0, 0, 0.014637672, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull6" unique_id=2061199237]
+transform = Transform3D(0.030901752, 0, 0, 0, 0.028462142, 0, 0, 0, 0.014637672, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone12" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1065498230]
+transform = Transform3D(0.5408144, 0.6725314, -0.5051943, -0.6725314, -0.014998436, -0.7399166, -0.5051943, 0.7399166, 0.4441871, 2.9039083, 0.07, -0.78620815)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_jhyfw")
+
+[node name="ScatteredBone13" type="MeshInstance3D" parent="BoneBurialFields" unique_id=907191417]
+transform = Transform3D(0.85344326, -0.37994555, -0.3567576, 0.37994555, -0.014998436, 0.9248873, -0.3567576, -0.9248873, 0.13155824, 4.471097, 0.07, -0.8090204)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_85pis")
+
+[node name="SmallSkull7" type="Node3D" parent="BoneBurialFields" unique_id=1010455466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3910494, 0.07, -0.87746024)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull7" unique_id=2053828075]
+transform = Transform3D(0.1559638, 0, 0, 0, 0.12996984, 0, 0, 0, 0.1732931, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull7" unique_id=1527060362]
+transform = Transform3D(0.032925688, 0, 0, 0, 0.030326294, 0, 0, 0, 0.015596379, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull7" unique_id=447048545]
+transform = Transform3D(0.032925688, 0, 0, 0, 0.030326294, 0, 0, 0, 0.015596379, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone14" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1492761201]
+transform = Transform3D(0.51449656, -0.6915357, -0.5070223, 0.6915357, -0.014998436, 0.72218657, -0.5070223, -0.72218657, 0.470505, 6.010605, 0.07, -0.67539275)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_s63v6")
+
+[node name="ScatteredBone15" type="MeshInstance3D" parent="BoneBurialFields" unique_id=62496393]
+transform = Transform3D(0.49400908, -0.70597583, -0.50749695, 0.70597583, -0.014998436, 0.70807713, -0.50749695, -0.70807713, 0.4909925, 7.541687, 0.07, -0.83534026)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_tsss8")
+
+[node name="SmallSkull8" type="Node3D" parent="BoneBurialFields" unique_id=457246265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5990844, 0.07, -0.6157447)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull8" unique_id=302115912]
+transform = Transform3D(0.16177033, 0, 0, 0, 0.13480861, 0, 0, 0, 0.17974481, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull8" unique_id=296072087]
+transform = Transform3D(0.034151513, 0, 0, 0, 0.03145534, 0, 0, 0, 0.016177032, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull8" unique_id=291152920]
+transform = Transform3D(0.034151513, 0, 0, 0, 0.03145534, 0, 0, 0, 0.016177032, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone16" type="MeshInstance3D" parent="BoneBurialFields" unique_id=565010936]
+transform = Transform3D(0.7505485, 0.49569157, -0.43699753, -0.49569157, -0.014998436, -0.86836916, -0.43699753, 0.86836916, 0.23445302, 1.4985178, 0.07, -2.139836)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_e3bul")
+
+[node name="ScatteredBone17" type="MeshInstance3D" parent="BoneBurialFields" unique_id=298745644]
+transform = Transform3D(0.24781781, -0.86075586, 0.44461855, 0.86075586, -0.014998436, -0.508797, 0.44461855, 0.508797, 0.7371838, 2.8915973, 0.07, -2.1914244)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_tgv5o")
+
+[node name="SmallSkull9" type="Node3D" parent="BoneBurialFields" unique_id=490637901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7809498, 0.07, -2.373828)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull9" unique_id=180123951]
+transform = Transform3D(0.15311104, 0, 0, 0, 0.12759253, 0, 0, 0, 0.17012338, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull9" unique_id=497949976]
+transform = Transform3D(0.03232344, 0, 0, 0, 0.02977159, 0, 0, 0, 0.015311103, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull9" unique_id=1541803416]
+transform = Transform3D(0.03232344, 0, 0, 0, 0.02977159, 0, 0, 0, 0.015311103, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone18" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1667112368]
+transform = Transform3D(0.46202296, 0.7279479, -0.5065832, -0.7279479, -0.014998436, -0.6854683, -0.5065832, 0.6854683, 0.5229786, 4.251927, 0.07, -2.2373412)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_gp38e")
+
+[node name="ScatteredBone19" type="MeshInstance3D" parent="BoneBurialFields" unique_id=56063147]
+transform = Transform3D(0.9419345, 0.23915389, -0.2357218, -0.23915389, -0.014998436, -0.9708658, -0.2357218, 0.9708658, 0.043067038, 5.752319, 0.07, -2.3589354)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_txkl1")
+
+[node name="SmallSkull10" type="Node3D" parent="BoneBurialFields" unique_id=1399742109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8352923, 0.07, -2.2931874)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull10" unique_id=913604041]
+transform = Transform3D(0.16196615, 0, 0, 0, 0.13497178, 0, 0, 0, 0.17996238, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull10" unique_id=1687498186]
+transform = Transform3D(0.03419285, 0, 0, 0, 0.031493414, 0, 0, 0, 0.016196612, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull10" unique_id=2088211816]
+transform = Transform3D(0.03419285, 0, 0, 0, 0.031493414, 0, 0, 0, 0.016196612, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone20" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1425516899]
+transform = Transform3D(0.10779476, 0.93745595, -0.3309935, -0.93745595, -0.014998436, -0.34778076, -0.3309935, 0.34778076, 0.87720686, 7.31811, 0.07, -2.3754718)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_asx48")
+
+[node name="ScatteredBone21" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1282246222]
+transform = Transform3D(0.043304026, -0.97074556, 0.2361732, 0.97074556, -0.014998436, -0.23964153, 0.2361732, 0.23964153, 0.9416975, 1.2881917, 0.07, -3.512177)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_4o4as")
+
+[node name="SmallSkull11" type="Node3D" parent="BoneBurialFields" unique_id=1500615002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0970719, 0.07, -3.6057544)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull11" unique_id=994605543]
+transform = Transform3D(0.1818854, 0, 0, 0, 0.15157117, 0, 0, 0, 0.2020949, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull11" unique_id=1006624947]
+transform = Transform3D(0.038398027, 0, 0, 0, 0.035366606, 0, 0, 0, 0.01818854, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull11" unique_id=744127521]
+transform = Transform3D(0.038398027, 0, 0, 0, 0.035366606, 0, 0, 0, 0.01818854, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone22" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1290548449]
+transform = Transform3D(0.9559554, 0.2082883, 0.20679769, -0.2082883, -0.014998436, 0.9779525, 0.20679769, -0.9779525, 0.029046178, 3.080184, 0.07, -3.7753596)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_vi8ta")
+
+[node name="ScatteredBone23" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1853682608]
+transform = Transform3D(0.1477226, -0.9162394, -0.3724023, 0.9162394, -0.014998436, 0.40035048, -0.3724023, -0.40035048, 0.83727896, 4.49049, 0.07, -3.6018248)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_4nrbr")
+
+[node name="SmallSkull12" type="Node3D" parent="BoneBurialFields" unique_id=561090718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.728101, 0.07, -3.4413803)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull12" unique_id=2122385789]
+transform = Transform3D(0.15413074, 0, 0, 0, 0.12844229, 0, 0, 0, 0.17125638, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull12" unique_id=1938461560]
+transform = Transform3D(0.032538712, 0, 0, 0, 0.029969865, 0, 0, 0, 0.015413073, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull12" unique_id=860756552]
+transform = Transform3D(0.032538712, 0, 0, 0, 0.029969865, 0, 0, 0, 0.015413073, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone24" type="MeshInstance3D" parent="BoneBurialFields" unique_id=236048794]
+transform = Transform3D(-0.010776162, -0.99780566, -0.06532773, 0.99780566, -0.014998317, 0.064489424, -0.06532773, -0.064489424, 0.9957778, 6.19877, 0.07, -3.4963503)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_p25xi")
+
+[node name="ScatteredBone25" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1867911129]
+transform = Transform3D(-0.0076943636, -0.99628335, 0.0857922, 0.99628335, -0.014998436, -0.084820695, 0.0857922, 0.084820695, 0.9926959, 7.631021, 0.07, -3.588099)
+material_override = SubResource("ShaderMaterial_35vyq")
+mesh = SubResource("CylinderMesh_ift8v")
+
+[node name="SmallSkull13" type="Node3D" parent="BoneBurialFields" unique_id=809624797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6470556, 0.07, -3.6671028)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull13" unique_id=557980967]
+transform = Transform3D(0.19041546, 0, 0, 0, 0.15867954, 0, 0, 0, 0.21157272, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull13" unique_id=1250813850]
+transform = Transform3D(0.040198814, 0, 0, 0, 0.037025224, 0, 0, 0, 0.019041544, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull13" unique_id=407020026]
+transform = Transform3D(0.040198814, 0, 0, 0, 0.037025224, 0, 0, 0, 0.019041544, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="ScatteredBone26" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1948831710]
+transform = Transform3D(0.97967076, 0.1415074, -0.14220014, -0.1415074, -0.014998436, -0.9898236, -0.14220014, 0.9898236, 0.005330801, 1.7896218, 0.075, 0.31749797)
+material_override = SubResource("ShaderMaterial_1wjpe")
+mesh = SubResource("CylinderMesh_01xp0")
+
+[node name="ScatteredBone27" type="MeshInstance3D" parent="BoneBurialFields" unique_id=670026559]
+transform = Transform3D(0.18928182, 0.8936211, 0.40695664, -0.8936211, -0.014998436, 0.4485715, 0.40695664, -0.4485715, 0.79571974, -4.1315637, 0.075, -1.1876726)
+material_override = SubResource("ShaderMaterial_rwpu3")
+mesh = SubResource("CylinderMesh_qliip")
+
+[node name="ScatteredBone28" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1115594565]
+transform = Transform3D(0.22024149, 0.87639225, -0.4282877, -0.87639225, -0.014998436, -0.48136446, -0.4282877, 0.48136446, 0.76476, 1.5677376, 0.075, -1.5323105)
+material_override = SubResource("ShaderMaterial_uqdrp")
+mesh = SubResource("CylinderMesh_imiug")
+
+[node name="ScatteredBone29" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1449736407]
+transform = Transform3D(0.9627528, -0.19154257, 0.19083634, 0.19154257, -0.014998555, -0.98136973, 0.19083634, 0.98136973, 0.022248685, -2.8657076, 0.075, 0.6825373)
+material_override = SubResource("ShaderMaterial_1wjpe")
+mesh = SubResource("CylinderMesh_rdi13")
+
+[node name="ScatteredBone30" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1745425700]
+transform = Transform3D(0.99142617, 0.0918979, 0.09289188, -0.0918979, -0.014998436, 0.99565554, 0.09289188, -0.99565554, -0.0064246655, -1.3970618, 0.075, 3.0428436)
+material_override = SubResource("ShaderMaterial_rwpu3")
+mesh = SubResource("CylinderMesh_sjq61")
+
+[node name="ScatteredBone31" type="MeshInstance3D" parent="BoneBurialFields" unique_id=2058681851]
+transform = Transform3D(-0.014998317, 0.9998875, -0.0004010172, -0.9998875, -0.014998436, -0.00039504704, -0.0004010172, 0.00039504704, 0.9999998, -0.43546343, 0.075, -3.5319815)
+material_override = SubResource("ShaderMaterial_uqdrp")
+mesh = SubResource("CylinderMesh_kyu6v")
+
+[node name="ScatteredBone32" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1555172435]
+transform = Transform3D(0.8129901, -0.42919114, 0.39349973, 0.42919114, -0.014998436, -0.90308917, 0.39349973, 0.90308917, 0.1720115, -3.8676953, 0.075, -0.026111834)
+material_override = SubResource("ShaderMaterial_1wjpe")
+mesh = SubResource("CylinderMesh_g77vr")
+
+[node name="ScatteredBone33" type="MeshInstance3D" parent="BoneBurialFields" unique_id=159292861]
+transform = Transform3D(0.4933619, 0.70642716, -0.5074985, -0.70642716, -0.014998436, -0.7076269, -0.5074985, 0.7076269, 0.49163967, -4.03946, 0.075, -1.9755808)
+material_override = SubResource("ShaderMaterial_rwpu3")
+mesh = SubResource("CylinderMesh_l0m7j")
+
+[node name="ScatteredBone34" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1046641969]
+transform = Transform3D(-0.014478445, -0.99963135, 0.022966798, 0.99963135, -0.014998436, -0.022630675, 0.022966798, 0.022630675, 0.99948007, -1.0664339, 0.075, 2.5134237)
+material_override = SubResource("ShaderMaterial_uqdrp")
+mesh = SubResource("CylinderMesh_66x80")
+
+[node name="ScatteredBone35" type="MeshInstance3D" parent="BoneBurialFields" unique_id=671995466]
+transform = Transform3D(0.98378414, -0.12638298, -0.12726402, 0.12638298, -0.014998436, 0.9918681, -0.12726402, -0.9918681, 0.0012174249, 4.081874, 0.075, 2.667514)
+material_override = SubResource("ShaderMaterial_1wjpe")
+mesh = SubResource("CylinderMesh_hrrrn")
+
+[node name="ScatteredBone36" type="MeshInstance3D" parent="BoneBurialFields" unique_id=925007098]
+transform = Transform3D(0.29687405, -0.832214, -0.46827948, 0.832214, -0.014998436, 0.5542517, -0.46827948, -0.5542517, 0.6881275, -2.834129, 0.075, -0.71616817)
+material_override = SubResource("ShaderMaterial_rwpu3")
+mesh = SubResource("CylinderMesh_hd0kf")
+
+[node name="ScatteredBone37" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1129095903]
+transform = Transform3D(0.9743657, -0.15890196, 0.15925346, 0.15890196, -0.014998436, -0.9871804, 0.15925346, 0.9871804, 0.010635853, -1.1509819, 0.075, 2.180642)
+material_override = SubResource("ShaderMaterial_uqdrp")
+mesh = SubResource("CylinderMesh_75bo1")
+
+[node name="ScatteredBone38" type="MeshInstance3D" parent="BoneBurialFields" unique_id=66756744]
+transform = Transform3D(0.30907762, -0.82496035, 0.47319278, 0.82496035, -0.014998436, -0.5649915, 0.47319278, 0.5649915, 0.67592394, 4.1165333, 0.075, 2.698508)
+material_override = SubResource("ShaderMaterial_1wjpe")
+mesh = SubResource("CylinderMesh_kuu7f")
+
+[node name="ScatteredBone39" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1271989934]
+transform = Transform3D(0.025251925, -0.97986144, 0.19807573, 0.97986144, -0.014998436, -0.1991148, 0.19807573, 0.1991148, 0.9597496, 5.6932564, 0.075, -1.1800447)
+material_override = SubResource("ShaderMaterial_rwpu3")
+mesh = SubResource("CylinderMesh_qpycd")
+
+[node name="ScatteredBone40" type="MeshInstance3D" parent="BoneBurialFields" unique_id=68569013]
+transform = Transform3D(0.17411977, -0.9019387, -0.39520758, 0.9019387, -0.014998436, 0.43160373, -0.39520758, -0.43160373, 0.81088173, -5.1999974, 0.075, -3.4977772)
+material_override = SubResource("ShaderMaterial_uqdrp")
+mesh = SubResource("CylinderMesh_tio6y")
+
+[node name="ScatteredBone41" type="MeshInstance3D" parent="BoneBurialFields" unique_id=473136322]
+transform = Transform3D(0.2639575, 0.8514711, -0.45312622, -0.8514711, -0.014998436, -0.52418697, -0.45312622, 0.52418697, 0.7210441, 3.9904432, 0.075, 2.444339)
+material_override = SubResource("ShaderMaterial_1wjpe")
+mesh = SubResource("CylinderMesh_ls18y")
+
+[node name="ScatteredBone42" type="MeshInstance3D" parent="BoneBurialFields" unique_id=94804584]
+transform = Transform3D(0.16382271, 0.9075439, 0.38668615, -0.9075439, -0.014998436, 0.4196893, 0.38668615, -0.4196893, 0.82117885, -2.0491118, 0.075, -3.7412446)
+material_override = SubResource("ShaderMaterial_rwpu3")
+mesh = SubResource("CylinderMesh_55uyx")
+
+[node name="ScatteredBone43" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1547252422]
+transform = Transform3D(0.03864062, -0.9731087, -0.22708248, 0.9731087, -0.014998436, 0.22985779, -0.22708248, -0.22985779, 0.9463609, -3.8587556, 0.075, 0.9518821)
+material_override = SubResource("ShaderMaterial_uqdrp")
+mesh = SubResource("CylinderMesh_hi45a")
+
+[node name="ScatteredBone44" type="MeshInstance3D" parent="BoneBurialFields" unique_id=2137029384]
+transform = Transform3D(0.7034167, -0.54049516, -0.461595, 0.54049516, -0.014998436, 0.84121346, -0.461595, -0.84121346, 0.2815848, -3.2195897, 0.075, 0.9502795)
+material_override = SubResource("ShaderMaterial_1wjpe")
+mesh = SubResource("CylinderMesh_qkgvt")
+
+[node name="ScatteredBone45" type="MeshInstance3D" parent="BoneBurialFields" unique_id=149197488]
+transform = Transform3D(0.18975842, 0.8933584, -0.40731132, -0.8933584, -0.014998436, -0.44909444, -0.40731132, 0.44909444, 0.79524314, -1.994214, 0.075, 3.1439722)
+material_override = SubResource("ShaderMaterial_rwpu3")
+mesh = SubResource("CylinderMesh_4jqnx")
+
+[node name="ScatteredBone46" type="MeshInstance3D" parent="BoneBurialFields" unique_id=537464322]
+transform = Transform3D(0.81949294, 0.42166308, 0.38811287, -0.42166308, -0.014998436, 0.90662855, 0.38811287, -0.90662855, 0.16550863, -1.9218106, 0.075, 2.0559728)
+material_override = SubResource("ShaderMaterial_uqdrp")
+mesh = SubResource("CylinderMesh_wtiw3")
+
+[node name="ScatteredBone47" type="MeshInstance3D" parent="BoneBurialFields" unique_id=1727509593]
+transform = Transform3D(0.7693178, 0.47667843, -0.42535606, -0.47667843, -0.014998436, -0.8789498, -0.42535606, 0.8789498, 0.21568376, -3.161192, 0.075, -0.971715)
+material_override = SubResource("ShaderMaterial_1wjpe")
+mesh = SubResource("CylinderMesh_t51yo")
+
+[node name="SmallSkull14" type="Node3D" parent="BoneBurialFields" unique_id=1675309272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 0.1, 3.4)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull14" unique_id=1917126009]
+transform = Transform3D(0.207, 0, 0, 0, 0.1725, 0, 0, 0, 0.23, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull14" unique_id=601990235]
+transform = Transform3D(0.0437, 0, 0, 0, 0.04025, 0, 0, 0, 0.020699998, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull14" unique_id=541137613]
+transform = Transform3D(0.0437, 0, 0, 0, 0.04025, 0, 0, 0, 0.020699998, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SmallSkull15" type="Node3D" parent="BoneBurialFields" unique_id=1968629363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.1, 0.4)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull15" unique_id=855683773]
+transform = Transform3D(0.207, 0, 0, 0, 0.1725, 0, 0, 0, 0.23, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull15" unique_id=737351836]
+transform = Transform3D(0.0437, 0, 0, 0, 0.04025, 0, 0, 0, 0.020699998, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull15" unique_id=558831993]
+transform = Transform3D(0.0437, 0, 0, 0, 0.04025, 0, 0, 0, 0.020699998, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="SmallSkull16" type="Node3D" parent="BoneBurialFields" unique_id=1006700285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4, 0.1, -3.9)
+
+[node name="Skull" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull16" unique_id=1525445458]
+transform = Transform3D(0.207, 0, 0, 0, 0.1725, 0, 0, 0, 0.23, 0, 0.12, 0)
+material_override = SubResource("ShaderMaterial_xvjb1")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketL" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull16" unique_id=199638135]
+transform = Transform3D(0.0437, 0, 0, 0, 0.04025, 0, 0, 0, 0.020699998, -0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="EyeSocketR" type="MeshInstance3D" parent="BoneBurialFields/SmallSkull16" unique_id=1145229011]
+transform = Transform3D(0.0437, 0, 0, 0, 0.04025, 0, 0, 0, 0.020699998, 0.07, 0.14, 0.14)
+material_override = SubResource("ShaderMaterial_gkemk")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="BurialSoilMounds" type="Node3D" parent="BoneBurialFields" unique_id=2120867303]
+
+[node name="LooseBurialSoil" type="MeshInstance3D" parent="BoneBurialFields/BurialSoilMounds" unique_id=357533893]
+transform = Transform3D(1.25, 0, 0, 0, 0.1, 0, 0, 0, 0.72, -1.8, 0.1, 3)
+material_override = SubResource("ShaderMaterial_dkpt0")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="LooseBurialSoil2" type="MeshInstance3D" parent="BoneBurialFields/BurialSoilMounds" unique_id=943002433]
+transform = Transform3D(1.25, 0, 0, 0, 0.1, 0, 0, 0, 0.72, 3.1, 0.1, 2.5)
+material_override = SubResource("ShaderMaterial_dkpt0")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="LooseBurialSoil3" type="MeshInstance3D" parent="BoneBurialFields/BurialSoilMounds" unique_id=41825394]
+transform = Transform3D(1.25, 0, 0, 0, 0.1, 0, 0, 0, 0.72, -2.7, 0.1, -1.7)
+material_override = SubResource("ShaderMaterial_dkpt0")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="LooseBurialSoil4" type="MeshInstance3D" parent="BoneBurialFields/BurialSoilMounds" unique_id=1654848401]
+transform = Transform3D(1.25, 0, 0, 0, 0.1, 0, 0, 0, 0.72, 1.6, 0.1, -3.5)
+material_override = SubResource("ShaderMaterial_dkpt0")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineWorks" type="Node3D" parent="." unique_id=2121133571]
+
+[node name="OldTimberSupport" type="Node3D" parent="MineWorks" unique_id=1782719591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4, 0, 3.6)
+
+[node name="TimberPost" type="MeshInstance3D" parent="MineWorks/OldTimberSupport" unique_id=1037618371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, 1.45, 0)
+material_override = SubResource("ShaderMaterial_kttgg")
+mesh = SubResource("CylinderMesh_pjswn")
+
+[node name="TimberPost2" type="MeshInstance3D" parent="MineWorks/OldTimberSupport" unique_id=886992628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 1.45, 0)
+material_override = SubResource("ShaderMaterial_kttgg")
+mesh = SubResource("CylinderMesh_pjswn")
+
+[node name="TimberHeader" type="MeshInstance3D" parent="MineWorks/OldTimberSupport" unique_id=845763682]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 2.62, 0)
+material_override = SubResource("ShaderMaterial_v8jmk")
+mesh = SubResource("CylinderMesh_8110w")
+
+[node name="TimberBackBeam" type="MeshInstance3D" parent="MineWorks/OldTimberSupport" unique_id=1124904012]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1.55, -0.55)
+material_override = SubResource("ShaderMaterial_xvixk")
+mesh = SubResource("CylinderMesh_muadj")
+
+[node name="RoofSlat" type="MeshInstance3D" parent="MineWorks/OldTimberSupport" unique_id=506762592]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -1.15, 2.7, 0.050000012)
+material_override = SubResource("ShaderMaterial_q7mnv")
+mesh = SubResource("CylinderMesh_xm2rq")
+
+[node name="RoofSlat2" type="MeshInstance3D" parent="MineWorks/OldTimberSupport" unique_id=1307593604]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.4, 2.7, 0.050000012)
+material_override = SubResource("ShaderMaterial_3txwn")
+mesh = SubResource("CylinderMesh_xm2rq")
+
+[node name="RoofSlat3" type="MeshInstance3D" parent="MineWorks/OldTimberSupport" unique_id=623035851]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.4, 2.7, 0.050000012)
+material_override = SubResource("ShaderMaterial_q7mnv")
+mesh = SubResource("CylinderMesh_xm2rq")
+
+[node name="RoofSlat4" type="MeshInstance3D" parent="MineWorks/OldTimberSupport" unique_id=1891833002]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 1.15, 2.7, 0.050000012)
+material_override = SubResource("ShaderMaterial_3txwn")
+mesh = SubResource("CylinderMesh_xm2rq")
+
+[node name="AbandonedHandcart" type="Node3D" parent="MineWorks" unique_id=791411992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.12, 0.1)
+
+[node name="CartBed" type="MeshInstance3D" parent="MineWorks/AbandonedHandcart" unique_id=1532151560]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+material_override = SubResource("ShaderMaterial_p2644")
+mesh = SubResource("BoxMesh_34ven")
+
+[node name="CartWheel" type="MeshInstance3D" parent="MineWorks/AbandonedHandcart" unique_id=1225661555]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.62, 0.36, 0.25)
+material_override = SubResource("ShaderMaterial_76xfu")
+mesh = SubResource("CylinderMesh_caqbg")
+
+[node name="CartWheel2" type="MeshInstance3D" parent="MineWorks/AbandonedHandcart" unique_id=1244181353]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.62, 0.36, 0.25)
+material_override = SubResource("ShaderMaterial_76xfu")
+mesh = SubResource("CylinderMesh_caqbg")
+
+[node name="CartHandle" type="MeshInstance3D" parent="MineWorks/AbandonedHandcart" unique_id=166792322]
+transform = Transform3D(1, 0, 0, 0, 0.14654857, -0.9892035, 0, 0.9892035, 0.14654857, 0, 0.54999995, 1.375)
+material_override = SubResource("ShaderMaterial_t3svu")
+mesh = SubResource("CylinderMesh_u72jr")
+
+[node name="MineRockPile" type="MeshInstance3D" parent="MineWorks" unique_id=382257790]
+transform = Transform3D(0.40769088, 0, 0, 0, 0.36020386, 0, 0, 0, 0.30893505, 10.552516, 0.35905585, 1.1455677)
+material_override = SubResource("ShaderMaterial_iq0p8")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineRockPile2" type="MeshInstance3D" parent="MineWorks" unique_id=1398951996]
+transform = Transform3D(0.3618691, 0, 0, 0, 0.15103737, 0, 0, 0, 0.30330718, 11.063502, 0.28717023, 2.094007)
+material_override = SubResource("ShaderMaterial_mjkq3")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineRockPile3" type="MeshInstance3D" parent="MineWorks" unique_id=1735870002]
+transform = Transform3D(0.1972425, 0, 0, 0, 0.28685534, 0, 0, 0, 0.2492799, 9.45318, 0.29566666, 2.4991655)
+material_override = SubResource("ShaderMaterial_bs747")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineRockPile4" type="MeshInstance3D" parent="MineWorks" unique_id=1925266888]
+transform = Transform3D(0.3269085, 0, 0, 0, 0.21665874, 0, 0, 0, 0.3581044, 10.938712, 0.4447633, 1.3784645)
+material_override = SubResource("ShaderMaterial_iq0p8")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineRockPile5" type="MeshInstance3D" parent="MineWorks" unique_id=464611112]
+transform = Transform3D(0.18696573, 0, 0, 0, 0.2628596, 0, 0, 0, 0.21841362, 9.928474, 0.35574928, 1.5452694)
+material_override = SubResource("ShaderMaterial_mjkq3")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineRockPile6" type="MeshInstance3D" parent="MineWorks" unique_id=19636437]
+transform = Transform3D(0.37212235, 0, 0, 0, 0.35581753, 0, 0, 0, 0.28679433, 10.717667, 0.28606758, 0.9549452)
+material_override = SubResource("ShaderMaterial_bs747")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineRockPile7" type="MeshInstance3D" parent="MineWorks" unique_id=745006187]
+transform = Transform3D(0.39280486, 0, 0, 0, 0.19465894, 0, 0, 0, 0.39536482, 9.741319, 0.3515341, 1.9815669)
+material_override = SubResource("ShaderMaterial_iq0p8")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineRockPile8" type="MeshInstance3D" parent="MineWorks" unique_id=808860078]
+transform = Transform3D(0.19963522, 0, 0, 0, 0.15229101, 0, 0, 0, 0.24099289, 11.045796, 0.27050734, 0.68368965)
+material_override = SubResource("ShaderMaterial_mjkq3")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineRockPile9" type="MeshInstance3D" parent="MineWorks" unique_id=685188233]
+transform = Transform3D(0.29387978, 0, 0, 0, 0.31756383, 0, 0, 0, 0.41428047, 9.106827, 0.3978715, 1.6007315)
+material_override = SubResource("ShaderMaterial_bs747")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineRockPile10" type="MeshInstance3D" parent="MineWorks" unique_id=454206350]
+transform = Transform3D(0.19364989, 0, 0, 0, 0.35926107, 0, 0, 0, 0.3233403, 10.059774, 0.2689584, 0.94660544)
+material_override = SubResource("ShaderMaterial_iq0p8")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineRockPile11" type="MeshInstance3D" parent="MineWorks" unique_id=1035989104]
+transform = Transform3D(0.36708072, 0, 0, 0, 0.29976046, 0, 0, 0, 0.18374948, 9.74231, 0.28317466, 1.0679319)
+material_override = SubResource("ShaderMaterial_mjkq3")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineRockPile12" type="MeshInstance3D" parent="MineWorks" unique_id=1032411707]
+transform = Transform3D(0.39761478, 0, 0, 0, 0.18178985, 0, 0, 0, 0.22857645, 9.141717, 0.36785936, 0.93333566)
+material_override = SubResource("ShaderMaterial_bs747")
+mesh = SubResource("SphereMesh_2ohjn")
+
+[node name="MineLanternGlow" type="OmniLight3D" parent="MineWorks" unique_id=1264245099]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4, 2, 3.2)
+light_color = Color(0.8352941, 0.60784316, 0.37254903, 1)
+light_energy = 1.4
+omni_range = 5.5
+
+[node name="LowerStalactitePools" type="Node3D" parent="." unique_id=1544042874]
+
+[node name="LowerPoolWater" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1681062892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1, 0.075, -5.4)
+material_override = SubResource("ShaderMaterial_u7h2d")
+mesh = SubResource("BoxMesh_mlkno")
+
+[node name="PoolStalagmite" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1812008451]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.832093, 0.19276595, -7.352414)
+material_override = SubResource("ShaderMaterial_j08vw")
+mesh = SubResource("CylinderMesh_i3eri")
+
+[node name="PoolStalagmite2" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1985091642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.659194, 0.22175151, -4.376664)
+material_override = SubResource("ShaderMaterial_swl6e")
+mesh = SubResource("CylinderMesh_rrb3q")
+
+[node name="PoolStalagmite3" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=739005648]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1896, 0.63631964, -5.331076)
+material_override = SubResource("ShaderMaterial_8k0rd")
+mesh = SubResource("CylinderMesh_q6jfy")
+
+[node name="PoolStalagmite4" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=2082221568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9135833, 0.7542796, -7.4340706)
+material_override = SubResource("ShaderMaterial_j08vw")
+mesh = SubResource("CylinderMesh_qdb8h")
+
+[node name="PoolStalagmite5" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=530386481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8580467, 0.26002955, -5.586121)
+material_override = SubResource("ShaderMaterial_swl6e")
+mesh = SubResource("CylinderMesh_qg71e")
+
+[node name="PoolStalagmite6" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=745910099]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.19247, 0.24341506, -6.966529)
+material_override = SubResource("ShaderMaterial_8k0rd")
+mesh = SubResource("CylinderMesh_dh0g3")
+
+[node name="PoolStalagmite7" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=71208096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5931907, 0.45599347, -6.6409492)
+material_override = SubResource("ShaderMaterial_j08vw")
+mesh = SubResource("CylinderMesh_ckbrb")
+
+[node name="PoolStalagmite8" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=395855894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.680404, 0.35090244, -3.5025022)
+material_override = SubResource("ShaderMaterial_swl6e")
+mesh = SubResource("CylinderMesh_ungu6")
+
+[node name="PoolStalagmite9" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1816630561]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1566133, 0.3510707, -2.3728058)
+material_override = SubResource("ShaderMaterial_8k0rd")
+mesh = SubResource("CylinderMesh_bob2n")
+
+[node name="PoolStalagmite10" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=422501714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0839424, 0.645147, -7.648225)
+material_override = SubResource("ShaderMaterial_j08vw")
+mesh = SubResource("CylinderMesh_006pw")
+
+[node name="PoolStalagmite11" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=211776909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.958911, 0.4543606, -2.7472095)
+material_override = SubResource("ShaderMaterial_swl6e")
+mesh = SubResource("CylinderMesh_jjkuk")
+
+[node name="PoolStalagmite12" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=41013740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9069457, 0.405418, -2.97352)
+material_override = SubResource("ShaderMaterial_8k0rd")
+mesh = SubResource("CylinderMesh_fcpk3")
+
+[node name="PoolStalagmite13" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1894648925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.62219, 0.55218697, -7.1767707)
+material_override = SubResource("ShaderMaterial_j08vw")
+mesh = SubResource("CylinderMesh_lxvhs")
+
+[node name="PoolStalagmite14" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=766718971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8736193, 0.33371788, -5.7983093)
+material_override = SubResource("ShaderMaterial_swl6e")
+mesh = SubResource("CylinderMesh_58oq7")
+
+[node name="PoolStalagmite15" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=476916269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.709942, 0.6211983, -7.0127153)
+material_override = SubResource("ShaderMaterial_8k0rd")
+mesh = SubResource("CylinderMesh_nranf")
+
+[node name="PoolStalagmite16" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1916031408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.477451, 0.67395043, -5.868445)
+material_override = SubResource("ShaderMaterial_j08vw")
+mesh = SubResource("CylinderMesh_t4a8i")
+
+[node name="PoolStalagmite17" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1411719066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5368204, 0.68770057, -5.8305807)
+material_override = SubResource("ShaderMaterial_swl6e")
+mesh = SubResource("CylinderMesh_shx2h")
+
+[node name="PoolStalagmite18" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=587580259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.1247635, 0.29131797, -6.154913)
+material_override = SubResource("ShaderMaterial_8k0rd")
+mesh = SubResource("CylinderMesh_utbdu")
+
+[node name="PoolStalagmite19" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=582099291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8549643, 0.5903756, -6.1563177)
+material_override = SubResource("ShaderMaterial_j08vw")
+mesh = SubResource("CylinderMesh_q3tpv")
+
+[node name="PoolStalagmite20" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=2001288521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9663053, 0.5294099, -6.4226365)
+material_override = SubResource("ShaderMaterial_swl6e")
+mesh = SubResource("CylinderMesh_qmvnt")
+
+[node name="PoolStalagmite21" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1368565629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.460262, 0.3169988, -4.50544)
+material_override = SubResource("ShaderMaterial_8k0rd")
+mesh = SubResource("CylinderMesh_h5ig0")
+
+[node name="PoolStalagmite22" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=20720954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8655093, 0.7166426, -6.9160867)
+material_override = SubResource("ShaderMaterial_j08vw")
+mesh = SubResource("CylinderMesh_ohta8")
+
+[node name="PoolStalagmite23" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1594602723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3569658, 0.40462554, -5.781555)
+material_override = SubResource("ShaderMaterial_swl6e")
+mesh = SubResource("CylinderMesh_545r3")
+
+[node name="PoolStalagmite24" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1260548964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7501967, 0.7326659, -6.883001)
+material_override = SubResource("ShaderMaterial_8k0rd")
+mesh = SubResource("CylinderMesh_u2vii")
+
+[node name="PoolStalagmite25" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1961877641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3020034, 0.51052153, -3.1834147)
+material_override = SubResource("ShaderMaterial_j08vw")
+mesh = SubResource("CylinderMesh_ib52t")
+
+[node name="PoolStalagmite26" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=964097790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.479119, 0.34282064, -3.1397095)
+material_override = SubResource("ShaderMaterial_swl6e")
+mesh = SubResource("CylinderMesh_7p2nd")
+
+[node name="BrokenBridgePlank" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=526074320]
+transform = Transform3D(0.9974122, 0, -0.071895055, 0, 1, 0, 0.071895055, 0, 0.9974122, -0.4, 0.7197855, -4)
+material_override = SubResource("ShaderMaterial_j34kv")
+mesh = SubResource("BoxMesh_wvgrv")
+
+[node name="BrokenBridgePlank2" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=746982879]
+transform = Transform3D(0.9997471, 0, -0.0224889, 0, 1, 0, 0.0224889, 0, 0.9997471, -0.12, 0.6684094, -4)
+material_override = SubResource("ShaderMaterial_jflnl")
+mesh = SubResource("BoxMesh_wvgrv")
+
+[node name="BrokenBridgePlank3" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1594706912]
+transform = Transform3D(0.9972768, 0, -0.073749855, 0, 1, 0, 0.073749855, 0, 0.9972768, 0.16, 0.70854497, -4)
+material_override = SubResource("ShaderMaterial_7asie")
+mesh = SubResource("BoxMesh_wvgrv")
+
+[node name="BrokenBridgePlank4" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1239534943]
+transform = Transform3D(0.99783397, 0, -0.06578279, 0, 1, 0, 0.06578279, 0, 0.99783397, 0.44, 0.70560676, -4)
+material_override = SubResource("ShaderMaterial_j34kv")
+mesh = SubResource("BoxMesh_wvgrv")
+
+[node name="BrokenBridgePlank5" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1790345239]
+transform = Transform3D(0.99848443, 0, -0.055034578, 0, 1, 0, 0.055034578, 0, 0.99848443, 0.72, 0.72597724, -4)
+material_override = SubResource("ShaderMaterial_jflnl")
+mesh = SubResource("BoxMesh_wvgrv")
+
+[node name="BrokenBridgePlank6" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1333332104]
+transform = Transform3D(0.9984959, 0, 0.054827053, 0, 1, 0, -0.054827053, 0, 0.9984959, 1, 0.7326046, -4)
+material_override = SubResource("ShaderMaterial_7asie")
+mesh = SubResource("BoxMesh_wvgrv")
+
+[node name="BrokenBridgePlank7" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1940373464]
+transform = Transform3D(0.9997885, 0, -0.02056444, 0, 1, 0, 0.02056444, 0, 0.9997885, 1.28, 0.7242166, -4)
+material_override = SubResource("ShaderMaterial_j34kv")
+mesh = SubResource("BoxMesh_wvgrv")
+
+[node name="BrokenBridgePlank8" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=2061431396]
+transform = Transform3D(0.99994093, 0, 0.010870071, 0, 1, 0, -0.010870071, 0, 0.99994093, 1.56, 0.7746085, -4)
+material_override = SubResource("ShaderMaterial_jflnl")
+mesh = SubResource("BoxMesh_wvgrv")
+
+[node name="DarkRavine" type="MeshInstance3D" parent="LowerStalactitePools" unique_id=1631129306]
+transform = Transform3D(0.9887711, 0, -0.14943814, 0, 1, 0, 0.14943814, 0, 0.9887711, 1.1, -0.03, -4)
+material_override = SubResource("ShaderMaterial_r8cxl")
+mesh = SubResource("BoxMesh_otr6c")
+
+[node name="EntranceTransition" type="Node3D" parent="." unique_id=323273202]
+
+[node name="EntryRockLeft" type="MeshInstance3D" parent="EntranceTransition" unique_id=1288632482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65, 1.6, 8.7)
+material_override = SubResource("ShaderMaterial_fdaip")
+mesh = SubResource("BoxMesh_ty456")
+
+[node name="EntryRockRight" type="MeshInstance3D" parent="EntranceTransition" unique_id=1381356903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65, 1.6, 8.7)
+material_override = SubResource("ShaderMaterial_fdaip")
+mesh = SubResource("BoxMesh_ty456")
+
+[node name="EntryRockTop" type="MeshInstance3D" parent="EntranceTransition" unique_id=22474515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05, 8.7)
+material_override = SubResource("ShaderMaterial_vqwin")
+mesh = SubResource("BoxMesh_c1wiq")
+
+[node name="EntryDarkness" type="MeshInstance3D" parent="EntranceTransition" unique_id=521176150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 9.16)
+material_override = SubResource("ShaderMaterial_bljf6")
+mesh = SubResource("BoxMesh_t3h72")
+
+[node name="ExitToNorthernRidge" type="Area3D" parent="EntranceTransition" unique_id=1460075679]
+collision_layer = 0
+monitorable = false
+script = ExtResource("2_nsaia")
+metadata/target_scene = "res://village/main.tscn"
+metadata/target_spawn = "root_cave_exit"
+metadata/door_link_id = "northern_root_cave_door"
+metadata/destination_id = "northern_ridge"
+
+[node name="TriggerVolume" type="CollisionShape3D" parent="EntranceTransition/ExitToNorthernRidge" unique_id=908410259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 9)
+shape = SubResource("BoxShape3D_7jah5")
+
+[node name="EntrySpawn" type="Marker3D" parent="EntranceTransition" unique_id=1484856294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 7.15)
+metadata/spawn_id = "root_cave_entry"
+
+[node name="ExitSpawn" type="Marker3D" parent="EntranceTransition" unique_id=676823518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 7.15)
+metadata/spawn_id = "root_cave_exit"
+
+[node name="CaveName" type="Label3D" parent="EntranceTransition" unique_id=1422473991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9, 8.1)
+pixel_size = 0.004
+modulate = Color(0.7647059, 0.72156864, 0.5803922, 1)
+text = "乱葬岭 · 左山洞"
+font_size = 64
+
+[node name="RenderRig" type="Node3D" parent="." unique_id=1642663384]
+
+[node name="VillageEnvironment" type="WorldEnvironment" parent="RenderRig" unique_id=485957806]
+environment = SubResource("Environment_2ssao")
+
+[node name="AfternoonSun" type="DirectionalLight3D" parent="RenderRig" unique_id=24282805]
+transform = Transform3D(0.88294756, 0.39813447, -0.24878204, 0, 0.52991927, 0.8480481, 0.46947157, -0.748782, 0.46789092, 0, 0, 0)
+light_color = Color(0.8509804, 0.8784314, 0.81960785, 1)
+light_energy = 0.82
+shadow_enabled = true
+directional_shadow_max_distance = 110.0
+
+[node name="VillageCamera" type="Camera3D" parent="RenderRig" unique_id=1512103155]
+transform = Transform3D(1, 0, 0, 0, 0.656059, 0.75470954, 0, -0.75470954, 0.656059, 0, 33, 29)
+projection = 1
+current = true
+size = 28.0
+far = 120.0
+
+[node name="PixelOutline" type="MeshInstance3D" parent="RenderRig/VillageCamera" unique_id=1223431023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+visible = false
+material_override = SubResource("ShaderMaterial_jy2u3")
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_8x3hx")

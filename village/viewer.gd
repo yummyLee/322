@@ -34,6 +34,7 @@ var materials: Array[ShaderMaterial] = []
 func _ready() -> void:
 	start_transform = camera.transform
 	start_size = camera.size
+	apply_pending_spawn()
 	if is_instance_valid(hero):
 		hero.movement_camera = camera
 	camera.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
@@ -64,6 +65,18 @@ func _ready() -> void:
 		set_zoom(0.58)
 		pan.z = 1.0
 	character_rendering.configure()
+
+func apply_pending_spawn() -> void:
+	var root := get_tree().root
+	var spawn_id := str(root.get_meta("scene_spawn_id", ""))
+	if spawn_id.is_empty() or not is_instance_valid(hero):
+		return
+	for marker in world.find_children("*", "Marker3D", true, false):
+		if str(marker.get_meta("spawn_id", "")) == spawn_id:
+			hero.global_position = marker.global_position + Vector3(0, 0.03, 0)
+			hero.velocity = Vector3.ZERO
+			root.remove_meta("scene_spawn_id")
+			return
 
 func collect_materials(node: Node) -> void:
 	if node is MeshInstance3D and node.mesh:

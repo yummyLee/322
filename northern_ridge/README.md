@@ -26,7 +26,7 @@
 
 ## 预留洞室入口
 
-`RootWrappedStoneGate/ReservedEntrance` 保存 `door_link_id=northern_root_cave_door`、`destination_id=northern_root_cave`，`target_scene` 为空，监测关闭。`EntryPoint` 和 `ExitSpawn` 分别预留进入与返回位置。目前可以走进石门凹室再返回；尚未制作洞室内部或场景跳转。
+`RootWrappedStoneGate/ReservedEntrance` 保存 `door_link_id=northern_root_cave_door`、`destination_id=northern_root_cave`，现在已连接到 `res://burial_left_cave/main.tscn`，监测开启，目标出生点为 `root_cave_entry`。`EntryPoint` 和 `ExitSpawn` 分别保存进洞与返回位置；洞内场景的出口会回到 `res://village/main.tscn` 的 `root_cave_exit`。
 
 洞顶和侧壁现已嵌入保存的连续坡体，坡面只在入口前脸开口，洞顶上方保留土层；入口短缓坡连接低处道路和洞内地板。局部离线修改记录为 `tools/embed_saved_cave.gd`，默认读取已保存场景并带重复执行保护，不依赖运行时生成。树木、根段、地表装饰及碰撞已随局部高程调整。
 
