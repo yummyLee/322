@@ -16,13 +16,16 @@ func _initialize() -> void:
 	scene_root.set_meta("player_height_reference", 1.86)
 	scene_root.set_meta("scene_id", "northern_root_cave")
 	scene_root.set_meta("layout_revision", 2)
+	scene_root.set_meta("layout_scale", 1.45)
 	make_floor()
 	make_walls_and_ceiling()
 	make_waterfalls_and_pools()
 	make_burial_fields()
 	make_mine_works()
 	make_lower_pools()
+	make_scene_details()
 	make_entry_and_exit()
+	enlarge_layout()
 	make_lighting()
 	var err := save_scene(CAVE_OUTPUT)
 	scene_root.free()
@@ -231,6 +234,53 @@ func make_lower_pools() -> void:
 	var pit := box(lower, "DarkRavine", Vector3(5.1, -0.03, 3.0), Vector3(2.5, 0.06, 3.4), "1e2927")
 	pit.rotation.y = -0.15
 
+func make_scene_details() -> void:
+	var details := group(scene_root, "CaveLifeAndRemains")
+	var bone_racks := group(details, "BoneDisplayRacks")
+	for x in [-2.8, -1.0, 1.0, 2.8]:
+		beam(bone_racks, "RackPost", Vector3(x, 0.92, -1.9), Vector3(x, 2.05, -1.9), 0.07, "66533e")
+		beam(bone_racks, "RackCrossbar", Vector3(x - 0.34, 1.60, -1.9), Vector3(x + 0.34, 1.60, -1.9), 0.05, "795d42")
+		add_bone(bone_racks, Vector3(x, 1.78, -1.82), PI * 0.5, 0.62, "d0c7a8")
+	var hanging := group(details, "HangingRopesAndHooks")
+	for i in range(5):
+		var x := -9.4 + i * 0.85
+		beam(hanging, "WetRope", Vector3(x, 3.0 - (i % 2) * 0.22, -2.8), Vector3(x + 0.12, 1.25, -2.45), 0.035, "51483a")
+		cylinder(hanging, "IronHook", Vector3(x + 0.12, 1.18, -2.43), 0.055, 0.22, "4c5149", 0.035, 6)
+	var mine_props := group(details, "MineToolsAndCrates")
+	for p in [Vector3(7.0, 1.10, -1.2), Vector3(9.1, 1.10, 0.8), Vector3(10.3, 1.10, -1.0)]:
+		box(mine_props, "RoughWoodCrate", p, Vector3(0.72, 0.62, 0.72), "76583e")
+		beam(mine_props, "CrateBand", p + Vector3(-0.36, 0.04, 0), p + Vector3(0.36, 0.04, 0), 0.035, "9a7950")
+	var pickaxe := group(mine_props, "LeaningPickaxe", Vector3(10.3, 1.04, 0.3))
+	beam(pickaxe, "Handle", Vector3(0, 0, 0), Vector3(-0.12, 1.25, 0.10), 0.045, "8b6845")
+	beam(pickaxe, "IronHead", Vector3(-0.42, 1.25, 0.10), Vector3(0.25, 1.25, 0.10), 0.07, "5d625b")
+	var tomb := group(details, "LowerTombMarkers")
+	box(tomb, "SunkenTombSlab", Vector3(9.3, 0.48, 6.3), Vector3(1.55, 0.20, 0.82), "8e907d")
+	box(tomb, "WeatheredTombstone", Vector3(9.3, 1.05, 6.05), Vector3(0.42, 1.1, 0.18), "9b9b83")
+	box(tomb, "TombstoneCrown", Vector3(9.3, 1.62, 6.05), Vector3(0.28, 0.12, 0.20), "858778")
+	add_skull(tomb, Vector3(8.4, 0.42, 6.8), 0.9)
+	add_bone(tomb, Vector3(10.2, 0.44, 6.85), 0.2, 0.8, "c0b99e")
+	var moss := group(details, "EdgeMossAndFungi")
+	for i in range(30):
+		var side := -1.0 if i % 2 == 0 else 1.0
+		var p := Vector3(side * rng.randf_range(5.2, 11.5), rng.randf_range(0.18, 1.4), rng.randf_range(-7.5, 7.5))
+		ball(moss, "MossLump", p, Vector3(rng.randf_range(0.12, 0.30), rng.randf_range(0.08, 0.20), rng.randf_range(0.12, 0.28)), ["64775d", "788665", "526653"][i % 3])
+		if i % 3 == 0:
+			cylinder(moss, "PaleFungus", p + Vector3(0, 0.18, 0), 0.045, 0.34, "a9a57d", 0.02, 6)
+	var rear_altar := group(details, "RearTunnelAltar", Vector3(0, 0, -7.4))
+	box(rear_altar, "StoneOfferingBase", Vector3(0, 1.48, 0), Vector3(1.35, 0.20, 0.72), "858878")
+	box(rear_altar, "DarkOfferingBowl", Vector3(0, 1.68, 0), Vector3(0.42, 0.18, 0.34), "3f4540")
+	var bridge_detail := group(details, "BridgeRailsAndRope")
+	for x in [4.25, 5.95]:
+		beam(bridge_detail, "BridgePost", Vector3(x, 0.20, 2.2), Vector3(x, 1.15, 2.2), 0.07, "6b543d")
+	beam(bridge_detail, "BridgeHandrail", Vector3(4.25, 1.12, 2.2), Vector3(5.95, 1.12, 2.2), 0.055, "7d6043")
+
+func enlarge_layout() -> void:
+	var factor := Vector3(1.45, 1.0, 1.45)
+	for path in ["CaveTerrain", "CaveRockShell", "WaterfallsAndPools", "BoneBurialFields", "MineWorks", "LowerStalactitePools", "CaveLifeAndRemains", "EntranceTransition"]:
+		var section := scene_root.get_node_or_null(path) as Node3D
+		if section:
+			section.scale = factor
+
 func make_entry_and_exit() -> void:
 	var entry := group(scene_root, "EntranceTransition")
 	box(entry, "EntryRockLeft", Vector3(-1.65, 1.6, 8.7), Vector3(1.1, 3.3, 1.2), "59645a")
@@ -284,7 +334,7 @@ func make_lighting() -> void:
 	sun.light_energy = 0.82
 	sun.light_color = Color("d9e0d1")
 	var camera := rig.get_node("VillageCamera") as Camera3D
-	camera.size = 28.0
+	camera.size = 38.0
 	camera.position = Vector3(0, 33, 29)
 	camera.rotation_degrees = Vector3(-49, 0, 0)
 	camera.far = 120.0

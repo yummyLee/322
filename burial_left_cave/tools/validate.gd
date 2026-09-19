@@ -15,6 +15,8 @@ func _initialize() -> void:
 	check(world.get_node("CaveTerrain").get_node_or_null("DisconnectedPlatforms") != null and world.get_node("CaveTerrain/DisconnectedPlatforms").get_child_count() >= 7, "cave uses multiple disconnected platforms")
 	check(world.get_node("CaveTerrain/BranchingStonePaths").get_child_count() >= 6, "cave has branching narrow paths")
 	check(world.get_meta("layout_revision", 0) == 2, "branched cave layout revision is saved")
+	check(is_equal_approx(world.get_meta("layout_scale", 0.0), 1.45), "cave layout is enlarged for the wider reference composition")
+	check(world.get_node_or_null("CaveLifeAndRemains/BoneDisplayRacks") != null and world.get_node_or_null("CaveLifeAndRemains/MineToolsAndCrates") != null, "cave detail groups are saved")
 	var main_text := FileAccess.get_file_as_string("res://burial_left_cave/main.tscn")
 	check(main_text.contains("res://burial_left_cave/world.tscn"), "cave main entry uses the saved cave world")
 	world.free()
