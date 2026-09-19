@@ -16,7 +16,7 @@ func _initialize() -> void:
 	scene_root.set_meta("player_height_reference", 1.86)
 	scene_root.set_meta("scene_id", "northern_root_cave")
 	scene_root.set_meta("layout_revision", 2)
-	scene_root.set_meta("layout_scale", 1.45)
+	scene_root.set_meta("layout_scale", 2.8)
 	make_floor()
 	make_walls_and_ceiling()
 	make_waterfalls_and_pools()
@@ -91,6 +91,15 @@ func make_floor() -> void:
 	floor_collision.name = "SavedWalkCollisions"
 	floor_root.add_child(floor_collision, true)
 	floor_collision.owner = scene_root
+	var boundaries := group(floor_root, "MapBoundaries")
+	# Invisible perimeter walls keep the player inside the authored cave footprint.
+	collision_box(floor_collision, "WestBoundary", Vector3(-16.8, 1.0, -1.5), Vector3(0.8, 7.0, 29.0))
+	collision_box(floor_collision, "EastBoundary", Vector3(16.8, 1.0, -1.5), Vector3(0.8, 7.0, 29.0))
+	collision_box(floor_collision, "NorthBoundary", Vector3(0, 1.0, -15.6), Vector3(34.0, 7.0, 0.8))
+	collision_box(floor_collision, "SouthBoundary", Vector3(0, 1.0, 12.2), Vector3(34.0, 7.0, 0.8))
+	# A low catch plane stops an accidental fall into the black void from becoming an endless drop.
+	collision_box(floor_collision, "VoidSafetyCatch", Vector3(0, -3.6, -1.5), Vector3(34.0, 0.5, 29.0))
+	boundaries.set_meta("purpose", "player_bounds_and_void_safety")
 	var platforms := group(floor_root, "DisconnectedPlatforms")
 	cave_platform(platforms, floor_collision, "EntryShelf", [Vector2(-1.7, 9.6), Vector2(1.5, 9.6), Vector2(2.0, 7.1), Vector2(1.0, 6.2), Vector2(-1.8, 6.5), Vector2(-2.1, 8.2)], 0.05, "777868")
 	cave_platform(platforms, floor_collision, "CentralBurialIsland", [Vector2(-4.3, 1.8), Vector2(-3.0, -2.5), Vector2(-0.7, -3.8), Vector2(3.4, -3.4), Vector2(5.1, -0.8), Vector2(4.0, 2.8), Vector2(0.7, 3.7), Vector2(-2.2, 3.0)], 0.82, "625d4e")
@@ -100,6 +109,11 @@ func make_floor() -> void:
 	cave_platform(platforms, floor_collision, "RightTombShelf", [Vector2(6.6, 5.0), Vector2(8.2, 3.1), Vector2(11.6, 3.6), Vector2(12.1, 7.4), Vector2(9.2, 9.3), Vector2(6.9, 8.0)], 0.28, "676c61")
 	cave_platform(platforms, floor_collision, "LowerCentralForkIsland", [Vector2(-2.5, 6.1), Vector2(-0.5, 5.5), Vector2(3.2, 6.0), Vector2(4.7, 8.0), Vector2(2.4, 9.5), Vector2(-1.0, 9.2), Vector2(-3.0, 7.8)], -0.28, "656c62")
 	cave_platform(platforms, floor_collision, "BackTunnelLedge", [Vector2(-2.1, -6.0), Vector2(-1.7, -9.3), Vector2(1.8, -9.8), Vector2(2.5, -6.5), Vector2(1.2, -4.0), Vector2(-0.9, -4.2)], 1.42, "59645a")
+	cave_platform(platforms, floor_collision, "NorthBoneHall", [Vector2(-5.5, -4.4), Vector2(-4.7, -8.1), Vector2(-1.8, -9.1), Vector2(3.8, -8.5), Vector2(5.7, -5.1), Vector2(3.4, -3.5), Vector2(-1.8, -3.6)], 1.55, "6b6555")
+	cave_platform(platforms, floor_collision, "WestPillarForest", [Vector2(-13.5, -5.6), Vector2(-12.4, -9.8), Vector2(-9.5, -10.8), Vector2(-7.2, -8.2), Vector2(-7.6, -4.4), Vector2(-10.6, -3.0)], 0.36, "59645d")
+	cave_platform(platforms, floor_collision, "WestPitWell", [Vector2(-14.4, -13.2), Vector2(-11.4, -14.4), Vector2(-9.2, -12.3), Vector2(-9.8, -9.6), Vector2(-12.6, -9.5), Vector2(-14.7, -11.0)], -0.10, "4f5b56")
+	cave_platform(platforms, floor_collision, "EastQuarryGallery", [Vector2(9.3, -8.7), Vector2(12.4, -10.2), Vector2(15.5, -8.7), Vector2(15.8, -5.1), Vector2(13.0, -3.7), Vector2(9.8, -4.8)], 1.42, "5d655d")
+	cave_platform(platforms, floor_collision, "NameWallChamber", [Vector2(14.0, -11.6), Vector2(16.8, -11.3), Vector2(17.3, -8.5), Vector2(15.3, -7.1), Vector2(13.5, -8.3)], 1.55, "625e53")
 	var paths := group(floor_root, "BranchingStonePaths")
 	cave_walkway(paths, floor_collision, "EntryToCenter", [Vector3(0, 0.08, 6.9), Vector3(0.0, 0.35, 5.6), Vector3(0.7, 0.58, 4.2), Vector3(0.4, 0.76, 3.1)], 1.25, "7f806e")
 	cave_walkway(paths, floor_collision, "CenterToBurial", [Vector3(0.4, 0.76, 2.9), Vector3(0.2, 0.82, 1.8), Vector3(0.0, 0.82, 0.6)], 1.30, "777565")
@@ -111,6 +125,11 @@ func make_floor() -> void:
 	cave_walkway(paths, floor_collision, "WindingLowerRoad", [Vector3(5.5, 0.52, 2.7), Vector3(4.7, 0.20, 4.4), Vector3(3.0, -0.08, 6.1), Vector3(1.2, -0.20, 7.1)], 1.35, "858778")
 	cave_walkway(paths, floor_collision, "LowerRoadLeftFork", [Vector3(1.2, -0.20, 7.1), Vector3(-0.8, -0.25, 7.8), Vector3(-2.5, -0.42, 7.5)], 1.20, "7a8072")
 	cave_walkway(paths, floor_collision, "LowerRoadRightFork", [Vector3(1.2, -0.20, 7.1), Vector3(4.2, -0.10, 7.7), Vector3(7.0, 0.12, 7.7)], 1.20, "7c8174")
+	cave_walkway(paths, floor_collision, "CenterToPillarForest", [Vector3(-3.7, 0.86, -0.8), Vector3(-5.8, 0.56, -2.6), Vector3(-7.6, 0.42, -4.7)], 1.10, "6e796f")
+	cave_walkway(paths, floor_collision, "PillarForestToPitWell", [Vector3(-9.7, 0.34, -6.2), Vector3(-11.4, 0.08, -8.7), Vector3(-12.1, -0.04, -10.0)], 0.95, "68736d")
+	cave_walkway(paths, floor_collision, "PitWellToBoneHall", [Vector3(-11.8, 0.02, -9.5), Vector3(-8.8, 0.54, -7.5), Vector3(-5.0, 1.25, -6.0)], 1.0, "777a6e")
+	cave_walkway(paths, floor_collision, "BoneHallToQuarry", [Vector3(3.2, 1.48, -6.0), Vector3(6.5, 1.40, -5.1), Vector3(9.4, 1.38, -6.3)], 1.05, "77796b")
+	cave_walkway(paths, floor_collision, "QuarryToNameWall", [Vector3(12.5, 1.45, -7.2), Vector3(14.2, 1.52, -9.0), Vector3(15.2, 1.55, -10.0)], 0.90, "6f7165")
 	var grit := group(floor_root, "ScatteredCaveGrit")
 	for i in range(65):
 		var p := Vector3(rng.randf_range(-10.5, 10.5), rng.randf_range(-0.35, 1.1), rng.randf_range(-8.5, 8.2))
@@ -273,9 +292,28 @@ func make_scene_details() -> void:
 	for x in [4.25, 5.95]:
 		beam(bridge_detail, "BridgePost", Vector3(x, 0.20, 2.2), Vector3(x, 1.15, 2.2), 0.07, "6b543d")
 	beam(bridge_detail, "BridgeHandrail", Vector3(4.25, 1.12, 2.2), Vector3(5.95, 1.12, 2.2), 0.055, "7d6043")
+	var central_cart := group(details, "TurnedBodyCart", Vector3(-0.4, 0.94, 1.6))
+	box(central_cart, "CartBed", Vector3(0, 0.38, 0), Vector3(1.45, 0.16, 2.0), "6e543c")
+	for x in [-0.68, 0.68]:
+		var wheel := cylinder(central_cart, "BrokenWheel", Vector3(x, 0.38, -0.15), 0.38, 0.12, "4d4236", -1, 12)
+		wheel.rotation.z = PI / 2
+	beam(central_cart, "SplitCartHandle", Vector3(0, 0.45, 0.72), Vector3(-0.25, 0.62, 1.8), 0.055, "805f3f")
+	var lime_vats := group(details, "EntryLimeVats", Vector3(0, 0, 7.8))
+	for x in [-0.9, 0, 0.9]:
+		cylinder(lime_vats, "WhiteCakedVat", Vector3(x, 0.30, 0), 0.28, 0.50, "a7a28d", 0.22, 8)
+		cylinder(lime_vats, "PowderedLime", Vector3(x, 0.57, 0), 0.19, 0.035, "d0c8aa", -1, 8)
+	var name_wall := group(details, "CarvedNameWall", Vector3(15.0, 0, -9.4))
+	box(name_wall, "NumberedWallSlab", Vector3(0, 1.8, 0), Vector3(2.6, 2.7, 0.25), "4d514b")
+	for i in range(6):
+		box(name_wall, "EmptyNameTablet", Vector3(-0.8 + (i % 3) * 0.8, 1.25 + (i / 3) * 0.75, 0.18), Vector3(0.42, 0.28, 0.035), "9b947b")
+	var pit_frame := group(details, "PitWellRopeFrame", Vector3(-12.0, 0, -11.2))
+	for x in [-0.8, 0.8]:
+		beam(pit_frame, "PitPost", Vector3(x, 0.0, 0), Vector3(x, 2.0, 0), 0.08, "5c4d3c")
+	beam(pit_frame, "PitCrossbar", Vector3(-0.9, 1.85, 0), Vector3(0.9, 1.85, 0), 0.08, "725942")
+	beam(pit_frame, "PitRope", Vector3(0, 1.82, 0), Vector3(0, 0.15, 0.12), 0.035, "4e4438")
 
 func enlarge_layout() -> void:
-	var factor := Vector3(1.45, 1.0, 1.45)
+	var factor := Vector3(2.8, 1.0, 2.8)
 	for path in ["CaveTerrain", "CaveRockShell", "WaterfallsAndPools", "BoneBurialFields", "MineWorks", "LowerStalactitePools", "CaveLifeAndRemains", "EntranceTransition"]:
 		var section := scene_root.get_node_or_null(path) as Node3D
 		if section:
@@ -334,8 +372,8 @@ func make_lighting() -> void:
 	sun.light_energy = 0.82
 	sun.light_color = Color("d9e0d1")
 	var camera := rig.get_node("VillageCamera") as Camera3D
-	camera.size = 38.0
-	camera.position = Vector3(0, 33, 29)
+	camera.size = 72.0
+	camera.position = Vector3(0, 60, 62)
 	camera.rotation_degrees = Vector3(-49, 0, 0)
-	camera.far = 120.0
+	camera.far = 260.0
 
