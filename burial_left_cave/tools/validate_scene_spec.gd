@@ -18,7 +18,7 @@ func _initialize() -> void:
 	if builder.find("func smooth_route") < 0 or builder.find("var route := smooth_route(points)") < 0:
 		failures.append("corridors are not generated from smooth routes")
 	var ground_cells := world.count("GroundCell_")
-	var path_cells := world.count("Segment_%03d")
+	var path_cells := world.count("Segment_")
 	if ground_cells < 1000:
 		failures.append("too few saved terrain cells: %d" % ground_cells)
 	if path_cells < 100:
@@ -29,3 +29,4 @@ func _initialize() -> void:
 	else:
 		for failure in failures: push_error(failure)
 		quit(1)
+
