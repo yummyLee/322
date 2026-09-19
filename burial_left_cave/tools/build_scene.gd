@@ -1,8 +1,9 @@
 extends "scene_parts.gd"
 const OUTPUT := "res://burial_left_cave/world.tscn"
 const ROCK_PALETTE := ["25343d","30414a","3a4b52","46545a","526066"]
-const TERRAIN_CELL := 0.60
 var portal_points: Array[Vector3] = []
+var boundary_collisions: Node3D
+var route_registry: Array[String] = []
 
 func _initialize() -> void:
 	var args := OS.get_cmdline_args()
@@ -37,52 +38,29 @@ func tone(base: String, index: int) -> String:
 	var delta: float = [-0.022,0.0,0.016,0.030][posmod(index,4)]
 	return Color(clampf(c.r+delta,0.0,1.0),clampf(c.g+delta,0.0,1.0),clampf(c.b+delta,0.0,1.0),1.0).to_html(false)
 
-func grid_jitter(ix: int, iz: int) -> Vector2:
-	var seed := float(ix*9283+iz*6899)
-	return Vector2(sin(seed*0.017)*0.28,cos(seed*0.013)*0.28)
-
-func cell_height(ix: int, iz: int, base_y: float, water := false) -> float:
+func surface_y(x: float, z: float, base_y: float, water := false) -> float:
 	if water:
-		return base_y + sin(float(ix*17+iz*11))*0.008
-	return base_y + sin(float(ix*17+iz*11))*0.085 + cos(float(ix*7-iz*13))*0.050
+		return base_y + sin(x*0.37+z*0.21)*0.012
+	return base_y + sin(x*0.23+z*0.17)*0.065 + cos(x*0.11-z*0.29)*0.045
 
 func patch(parent: Node, label: String, points: Array, y: float, color: String) -> Node3D:
-	# A room is a stitched field of small irregular cells. The outline remains
-	# editable as a region group, while no large fan or rectangle survives in
-	# the baked scene.
+	# One continuous editable surface per region. The outline is irregular and
+	# gently warped in height; stones, wear and wet marks remain separate nodes.
 	var g := group(parent,label)
 	var polygon := PackedVector2Array()
-	var min_x := INF; var max_x := -INF; var min_z := INF; var max_z := -INF
 	for p in points:
 		var q := Vector2(p.x,p.z)
 		polygon.append(q)
-		min_x = minf(min_x,q.x); max_x = maxf(max_x,q.x)
-		min_z = minf(min_z,q.y); max_z = maxf(max_z,q.y)
-	var ix0 := floori(min_x/TERRAIN_CELL)-1; var ix1 := ceili(max_x/TERRAIN_CELL)+1
-	var iz0 := floori(min_z/TERRAIN_CELL)-1; var iz1 := ceili(max_z/TERRAIN_CELL)+1
-	var water := color in ["2f6570","3b6266"]
-	var cell_index := 0
-	for ix in range(ix0,ix1):
-		for iz in range(iz0,iz1):
-			var x0 := ix*TERRAIN_CELL; var z0 := iz*TERRAIN_CELL
-			var x1 := (ix+1)*TERRAIN_CELL; var z1 := (iz+1)*TERRAIN_CELL
-			var v00 := Vector2(x0,z0)+grid_jitter(ix,iz)
-			var v10 := Vector2(x1,z0)+grid_jitter(ix+1,iz)
-			var v11 := Vector2(x1,z1)+grid_jitter(ix+1,iz+1)
-			var v01 := Vector2(x0,z1)+grid_jitter(ix,iz+1)
-			var inside := 0
-			for v in [v00,v10,v11,v01]:
-				if Geometry2D.is_point_in_polygon(v,polygon): inside += 1
-			if inside < 2: continue
-			var verts := PackedVector3Array([
-				Vector3(v00.x,cell_height(ix,iz,y,water),v00.y),
-				Vector3(v10.x,cell_height(ix+1,iz,y,water),v10.y),
-				Vector3(v11.x,cell_height(ix+1,iz+1,y,water),v11.y),
-				Vector3(v01.x,cell_height(ix,iz+1,y,water),v01.y)
-			])
-			var indices := PackedInt32Array([0,1,2,0,2,3] if posmod(ix+iz,2)==0 else [0,1,3,1,2,3])
-			solid(g,"GroundCell_%03d"%cell_index,verts,indices,tone(color,cell_index))
-			cell_index += 1
+	var tris := Geometry2D.triangulate_polygon(polygon)
+	if tris.is_empty():
+		push_error("Unable to triangulate region %s" % label)
+		return g
+	var verts := PackedVector3Array()
+	for q in polygon:
+		verts.append(Vector3(q.x,surface_y(q.x,q.y,y,color in ["2f6570","3b6266"]),q.y))
+	var surface := solid(g,"TerrainSurface_%s" % label,verts,tris,color)
+	surface.set_meta("surface_kind","continuous_region")
+	surface.set_meta("region_id",label)
 	return g
 
 func rock(parent: Node, label: String, p: Vector3, s: Vector3, color := "") -> void:
@@ -108,6 +86,29 @@ func rim(parent: Node, points: Array, y: float, height: float, density: int = 2)
 			var h_factor := rng.randf_range(0.28,1.18)
 			var size := Vector3(rng.randf_range(0.30,0.78),height*h_factor,rng.randf_range(0.30,0.78))
 			rock(parent,"RimRock",Vector3(q.x,y+size.y*0.38,q.z),size)
+		var blocked := false
+		for portal in portal_points:
+			if Geometry2D.get_closest_point_to_segment(Vector2(portal.x,portal.z),Vector2(p.x,p.z),Vector2(next.x,next.z)).distance_to(Vector2(portal.x,portal.z)) < 2.65:
+				blocked = true
+				break
+		if not blocked:
+			collision_wall(boundary_collisions,"Rim_%02d"%i,p,next,height*0.82)
+
+func collision_wall(parent: Node, label: String, a: Vector3, b: Vector3, height: float) -> void:
+	if boundary_collisions == null: return
+	var body := StaticBody3D.new()
+	body.name = "BoundaryCollision_%s" % label
+	body.collision_layer = 1
+	body.collision_mask = 1
+	body.set_meta("boundary_segment",label)
+	boundary_collisions.add_child(body,true); body.owner = scene_root
+	var shape := CollisionShape3D.new()
+	var box_shape := BoxShape3D.new()
+	box_shape.size = Vector3(0.58,height,maxf(0.55,a.distance_to(b)))
+	shape.shape = box_shape
+	body.add_child(shape,true); shape.owner = scene_root
+	body.position = (a+b)*0.5 + Vector3(0,height*0.5,0)
+	body.rotation.y = atan2(b.x-a.x,b.z-a.z)
 
 func smooth_route(points: Array) -> Array:
 	var out: Array = []
@@ -141,30 +142,35 @@ func path_wall_edge(parent: Node, label: String, a: Vector3, b: Vector3, width: 
 			var h := rng.randf_range(0.28,0.66)
 			rock(g,"RoadsideWallStone",Vector3(q.x,p.y+h*0.36,q.z),Vector3(rng.randf_range(0.28,0.56),h,rng.randf_range(0.28,0.60)),["59615f","6d6b5e","4e5758"][rng.randi_range(0,2)])
 
-func slope_quad(parent: Node, label: String, a: Vector3, b: Vector3, width: float, color: String) -> void:
-	var dir := Vector3(b.x-a.x,0,b.z-a.z).normalized()
+func route_ribbon(parent: Node, label: String, route: Array, width: float, color: String) -> MeshInstance3D:
+	var verts := PackedVector3Array()
+	var indices := PackedInt32Array()
+	for i in range(route.size()):
+		var p: Vector3 = route[i]
+		var prev: Vector3 = route[maxi(0,i-1)]
+		var next: Vector3 = route[mini(route.size()-1,i+1)]
+		var tangent := Vector3(next.x-prev.x,0,next.z-prev.z).normalized()
+		var side := Vector3(-tangent.z,0,tangent.x)
+		var local_width := width*(0.90+0.10*sin(float(i)*0.71+0.3))
+		var shoulder := 0.05*sin(float(i)*0.43)
+		verts.append(p+side*(local_width*0.5+shoulder)+Vector3(0,0.045,0))
+		verts.append(p-side*(local_width*0.5-shoulder)+Vector3(0,0.045,0))
+	for i in range(route.size()-1):
+		var a := i*2; var b := a+1; var c := a+2; var d := a+3
+		indices.append_array([a,b,d,a,d,c])
+	var node := solid(parent,label,verts,indices,color)
+	node.set_meta("surface_kind","continuous_road")
+	node.set_meta("route_control_points",route.size())
+	return node
+
+func road_marker(parent: Node, label: String, p: Vector3, facing: Vector3, kind: String) -> void:
+	var g := group(parent,"RoadMarker_%s_%s" % [kind,label],p)
+	g.set_meta("connection_id",label); g.set_meta("marker_kind",kind)
+	var dir := Vector3(facing.x,0,facing.z).normalized()
 	var side := Vector3(-dir.z,0,dir.x)
-	var length := a.distance_to(b)
-	var steps := maxi(5,ceili(length/0.48))
-	var lanes := maxi(3,ceili(width/0.72))
-	for i in range(steps):
-		var t0 := i/float(steps); var t1 := (i+1)/float(steps)
-		var center0 := a.lerp(b,t0)+side*rng.randf_range(-0.18,0.18)+Vector3(0,0.06,0)
-		var center1 := a.lerp(b,t1)+side*rng.randf_range(-0.18,0.18)+Vector3(0,0.06,0)
-		for lane in range(lanes):
-			var u0 := -0.5+lane/float(lanes)
-			var u1 := -0.5+(lane+1)/float(lanes)
-			var lateral0 := side*rng.randf_range(-0.08,0.08)
-			var lateral1 := side*rng.randf_range(-0.08,0.08)
-			# Four corners are ordered around one small cell; this prevents diagonal
-			# gaps and the apparent pair of floating wall lines from the old mesh.
-			var v0 := center0+side*(u0*width)+lateral0+Vector3(0,rng.randf_range(-0.015,0.02),0)
-			var v1 := center1+side*(u0*width)+lateral1+Vector3(0,rng.randf_range(-0.015,0.02),0)
-			var v2 := center1+side*(u1*width)+lateral1+Vector3(0,rng.randf_range(-0.015,0.02),0)
-			var v3 := center0+side*(u1*width)+lateral0+Vector3(0,rng.randf_range(-0.015,0.02),0)
-			var verts := PackedVector3Array([v0,v1,v2,v3])
-			var indices := PackedInt32Array([0,1,2,0,2,3] if (i+lane)%2==0 else [0,1,3,1,2,3])
-			solid(parent,"%s_Cell_%03d_%02d"%[label,i,lane],verts,indices,tone(color,i+lane))
+	for sign in [-1,1]:
+		rock(g,"MarkerStone",side*sign*0.82+Vector3(0,0.13,0),Vector3(0.22,0.26,0.28),"7c7664")
+	beam(g,"MarkerStake",-side*0.42+Vector3(0,0.05,0),-side*0.42+Vector3(0,0.52,0),0.035,"8d744f")
 
 func corridor_edges(parent: Node, label: String, points: Array, width: float) -> void:
 	var g := group(parent,label)
