@@ -72124,12 +72124,12 @@ mesh = SubResource("CylinderMesh_qnois")
 [node name="ReservedEntrance" type="Area3D" parent="RootWrappedStoneGate" unique_id=933582162]
 collision_layer = 0
 monitorable = false
-script = ExtResource("4_rnug4")
-metadata/target_scene = "res://burial_left_cave/main.tscn"
+monitoring = false
+metadata/target_scene = ""
 metadata/door_link_id = "northern_root_cave_door"
 metadata/destination_id = "northern_root_cave"
-metadata/target_spawn = "root_cave_entry"
-metadata/portal_enabled = true
+metadata/target_spawn = ""
+metadata/portal_enabled = false
 
 [node name="TriggerVolume" type="CollisionShape3D" parent="RootWrappedStoneGate/ReservedEntrance" unique_id=1316786095]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.15)

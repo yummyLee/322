@@ -34,7 +34,7 @@ func run() -> void:
 	check(ridge.get_node("SavedWalkCollisions/NorthLimit").disabled,"Former burial-ridge north boundary is open")
 	check(world.get_node("RenderRig/VillageCamera").size==36 and ProjectSettings.get_setting("application/run/main_scene")=="res://village/main.tscn","Original camera and game entry retained")
 	var portal: Area3D=north.get_node("RootWrappedStoneGate/ReservedEntrance")
-	check(portal.monitoring and portal.get_meta("target_scene")=="res://burial_left_cave/main.tscn" and portal.get_meta("target_spawn")=="root_cave_entry" and portal.get_meta("door_link_id")=="northern_root_cave_door","Root gate links to the saved cave scene and entry spawn")
+	check(not portal.monitoring and not portal.get_meta("portal_enabled",false),"Root gate is disabled while the cave scene is removed")
 	var old_edges: Dictionary={}
 	for chunk in ridge.get_node("TerrainAndPaths/SculptedGround").get_children():
 		var arr: Array=chunk.get_node("BlendedTerrain").mesh.surface_get_arrays(0)
