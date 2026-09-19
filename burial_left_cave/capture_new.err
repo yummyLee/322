@@ -1,0 +1,5 @@
+WARNING: [Physics interpolation] Interpolated Camera3D triggered from outside physics process: "/root/VillageViewer/WorldViewport/World/RenderRig/VillageCamera" (possibly benign).
+   at: _notification (scene/3d/camera_3d.cpp:218)
+WARNING: [Physics interpolation] Interpolated Camera3D triggered from outside physics process: "/root/VillageViewer/WorldViewport/World/RenderRig/VillageCamera" (possibly benign).
+   at: _notification (scene/3d/camera_3d.cpp:218)
+WARNING: [Physics interpolation] Interpolated Camera3D triggered from outside physics process: "/root/VillageViewer/WorldViewport/World/RenderRig/VillageCamera" (possibly benign).

@@ -1,0 +1,4 @@
+ERROR: missing editable group/asset: RoadsideWallStone
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://burial_left_cave/tools/validate_scene_spec.gd:26)

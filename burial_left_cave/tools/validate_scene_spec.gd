@@ -11,7 +11,7 @@ func _initialize() -> void:
 		if world.find(forbidden) >= 0: failures.append("fragmented legacy geometry remains: %s" % forbidden)
 	for region in ["J0_EntranceHall","J8_OldCartYard","J2_BoneSortingLedge","J4_UpperFissureWalk","J5_BoneCairnHall","J6_SunkenPit","J3_SeepingThroat","J9_StonePillarForest","J10_GreyWaterTerraces","J7_SealedWestFissure","J12_CollapseQuarry","J13_NameWallChamber"]:
 		if world.find("node name=\"%s\"" % region) < 0: failures.append("missing preserved region: %s" % region)
-	for required in ["RegionEntrances","SavedWallCollisions","J0_J1_Entrance","J12_J13_Entrance","J1_AbandonedCoffin","J5_BrokenCoffin","OverturnedCorpseCart","StonePillar","RoadsideWallStone","GroundCollision"]:
+	for required in ["RegionEntrances","SavedWallCollisions","J0_J1_Entrance","J12_J13_Entrance","J1_AbandonedCoffin","J5_BrokenCoffin","OverturnedCorpseCart","StonePillar","RoadShoulderStone","GroundCollision"]:
 		if world.find(required) < 0: failures.append("missing editable group/asset: %s" % required)
 	if builder.find("func mesh_collision") < 0 or builder.find("surface_kind\",\"continuous_region") < 0 or builder.find("surface_kind\",\"continuous_road") < 0:
 		failures.append("continuous surface policy is missing")

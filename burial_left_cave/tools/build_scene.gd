@@ -4,6 +4,7 @@ const ROCK_PALETTE := ["25343d","30414a","3a4b52","46545a","526066"]
 var portal_points: Array[Vector3] = []
 var boundary_collisions: Node3D
 var route_registry: Array[String] = []
+var rim_index := 0
 
 func _initialize() -> void:
 	var args := OS.get_cmdline_user_args()
@@ -55,14 +56,46 @@ func patch(parent: Node, label: String, points: Array, y: float, color: String) 
 	if tris.is_empty():
 		push_error("Unable to triangulate region %s" % label)
 		return g
-	var verts := PackedVector3Array()
+	var boundary := PackedVector3Array()
+	var is_water := color in ["2f6570","3b6266"]
 	for q in polygon:
-		verts.append(Vector3(q.x,surface_y(q.x,q.y,y,color in ["2f6570","3b6266"]),q.y))
-	var surface := solid(g,"TerrainSurface_%s" % label,verts,tris,color)
+		boundary.append(Vector3(q.x,surface_y(q.x,q.y,y,is_water),q.y))
+	var verts := PackedVector3Array()
+	var refined := PackedInt32Array()
+	for i in range(0,tris.size(),3):
+		var a: Vector3 = boundary[tris[i]]
+		var b: Vector3 = boundary[tris[i+1]]
+		var c: Vector3 = boundary[tris[i+2]]
+		append_surface_triangle(verts,refined,a,b,c,0,is_water)
+	var surface := solid(g,"TerrainSurface_%s" % label,verts,refined,color)
 	surface.set_meta("surface_kind","continuous_region")
 	surface.set_meta("region_id",label)
 	mesh_collision(g,surface,"GroundCollision")
 	return g
+
+func append_surface_triangle(verts: PackedVector3Array, indices: PackedInt32Array, a: Vector3, b: Vector3, c: Vector3, depth: int, water: bool) -> void:
+	# Keep every saved terrain cell below half the player height. The recursive
+	# split also removes the large exposed fan triangles that used to read as
+	# simple polygon floors from the camera.
+	var edge_max := maxf(a.distance_to(b),maxf(b.distance_to(c),c.distance_to(a)))
+	if edge_max <= 0.82 or depth >= 5:
+		var base := verts.size()
+		verts.append(a); verts.append(b); verts.append(c)
+		indices.append_array([base,base+1,base+2])
+		return
+	var ab := (a+b)*0.5
+	var bc := (b+c)*0.5
+	var ca := (c+a)*0.5
+	var lift := 0.018 if water else 0.032
+	# Small deterministic height offsets create natural erosion without breaking
+	# continuity at the outer boundary.
+	ab.y += sin((ab.x+ab.z)*1.7)*lift
+	bc.y += cos((bc.x-bc.z)*1.3)*lift
+	ca.y += sin((ca.x-bc.z)*1.1)*lift
+	append_surface_triangle(verts,indices,a,ab,ca,depth+1,water)
+	append_surface_triangle(verts,indices,ab,b,bc,depth+1,water)
+	append_surface_triangle(verts,indices,ca,bc,c,depth+1,water)
+	append_surface_triangle(verts,indices,ab,bc,ca,depth+1,water)
 
 func mesh_collision(parent: Node, source: MeshInstance3D, label: String) -> void:
 	if source.mesh == null:
@@ -85,31 +118,61 @@ func rock(parent: Node, label: String, p: Vector3, s: Vector3, color := "") -> v
 	var n := ball(parent,label,p,s,c)
 	n.rotation = Vector3(rng.randf_range(-0.18,0.18),rng.randf_range(0,TAU),rng.randf_range(-0.18,0.18))
 
-func rim(parent: Node, points: Array, y: float, height: float, density: int = 2) -> void:
+func rim(parent: Node, points: Array, y: float, height: float, density: int = 2, region_label: String = "") -> void:
+	# A region gets a rounded, layered rock rim instead of a line of identical
+	# pillars. Every span is short enough to remain editable and to avoid a
+	# straight polygon edge in the player view.
+	var rim_group := group(parent,region_label if region_label != "" else "RegionRim_%02d" % rim_index)
+	rim_index += 1
 	for i in range(points.size()):
 		var p: Vector3 = points[i]
 		var next: Vector3 = points[(i+1)%points.size()]
 		var edge := next-p
-		var steps := maxi(1,int(edge.length()*density))
+		var steps := maxi(4,int(edge.length()*1.55))
 		for k in range(steps):
-			var q := p.lerp(next,(k+0.35)/float(steps))
+			var t0 := k/float(steps)
+			var t1 := (k+1)/float(steps)
+			var dir := Vector3(edge.x,0,edge.z).normalized()
+			var side := Vector3(-dir.z,0,dir.x)
+			var a := p.lerp(next,t0)+side*rng.randf_range(-0.16,0.16)
+			var b := p.lerp(next,t1)+side*rng.randf_range(-0.16,0.16)
+			var mid := a.lerp(b,0.5)
 			var near_portal := false
 			for portal in portal_points:
-				if Vector2(q.x,q.z).distance_to(Vector2(portal.x,portal.z)) < 7.0:
+				if Vector2(mid.x,mid.z).distance_to(Vector2(portal.x,portal.z)) < 5.2:
 					near_portal = true
 					break
 			if near_portal:
 				continue
-			var h_factor := rng.randf_range(0.28,1.18)
-			var size := Vector3(rng.randf_range(0.30,0.78),height*h_factor,rng.randf_range(0.30,0.78))
-			rock(parent,"RimRock",Vector3(q.x,y+size.y*0.38,q.z),size)
-		var blocked := false
-		for portal in portal_points:
-			if Geometry2D.get_closest_point_to_segment(Vector2(portal.x,portal.z),Vector2(p.x,p.z),Vector2(next.x,next.z)).distance_to(Vector2(portal.x,portal.z)) < 7.0:
-				blocked = true
-				break
-		if not blocked:
-			collision_wall(boundary_collisions,"Rim_%02d"%i,p,next,height*0.82)
+			var span_height := height*rng.randf_range(0.62,1.10)
+			rock_wall_span(rim_group,"RockWallSpan_%02d_%02d" % [i,k],a,b,y,span_height)
+			if rng.randf() < 0.70:
+				var h_factor := rng.randf_range(0.28,0.82)
+				var size := Vector3(rng.randf_range(0.34,0.72),height*h_factor,rng.randf_range(0.34,0.72))
+				rock(rim_group,"RimRock",Vector3(mid.x,y+size.y*0.38,mid.z),size)
+			collision_wall(boundary_collisions,"Rim_%02d_%02d"%[i,k],a,b,span_height*0.80)
+
+func rock_wall_span(parent: Node, label: String, a: Vector3, b: Vector3, y: float, height: float) -> void:
+	var dir := Vector3(b.x-a.x,0,b.z-a.z).normalized()
+	var side := Vector3(-dir.z,0,dir.x)
+	var inner_a := a+side*0.10
+	var inner_b := b+side*0.10
+	var outer_a := a-side*0.38
+	var outer_b := b-side*0.38
+	var h0 := height*rng.randf_range(0.78,1.12)
+	var h1 := height*rng.randf_range(0.72,1.16)
+	var verts := PackedVector3Array([
+		inner_a+Vector3(0,0.04,0), inner_b+Vector3(0,0.04,0), inner_b+Vector3(0,h1,0), inner_a+Vector3(0,h0,0),
+		outer_a+Vector3(0,0.01,0), outer_b+Vector3(0,0.01,0), outer_b+Vector3(0,h1*0.86,0), outer_a+Vector3(0,h0*0.86,0)
+	])
+	var indices := PackedInt32Array([0,1,2,0,2,3,4,6,5,4,7,6,3,2,6,3,6,7,0,4,5,0,5,1])
+	var face := solid(parent,label,verts,indices,["3d4a50","46555a","53605f"][rng.randi_range(0,2)])
+	face.set_meta("wall_kind","layered_rock_face")
+	# A second, smaller ledge gives the wall a broken sediment profile.
+	if height > 1.2 and rng.randf() < 0.72:
+		var ledge_a := a.lerp(b,0.20)+side*0.04+Vector3(0,height*0.62,0)
+		var ledge_b := a.lerp(b,0.82)+side*0.04+Vector3(0,height*0.62,0)
+		beam(parent,label+"_Ledge",ledge_a,ledge_b,0.09,"65706b")
 
 func collision_wall(parent: Node, label: String, a: Vector3, b: Vector3, height: float) -> void:
 	if boundary_collisions == null: return
@@ -154,14 +217,17 @@ func path_wall_edge(parent: Node, label: String, a: Vector3, b: Vector3, width: 
 		var t := clampf(k/float(steps)+rng.randf_range(-0.08,0.08),0.0,1.0)
 		var p := a.lerp(b,t)
 		for sign in [-1,1]:
-			if rng.randf() < 0.36: continue
+			# Broken shoulders are intentionally sparse and asymmetric; two
+			# continuous parallel rails read as another road.
+			if rng.randf() < 0.56: continue
 			var q: Vector3 = p+side*(width*0.5*rng.randf_range(0.90,1.10)*sign)+side*rng.randf_range(-0.10,0.10)
 			var h := rng.randf_range(0.28,0.66)
-			rock(g,"RoadsideWallStone",Vector3(q.x,p.y+h*0.36,q.z),Vector3(rng.randf_range(0.28,0.56),h,rng.randf_range(0.28,0.60)),["59615f","6d6b5e","4e5758"][rng.randi_range(0,2)])
+			rock(g,"RoadShoulderStone",Vector3(q.x,p.y+h*0.36,q.z),Vector3(rng.randf_range(0.28,0.56),h,rng.randf_range(0.28,0.60)),["59615f","6d6b5e","4e5758"][rng.randi_range(0,2)])
 
 func route_ribbon(parent: Node, label: String, route: Array, width: float, color: String) -> MeshInstance3D:
 	var verts := PackedVector3Array()
 	var indices := PackedInt32Array()
+	var across := maxi(6,ceili(width/0.72))
 	for i in range(route.size()):
 		var p: Vector3 = route[i]
 		var prev: Vector3 = route[maxi(0,i-1)]
@@ -169,12 +235,18 @@ func route_ribbon(parent: Node, label: String, route: Array, width: float, color
 		var tangent := Vector3(next.x-prev.x,0,next.z-prev.z).normalized()
 		var side := Vector3(-tangent.z,0,tangent.x)
 		var local_width := width*(0.90+0.10*sin(float(i)*0.71+0.3))
-		var shoulder := 0.05*sin(float(i)*0.43)
-		verts.append(p+side*(local_width*0.5+shoulder)+Vector3(0,0.045,0))
-		verts.append(p-side*(local_width*0.5-shoulder)+Vector3(0,0.045,0))
+		for j in range(across+1):
+			var u := j/float(across)
+			var shoulder := 0.05*sin(float(i)*0.43+u*2.1)
+			var offset := lerpf(-local_width*0.5,local_width*0.5,u)+shoulder
+			verts.append(p+side*offset+Vector3(0,0.045+0.012*sin(i*0.7+j*1.2),0))
 	for i in range(route.size()-1):
-		var a := i*2; var b := a+1; var c := a+2; var d := a+3
-		indices.append_array([a,b,d,a,d,c])
+		for j in range(across):
+			var a := i*(across+1)+j
+			var b := a+1
+			var c := (i+1)*(across+1)+j
+			var d := c+1
+			indices.append_array([a,c,d,a,d,b])
 	var node := solid(parent,label,verts,indices,color)
 	node.set_meta("surface_kind","continuous_road")
 	node.set_meta("route_control_points",route.size())
@@ -192,7 +264,7 @@ func road_marker(parent: Node, label: String, p: Vector3, facing: Vector3, kind:
 func corridor_edges(parent: Node, label: String, points: Array, width: float) -> void:
 	var g := group(parent,label)
 	for i in range(points.size()-1):
-		path_wall_edge(g,"SegmentWall_%02d"%i,points[i],points[i+1],width)
+		path_wall_edge(g,"RoadShoulderSpan_%02d"%i,points[i],points[i+1],width)
 
 func carve_opening(parent: Node, p: Vector3, radius: float = 2.7) -> void:
 	var stones := parent.find_children("RimRock","MeshInstance3D",true,false)
@@ -278,8 +350,7 @@ func corridor(parent: Node, label: String, points: Array, width: float, y: float
 	road.set_meta("connection_id",label)
 	road.set_meta("route_control_points",points.size())
 	road.set_meta("road_role","continuous marked route")
-	if label == "J10_to_J12":
-		mesh_collision(g,road,"RoadCollision")
+	mesh_collision(g,road,"RoadCollision")
 	corridor_edges(g,"StonePathBoundary",route,width*(0.90+rng.randf_range(-0.05,0.12)))
 	path_wear(g,"SurfaceWear",route,width,color)
 	route_registry.append(label)
@@ -410,46 +481,46 @@ func build_layout() -> void:
 	]
 
 	var j0_points=[Vector3(-6,0,25),Vector3(4,0,27),Vector3(8,0,23),Vector3(6,0,17),Vector3(1,0,14),Vector3(-5,0,16),Vector3(-9,0,21)]
-	patch(terrain,"J0_EntranceHall",j0_points,0.0,"625e52"); rim(rock_shell,j0_points,0.0,1.4)
-	corridor(terrain,"J0_J1_J8_MainCorridor",[Vector3(0,0,22),Vector3(-1.8,0,19.5),Vector3(1.8,0,15.5),Vector3(-2.0,0,11),Vector3(2.1,0,6.2),Vector3(-1.4,0,2.4),Vector3(-1,0,-2)],4.6,0.0,"625d51")
+	patch(terrain,"J0_EntranceHall",j0_points,0.0,"625e52"); rim(rock_shell,j0_points,0.0,1.4,2,"RegionRockRim_J0")
+	corridor(terrain,"J0_J1_J8_MainCorridor",[Vector3(0,0,25.4),Vector3(-2.5,0,22.3),Vector3(1.2,0,18.5),Vector3(-2.0,0,14.6),Vector3(1.4,0,10.5),Vector3(-2.6,0,6.5),Vector3(-1.2,0,2.2)],4.1,0.0,"625d51")
 	var j8_points=[Vector3(-12,0,6),Vector3(-8,0,12),Vector3(3,0,13),Vector3(12,0,8),Vector3(12,0,-2),Vector3(6,0,-7),Vector3(-6,0,-7),Vector3(-13,0,-2)]
-	patch(terrain,"J8_OldCartYard",j8_points,0.0,"6c6252"); rim(rock_shell,j8_points,0.0,2.6)
+	patch(terrain,"J8_OldCartYard",j8_points,0.0,"6c6252"); rim(rock_shell,j8_points,0.0,2.6,2,"RegionRockRim_J8")
 
 	var j2_points=[Vector3(12,0,7),Vector3(19,0,8),Vector3(23,0,4),Vector3(22,0,-1),Vector3(17,0,-4),Vector3(12,0,-2)]
-	patch(terrain,"J2_BoneSortingLedge",j2_points,1.8,"575650"); rim(rock_shell,j2_points,1.75,1.1)
-	corridor(terrain,"J8_to_J2",[Vector3(8,0,4),Vector3(9.4,0.45,5.4),Vector3(11.4,0.9,5.2),Vector3(13.1,1.35,4.5),Vector3(14,1.8,3)],3.8,1.0,"625f54")
-	corridor(terrain,"J2_to_J4",[Vector3(18,1.8,-3),Vector3(16.7,2.0,-4.0),Vector3(19.4,2.5,-5.4),Vector3(17.7,2.8,-6.8),Vector3(19,3,-8)],3.4,2.4,"565957")
+	patch(terrain,"J2_BoneSortingLedge",j2_points,1.8,"575650"); rim(rock_shell,j2_points,1.75,1.1,2,"RegionRockRim_J2")
+	corridor(terrain,"J8_to_J2",[Vector3(9.0,0,4.0),Vector3(10.0,0.35,5.7),Vector3(12.0,0.8,5.9),Vector3(13.7,1.35,4.4),Vector3(14.5,1.8,2.2)],3.2,1.0,"625f54")
+	corridor(terrain,"J2_to_J4",[Vector3(18.0,1.8,-2.4),Vector3(20.2,2.2,-4.2),Vector3(21.4,2.7,-6.0),Vector3(19.8,3.2,-7.6),Vector3(20.0,3.8,-9.0)],3.0,2.4,"565957")
 	var j4_points=[Vector3(12,0,-9),Vector3(18,0,-10),Vector3(25,0,-8),Vector3(29,0,-11),Vector3(27,0,-15),Vector3(18,0,-16),Vector3(13,0,-13)]
-	patch(terrain,"J4_UpperFissureWalk",j4_points,3.8,"454d52"); rim(rock_shell,j4_points,3.75,3.1)
-	corridor(terrain,"J4_to_J11",[Vector3(24,3.8,-12),Vector3(25,3.8,-13.2),Vector3(27.2,3.7,-14.4),Vector3(28,3.6,-16)],2.8,3.7,"4e5558")
+	patch(terrain,"J4_UpperFissureWalk",j4_points,3.8,"454d52"); rim(rock_shell,j4_points,3.75,3.1,2,"RegionRockRim_J4")
+	corridor(terrain,"J4_to_J11",[Vector3(25.0,3.8,-12.0),Vector3(26.2,3.8,-13.0),Vector3(27.4,3.7,-14.2),Vector3(26.8,3.8,-15.4),Vector3(29.0,4.0,-16.6)],2.5,3.7,"4e5558")
 
 	bridge_path(terrain,"J11_SuspendedBoneBridge",[Vector3(27.0,4.0,-15.6),Vector3(28.0,4.0,-16.4),Vector3(29.2,4.0,-16.3),Vector3(30.2,4.0,-17.2),Vector3(31,4.0,-18)])
-	corridor(terrain,"J11_to_J5",[Vector3(30,3.8,-18),Vector3(28.3,3.4,-18.6),Vector3(25.5,2.9,-19.6),Vector3(22.5,2.5,-20.2),Vector3(19,2.4,-20)],3.0,3.0,"56564f")
+	corridor(terrain,"J11_to_J5",[Vector3(29.4,4.0,-17.4),Vector3(27.4,3.5,-18.6),Vector3(24.4,3.0,-19.2),Vector3(22.0,2.6,-20.7),Vector3(19.4,2.4,-20.8)],2.7,3.0,"56564f")
 	var j5_points=[Vector3(6,0,-22),Vector3(15,0,-20),Vector3(21,0,-21),Vector3(23,0,-27),Vector3(18,0,-31),Vector3(7,0,-31),Vector3(1,0,-27),Vector3(1,0,-24)]
-	patch(terrain,"J5_BoneCairnHall",j5_points,2.4,"5b5449"); rim(rock_shell,j5_points,2.35,2.4)
+	patch(terrain,"J5_BoneCairnHall",j5_points,2.4,"5b5449"); rim(rock_shell,j5_points,2.35,2.4,2,"RegionRockRim_J5")
 	var j6_points=[Vector3(-27,0,-12),Vector3(-19,0,-10),Vector3(-15,0,-14),Vector3(-16,0,-21),Vector3(-23,0,-23),Vector3(-29,0,-19)]
-	patch(terrain,"J6_SunkenPit",j6_points,-2.2,"3d4b50"); rim(rock_shell,j6_points,-2.1,3.8)
-	corridor(terrain,"J6_to_J5_OneWay",[Vector3(-17,-2,-16),Vector3(-16.0,-1.8,-17.0),Vector3(-13.4,-0.8,-18.0),Vector3(-10,0,-19),Vector3(-5.0,1.2,-21),Vector3(1,2.4,-23)],2.8,0.0,"545550")
+	patch(terrain,"J6_SunkenPit",j6_points,-2.2,"3d4b50"); rim(rock_shell,j6_points,-2.1,3.8,2,"RegionRockRim_J6")
+	corridor(terrain,"J6_to_J5_OneWay",[Vector3(-17,-2,-16),Vector3(-15.3,-1.7,-17.8),Vector3(-12.2,-0.9,-18.4),Vector3(-8.5,0.0,-19.8),Vector3(-4.8,1.2,-20.8),Vector3(1.0,2.4,-23.0)],2.5,0.0,"545550")
 
 	var j3_points=[Vector3(-28,0,7),Vector3(-20,0,11),Vector3(-13,0,8),Vector3(-12,0,1),Vector3(-17,0,-4),Vector3(-26,0,-4),Vector3(-32,0,1)]
-	patch(terrain,"J3_SeepingThroat",j3_points,-0.8,"2f5b61"); rim(rock_shell,j3_points,-0.65,2.0)
-	corridor(terrain,"J8_to_J3",[Vector3(-9.0,0,4),Vector3(-10.7,-0.1,5.0),Vector3(-13.0,-0.3,4.4),Vector3(-16,-0.6,4)],3.6,-0.4,"416068")
+	patch(terrain,"J3_SeepingThroat",j3_points,-0.8,"2f5b61"); rim(rock_shell,j3_points,-0.65,2.0,2,"RegionRockRim_J3")
+	corridor(terrain,"J8_to_J3",[Vector3(-9.0,0,4),Vector3(-11.2,-0.1,5.8),Vector3(-14.0,-0.35,5.4),Vector3(-16.0,-0.6,4.0)],3.2,-0.4,"416068")
 	var j9_points=[Vector3(-30,0,-4),Vector3(-25,0,-7),Vector3(-16,0,-7),Vector3(-11,0,-12),Vector3(-15,0,-18),Vector3(-24,0,-18),Vector3(-31,0,-14)]
-	patch(terrain,"J9_StonePillarForest",j9_points,-1.4,"3d5055"); rim(rock_shell,j9_points,-1.3,3.4)
-	corridor(terrain,"J3_to_J9",[Vector3(-21,-0.8,-3),Vector3(-21.6,-0.95,-4.4),Vector3(-21.2,-1.1,-6.2),Vector3(-22,-1.2,-8)],3.3,-1.0,"416068")
-	corridor(terrain,"J9_to_J6",[Vector3(-22,-1.4,-15),Vector3(-22.3,-1.55,-16.0),Vector3(-22.6,-1.8,-17.0),Vector3(-23,-2,-18)],2.8,-1.6,"465b5c")
+	patch(terrain,"J9_StonePillarForest",j9_points,-1.4,"3d5055"); rim(rock_shell,j9_points,-1.3,3.4,2,"RegionRockRim_J9")
+	corridor(terrain,"J3_to_J9",[Vector3(-21,-0.8,-3),Vector3(-23.0,-0.95,-4.4),Vector3(-24.0,-1.1,-6.2),Vector3(-22.0,-1.25,-8.0)],2.9,-1.0,"416068")
+	corridor(terrain,"J9_to_J6",[Vector3(-22.0,-1.4,-15),Vector3(-23.5,-1.55,-16.0),Vector3(-24.5,-1.8,-17.2),Vector3(-22.0,-2.0,-18.0)],2.5,-1.6,"465b5c")
 
 	var j10_points=[Vector3(-28,0,-22),Vector3(-20,0,-24),Vector3(-12,0,-23),Vector3(-9,0,-27),Vector3(-13,0,-33),Vector3(-22,0,-34),Vector3(-29,0,-30)]
-	patch(terrain,"J10_GreyWaterTerraces",j10_points,0.8,"565852"); rim(rock_shell,j10_points,0.75,2.2)
-	corridor(terrain,"J5_to_J10",[Vector3(4,2.4,-26),Vector3(2.1,2.1,-26.8),Vector3(-1.0,1.8,-26.2),Vector3(-5,1.4,-27),Vector3(-8.5,1.0,-27.5),Vector3(-12,0.8,-28)],3.8,1.6,"5a5a51")
+	patch(terrain,"J10_GreyWaterTerraces",j10_points,0.8,"565852"); rim(rock_shell,j10_points,0.75,2.2,2,"RegionRockRim_J10")
+	corridor(terrain,"J5_to_J10",[Vector3(4.0,2.4,-26),Vector3(1.2,2.1,-26.4),Vector3(-2.0,1.8,-26.7),Vector3(-5.0,1.45,-27.0),Vector3(-7.2,1.0,-28.0),Vector3(-9.0,0.8,-29.0)],3.2,1.6,"5a5a51")
 	var j7_points=[Vector3(-33,0,-24),Vector3(-29,0,-24),Vector3(-29,0,-29),Vector3(-34,0,-31)]
-	patch(terrain,"J7_SealedWestFissure",j7_points,0.9,"252d32"); rim(rock_shell,j7_points,0.8,3.5)
+	patch(terrain,"J7_SealedWestFissure",j7_points,0.9,"252d32"); rim(rock_shell,j7_points,0.8,3.5,2,"RegionRockRim_J7")
 	var j12_points=[Vector3(21,0,-24),Vector3(28,0,-23),Vector3(34,0,-25),Vector3(36,0,-30),Vector3(31,0,-34),Vector3(22,0,-33),Vector3(18,0,-28)]
-	patch(terrain,"J12_CollapseQuarry",j12_points,3.0,"50504c"); rim(rock_shell,j12_points,2.95,1.7)
-	corridor(terrain,"J10_to_J12",[Vector3(-9,0.8,-29),Vector3(-5.0,1.0,-30.0),Vector3(0.0,1.5,-30.5),Vector3(5.0,2.0,-30.0),Vector3(11.0,2.5,-29.2),Vector3(19,3,-29)],3.2,2.0,"56574f")
+	patch(terrain,"J12_CollapseQuarry",j12_points,3.0,"50504c"); rim(rock_shell,j12_points,2.95,1.7,2,"RegionRockRim_J12")
+	corridor(terrain,"J10_to_J12",[Vector3(-9.0,0.8,-29),Vector3(-6.6,1.0,-30.6),Vector3(-3.0,1.45,-31.2),Vector3(0.8,1.8,-30.7),Vector3(4.0,2.1,-29.0),Vector3(8.6,2.35,-29.7),Vector3(13.4,2.7,-29.4),Vector3(19.0,3.0,-29)],2.8,2.0,"56574f")
 	var j13_points=[Vector3(35,0,-25),Vector3(42,0,-25),Vector3(45,0,-29),Vector3(43,0,-34),Vector3(36,0,-34),Vector3(33,0,-30)]
-	patch(terrain,"J13_NameWallChamber",j13_points,3.0,"494b49"); rim(rock_shell,j13_points,2.95,2.6)
-	corridor(terrain,"J12_to_J13",[Vector3(34,3,-29),Vector3(34.8,3,-27.9),Vector3(36.2,3,-28.5),Vector3(36.4,3,-29.6),Vector3(37,3,-29)],2.5,3.0,"52554e")
+	patch(terrain,"J13_NameWallChamber",j13_points,3.0,"494b49"); rim(rock_shell,j13_points,2.95,2.6,2,"RegionRockRim_J13")
+	corridor(terrain,"J12_to_J13",[Vector3(34.0,3,-29),Vector3(34.2,3,-27.5),Vector3(36.0,3,-26.7),Vector3(38.0,3,-28.0),Vector3(38.0,3,-29.0)],2.2,3.0,"52554e")
 
 	# The open-top presentation uses the rim and side walls as the cave ceiling
 	# cue; detached stalactites are intentionally omitted from the playable view.

@@ -1,0 +1,10 @@
+Godot Engine v4.7.2.stable.steam.ed1daf0bf - https://godotengine.org
+
+PASS: saved wall collision group exists
+PASS: multiple enclosed region wall collisions are saved
+PASS: J0-J1-J8 route reaches every marked waypoint (3/3)
+PASS: J8-J2-J4 route reaches every marked waypoint (3/3)
+PASS: J4-J11-J5 route reaches every marked waypoint (4/4)
+PASS: J5-J10-J12-J13 route reaches every marked waypoint (6/6)
+PASS: J8-J3-J9-J6 route reaches every marked waypoint (5/5)
+CAVE WALK VALIDATION / failures=0
