@@ -67,7 +67,9 @@ func patch(parent: Node, label: String, points: Array, y: float, color: String) 
 		var b: Vector3 = boundary[tris[i+1]]
 		var c: Vector3 = boundary[tris[i+2]]
 		append_surface_triangle(verts,refined,a,b,c,0,is_water)
-	var surface := solid(g,"TerrainSurface_%s" % label,verts,refined,color)
+	# Terrain keeps its saved height variation, but uses a shared upward normal
+	# so the post-process does not outline every small triangulation cell.
+	var surface := solid(g,"TerrainSurface_%s" % label,verts,refined,color,Vector3.UP)
 	surface.set_meta("surface_kind","continuous_region")
 	surface.set_meta("region_id",label)
 	mesh_collision(g,surface,"GroundCollision")
@@ -86,12 +88,10 @@ func append_surface_triangle(verts: PackedVector3Array, indices: PackedInt32Arra
 	var ab := (a+b)*0.5
 	var bc := (b+c)*0.5
 	var ca := (c+a)*0.5
-	var lift := 0.018 if water else 0.032
-	# Small deterministic height offsets create natural erosion without breaking
-	# continuity at the outer boundary.
-	ab.y += sin((ab.x+ab.z)*1.7)*lift
-	bc.y += cos((bc.x-bc.z)*1.3)*lift
-	ca.y += sin((ca.x-bc.z)*1.1)*lift
+	# Keep midpoint heights shared by adjacent triangles. Independent random
+	# lifts create microscopic cracks that become black dotted lines at 1080p;
+	# the saved boundary heights and broad wear patches already provide the
+	# cave's low-frequency relief.
 	append_surface_triangle(verts,indices,a,ab,ca,depth+1,water)
 	append_surface_triangle(verts,indices,ab,b,bc,depth+1,water)
 	append_surface_triangle(verts,indices,ca,bc,c,depth+1,water)
@@ -128,7 +128,9 @@ func rim(parent: Node, points: Array, y: float, height: float, density: int = 2,
 		var p: Vector3 = points[i]
 		var next: Vector3 = points[(i+1)%points.size()]
 		var edge := next-p
-		var steps := maxi(4,int(edge.length()*1.55))
+		# Fewer, wider spans read as a continuous eroded wall instead of a
+		# picket fence of identical spikes.
+		var steps := maxi(3,int(edge.length()*0.92))
 		for k in range(steps):
 			var t0 := k/float(steps)
 			var t1 := (k+1)/float(steps)
@@ -144,35 +146,48 @@ func rim(parent: Node, points: Array, y: float, height: float, density: int = 2,
 					break
 			if near_portal:
 				continue
-			var span_height := height*rng.randf_range(0.62,1.10)
+			var span_height := height*rng.randf_range(0.52,0.96)
 			rock_wall_span(rim_group,"RockWallSpan_%02d_%02d" % [i,k],a,b,y,span_height)
-			if rng.randf() < 0.70:
-				var h_factor := rng.randf_range(0.28,0.82)
-				var size := Vector3(rng.randf_range(0.34,0.72),height*h_factor,rng.randf_range(0.34,0.72))
-				rock(rim_group,"RimRock",Vector3(mid.x,y+size.y*0.38,mid.z),size)
+			if rng.randf() < 0.42:
+				var h_factor := rng.randf_range(0.24,0.62)
+				var size := Vector3(rng.randf_range(0.46,0.94),height*h_factor,rng.randf_range(0.46,0.90))
+				rock(rim_group,"RimFootBoulder",Vector3(mid.x,y+size.y*0.38,mid.z),size)
 			collision_wall(boundary_collisions,"Rim_%02d_%02d"%[i,k],a,b,span_height*0.80)
 
 func rock_wall_span(parent: Node, label: String, a: Vector3, b: Vector3, y: float, height: float) -> void:
 	var dir := Vector3(b.x-a.x,0,b.z-a.z).normalized()
 	var side := Vector3(-dir.z,0,dir.x)
-	var inner_a := a+side*0.10
-	var inner_b := b+side*0.10
-	var outer_a := a-side*0.38
-	var outer_b := b-side*0.38
+	var inner_a := a+side*0.14
+	var inner_b := b+side*0.14
+	var outer_a := a-side*0.48
+	var outer_b := b-side*0.48
 	var h0 := height*rng.randf_range(0.78,1.12)
 	var h1 := height*rng.randf_range(0.72,1.16)
+	var hm := height*rng.randf_range(0.86,1.24)
+	var mid_a := inner_a.lerp(inner_b,0.46)+side*rng.randf_range(-0.10,0.10)
+	var mid_b := outer_a.lerp(outer_b,0.54)+side*rng.randf_range(-0.10,0.10)
 	var verts := PackedVector3Array([
-		inner_a+Vector3(0,0.04,0), inner_b+Vector3(0,0.04,0), inner_b+Vector3(0,h1,0), inner_a+Vector3(0,h0,0),
-		outer_a+Vector3(0,0.01,0), outer_b+Vector3(0,0.01,0), outer_b+Vector3(0,h1*0.86,0), outer_a+Vector3(0,h0*0.86,0)
+		inner_a+Vector3(0,0.04,0), mid_a+Vector3(0,0.04,0), inner_b+Vector3(0,0.04,0),
+		inner_a+Vector3(0,h0,0), mid_a+Vector3(0,hm,0), inner_b+Vector3(0,h1,0),
+		outer_a+Vector3(0,0.01,0), mid_b+Vector3(0,0.01,0), outer_b+Vector3(0,0.01,0),
+		outer_a+Vector3(0,h0*0.84,0), mid_b+Vector3(0,hm*0.86,0), outer_b+Vector3(0,h1*0.84,0)
 	])
-	var indices := PackedInt32Array([0,1,2,0,2,3,4,6,5,4,7,6,3,2,6,3,6,7,0,4,5,0,5,1])
+	var indices := PackedInt32Array([
+		0,1,4,0,4,3, 1,2,5,1,5,4,
+		8,7,10,8,10,6, 7,9,11,7,11,10,
+		3,4,9,3,9,8, 4,5,11,4,11,9,
+		0,6,7,0,7,1, 2,5,11,2,11,10
+	])
 	var face := solid(parent,label,verts,indices,["3d4a50","46555a","53605f"][rng.randi_range(0,2)])
 	face.set_meta("wall_kind","layered_rock_face")
-	# A second, smaller ledge gives the wall a broken sediment profile.
-	if height > 1.2 and rng.randf() < 0.72:
-		var ledge_a := a.lerp(b,0.20)+side*0.04+Vector3(0,height*0.62,0)
-		var ledge_b := a.lerp(b,0.82)+side*0.04+Vector3(0,height*0.62,0)
-		beam(parent,label+"_Ledge",ledge_a,ledge_b,0.09,"65706b")
+	# Broken sediment ledges provide rock texture without parallel rails.
+	if height > 1.0 and rng.randf() < 0.58:
+		var ledge_a := a.lerp(b,0.16)+side*0.05+Vector3(0,height*0.58,0)
+		var ledge_b := a.lerp(b,0.52)+side*0.08+Vector3(0,height*0.58,0)
+		beam(parent,label+"_LedgeA",ledge_a,ledge_b,0.11,"65706b")
+	if rng.randf() < 0.34:
+		var cap := a.lerp(b,rng.randf_range(0.30,0.72))+side*rng.randf_range(-0.08,0.08)
+		rock(parent,label+"_CapRock",cap+Vector3(0,height*0.88,0),Vector3(rng.randf_range(0.34,0.62),rng.randf_range(0.18,0.34),rng.randf_range(0.40,0.70)),"65706b")
 
 func collision_wall(parent: Node, label: String, a: Vector3, b: Vector3, height: float) -> void:
 	if boundary_collisions == null: return
@@ -216,13 +231,13 @@ func path_wall_edge(parent: Node, label: String, a: Vector3, b: Vector3, width: 
 	for k in range(steps+1):
 		var t := clampf(k/float(steps)+rng.randf_range(-0.08,0.08),0.0,1.0)
 		var p := a.lerp(b,t)
-		for sign in [-1,1]:
-			# Broken shoulders are intentionally sparse and asymmetric; two
-			# continuous parallel rails read as another road.
-			if rng.randf() < 0.56: continue
-			var q: Vector3 = p+side*(width*0.5*rng.randf_range(0.90,1.10)*sign)+side*rng.randf_range(-0.10,0.10)
-			var h := rng.randf_range(0.28,0.66)
-			rock(g,"RoadShoulderStone",Vector3(q.x,p.y+h*0.36,q.z),Vector3(rng.randf_range(0.28,0.56),h,rng.randf_range(0.28,0.60)),["59615f","6d6b5e","4e5758"][rng.randi_range(0,2)])
+		# One broken shoulder at a time; alternating sides prevents a second
+		# straight road from emerging beside the actual road surface.
+		if rng.randf() < 0.52: continue
+		var sign := -1 if ((k + int(width*10.0)) % 3 == 0) else 1
+		var q: Vector3 = p+side*(width*0.5*rng.randf_range(0.94,1.18)*sign)+side*rng.randf_range(-0.18,0.18)
+		var h := rng.randf_range(0.22,0.52)
+		rock(g,"RoadShoulderStone",Vector3(q.x,p.y+h*0.36,q.z),Vector3(rng.randf_range(0.34,0.68),h,rng.randf_range(0.34,0.74)),["59615f","6d6b5e","4e5758"][rng.randi_range(0,2)])
 
 func route_ribbon(parent: Node, label: String, route: Array, width: float, color: String) -> MeshInstance3D:
 	var verts := PackedVector3Array()
@@ -239,7 +254,9 @@ func route_ribbon(parent: Node, label: String, route: Array, width: float, color
 			var u := j/float(across)
 			var shoulder := 0.05*sin(float(i)*0.43+u*2.1)
 			var offset := lerpf(-local_width*0.5,local_width*0.5,u)+shoulder
-			verts.append(p+side*offset+Vector3(0,0.045+0.012*sin(i*0.7+j*1.2),0))
+			# The road sits just above the shared terrain datum; its edge is
+			# blended by broken shoulders rather than a second raised strip.
+			verts.append(p+side*offset+Vector3(0,0.024+0.008*sin(i*0.7+j*1.2),0))
 	for i in range(route.size()-1):
 		for j in range(across):
 			var a := i*(across+1)+j
@@ -247,7 +264,7 @@ func route_ribbon(parent: Node, label: String, route: Array, width: float, color
 			var c := (i+1)*(across+1)+j
 			var d := c+1
 			indices.append_array([a,c,d,a,d,b])
-	var node := solid(parent,label,verts,indices,color)
+	var node := solid(parent,label,verts,indices,color,Vector3.UP)
 	node.set_meta("surface_kind","continuous_road")
 	node.set_meta("route_control_points",route.size())
 	return node
@@ -331,21 +348,27 @@ func bridge_path(parent: Node, label: String, points: Array) -> void:
 
 func path_wear(parent: Node, label: String, route: Array, width: float, color: String) -> void:
 	var g := group(parent,label)
-	for i in range(1,route.size()-1,3):
+	for i in range(2,route.size()-2,5):
 		var p: Vector3 = route[i]
 		var dir := Vector3(route[i+1].x-route[i-1].x,0,route[i+1].z-route[i-1].z).normalized()
-		var side := Vector3(-dir.z,0,dir.x)
-		for j in range(rng.randi_range(1,3)):
-			var q := p+side*rng.randf_range(-width*0.38,width*0.38)+dir*rng.randf_range(-0.40,0.40)
-			rock(g,"PathWearStone",Vector3(q.x,p.y+0.08,q.z),Vector3(rng.randf_range(0.12,0.30),0.08,rng.randf_range(0.12,0.28)),tone(color,i+j))
-		if rng.randf() < 0.65:
-			var q0 := p+side*rng.randf_range(-width*0.28,width*0.28)-dir*0.30
-			var q1 := q0+dir*rng.randf_range(0.28,0.62)+side*rng.randf_range(-0.16,0.16)
-			beam(g,"BrokenWearGroove",q0+Vector3(0,0.07,0),q1+Vector3(0,0.07,0),0.018,"4d4a43")
+		# Use a few broad worn areas instead of repeated pebbles and dark line
+		# grooves, which previously formed a dotted/striped road texture.
+		broad_wear_patch(g,"RoadWearBand_%02d"%i,p,Vector2(width*0.34,width*0.12),p.y+0.028,tone(color,i),atan2(dir.x,dir.z))
+		if rng.randf() < 0.38:
+			var side := Vector3(-dir.z,0,dir.x)
+			var q := p+side*rng.randf_range(-width*0.34,width*0.34)
+			rock(g,"PathWearStone",Vector3(q.x,p.y+0.08,q.z),Vector3(rng.randf_range(0.22,0.42),0.08,rng.randf_range(0.20,0.38)),tone(color,i))
 
 func corridor(parent: Node, label: String, points: Array, width: float, y: float, color := "57534a") -> void:
 	var g := group(parent,label)
 	var route := smooth_route(points)
+	for i in range(route.size()):
+		var q: Vector3 = route[i]
+		# Keep the road on the same low-frequency terrain undulation as the
+		# region it crosses. This removes coplanar overlays and visible floating
+		# strips at the entrances while preserving the intended slope.
+		q.y = lerpf(q.y,surface_y(q.x,q.z,q.y),0.58)
+		route[i] = q
 	var road := route_ribbon(g,"RoadSurface",route,width,color)
 	road.set_meta("connection_id",label)
 	road.set_meta("route_control_points",points.size())
@@ -415,25 +438,46 @@ func wall_marker(parent: Node, p: Vector3, h := 1.8) -> void:
 	box(m,"StoneSlab",Vector3(0,h/2,0),Vector3(0.42,h,0.22),"7c7b6d")
 	box(m,"DarkCarving",Vector3(0,h*0.64,0.12),Vector3(0.23,0.055,0.03),"3c3a35")
 
+func broad_wear_patch(parent: Node, label: String, center: Vector3, extent: Vector2, y: float, color: String, angle: float) -> void:
+	# A low-poly, broad stain breaks up a large floor without becoming a
+	# collection of dots. The irregular perimeter is intentionally soft and
+	# each patch is large enough to survive the final pixel scale.
+	var ring := PackedVector2Array()
+	for i in range(8):
+		var a := i*TAU/8.0
+		var radius := 0.76 + 0.24*sin(i*2.17+center.x*0.13+center.z*0.09)
+		ring.append(Vector2(cos(a)*extent.x*radius,sin(a)*extent.y*radius))
+	var verts := PackedVector3Array([Vector3.ZERO])
+	for q in ring:
+		verts.append(Vector3(q.x,0.012*sin(q.x*0.5),q.y))
+	var indices := PackedInt32Array()
+	for i in range(8):
+		indices.append_array([0,1+i,1+((i+1)%8)])
+	var patch := solid(parent,label,verts,indices,color,Vector3.UP)
+	patch.position = Vector3(center.x,y,center.z)
+	patch.rotation.y = angle
+	patch.set_meta("detail_kind","broad_wear_patch")
+
+func debris_cluster(parent: Node, label: String, center: Vector3, wet := false) -> void:
+	var g := group(parent,label,center)
+	var colors := ["777362","625f55","85806e"] if not wet else ["6b7b78","536b6c","82908a"]
+	for i in range(3):
+		var p := Vector3(rng.randf_range(-0.55,0.55),0.06+rng.randf_range(0,0.06),rng.randf_range(-0.42,0.42))
+		var s := Vector3(rng.randf_range(0.28,0.58),rng.randf_range(0.08,0.18),rng.randf_range(0.24,0.52))
+		rock(g,"EmbeddedRock",p,s,colors[i%colors.size()])
+
 func ground_detail(parent: Node, label: String, center: Vector3, extent: Vector2, wet := false, count := 14) -> void:
 	var g := group(parent,label)
-	var stone_colors := ["777362","625f55","85806e","514f49"] if not wet else ["6b7b78","536b6c","82908a"]
 	var soil_colors := ["6d6658","80745f","554f47"] if not wet else ["3d5b5e","42696a","536f6c"]
-	for i in range(count):
-		var p := Vector3(center.x+rng.randf_range(-extent.x,extent.x),center.y+0.035,center.z+rng.randf_range(-extent.y,extent.y))
-		var s := Vector3(rng.randf_range(0.12,0.42),rng.randf_range(0.035,0.10),rng.randf_range(0.10,0.32))
-		rock(g,"LooseCaveStone",p,s,stone_colors[i%stone_colors.size()])
-	for i in range(8):
-		var p := Vector3(center.x+rng.randf_range(-extent.x*0.8,extent.x*0.8),center.y+0.018,center.z+rng.randf_range(-extent.y*0.8,extent.y*0.8))
-		var patch_stone := ball(g,"SoilVariation",p,Vector3(rng.randf_range(0.22,0.62),0.020,rng.randf_range(0.12,0.36)),soil_colors[i%soil_colors.size()])
-		patch_stone.rotation.y = rng.randf_range(0,TAU)
-	for i in range(5):
-		var p := Vector3(center.x+rng.randf_range(-extent.x*0.75,extent.x*0.75),center.y+0.075,center.z+rng.randf_range(-extent.y*0.75,extent.y*0.75))
-		var footprint := cylinder(g,"Footprint",p,rng.randf_range(0.07,0.12),0.025,"403f3a",rng.randf_range(0.03,0.07),7)
-		footprint.rotation.x = rng.randf_range(-0.12,0.12); footprint.rotation.z = rng.randf_range(-0.12,0.12)
-	for i in range(3):
-		var a := Vector3(center.x+rng.randf_range(-extent.x*0.6,extent.x*0.6),center.y+0.08,center.z+rng.randf_range(-extent.y*0.6,extent.y*0.6))
-		beam(g,"ErosionCrack",a,a+Vector3(rng.randf_range(-0.8,0.8),0,rng.randf_range(-0.4,0.4)),0.018,"3f4140")
+	var patch_count := maxi(2,mini(4,ceili(float(count)/10.0)))
+	for i in range(patch_count):
+		var p := Vector3(center.x+rng.randf_range(-extent.x*0.48,extent.x*0.48),center.y,center.z+rng.randf_range(-extent.y*0.48,extent.y*0.48))
+		var e := Vector2(rng.randf_range(extent.x*0.22,extent.x*0.48),rng.randf_range(extent.y*0.12,extent.y*0.30))
+		broad_wear_patch(g,"ContinuousWear_%02d"%i,p,e,center.y+0.022,soil_colors[i%soil_colors.size()],rng.randf_range(0,TAU))
+	var clusters := maxi(1,mini(4,ceili(float(count)/8.0)))
+	for i in range(clusters):
+		var p := Vector3(center.x+rng.randf_range(-extent.x*0.55,extent.x*0.55),center.y+0.04,center.z+rng.randf_range(-extent.y*0.55,extent.y*0.55))
+		debris_cluster(g,"DebrisCluster_%02d"%i,p,wet)
 
 func spider_web(parent: Node, label: String, p: Vector3, size: float) -> void:
 	var g := group(parent,label,p)
@@ -629,11 +673,10 @@ func build_layout() -> void:
 	broken_rail(props,"J8_EastEdgeRail",Vector3(6,0,7),Vector3(10,0,5),0.18)
 	broken_rail(props,"J8_WetEdgeRail",Vector3(-7,0,5),Vector3(-10,0,3),0.16)
 	broken_rail(props,"J12_CollapseRail",Vector3(19,3,-27),Vector3(23,3,-31),0.20)
-	for p in [Vector3(-4,0.08,8),Vector3(0,0.08,5),Vector3(3,0.08,2)]:
-		beam(props,"WheelRut",p,p+Vector3(0,0,3.2),0.045,"3f403d")
-		beam(props,"WheelRut2",p+Vector3(0.72,0,0),p+Vector3(0.72,0,3.2),0.045,"3f403d")
-	for p in [Vector3(8,2.5,-26),Vector3(15,2.5,-28),Vector3(6,2.5,-29)]:
-		beam(props,"BoneDragMark",p,p+Vector3(1.4,0,-0.5),0.035,"3c3936")
+	# Wheel and drag wear is now represented by broad broken stains in the
+	# relevant floor groups; long beams here used to read as unexplained roads.
+	broad_wear_patch(props,"J8_BrokenWheelWear",Vector3(-1,0.06,6),Vector2(2.4,0.62),0.08,"514f49",0.18)
+	broad_wear_patch(props,"J5_BoneDragWear",Vector3(11,2.46,-27),Vector2(2.8,0.55),2.48,"514f49",-0.32)
 
 	var scale_ref := group(scene_root,"ScaleReference")
 	cylinder(scale_ref,"PlayerHeightMarker",Vector3(-7,1.0,22),0.06,2.0,"c6b08a",0.06,6)

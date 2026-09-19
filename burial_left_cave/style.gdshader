@@ -2,14 +2,16 @@ shader_type spatial;
 render_mode specular_disabled, cull_disabled;
 uniform vec4 base_color : source_color = vec4(0.5,0.5,0.4,1);
 uniform bool toon_enabled = true;
-uniform float grain = 0.075;
+// Cave floors use broad, continuous variation.  High-frequency hash dots make
+// the ground read like a tiled point texture at the game's pixel scale.
+uniform float grain = 0.028;
 varying vec3 world_position;
-float hash3(vec3 p) { return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453); }
 void vertex() { world_position = (MODEL_MATRIX*vec4(VERTEX,1.0)).xyz; }
 void fragment() {
- float fine = hash3(floor(world_position*13.0));
- float patches = hash3(floor(world_position*3.0));
- ALBEDO = base_color.rgb*(1.0+(fine-0.5)*grain+(patches-0.5)*grain*0.55);
+ float broad_a = sin(world_position.x*0.47 + world_position.z*0.19);
+ float broad_b = cos(world_position.x*0.21 - world_position.z*0.53);
+ float broad = broad_a*0.55 + broad_b*0.45;
+ ALBEDO = base_color.rgb*(1.0+broad*grain);
  EMISSION = base_color.rgb * 0.10;
  ROUGHNESS = 1.0;
 }
