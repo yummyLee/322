@@ -432,7 +432,7 @@ func make_v3_objects() -> void:
 			add_skull(bones, p, 0.95)
 			add_bone(bones, p + Vector3(0.7, 0.0, 0.25), 0.18, 1.15, "d1c9aa")
 	for i in range(30):
-		var p := Vector3(-18.0 + fmod(float(i) * 2.13, 14.0), 1.92, -22.0 - fmod(float(i) * 3.17, 11.0))
+		var p := Vector3(-18.0 + fmod(float(i) * 2.13, 14.0), 0.42, -22.0 - fmod(float(i) * 3.17, 11.0))
 		add_bone(bones, p, float(i) * 0.73, 0.45 + fmod(float(i), 3.0) * 0.20, ["b8b39c", "d0c6a6", "9d9c89"][i % 3])
 		if i % 5 == 0:
 			add_skull(bones, p + Vector3(0.35, 0.0, 0.15), 0.78)
