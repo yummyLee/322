@@ -15,6 +15,7 @@ func _initialize() -> void:
 	scene_root.set_meta("reference_image", "E:/GameDev/openworldtest/resources/map/architecture乱葬岭左山洞/乱葬岭左山洞.png")
 	scene_root.set_meta("player_height_reference", 1.86)
 	scene_root.set_meta("scene_id", "northern_root_cave")
+	scene_root.set_meta("layout_revision", 2)
 	make_floor()
 	make_walls_and_ceiling()
 	make_waterfalls_and_pools()
@@ -47,23 +48,70 @@ func floor_patch(parent: Node, label: String, points: Array[Vector2], y: float, 
 		ids.append_array(PackedInt32Array([0, i, i + 1]))
 	solid(parent, label, verts, ids, color, Vector3.UP)
 
+func cave_platform(parent: Node, colliders: Node, label: String, points: Array[Vector2], y: float, color: String) -> void:
+	var platform := group(parent, label)
+	floor_patch(platform, "WalkableTop", points, y, color)
+	# Broken lip stones make each island read as a raised ledge over the black void.
+	for i in range(points.size()):
+		var a := points[i]
+		var b := points[(i + 1) % points.size()]
+		var edge := beam(platform, "BrokenLedge", Vector3(a.x, y - 0.24, a.y), Vector3(b.x, y - 0.24, b.y), 0.16, ["59645a", "70776a", "4d5a53"][i % 3])
+		edge.scale.y = 0.72
+	var min_x := points[0].x
+	var max_x := points[0].x
+	var min_z := points[0].y
+	var max_z := points[0].y
+	for p in points:
+		min_x = minf(min_x, p.x)
+		max_x = maxf(max_x, p.x)
+		min_z = minf(min_z, p.y)
+		max_z = maxf(max_z, p.y)
+	collision_box(colliders, label + "WalkSurface", Vector3((min_x + max_x) * 0.5, y - 0.25, (min_z + max_z) * 0.5), Vector3(max_x - min_x, 0.5, max_z - min_z))
+
+func cave_walkway(parent: Node, colliders: Node, label: String, points: Array[Vector3], width: float, color: String) -> void:
+	var road := group(parent, label)
+	for i in range(points.size() - 1):
+		var a := points[i]
+		var b := points[i + 1]
+		var mid := (a + b) * 0.5
+		var plank := box(road, "NarrowStonePath", mid, Vector3(width, 0.18, a.distance_to(b) + 0.18), color)
+		plank.rotation.y = atan2(b.x - a.x, b.z - a.z)
+		collision_box(colliders, label + "Segment%02d" % i, Vector3(mid.x, mid.y - 0.12, mid.z), Vector3(width, 0.42, a.distance_to(b) + 0.18))
+		for j in range(2):
+			var side := -1.0 if j == 0 else 1.0
+			var offset := Vector3(cos(plank.rotation.y), 0, -sin(plank.rotation.y)) * side * width * 0.42
+			ball(road, "PathShoulderStone", mid + offset + Vector3(0, -0.03, 0), Vector3(0.18, 0.10, 0.26), "7d8274")
+
 func make_floor() -> void:
 	var floor_root := group(scene_root, "CaveTerrain")
-	box(floor_root, "CaveFloorSolid", Vector3(0, -0.38, -0.5), Vector3(29, 0.76, 24), "313a35")
 	var floor_collision := StaticBody3D.new()
 	floor_collision.name = "SavedWalkCollisions"
 	floor_root.add_child(floor_collision, true)
 	floor_collision.owner = scene_root
-	collision_box(floor_collision, "CaveFloor", Vector3(0, -0.38, -0.5), Vector3(29, 0.76, 24))
-	floor_patch(floor_root, "MainWornStoneFloor", [Vector2(-12, 8.7), Vector2(-6, 8.1), Vector2(-3, 5.1), Vector2(4, 5.0), Vector2(10, 7.0), Vector2(12, 3), Vector2(11, -7), Vector2(6, -10), Vector2(-2, -9), Vector2(-10, -7), Vector2(-12, -2)], 0.02, "6f7568")
-	floor_patch(floor_root, "BurialLoamPatch", [Vector2(-5.2, 4.4), Vector2(2.8, 4.0), Vector2(5.5, 1.0), Vector2(3.4, -4.0), Vector2(-4.0, -4.5), Vector2(-8.2, -1.5)], 0.035, "625d4e")
-	floor_patch(floor_root, "EntryWornRamp", [Vector2(-1.15, 9.4), Vector2(1.15, 9.4), Vector2(1.4, 5.1), Vector2(-1.5, 5.1)], 0.045, "777868")
-	floor_patch(floor_root, "RightWorkShelf", [Vector2(6.2, 3.7), Vector2(11.4, 3.8), Vector2(11.8, -0.4), Vector2(7.0, -1.8), Vector2(5.8, 0.5)], 0.08, "777867")
+	var platforms := group(floor_root, "DisconnectedPlatforms")
+	cave_platform(platforms, floor_collision, "EntryShelf", [Vector2(-1.7, 9.6), Vector2(1.5, 9.6), Vector2(2.0, 7.1), Vector2(1.0, 6.2), Vector2(-1.8, 6.5), Vector2(-2.1, 8.2)], 0.05, "777868")
+	cave_platform(platforms, floor_collision, "CentralBurialIsland", [Vector2(-4.3, 1.8), Vector2(-3.0, -2.5), Vector2(-0.7, -3.8), Vector2(3.4, -3.4), Vector2(5.1, -0.8), Vector2(4.0, 2.8), Vector2(0.7, 3.7), Vector2(-2.2, 3.0)], 0.82, "625d4e")
+	cave_platform(platforms, floor_collision, "UpperLeftWaterShelf", [Vector2(-11.2, 1.8), Vector2(-10.7, -3.4), Vector2(-8.5, -5.0), Vector2(-5.5, -3.8), Vector2(-4.8, -0.3), Vector2(-6.2, 2.2), Vector2(-8.7, 3.0)], 1.12, "737b70")
+	cave_platform(platforms, floor_collision, "LowerLeftPoolIsland", [Vector2(-11.2, 6.5), Vector2(-10.0, 2.9), Vector2(-6.4, 2.3), Vector2(-3.7, 4.1), Vector2(-4.4, 7.8), Vector2(-7.8, 9.0)], -0.62, "58665f")
+	cave_platform(platforms, floor_collision, "RightMineShelf", [Vector2(5.4, 1.8), Vector2(6.4, -2.3), Vector2(9.5, -3.1), Vector2(12.0, -1.0), Vector2(11.5, 2.3), Vector2(8.0, 3.0)], 1.00, "737867")
+	cave_platform(platforms, floor_collision, "RightTombShelf", [Vector2(6.6, 5.0), Vector2(8.2, 3.1), Vector2(11.6, 3.6), Vector2(12.1, 7.4), Vector2(9.2, 9.3), Vector2(6.9, 8.0)], 0.28, "676c61")
+	cave_platform(platforms, floor_collision, "LowerCentralForkIsland", [Vector2(-2.5, 6.1), Vector2(-0.5, 5.5), Vector2(3.2, 6.0), Vector2(4.7, 8.0), Vector2(2.4, 9.5), Vector2(-1.0, 9.2), Vector2(-3.0, 7.8)], -0.28, "656c62")
+	cave_platform(platforms, floor_collision, "BackTunnelLedge", [Vector2(-2.1, -6.0), Vector2(-1.7, -9.3), Vector2(1.8, -9.8), Vector2(2.5, -6.5), Vector2(1.2, -4.0), Vector2(-0.9, -4.2)], 1.42, "59645a")
+	var paths := group(floor_root, "BranchingStonePaths")
+	cave_walkway(paths, floor_collision, "EntryToCenter", [Vector3(0, 0.08, 6.9), Vector3(0.0, 0.35, 5.6), Vector3(0.7, 0.58, 4.2), Vector3(0.4, 0.76, 3.1)], 1.25, "7f806e")
+	cave_walkway(paths, floor_collision, "CenterToBurial", [Vector3(0.4, 0.76, 2.9), Vector3(0.2, 0.82, 1.8), Vector3(0.0, 0.82, 0.6)], 1.30, "777565")
+	cave_walkway(paths, floor_collision, "CenterToWater", [Vector3(-2.8, 0.92, 0.4), Vector3(-4.2, 1.0, -0.2), Vector3(-5.5, 1.08, -1.0)], 1.0, "868979")
+	cave_walkway(paths, floor_collision, "CenterToMine", [Vector3(3.3, 0.91, 0.4), Vector3(4.8, 0.94, 0.0), Vector3(6.1, 1.0, -0.2)], 1.10, "828573")
+	cave_walkway(paths, floor_collision, "CenterToBackTunnel", [Vector3(0.0, 0.9, -2.4), Vector3(0.1, 1.12, -4.0), Vector3(0.2, 1.35, -6.0)], 1.0, "74796d")
+	cave_walkway(paths, floor_collision, "CenterToLowerPools", [Vector3(-1.5, 0.58, 2.7), Vector3(-2.8, 0.25, 3.7), Vector3(-4.1, -0.15, 4.5)], 0.95, "707a70")
+	cave_walkway(paths, floor_collision, "MineToTomb", [Vector3(8.2, 0.72, 2.3), Vector3(8.4, 0.48, 3.6), Vector3(8.8, 0.30, 5.0)], 0.95, "7d7d6d")
+	cave_walkway(paths, floor_collision, "WindingLowerRoad", [Vector3(5.5, 0.52, 2.7), Vector3(4.7, 0.20, 4.4), Vector3(3.0, -0.08, 6.1), Vector3(1.2, -0.20, 7.1)], 1.35, "858778")
+	cave_walkway(paths, floor_collision, "LowerRoadLeftFork", [Vector3(1.2, -0.20, 7.1), Vector3(-0.8, -0.25, 7.8), Vector3(-2.5, -0.42, 7.5)], 1.20, "7a8072")
+	cave_walkway(paths, floor_collision, "LowerRoadRightFork", [Vector3(1.2, -0.20, 7.1), Vector3(4.2, -0.10, 7.7), Vector3(7.0, 0.12, 7.7)], 1.20, "7c8174")
 	var grit := group(floor_root, "ScatteredCaveGrit")
-	for i in range(95):
-		var p := Vector2(rng.randf_range(-10.5, 10.5), rng.randf_range(-7.8, 7.5))
-		if p.x < -4.0 and p.y > 1.0: continue
-		var flake := ball(grit, "HalfBuriedShale", Vector3(p.x, 0.08 + rng.randf_range(0, 0.035), p.y), Vector3(rng.randf_range(0.06, 0.22), rng.randf_range(0.025, 0.07), rng.randf_range(0.05, 0.18)), ["818378", "969886", "6b7167"][i % 3])
+	for i in range(65):
+		var p := Vector3(rng.randf_range(-10.5, 10.5), rng.randf_range(-0.35, 1.1), rng.randf_range(-8.5, 8.2))
+		var flake := ball(grit, "HalfBuriedShale", p, Vector3(rng.randf_range(0.06, 0.22), rng.randf_range(0.025, 0.07), rng.randf_range(0.05, 0.18)), ["818378", "969886", "6b7167"][i % 3])
 		flake.rotation.y = rng.randf() * TAU
 
 func make_walls_and_ceiling() -> void:
@@ -93,11 +141,9 @@ func make_walls_and_ceiling() -> void:
 	# A dark back aperture suggests a deeper tunnel.
 	box(rock_root, "DeepTunnelMouth", Vector3(0, 2.0, -10.0), Vector3(3.8, 3.7, 0.22), "202823")
 	collision_box(scene_root.get_node("CaveTerrain/SavedWalkCollisions"), "BackWall", Vector3(0, 2.0, -10.4), Vector3(25, 4.0, 0.7))
-	collision_box(scene_root.get_node("CaveTerrain/SavedWalkCollisions"), "LeftWall", Vector3(-12.4, 2.0, -1.0), Vector3(0.7, 4.0, 18))
-	collision_box(scene_root.get_node("CaveTerrain/SavedWalkCollisions"), "RightWall", Vector3(12.4, 2.0, -1.0), Vector3(0.7, 4.0, 18))
 
 func make_waterfalls_and_pools() -> void:
-	var water_root := group(scene_root, "WaterfallsAndPools")
+	var water_root := group(scene_root, "WaterfallsAndPools", Vector3(0, 0.92, 0))
 	var falls := group(water_root, "TieredWaterfall")
 	for i in range(4):
 		var x := -9.6 + i * 0.85
@@ -132,20 +178,20 @@ func make_burial_fields() -> void:
 	var bones := group(scene_root, "BoneBurialFields")
 	for row in range(5):
 		for col in range(5):
-			var p := Vector3(1.3 + col * 1.55 + rng.randf_range(-0.25, 0.25), 0.07, 1.9 - row * 1.38 + rng.randf_range(-0.22, 0.22))
+			var p := Vector3(1.3 + col * 1.55 + rng.randf_range(-0.25, 0.25), 0.89, 1.9 - row * 1.38 + rng.randf_range(-0.22, 0.22))
 			add_bone(bones, p, rng.randf_range(0, TAU), rng.randf_range(0.55, 1.2))
 			if (row + col) % 2 == 0: add_skull(bones, p + Vector3(rng.randf_range(-0.25, 0.25), 0.0, rng.randf_range(-0.25, 0.25)), rng.randf_range(0.8, 1.15))
 	for i in range(22):
-		var p := Vector3(rng.randf_range(-5.8, 5.8), 0.075, rng.randf_range(-3.8, 3.6))
+		var p := Vector3(rng.randf_range(-5.8, 5.8), 0.895, rng.randf_range(-3.8, 3.6))
 		add_bone(bones, p, rng.randf_range(0, TAU), rng.randf_range(0.25, 0.85), ["b7b29a", "d0c7a8", "9f9c87"][i % 3])
 	for p in [Vector3(-3.9, 0.1, 3.4), Vector3(-6.0, 0.1, 0.4), Vector3(4.4, 0.1, -3.9)]:
-		add_skull(bones, p, 1.15)
+		add_skull(bones, p + Vector3(0, 0.02, 0), 1.15)
 	var soil := group(bones, "BurialSoilMounds")
 	for p in [Vector3(-1.8, 0.10, 3.0), Vector3(3.1, 0.10, 2.5), Vector3(-2.7, 0.10, -1.7), Vector3(1.6, 0.10, -3.5)]:
-		ball(soil, "LooseBurialSoil", p, Vector3(1.25, 0.10, 0.72), "514d42")
+		ball(soil, "LooseBurialSoil", p + Vector3(0, 0.82, 0), Vector3(1.25, 0.10, 0.72), "514d42")
 
 func make_mine_works() -> void:
-	var mine := group(scene_root, "MineWorks")
+	var mine := group(scene_root, "MineWorks", Vector3(0, 0.93, 0))
 	var frame := group(mine, "OldTimberSupport", Vector3(8.4, 0, 3.6))
 	for x in [-1.45, 1.45]:
 		beam(frame, "TimberPost", Vector3(x, 0.15, 0), Vector3(x, 2.75, 0), 0.13, "66533e")
@@ -171,18 +217,18 @@ func make_mine_works() -> void:
 	amber.owner = scene_root
 
 func make_lower_pools() -> void:
-	var lower := group(scene_root, "LowerStalactitePools")
-	box(lower, "LowerPoolWater", Vector3(-7.1, 0.075, -5.4), Vector3(7.2, 0.05, 5.0), "294e56")
+	var lower := group(scene_root, "LowerStalactitePools", Vector3(0, -0.60, 0))
+	box(lower, "LowerPoolWater", Vector3(-7.1, 0.075, 5.8), Vector3(5.7, 0.05, 4.3), "294e56")
 	for i in range(26):
 		var a := rng.randf() * TAU
-		var r := rng.randf_range(1.8, 5.5)
+		var r := rng.randf_range(1.4, 4.4)
 		var h := rng.randf_range(0.35, 1.55)
-		cylinder(lower, "PoolStalagmite", Vector3(-7.0 + cos(a) * r, h * 0.5, -5.2 + sin(a) * r * 0.55), rng.randf_range(0.08, 0.25), h, ["5d6b63", "758077", "8b8e7e"][i % 3], rng.randf_range(0.025, 0.08), 7)
+		cylinder(lower, "PoolStalagmite", Vector3(-7.0 + cos(a) * r, h * 0.5, 5.8 + sin(a) * r * 0.55), rng.randf_range(0.08, 0.25), h, ["5d6b63", "758077", "8b8e7e"][i % 3], rng.randf_range(0.025, 0.08), 7)
 	for i in range(8):
 		var bridge_x := -0.4 + i * 0.28
-		var plank := box(lower, "BrokenBridgePlank", Vector3(bridge_x, 0.72 + rng.randf_range(-0.06, 0.06), -4.0), Vector3(0.22, 0.12, 2.2), ["795d42", "896948", "66513d"][i % 3])
+		var plank := box(lower, "BrokenBridgePlank", Vector3(bridge_x + 4.0, 0.72 + rng.randf_range(-0.06, 0.06), 3.0), Vector3(0.22, 0.12, 2.2), ["795d42", "896948", "66513d"][i % 3])
 		plank.rotation.y = rng.randf_range(-0.08, 0.08)
-	var pit := box(lower, "DarkRavine", Vector3(1.1, -0.03, -4.0), Vector3(2.5, 0.06, 3.4), "1e2927")
+	var pit := box(lower, "DarkRavine", Vector3(5.1, -0.03, 3.0), Vector3(2.5, 0.06, 3.4), "1e2927")
 	pit.rotation.y = -0.15
 
 func make_entry_and_exit() -> void:
@@ -231,7 +277,7 @@ func make_lighting() -> void:
 	lighting()
 	var rig := scene_root.get_node("RenderRig")
 	var env := rig.get_node("VillageEnvironment") as WorldEnvironment
-	env.environment.background_color = Color("17201e")
+	env.environment.background_color = Color("070909")
 	env.environment.ambient_light_color = Color("b7c5bd")
 	env.environment.ambient_light_energy = 0.48
 	var sun := rig.get_node("AfternoonSun") as DirectionalLight3D
