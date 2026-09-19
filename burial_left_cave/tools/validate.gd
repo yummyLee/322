@@ -6,9 +6,9 @@ func _initialize() -> void:
 	var world := load("res://burial_left_cave/world.tscn").instantiate() as Node3D
 	check(world != null, "saved cave scene instantiates")
 	check(world.scene_file_path == "res://burial_left_cave/world.tscn", "cave is a saved editable scene")
-	for path in ["CaveTerrain", "CaveRockShell", "CaveArchitecture", "WaterfallsAndPools", "BoneBurialFields", "MineWorks", "LowerStalactitePools", "EntranceTransition", "RenderRig/VillageCamera"]:
+	for path in ["CaveTerrain", "CaveRockShell", "CaveArchitecture", "WaterfallsAndPools", "CaveLifeAndRemains/BoneBurialFields", "MineWorks", "LowerStalactitePools", "EntranceTransition", "RenderRig/VillageCamera"]:
 		check(world.get_node_or_null(path) != null, path + " is present as an editable group")
-	check(world.get_node_or_null("CaveArchitecture/ChamberWallBands") != null and world.get_node_or_null("CaveArchitecture/ChamberMouths") != null, "cave has authored wall bands and chamber mouths")
+	check(world.get_node_or_null("CaveArchitecture/ChamberDividers") != null and world.get_node_or_null("CaveArchitecture/ChamberMouths") != null, "cave has authored wall bands and chamber mouths")
 	check(world.get_node_or_null("CaveArchitecture/FineStonePillars") != null and world.get_node("CaveArchitecture/FineStonePillars").get_child_count() >= 8, "cave has detailed multi-ring stone pillars")
 	var portal := world.get_node_or_null("EntranceTransition/ExitToNorthernRidge") as Area3D
 	check(portal != null and portal.monitoring and portal.get_meta("target_scene") == "res://village/main.tscn", "cave exit portal is linked to the outdoor entry")
@@ -16,9 +16,9 @@ func _initialize() -> void:
 	check(world.find_children("*", "CollisionShape3D", true, false).size() >= 5, "floor, walls and portal collisions are saved")
 	check(world.get_node("CaveTerrain").get_node_or_null("DisconnectedPlatforms") != null and world.get_node("CaveTerrain/DisconnectedPlatforms").get_child_count() >= 7, "cave uses multiple disconnected platforms")
 	check(world.get_node("CaveTerrain/BranchingStonePaths").get_child_count() >= 6, "cave has branching narrow paths")
-	check(world.get_meta("layout_revision", 0) == 2, "branched cave layout revision is saved")
-	check(is_equal_approx(world.get_meta("layout_scale", 0.0), 2.8), "cave layout is enlarged for the wider reference composition")
-	check(world.get_node_or_null("CaveLifeAndRemains/BoneDisplayRacks") != null and world.get_node_or_null("CaveLifeAndRemains/MineToolsAndCrates") != null, "cave detail groups are saved")
+	check(world.get_meta("layout_revision", 0) == 3, "reference-aligned cave layout revision is saved")
+	check(is_equal_approx(world.get_meta("layout_scale", 0.0), 1.0), "cave uses direct reference-aligned world coordinates")
+	check(world.get_node_or_null("CaveLifeAndRemains/BoneBurialFields/J5_BoneRackFrames") != null and world.get_node_or_null("MineWorks/J12_TimberSupport") != null and world.get_node_or_null("CaveLifeAndRemains/J13_NameWallRoom") != null, "cave detail groups are saved")
 	check(world.get_node_or_null("CaveTerrain/MapBoundaries") != null and world.get_node_or_null("CaveTerrain/SavedWalkCollisions/VoidSafetyCatch") != null, "map perimeter and void safety boundaries are saved")
 	var main_text := FileAccess.get_file_as_string("res://burial_left_cave/main.tscn")
 	check(main_text.contains("res://burial_left_cave/world.tscn"), "cave main entry uses the saved cave world")
