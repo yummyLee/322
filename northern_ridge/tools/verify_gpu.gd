@@ -1,7 +1,8 @@
 extends "res://burial_ridge/tools/verify_gpu.gd"
 func capture(label: String) -> void:
-	for i in range(14):await process_frame
-	await RenderingServer.frame_post_draw
+	# Headless validation has no windowed frame_post_draw signal; a few process
+	# frames are enough for the offscreen viewport texture to settle.
+	for i in range(8):await process_frame
 	check(root.get_texture().get_image().save_png("res://northern_ridge/preview_"+label+".png")==OK,"GPU screenshot: "+label)
 func run() -> void:
 	root.size=Vector2i(1920,1080)
@@ -44,6 +45,27 @@ func run() -> void:
 	app.camera.size=14
 	app.status.text="嵌坡洞口 · 北侧连续地面"
 	await capture("root_gate_back")
+	place_hero(Vector3(10,0,-59))
+	app.camera.position=Vector3(18,34,-24)
+	app.camera.look_at(Vector3(0,1,-57))
+	app.camera.size=43
+	app.status.text="洞口东侧扩展 · 北路、作物洼地、泉眼与猎户营地"
+	await capture("east_overview")
+	app.camera.position=Vector3(25,16,-37)
+	app.camera.look_at(Vector3(15,1.0,-59))
+	app.camera.size=22
+	app.status.text="岩石泉眼 · 落差水道与古树根系"
+	await capture("east_spring")
+	app.camera.position=Vector3(28,13,-31)
+	app.camera.look_at(Vector3(17,1.0,-45))
+	app.camera.size=16
+	app.status.text="村北猎户营地 · 兽皮晒架与帐篷"
+	await capture("east_wash_yard")
+	app.camera.position=Vector3(-1,16,-23)
+	app.camera.look_at(Vector3(-7,0.7,-37))
+	app.camera.size=18
+	app.status.text="窑村北缘 · 斜坡衔接与碎石路肩"
+	await capture("east_transition")
 	place_hero(Vector3(-64,0,-34.5))
 	app.camera.position=Vector3(-67,15,-21)
 	app.camera.look_at(Vector3(-63,0.7,-36.5))

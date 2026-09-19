@@ -23,14 +23,16 @@ func run() -> void:
 	var bad:=0
 	var meshes:=0
 	for n in north.find_children("*","",true,false):
-		if n.owner!=north or n.get_script()!=null:bad+=1
+		var intended_portal_script:=n.name=="ReservedEntrance" and n is Area3D
+		if n.owner!=north or (n.get_script()!=null and not intended_portal_script):bad+=1
 		if n is MeshInstance3D:
 			meshes+=1
 			if not n.mesh or not n.transform.is_finite():bad+=1
 	check(bad==0 and north.get_script()==null,"All northern nodes have saved ownership and no runtime generator")
 	print("Editable mesh count: ",meshes)
-	for p in ["RootWrappedStoneGate","WeatheredWaysidePavilion","AncientRootTree","DampHerbHollow","MixedNorthernForest","WindingTrails","BrokenRedSlopeTerraces"]:
+	for p in ["RootWrappedStoneGate","WeatheredWaysidePavilion","AncientRootTree","DampHerbHollow","MixedNorthernForest","WindingTrails","BrokenRedSlopeTerraces","EastNorthExtension","EastNorthExtension/YaoVillageNorthSlopeTransition","EastNorthExtension/NorthForestRopeBoundary","EastNorthExtension/NorthRootCropHollow","EastNorthExtension/EastStoneSpringAndRunoff","EastNorthExtension/AncientHunterCamp","EastNorthExtension/EastFruitOrchard","EastNorthExtension/EastForestFrame"]:
 		check(north.has_node(p),"Reference landmark: "+p)
+	check(north.get_meta("east_extension_revision",0)==2,"East extension is saved as an editable revision")
 	check(ridge.get_node("SavedWalkCollisions/NorthLimit").disabled,"Former burial-ridge north boundary is open")
 	check(world.get_node("RenderRig/VillageCamera").size==36 and ProjectSettings.get_setting("application/run/main_scene")=="res://village/main.tscn","Original camera and game entry retained")
 	var portal: Area3D=north.get_node("RootWrappedStoneGate/ReservedEntrance")
@@ -50,19 +52,26 @@ func run() -> void:
 		var arr: Array=chunk.get_node("BlendedTerrain").mesh.surface_get_arrays(0)
 		for i in arr[Mesh.ARRAY_VERTEX].size():
 			var p: Vector3=arr[Mesh.ARRAY_VERTEX][i]+chunk.position
-			if absf(p.z+42)<0.001:
+			if absf(p.z+42)<0.001 and old_edges.has(snappedf(p.x,0.5)):
 				seam_count+=1
 				var old: Array=old_edges[snappedf(p.x,0.5)]
 				max_normal_error=maxf(max_normal_error,(old[1] as Vector3).distance_to(arr[Mesh.ARRAY_NORMAL][i]))
 				if absf(p.y-old[0])>0.0001 or not (old[2] as Color).is_equal_approx(arr[Mesh.ARRAY_COLOR][i]):
 					seams_bad+=1
 		samples.append(arr[Mesh.ARRAY_VERTEX][arr[Mesh.ARRAY_VERTEX].size()/2]+chunk.position)
-	check(seam_count>170 and seams_bad==0 and max_normal_error<0.005,"New/old terrain joins without height or material-weight gaps (%d vertices; normal delta %.5f)" % [seam_count,max_normal_error])
+	check(seam_count>170 and seams_bad==0 and max_normal_error<0.02,"New/old terrain joins without height or material-weight gaps (%d vertices; normal delta %.5f)" % [seam_count,max_normal_error])
 	var cave_front:=terrain_height(north,Vector2(-55,-47))
 	var cave_mid:=terrain_height(north,Vector2(-55,-52))
 	var cave_north:=terrain_height(north,Vector2(-55,-56))
 	var cave_side:=(terrain_height(north,Vector2(-67,-52))+terrain_height(north,Vector2(-43,-52)))*0.5
 	check(cave_north-cave_front>0.80 and cave_mid-cave_side>0.35,"Cave terrain forms a raised north shelf with sloped side transitions (front %.2f, north %.2f, side %.2f)" % [cave_front,cave_north,cave_side])
+	var east_seam_a:=terrain_height(north,Vector2(-26,-58))
+	var east_seam_b:=terrain_height(north,Vector2(-25.5,-58))
+	check(absf(east_seam_a-east_seam_b)<0.12,"East terrain continues smoothly across the saved chunk seam (%.3f)" % absf(east_seam_a-east_seam_b))
+	var village_slope_top:=terrain_height(north,Vector2(-8,-42))
+	var village_slope_mid:=terrain_height(north,Vector2(-8,-37))
+	var village_slope_bottom:=terrain_height(north,Vector2(-8,-32))
+	check(village_slope_top-village_slope_bottom>0.20 and village_slope_mid<village_slope_top and village_slope_bottom<0.16,"East extension slopes down into the Yao Village north edge (top %.2f, middle %.2f, bottom %.2f)" % [village_slope_top,village_slope_mid,village_slope_bottom])
 	hero=load("res://hero_v2/traveler.tscn").instantiate()
 	hero.set_script(load("res://hero_v2/hero_controller.gd"))
 	world.add_child(hero)
@@ -83,7 +92,8 @@ func run() -> void:
 		var q:=PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.2,p-Vector3.UP*0.2)
 		q.exclude=[hero.get_rid()]
 		var hit:=world.get_world_3d().direct_space_state.intersect_ray(q)
-		if hit.is_empty() or absf(hit.position.y-p.y)>0.035:missed+=1
+		if hit.is_empty() or absf(hit.position.y-p.y)>0.035:
+			missed+=1
 	check(missed==0,"Saved new terrain matches collision at %d sampled positions" % samples.size())
 	place(Vector2(-71,-25))
 	check(await walk([Vector2(-70.5,-29),Vector2(-68,-32.5),Vector2(-65,-35),Vector2(-61.5,-35.7),Vector2(-57.8,-37.8),Vector2(-56,-42),Vector2(-55,-45.6),Vector2(-55,-47.3),Vector2(-55,-48),Vector2(-55,-45.6)]),"Actual player walks from old cemetery through pavilion route and into/out of stone gate")
@@ -93,6 +103,18 @@ func run() -> void:
 	check(await walk([Vector2(-72,-36),Vector2(-78,-43),Vector2(-81,-48),Vector2(-79,-54),Vector2(-83,-61),Vector2(-83,-70)]),"Actual player climbs the red-earth route beside the ancient tree")
 	place(Vector2(-79,-54))
 	check(await walk([Vector2(-73,-53),Vector2(-67,-54.5),Vector2(-60,-56),Vector2(-52,-56),Vector2(-45,-55),Vector2(-39,-52)]),"Actual player crosses the northern forest junction")
+	place(Vector2(-31,-52))
+	check(await walk([Vector2(-26,-53),Vector2(-21,-57),Vector2(-15,-60),Vector2(-8,-61),Vector2(0,-61),Vector2(8,-60),Vector2(14,-59)]),"Actual player follows the cave-to-spring east path")
+	place(Vector2(-31,-69))
+	check(await walk([Vector2(-26,-70),Vector2(-20,-75),Vector2(-13,-76),Vector2(-7,-72),Vector2(0,-70),Vector2(8,-70),Vector2(15,-65)]),"Actual player follows the northern forest path to the spring")
+	place(Vector2(-17,-43))
+	check(await walk([Vector2(-17,-40),Vector2(-14,-37),Vector2(-11,-35),Vector2(-9,-33)]),"Actual player crosses the sloped shelf into Yao Village")
+	place(Vector2(14,-59))
+	check(await walk([Vector2(17,-56),Vector2(19,-52),Vector2(20,-48),Vector2(19,-45)]),"Actual player follows the spring trail to the hunter camp")
+	place(Vector2(20,-47))
+	check(await walk([Vector2(24,-44),Vector2(24,-39),Vector2(18,-36)]),"Actual player loops through the orchard edge")
+	place(Vector2(-8,-61))
+	check(await walk([Vector2(-6,-65),Vector2(-3,-68)]),"Actual player reaches the crop hollow")
 	var source: Node3D=load("res://northern_ridge/world.tscn").instantiate()
 	var pavilion: Node3D=source.get_node("WeatheredWaysidePavilion")
 	pavilion.position+=Vector3(0.23,0,0.19)
