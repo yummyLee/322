@@ -289,7 +289,7 @@ func v3_passage_tunnel(parent: Node, colliders: Node, label: String, points: Arr
 		var bank_y := (a.y + b.y) * 0.5 - 0.03
 		cave_wall_band(tunnel, "LeftTunnelBank", Vector2(left_a.x, left_a.z), Vector2(left_b.x, left_b.z), bank_y, 0.92, 0.34, "59655c")
 		cave_wall_band(tunnel, "RightTunnelBank", Vector2(right_a.x, right_a.z), Vector2(right_b.x, right_b.z), bank_y, 0.92, 0.34, "59655c")
-		var collision := collision_box(colliders, label + "Segment%02d" % i, mid + Vector3(0, -0.12, 0), Vector3(width, 0.42, a.distance_to(b) + 0.28))
+		var collision := collision_box(colliders, label + "Segment%02d" % i, mid + Vector3(0, -0.21, 0), Vector3(width, 0.42, a.distance_to(b) + 0.28))
 		collision.rotation.y = atan2(b.x - a.x, b.z - a.z)
 
 func make_v3_floor() -> void:
@@ -308,33 +308,33 @@ func make_v3_floor() -> void:
 	var platforms := group(floor_root, "DisconnectedPlatforms")
 	# The floor polygons follow the black gaps in the reference instead of filling them with one terrain slab.
 	v3_zone_shell(platforms, floor_collision, "J0_EntranceHall", [Vector2(-7, 34), Vector2(-10, 28), Vector2(-4, 25), Vector2(5, 26), Vector2(10, 31), Vector2(7, 38), Vector2(-1, 40)], 0.0, 2.8, "6e705f")
-	v3_zone_shell(platforms, floor_collision, "J1_MainSCorridor", [Vector2(-8, 25), Vector2(-11, 21), Vector2(-10, 17), Vector2(-5, 15), Vector2(-1, 17), Vector2(-2, 21)], 0.30, 1.9, "68685b")
-	v3_zone_shell(platforms, floor_collision, "J8_OldCartYard", [Vector2(-10, 12), Vector2(-14, 4), Vector2(-8, -3), Vector2(2, -4), Vector2(13, 0), Vector2(16, 8), Vector2(10, 15), Vector2(-1, 18)], 0.85, 3.0, "6b624f")
-	v3_zone_shell(platforms, floor_collision, "J2_BoneShelf", [Vector2(16, 6), Vector2(18, -1), Vector2(25, -5), Vector2(36, -4), Vector2(43, 0), Vector2(41, 7), Vector2(32, 10), Vector2(22, 9)], 1.65, 3.2, "666456")
-	v3_zone_shell(platforms, floor_collision, "J3_WetThroat", [Vector2(-40, 8), Vector2(-42, 1), Vector2(-38, -4), Vector2(-27, -5), Vector2(-22, 0), Vector2(-25, 8), Vector2(-32, 11)], -0.25, 2.4, "536965")
-	v3_zone_shell(platforms, floor_collision, "J4_UpperFissure", [Vector2(5, -14), Vector2(10, -18), Vector2(22, -19), Vector2(28, -16), Vector2(26, -12), Vector2(14, -10)], 2.10, 3.4, "5b6258")
-	v3_zone_shell(platforms, floor_collision, "J9_PillarForest", [Vector2(-43, 22), Vector2(-49, 16), Vector2(-48, 8), Vector2(-39, 5), Vector2(-29, 9), Vector2(-26, 17), Vector2(-33, 23)], 0.20, 2.8, "4f625e")
-	v3_zone_shell(platforms, floor_collision, "J6_PitWell", [Vector2(-55, 4), Vector2(-59, -2), Vector2(-56, -9), Vector2(-47, -12), Vector2(-40, -7), Vector2(-41, 1), Vector2(-47, 6)], -0.75, 3.4, "4b5955")
-	v3_zone_shell(platforms, floor_collision, "J11_SuspendedBoneBridge", [Vector2(25, -6), Vector2(29, -14), Vector2(38, -15), Vector2(41, -9), Vector2(36, -5), Vector2(30, -4)], 2.25, 3.8, "555d55")
-	v3_zone_shell(platforms, floor_collision, "J5_BoneSortingHall", [Vector2(-22, -24), Vector2(-19, -33), Vector2(-10, -37), Vector2(3, -35), Vector2(9, -29), Vector2(5, -22), Vector2(-6, -19), Vector2(-15, -20)], 1.50, 3.8, "615d50")
-	v3_zone_shell(platforms, floor_collision, "J10_GreyWaterTerraces", [Vector2(-54, -21), Vector2(-53, -30), Vector2(-46, -36), Vector2(-35, -36), Vector2(-26, -31), Vector2(-28, -23), Vector2(-37, -19), Vector2(-47, -18)], -0.20, 2.5, "6b746a")
-	v3_zone_shell(platforms, floor_collision, "J7_SealedFissure", [Vector2(-58, -25), Vector2(-56, -30), Vector2(-51, -32), Vector2(-48, -28), Vector2(-50, -23), Vector2(-55, -22)], -0.10, 2.6, "3b4845")
-	v3_zone_shell(platforms, floor_collision, "J12_CollapsedQuarry", [Vector2(24, -22), Vector2(28, -30), Vector2(39, -34), Vector2(49, -30), Vector2(48, -23), Vector2(41, -18), Vector2(31, -18)], 1.45, 3.6, "5d6259")
-	v3_zone_shell(platforms, floor_collision, "J13_NameWallRoom", [Vector2(47, -16), Vector2(50, -23), Vector2(57, -26), Vector2(63, -22), Vector2(63, -16), Vector2(58, -12), Vector2(51, -12)], 1.55, 3.5, "5f5e54")
+	v3_zone_shell(platforms, floor_collision, "J1_MainSCorridor", [Vector2(-8, 25), Vector2(-11, 21), Vector2(-10, 17), Vector2(-5, 15), Vector2(-1, 17), Vector2(-2, 21)], 0.0, 1.9, "68685b")
+	v3_zone_shell(platforms, floor_collision, "J8_OldCartYard", [Vector2(-10, 12), Vector2(-14, 4), Vector2(-8, -3), Vector2(2, -4), Vector2(13, 0), Vector2(16, 8), Vector2(10, 15), Vector2(-1, 18)], 0.0, 3.0, "6b624f")
+	v3_zone_shell(platforms, floor_collision, "J2_BoneShelf", [Vector2(16, 6), Vector2(18, -1), Vector2(25, -5), Vector2(36, -4), Vector2(43, 0), Vector2(41, 7), Vector2(32, 10), Vector2(22, 9)], 0.0, 3.2, "666456")
+	v3_zone_shell(platforms, floor_collision, "J3_WetThroat", [Vector2(-40, 8), Vector2(-42, 1), Vector2(-38, -4), Vector2(-27, -5), Vector2(-22, 0), Vector2(-25, 8), Vector2(-32, 11)], 0.0, 2.4, "536965")
+	v3_zone_shell(platforms, floor_collision, "J4_UpperFissure", [Vector2(5, -14), Vector2(10, -18), Vector2(22, -19), Vector2(28, -16), Vector2(26, -12), Vector2(14, -10)], 0.0, 3.4, "5b6258")
+	v3_zone_shell(platforms, floor_collision, "J9_PillarForest", [Vector2(-43, 22), Vector2(-49, 16), Vector2(-48, 8), Vector2(-39, 5), Vector2(-29, 9), Vector2(-26, 17), Vector2(-33, 23)], 0.0, 2.8, "4f625e")
+	v3_zone_shell(platforms, floor_collision, "J6_PitWell", [Vector2(-55, 4), Vector2(-59, -2), Vector2(-56, -9), Vector2(-47, -12), Vector2(-40, -7), Vector2(-41, 1), Vector2(-47, 6)], 0.0, 3.4, "4b5955")
+	v3_zone_shell(platforms, floor_collision, "J11_SuspendedBoneBridge", [Vector2(25, -6), Vector2(29, -14), Vector2(38, -15), Vector2(41, -9), Vector2(36, -5), Vector2(30, -4)], 0.0, 3.8, "555d55")
+	v3_zone_shell(platforms, floor_collision, "J5_BoneSortingHall", [Vector2(-22, -24), Vector2(-19, -33), Vector2(-10, -37), Vector2(3, -35), Vector2(9, -29), Vector2(5, -22), Vector2(-6, -19), Vector2(-15, -20)], 0.0, 3.8, "615d50")
+	v3_zone_shell(platforms, floor_collision, "J10_GreyWaterTerraces", [Vector2(-54, -21), Vector2(-53, -30), Vector2(-46, -36), Vector2(-35, -36), Vector2(-26, -31), Vector2(-28, -23), Vector2(-37, -19), Vector2(-47, -18)], 0.0, 2.5, "6b746a")
+	v3_zone_shell(platforms, floor_collision, "J7_SealedFissure", [Vector2(-58, -25), Vector2(-56, -30), Vector2(-51, -32), Vector2(-48, -28), Vector2(-50, -23), Vector2(-55, -22)], 0.0, 2.6, "3b4845")
+	v3_zone_shell(platforms, floor_collision, "J12_CollapsedQuarry", [Vector2(24, -22), Vector2(28, -30), Vector2(39, -34), Vector2(49, -30), Vector2(48, -23), Vector2(41, -18), Vector2(31, -18)], 0.0, 3.6, "5d6259")
+	v3_zone_shell(platforms, floor_collision, "J13_NameWallRoom", [Vector2(47, -16), Vector2(50, -23), Vector2(57, -26), Vector2(63, -22), Vector2(63, -16), Vector2(58, -12), Vector2(51, -12)], 0.0, 3.5, "5f5e54")
 	var paths := group(floor_root, "BranchingStonePaths")
-	v3_passage_tunnel(paths, floor_collision, "J0_to_J8_SCurve", [Vector3(1, 26, 0.1), Vector3(-3, 20, 0.25), Vector3(-1, 15, 0.45), Vector3(3, 11, 0.70), Vector3(3, 8, 0.82)], 3.2, "777766")
-	v3_passage_tunnel(paths, floor_collision, "J8_to_J3_WetBranch", [Vector3(-9, 3, 0.82), Vector3(-17, 4, 0.35), Vector3(-25, 4, 0.0), Vector3(-30, 3, -0.2)], 2.8, "647875")
-	v3_passage_tunnel(paths, floor_collision, "J3_to_J9_WaterLoop", [Vector3(-31, 7, -0.1), Vector3(-36, 11, 0.0), Vector3(-37, 16, 0.15)], 2.4, "5e7470")
-	v3_passage_tunnel(paths, floor_collision, "J9_to_J6_PillarLoop", [Vector3(-40, 14, 0.12), Vector3(-45, 9, -0.1), Vector3(-47, 4, -0.55)], 2.5, "5f6d68")
-	v3_passage_tunnel(paths, floor_collision, "J6_to_J5_DeepLoop", [Vector3(-45, -5, -0.7), Vector3(-38, -11, -0.2), Vector3(-28, -18, 0.35), Vector3(-18, -23, 1.0), Vector3(-12, -25, 1.38)], 2.6, "68655b")
-	v3_passage_tunnel(paths, floor_collision, "J8_to_J2_EastRise", [Vector3(11, 1, 0.95), Vector3(16, 0, 1.15), Vector3(20, 0, 1.45)], 2.8, "777566")
-	v3_passage_tunnel(paths, floor_collision, "J8_to_J11_BridgeRoad", [Vector3(11, -3, 0.9), Vector3(18, -7, 1.2), Vector3(25, -10, 2.05)], 2.55, "727368")
-	v3_passage_tunnel(paths, floor_collision, "J11_to_J5_BoneRoad", [Vector3(27, -13, 2.10), Vector3(20, -17, 1.75), Vector3(12, -21, 1.55), Vector3(5, -25, 1.48)], 2.5, "6e6b5d")
-	v3_passage_tunnel(paths, floor_collision, "J5_to_J10_WaterRoad", [Vector3(-18, -28, 1.40), Vector3(-25, -27, 0.85), Vector3(-33, -26, 0.15), Vector3(-38, -26, -0.05)], 2.7, "707a70")
-	v3_passage_tunnel(paths, floor_collision, "J5_to_J12_QuarryRoad", [Vector3(4, -28, 1.45), Vector3(14, -27, 1.48), Vector3(25, -26, 1.45)], 2.8, "6c6d64")
-	v3_passage_tunnel(paths, floor_collision, "J12_to_J13_NameRoad", [Vector3(39, -25, 1.5), Vector3(46, -20, 1.55), Vector3(51, -18, 1.55)], 2.5, "666860")
-	v3_passage_tunnel(paths, floor_collision, "J2_to_J4_UpperShortcut", [Vector3(23, -4, 1.75), Vector3(20, -9, 1.95), Vector3(16, -13, 2.05)], 2.35, "686b61")
-	v3_passage_tunnel(paths, floor_collision, "J4_to_J5_BackShortcut", [Vector3(10, -16, 1.9), Vector3(5, -21, 1.65), Vector3(-2, -24, 1.5)], 2.35, "67665b")
+	v3_passage_tunnel(paths, floor_collision, "J0_to_J8_SCurve", [Vector3(1, 26, 0.0), Vector3(-3, 20, 0.0), Vector3(-1, 15, 0.0), Vector3(3, 11, 0.0), Vector3(3, 8, 0.0)], 3.2, "777766")
+	v3_passage_tunnel(paths, floor_collision, "J8_to_J3_WetBranch", [Vector3(-9, 3, 0.0), Vector3(-17, 4, 0.0), Vector3(-25, 4, 0.0), Vector3(-30, 3, 0.0)], 2.8, "647875")
+	v3_passage_tunnel(paths, floor_collision, "J3_to_J9_WaterLoop", [Vector3(-31, 7, 0.0), Vector3(-36, 11, 0.0), Vector3(-37, 16, 0.0)], 2.4, "5e7470")
+	v3_passage_tunnel(paths, floor_collision, "J9_to_J6_PillarLoop", [Vector3(-40, 14, 0.0), Vector3(-45, 9, 0.0), Vector3(-47, 4, 0.0)], 2.5, "5f6d68")
+	v3_passage_tunnel(paths, floor_collision, "J6_to_J5_DeepLoop", [Vector3(-45, -5, 0.0), Vector3(-38, -11, 0.0), Vector3(-28, -18, 0.0), Vector3(-18, -23, 0.0), Vector3(-12, -25, 0.0)], 2.6, "68655b")
+	v3_passage_tunnel(paths, floor_collision, "J8_to_J2_EastRise", [Vector3(11, 1, 0.0), Vector3(16, 0, 0.0), Vector3(20, 0, 0.0)], 2.8, "777566")
+	v3_passage_tunnel(paths, floor_collision, "J8_to_J11_BridgeRoad", [Vector3(11, -3, 0.0), Vector3(18, -7, 0.0), Vector3(25, -10, 0.0)], 2.55, "727368")
+	v3_passage_tunnel(paths, floor_collision, "J11_to_J5_BoneRoad", [Vector3(27, -13, 0.0), Vector3(20, -17, 0.0), Vector3(12, -21, 0.0), Vector3(5, -25, 0.0)], 2.5, "6e6b5d")
+	v3_passage_tunnel(paths, floor_collision, "J5_to_J10_WaterRoad", [Vector3(-18, -28, 0.0), Vector3(-25, -27, 0.0), Vector3(-33, -26, 0.0), Vector3(-38, -26, 0.0)], 2.7, "707a70")
+	v3_passage_tunnel(paths, floor_collision, "J5_to_J12_QuarryRoad", [Vector3(4, -28, 0.0), Vector3(14, -27, 0.0), Vector3(25, -26, 0.0)], 2.8, "6c6d64")
+	v3_passage_tunnel(paths, floor_collision, "J12_to_J13_NameRoad", [Vector3(39, -25, 0.0), Vector3(46, -20, 0.0), Vector3(51, -18, 0.0)], 2.5, "666860")
+	v3_passage_tunnel(paths, floor_collision, "J2_to_J4_UpperShortcut", [Vector3(23, -4, 0.0), Vector3(20, -9, 0.0), Vector3(16, -13, 0.0)], 2.35, "686b61")
+	v3_passage_tunnel(paths, floor_collision, "J4_to_J5_BackShortcut", [Vector3(10, -16, 0.0), Vector3(5, -21, 0.0), Vector3(-2, -24, 0.0)], 2.35, "67665b")
 
 func v3_stalactite(parent: Node, label: String, pos: Vector3, height: float, radius: float, color: String) -> void:
 	var spike := cave_stone_pillar(parent, label, pos, height, radius, color)
@@ -346,28 +346,28 @@ func make_v3_walls() -> void:
 	# Outer wall runs follow the large gray silhouettes in the reference and leave the black gaps exposed.
 	cave_wall_band(walls, "SouthEntryWestWall", Vector2(-22, 37), Vector2(-16, 29), 0.0, 4.0, 1.25, "4b5750")
 	cave_wall_band(walls, "SouthEntryEastWall", Vector2(9, 37), Vector2(10, 30), 0.0, 3.7, 1.25, "4e5951")
-	cave_wall_band(walls, "WestWetWall", Vector2(-41, 8), Vector2(-47, 15), -0.2, 4.4, 1.3, "4c5e58")
-	cave_wall_band(walls, "WestPillarWall", Vector2(-50, 14), Vector2(-52, 3), -0.7, 4.0, 1.35, "455650")
-	cave_wall_band(walls, "PitWellWall", Vector2(-58, 2), Vector2(-57, -8), -0.75, 4.6, 1.45, "3d4b48")
-	cave_wall_band(walls, "GreyTerraceNorthWall", Vector2(-56, -21), Vector2(-49, -17), -0.2, 3.6, 1.2, "667268")
-	cave_wall_band(walls, "BoneHallNorthWall", Vector2(-22, -34), Vector2(7, -35), 1.45, 4.8, 1.4, "48534d")
-	cave_wall_band(walls, "BoneHallEastWall", Vector2(8, -34), Vector2(12, -26), 1.45, 4.0, 1.2, "4b564f")
-	cave_wall_band(walls, "QuarryNorthWall", Vector2(25, -31), Vector2(47, -29), 1.35, 4.2, 1.35, "4b5750")
-	cave_wall_band(walls, "NameRoomEastWall", Vector2(62, -25), Vector2(63, -13), 1.5, 3.8, 1.25, "4d5851")
-	cave_wall_band(walls, "UpperFissureWall", Vector2(8, -19), Vector2(27, -19), 2.0, 3.5, 1.15, "4c5750")
+	cave_wall_band(walls, "WestWetWall", Vector2(-41, 8), Vector2(-47, 15), 0.0, 4.4, 1.3, "4c5e58")
+	cave_wall_band(walls, "WestPillarWall", Vector2(-50, 14), Vector2(-52, 3), 0.0, 4.0, 1.35, "455650")
+	cave_wall_band(walls, "PitWellWall", Vector2(-58, 2), Vector2(-57, -8), 0.0, 4.6, 1.45, "3d4b48")
+	cave_wall_band(walls, "GreyTerraceNorthWall", Vector2(-56, -21), Vector2(-49, -17), 0.0, 3.6, 1.2, "667268")
+	cave_wall_band(walls, "BoneHallNorthWall", Vector2(-22, -34), Vector2(7, -35), 0.0, 4.8, 1.4, "48534d")
+	cave_wall_band(walls, "BoneHallEastWall", Vector2(8, -34), Vector2(12, -26), 0.0, 4.0, 1.2, "4b564f")
+	cave_wall_band(walls, "QuarryNorthWall", Vector2(25, -31), Vector2(47, -29), 0.0, 4.2, 1.35, "4b5750")
+	cave_wall_band(walls, "NameRoomEastWall", Vector2(62, -25), Vector2(63, -13), 0.0, 3.8, 1.25, "4d5851")
+	cave_wall_band(walls, "UpperFissureWall", Vector2(8, -19), Vector2(27, -19), 0.0, 3.5, 1.15, "4c5750")
 	var architecture := group(scene_root, "CaveArchitecture")
 	var divider := group(architecture, "ChamberDividers")
-	cave_wall_band(divider, "CartToWaterDivider", Vector2(-16, 1), Vector2(-16, 7), 0.4, 2.6, 0.8, "56645d")
-	cave_wall_band(divider, "BridgePitNorthLip", Vector2(22, -8), Vector2(27, -7), 1.95, 2.2, 0.9, "515d55")
-	cave_wall_band(divider, "BridgePitSouthLip", Vector2(38, -8), Vector2(41, -12), 1.95, 2.5, 0.9, "4a5650")
+	cave_wall_band(divider, "CartToWaterDivider", Vector2(-16, 1), Vector2(-16, 7), 0.0, 2.6, 0.8, "56645d")
+	cave_wall_band(divider, "BridgePitNorthLip", Vector2(22, -8), Vector2(27, -7), 0.0, 2.2, 0.9, "515d55")
+	cave_wall_band(divider, "BridgePitSouthLip", Vector2(38, -8), Vector2(41, -12), 0.0, 2.5, 0.9, "4a5650")
 	var pillars := group(architecture, "FineStonePillars")
 	var pillar_data := [
-		[Vector3(-45, -0.2, 18), 3.6, 0.75], [Vector3(-41, -0.2, 14), 2.4, 0.52], [Vector3(-35, -0.2, 17), 4.2, 0.66],
-		[Vector3(-31, -0.2, 13), 2.9, 0.48], [Vector3(-28, -0.2, 18), 3.8, 0.62], [Vector3(-39, -0.2, 9), 2.2, 0.58],
-		[Vector3(-34, -0.2, 8), 3.1, 0.50], [Vector3(-47, -0.2, 10), 2.7, 0.56], [Vector3(-43, -0.2, 6), 3.4, 0.64],
-		[Vector3(-51, -0.2, 11), 2.0, 0.44], [Vector3(-36, -0.2, 22), 2.6, 0.46], [Vector3(-30, -0.2, 20), 3.0, 0.54],
-		[Vector3(-49, -0.2, 20), 2.3, 0.48], [Vector3(-27, -0.2, 11), 2.0, 0.42], [Vector3(-40, -0.2, 20), 3.6, 0.57],
-		[Vector3(-46, -0.2, 15), 2.8, 0.45], [Vector3(-33, -0.2, 10), 2.4, 0.43], [Vector3(-52, -0.2, 17), 3.1, 0.51]
+		[Vector3(-45, 0.0, 18), 3.6, 0.75], [Vector3(-41, 0.0, 14), 2.4, 0.52], [Vector3(-35, 0.0, 17), 4.2, 0.66],
+		[Vector3(-31, 0.0, 13), 2.9, 0.48], [Vector3(-28, 0.0, 18), 3.8, 0.62], [Vector3(-39, 0.0, 9), 2.2, 0.58],
+		[Vector3(-34, 0.0, 8), 3.1, 0.50], [Vector3(-47, 0.0, 10), 2.7, 0.56], [Vector3(-43, 0.0, 6), 3.4, 0.64],
+		[Vector3(-51, 0.0, 11), 2.0, 0.44], [Vector3(-36, 0.0, 22), 2.6, 0.46], [Vector3(-30, 0.0, 20), 3.0, 0.54],
+		[Vector3(-49, 0.0, 20), 2.3, 0.48], [Vector3(-27, 0.0, 11), 2.0, 0.42], [Vector3(-40, 0.0, 20), 3.6, 0.57],
+		[Vector3(-46, 0.0, 15), 2.8, 0.45], [Vector3(-33, 0.0, 10), 2.4, 0.43], [Vector3(-52, 0.0, 17), 3.1, 0.51]
 	]
 	for data in pillar_data:
 		cave_stone_pillar(pillars, "PillarForestColumn", data[0], data[1], data[2], ["5c6b63", "708077", "879086"][pillars.get_child_count() % 3])
@@ -375,8 +375,8 @@ func make_v3_walls() -> void:
 	cave_arch(mouths, "EntryMouth", Vector3(1, 0.0, 25.5), Vector2(1, 0), 3.4, 4.0, "56635a")
 	cave_arch(mouths, "WaterMouth", Vector3(-25, 0.0, 4.0), Vector2(0, 1), 3.0, 3.4, "53665f")
 	cave_arch(mouths, "PillarMouth", Vector3(-39, 0.0, 14.5), Vector2(1, 0), 2.7, 3.6, "4b5c56")
-	cave_arch(mouths, "BoneMouth", Vector3(3, 1.5, -25), Vector2(0, 1), 3.0, 4.0, "4b564e")
-	cave_arch(mouths, "QuarryMouth", Vector3(28, 1.45, -26), Vector2(1, 0), 2.8, 3.7, "505a52")
+	cave_arch(mouths, "BoneMouth", Vector3(3, 0.0, -25), Vector2(0, 1), 3.0, 4.0, "4b564e")
+	cave_arch(mouths, "QuarryMouth", Vector3(28, 0.0, -26), Vector2(1, 0), 2.8, 3.7, "505a52")
 	var ceiling := group(shell, "CeilingStalactites")
 	for item in [
 		[Vector3(-51, 5.1, -20), 2.5, 0.32], [Vector3(-44, 5.4, -18), 3.0, 0.38], [Vector3(-33, 5.8, -22), 2.4, 0.30],
@@ -428,7 +428,7 @@ func make_v3_objects() -> void:
 	# J5 is split into an orderly eastern rack and a disturbed western scatter, as in the reference.
 	for row in range(4):
 		for col in range(4):
-			var p := Vector3(-5.5 + col * 2.8, 1.92, -24.0 - row * 2.5)
+			var p := Vector3(-5.5 + col * 2.8, 0.42, -24.0 - row * 2.5)
 			add_skull(bones, p, 0.95)
 			add_bone(bones, p + Vector3(0.7, 0.0, 0.25), 0.18, 1.15, "d1c9aa")
 	for i in range(30):
@@ -438,9 +438,9 @@ func make_v3_objects() -> void:
 			add_skull(bones, p + Vector3(0.35, 0.0, 0.15), 0.78)
 	var racks := group(bones, "J5_BoneRackFrames")
 	for x in [-14.5, -10.5, -6.5, -2.5]:
-		beam(racks, "RackPost", Vector3(x, 1.55, -24.0), Vector3(x, 3.1, -24.0), 0.08, "66523b")
-		beam(racks, "RackCrossbar", Vector3(x - 0.7, 2.5, -24.0), Vector3(x + 0.7, 2.5, -24.0), 0.06, "795d42")
-	var cart := group(details, "J8_TurnedFuneralCart", Vector3(1.0, 1.0, 3.0))
+		beam(racks, "RackPost", Vector3(x, 0.05, -24.0), Vector3(x, 1.6, -24.0), 0.08, "66523b")
+		beam(racks, "RackCrossbar", Vector3(x - 0.7, 1.0, -24.0), Vector3(x + 0.7, 1.0, -24.0), 0.06, "795d42")
+	var cart := group(details, "J8_TurnedFuneralCart", Vector3(1.0, 0.0, 3.0))
 	box(cart, "CartBed", Vector3(0, 0.45, 0), Vector3(1.9, 0.18, 2.8), "6d543b")
 	box(cart, "CartSide", Vector3(0, 0.72, -1.15), Vector3(1.9, 0.38, 0.12), "765b40")
 	for x in [-1.0, 1.0]:
@@ -448,34 +448,34 @@ func make_v3_objects() -> void:
 		wheel.rotation.z = PI / 2
 	beam(cart, "CartHandle", Vector3(0, 0.5, 1.2), Vector3(0, 0.75, 2.6), 0.07, "805f3f")
 	var mine := group(scene_root, "MineWorks")
-	var support := group(mine, "J12_TimberSupport", Vector3(35, 1.45, -25.5))
+	var support := group(mine, "J12_TimberSupport", Vector3(35, 0.0, -25.5))
 	for x in [-2.0, 2.0]:
 		beam(support, "SupportPost", Vector3(x, 0.0, 0), Vector3(x, 3.6, 0), 0.16, "66503b")
 	beam(support, "SupportHeader", Vector3(-2.2, 3.45, 0), Vector3(2.2, 3.45, 0), 0.19, "755b40")
 	for x in [-1.6, -0.8, 0, 0.8, 1.6]:
 		beam(support, "RoofSlat", Vector3(x, 3.45, -0.8), Vector3(x, 3.45, 0.8), 0.08, ["806548", "715943", "8b6b4e"][int(absf(x) * 2.0) % 3])
 	for i in range(14):
-		faceted_rock(mine, "QuarryLooseStone", Vector3(40 + sin(float(i) * 1.7) * 4.0, 1.55 + fmod(float(i), 3.0) * 0.12, -28 + cos(float(i) * 1.3) * 3.0), Vector3(0.35, 0.30, 0.42), ["666b63", "85877a", "555e58"][i % 3], 7)
+		faceted_rock(mine, "QuarryLooseStone", Vector3(40 + sin(float(i) * 1.7) * 4.0, 0.12 + fmod(float(i), 3.0) * 0.12, -28 + cos(float(i) * 1.3) * 3.0), Vector3(0.35, 0.30, 0.42), ["666b63", "85877a", "555e58"][i % 3], 7)
 	var bridge := group(details, "J11_SuspendedBoneBridge")
 	var pit_points: Array[Vector2] = [Vector2(25, -12), Vector2(29, -16), Vector2(39, -15), Vector2(42, -9), Vector2(37, -7), Vector2(29, -8)]
 	floor_patch(bridge, "BridgeDeepRavine", pit_points, -1.9, "1d2927")
 	for i in range(6):
-		var plank := box(bridge, "MisalignedBridgePlank", Vector3(27.5 + i * 1.65, 2.45 + sin(float(i) * 1.2) * 0.08, -10.5 + sin(float(i) * 0.7) * 0.15), Vector3(1.7, 0.18, 2.2), ["795d42", "896948", "66513d"][i % 3])
+		var plank := box(bridge, "MisalignedBridgePlank", Vector3(27.5 + i * 1.65, 0.25 + sin(float(i) * 1.2) * 0.08, -10.5 + sin(float(i) * 0.7) * 0.15), Vector3(1.7, 0.18, 2.2), ["795d42", "896948", "66513d"][i % 3])
 		plank.rotation.y = -0.08 + sin(float(i) * 1.9) * 0.04
 	for x in [26.7, 38.5]:
-		beam(bridge, "BridgePost", Vector3(x, 2.35, -10.5), Vector3(x, 3.7, -10.5), 0.08, "6b543d")
-	beam(bridge, "BridgeHandrail", Vector3(26.7, 3.7, -10.5), Vector3(38.5, 3.7, -10.5), 0.06, "7d6043")
+		beam(bridge, "BridgePost", Vector3(x, 0.15, -10.5), Vector3(x, 1.5, -10.5), 0.08, "6b543d")
+	beam(bridge, "BridgeHandrail", Vector3(26.7, 1.5, -10.5), Vector3(38.5, 1.5, -10.5), 0.06, "7d6043")
 	var tomb := group(details, "J13_NameWallRoom")
 	var name_wall := group(tomb, "CarvedNameWall", Vector3(57.2, 0, -23.7))
-	cave_wall_band(name_wall, "NameWallRockFace", Vector2(-4.8, 0), Vector2(4.8, 0), 1.55, 3.4, 0.7, "4d514b")
+	cave_wall_band(name_wall, "NameWallRockFace", Vector2(-4.8, 0), Vector2(4.8, 0), 0.0, 3.4, 0.7, "4d514b")
 	for i in range(6):
 		var tablet := box(name_wall, "IndependentNameTablet", Vector3(-3.7 + (i % 3) * 3.5, 2.0 + (i / 3) * 1.0, -0.38), Vector3(1.4, 0.65, 0.12), "9b947b")
 		tablet.rotation.z = sin(float(i) * 1.4) * 0.05
-	var tombstone := group(tomb, "J13_TombMarker", Vector3(54.0, 1.7, -19.0))
+	var tombstone := group(tomb, "J13_TombMarker", Vector3(54.0, 0.0, -19.0))
 	box(tombstone, "TombSlab", Vector3(0, -0.1, 0), Vector3(3.0, 0.25, 1.6), "8e907d")
 	var stone := faceted_rock(tombstone, "WeatheredTombstone", Vector3(0, 1.0, 0), Vector3(0.55, 1.15, 0.22), "9b9b83", 7)
 	stone.rotation.z = -0.08
-	var pit_frame := group(details, "J6_PitWellRopeFrame", Vector3(-50, -0.72, -4))
+	var pit_frame := group(details, "J6_PitWellRopeFrame", Vector3(-50, 0.0, -4))
 	for x in [-1.2, 1.2]:
 		beam(pit_frame, "PitPost", Vector3(x, 0.0, 0), Vector3(x, 3.0, 0), 0.10, "5c4d3c")
 	beam(pit_frame, "PitCrossbar", Vector3(-1.4, 2.8, 0), Vector3(1.4, 2.8, 0), 0.10, "725942")
