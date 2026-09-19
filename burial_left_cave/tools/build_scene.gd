@@ -51,6 +51,52 @@ func floor_patch(parent: Node, label: String, points: Array[Vector2], y: float, 
 		ids.append_array(PackedInt32Array([0, i, i + 1]))
 	solid(parent, label, verts, ids, color, Vector3.UP)
 
+func sloped_strip(parent: Node, label: String, a: Vector3, b: Vector3, width: float, color: String) -> void:
+	var direction := Vector2(b.x - a.x, b.z - a.z).normalized()
+	var normal := Vector2(-direction.y, direction.x)
+	var mid := a.lerp(b, 0.5)
+	var wobble := normal * sin((a.x + b.z) * 1.73) * width * 0.12
+	var points := PackedVector3Array([
+		Vector3(a.x + normal.x * width * 0.5, a.y, a.z + normal.y * width * 0.5),
+		Vector3(a.x - normal.x * width * 0.5, a.y, a.z - normal.y * width * 0.5),
+		Vector3(mid.x + wobble.x + normal.x * width * 0.58, mid.y + 0.025, mid.z + wobble.y + normal.y * width * 0.58),
+		Vector3(mid.x + wobble.x - normal.x * width * 0.58, mid.y + 0.025, mid.z + wobble.y - normal.y * width * 0.58),
+		Vector3(b.x - normal.x * width * 0.5, b.y, b.z - normal.y * width * 0.5),
+		Vector3(b.x + normal.x * width * 0.5, b.y, b.z + normal.y * width * 0.5)
+	])
+	solid(parent, label, points, PackedInt32Array([0, 1, 2, 2, 1, 3, 2, 3, 4, 4, 3, 5]), color, Vector3.UP)
+
+func faceted_rock(parent: Node, label: String, pos: Vector3, size: Vector3, color: String, segments: int = 7) -> MeshInstance3D:
+	var vertices := PackedVector3Array()
+	var rings := [Vector2(-1.0, 0.58), Vector2(-0.42, 1.0), Vector2(0.32, 0.86), Vector2(0.92, 0.24)]
+	for ring in rings:
+		for i in range(segments):
+			var angle := TAU * float(i) / segments + sin(float(i) * 7.13 + pos.x * 0.31 + pos.z) * 0.08
+			var jitter := 0.88 + 0.15 * sin(float(i) * 3.7 + pos.z * 0.27)
+			vertices.append(Vector3(cos(angle) * size.x * ring.y * jitter, ring.x * size.y, sin(angle) * size.z * ring.y * jitter))
+	var bottom := vertices.size()
+	vertices.append(Vector3(0, -size.y, 0))
+	var top := vertices.size()
+	vertices.append(Vector3(0, size.y, 0))
+	var indices := PackedInt32Array()
+	for r in range(rings.size() - 1):
+		for i in range(segments):
+			var a := r * segments + i
+			var b := r * segments + ((i + 1) % segments)
+			var c := (r + 1) * segments + i
+			var d := (r + 1) * segments + ((i + 1) % segments)
+			indices.append_array(PackedInt32Array([a, c, b, b, c, d]))
+	for i in range(segments):
+		var a := i
+		var b := (i + 1) % segments
+		indices.append_array(PackedInt32Array([bottom, b, a]))
+		var c := (rings.size() - 1) * segments + i
+		var d := (rings.size() - 1) * segments + ((i + 1) % segments)
+		indices.append_array(PackedInt32Array([top, c, d]))
+	var node := solid(parent, label, vertices, indices, color)
+	node.position = pos
+	return node
+
 func cave_platform(parent: Node, colliders: Node, label: String, points: Array[Vector2], y: float, color: String) -> void:
 	var platform := group(parent, label)
 	floor_patch(platform, "WalkableTop", points, y, color)
@@ -58,8 +104,11 @@ func cave_platform(parent: Node, colliders: Node, label: String, points: Array[V
 	for i in range(points.size()):
 		var a := points[i]
 		var b := points[(i + 1) % points.size()]
-		var edge := beam(platform, "BrokenLedge", Vector3(a.x, y - 0.24, a.y), Vector3(b.x, y - 0.24, b.y), 0.16, ["59645a", "70776a", "4d5a53"][i % 3])
-		edge.scale.y = 0.72
+		var edge_length := a.distance_to(b)
+		var count := maxi(2, ceili(edge_length / 0.72))
+		for j in range(count):
+			var p := a.lerp(b, (float(j) + 0.5) / count)
+			faceted_rock(platform, "BrokenLedgeRock", Vector3(p.x, y - 0.22 - rng.randf_range(0.0, 0.12), p.y), Vector3(rng.randf_range(0.22, 0.42), rng.randf_range(0.16, 0.28), rng.randf_range(0.22, 0.42)), ["59645a", "70776a", "4d5a53"][j % 3])
 	var min_x := points[0].x
 	var max_x := points[0].x
 	var min_z := points[0].y
@@ -77,13 +126,13 @@ func cave_walkway(parent: Node, colliders: Node, label: String, points: Array[Ve
 		var a := points[i]
 		var b := points[i + 1]
 		var mid := (a + b) * 0.5
-		var plank := box(road, "NarrowStonePath", mid, Vector3(width, 0.18, a.distance_to(b) + 0.18), color)
-		plank.rotation.y = atan2(b.x - a.x, b.z - a.z)
+		sloped_strip(road, "NarrowStonePath", a, b, width, color)
 		collision_box(colliders, label + "Segment%02d" % i, Vector3(mid.x, mid.y - 0.12, mid.z), Vector3(width, 0.42, a.distance_to(b) + 0.18))
 		for j in range(2):
 			var side := -1.0 if j == 0 else 1.0
-			var offset := Vector3(cos(plank.rotation.y), 0, -sin(plank.rotation.y)) * side * width * 0.42
-			ball(road, "PathShoulderStone", mid + offset + Vector3(0, -0.03, 0), Vector3(0.18, 0.10, 0.26), "7d8274")
+			var direction := Vector2(b.x - a.x, b.z - a.z).normalized()
+			var offset := Vector3(-direction.y, 0, direction.x) * side * width * 0.42
+			faceted_rock(road, "PathShoulderStone", mid + offset + Vector3(0, -0.03, 0), Vector3(0.18, 0.10, 0.26), "7d8274", 6)
 
 func make_floor() -> void:
 	var floor_root := group(scene_root, "CaveTerrain")
@@ -160,8 +209,11 @@ func make_walls_and_ceiling() -> void:
 		if i % 2 == 0:
 			var top_h := rng.randf_range(0.7, 1.5)
 			cylinder(spikes, "Stalactite", Vector3(p.x + 0.18, 4.6 - top_h * 0.5, p.y + 0.12), rng.randf_range(0.04, 0.11), top_h, "515d56", rng.randf_range(0.18, 0.28), 7)
-	# A dark back aperture suggests a deeper tunnel.
-	box(rock_root, "DeepTunnelMouth", Vector3(0, 2.0, -10.0), Vector3(3.8, 3.7, 0.22), "202823")
+	# A dark, irregular back aperture suggests a deeper tunnel without another rectangular wall.
+	var mouth_points: Array[Vector2] = [Vector2(-2.0, -10.28), Vector2(-1.35, -10.62), Vector2(-0.45, -10.74), Vector2(0.65, -10.58), Vector2(1.75, -10.24), Vector2(1.55, -9.88), Vector2(0.55, -9.58), Vector2(-0.65, -9.62), Vector2(-1.65, -9.88)]
+	floor_patch(rock_root, "DeepTunnelShadow", mouth_points, 0.18, "202823")
+	for p in [Vector3(-1.65, 1.2, -10.0), Vector3(-0.75, 2.7, -10.08), Vector3(0.75, 2.55, -10.02), Vector3(1.65, 1.15, -10.0)]:
+		faceted_rock(rock_root, "TunnelMouthRim", p, Vector3(0.55, 1.35, 0.52), "4f5b53", 8)
 	collision_box(scene_root.get_node("CaveTerrain/SavedWalkCollisions"), "BackWall", Vector3(0, 2.0, -10.4), Vector3(25, 4.0, 0.7))
 
 func make_waterfalls_and_pools() -> void:
@@ -170,12 +222,22 @@ func make_waterfalls_and_pools() -> void:
 	for i in range(4):
 		var x := -9.6 + i * 0.85
 		var z := 4.5 - i * 1.15
-		box(falls, "LimestoneWaterStep", Vector3(x, 0.38 + i * 0.34, z), Vector3(2.6, 0.34, 2.0), ["8b9180", "9ca08d", "767d70"][i % 3])
-		box(falls, "BlueGreenWaterTier", Vector3(x, 0.59 + i * 0.34, z + 0.24), Vector3(1.9, 0.045, 1.42), "3b6062")
-		box(falls, "WaterfallRibbon", Vector3(x + 0.05, 0.34 + i * 0.34, z - 0.72), Vector3(0.56, 0.58, 0.12), "507477")
+		var shelf_points: Array[Vector2] = [Vector2(x - 1.35, z - 0.92), Vector2(x - 0.48, z - 1.12), Vector2(x + 1.17, z - 0.88), Vector2(x + 1.38, z + 0.18), Vector2(x + 0.78, z + 0.98), Vector2(x - 0.95, z + 1.02), Vector2(x - 1.48, z + 0.24)]
+		floor_patch(falls, "LimestoneWaterStep", shelf_points, 0.38 + i * 0.34, ["8b9180", "9ca08d", "767d70"][i % 3])
+		var water_points: Array[Vector2] = [Vector2(x - 1.0, z - 0.58), Vector2(x - 0.24, z - 0.82), Vector2(x + 0.94, z - 0.55), Vector2(x + 1.02, z + 0.14), Vector2(x + 0.44, z + 0.65), Vector2(x - 0.78, z + 0.60), Vector2(x - 1.12, z + 0.12)]
+		floor_patch(falls, "BlueGreenWaterTier", water_points, 0.59 + i * 0.34, "3b6062")
+		for k in range(5):
+			var stone_angle := -0.9 + float(k) * 0.46 + i * 0.18
+			var stone_pos := Vector3(x + cos(stone_angle) * 1.12, 0.32 + i * 0.34, z + sin(stone_angle) * 0.82)
+			faceted_rock(falls, "CalcifiedShelfStone", stone_pos, Vector3(0.22 + (k % 2) * 0.08, 0.16, 0.26), ["737b70", "899084", "68736d"][k % 3], 7)
+		var ribbon_points: Array[Vector2] = [Vector2(x - 0.30, z - 0.98), Vector2(x + 0.22, z - 1.00), Vector2(x + 0.28, z - 0.18), Vector2(x - 0.22, z - 0.12)]
+		floor_patch(falls, "WaterfallRibbon", ribbon_points, 0.32 + i * 0.34, "507477")
 	for j in range(4):
-		var pool := box(water_root, "ColdPool", Vector3(-8.4 + j * 1.15, 0.10, 0.7 - j * 0.72), Vector3(3.4 - j * 0.24, 0.06, 2.2 - j * 0.12), "31565b")
-		pool.rotation.y = -0.08 + j * 0.04
+		var px := -8.4 + j * 1.15
+		var pz := 0.7 - j * 0.72
+		var pool_points: Array[Vector2] = [Vector2(px - 1.7 + j * 0.08, pz - 1.02), Vector2(px - 0.55, pz - 1.22), Vector2(px + 1.52 - j * 0.12, pz - 0.68), Vector2(px + 1.68 - j * 0.12, pz + 0.48), Vector2(px + 0.48, pz + 1.03), Vector2(px - 1.42, pz + 0.72)]
+		floor_patch(water_root, "ColdPool", pool_points, 0.10, "31565b")
+		faceted_rock(water_root, "PoolEdgeRock", Vector3(px - 1.42, 0.02, pz - 0.35), Vector3(0.32, 0.18, 0.42), "66736b", 7)
 	var glow := OmniLight3D.new()
 	glow.name = "WaterfallColdGlow"
 	glow.position = Vector3(-8.3, 2.1, 1.5)
@@ -240,7 +302,10 @@ func make_mine_works() -> void:
 
 func make_lower_pools() -> void:
 	var lower := group(scene_root, "LowerStalactitePools", Vector3(0, -0.60, 0))
-	box(lower, "LowerPoolWater", Vector3(-7.1, 0.075, 5.8), Vector3(5.7, 0.05, 4.3), "294e56")
+	var lower_pool_points: Array[Vector2] = [Vector2(-10.2, 5.5), Vector2(-9.0, 4.25), Vector2(-6.8, 4.05), Vector2(-4.55, 5.0), Vector2(-4.0, 6.5), Vector2(-5.2, 7.75), Vector2(-7.8, 8.18), Vector2(-9.75, 7.25)]
+	floor_patch(lower, "LowerPoolWater", lower_pool_points, 0.075, "294e56")
+	for p in [Vector3(-9.35, 0.02, 5.75), Vector3(-5.25, 0.02, 5.1), Vector3(-4.75, 0.02, 7.25), Vector3(-8.6, 0.02, 7.85)]:
+		faceted_rock(lower, "LowerPoolEdgeRock", p, Vector3(0.42, 0.18, 0.55), "5f6d64", 7)
 	for i in range(26):
 		var a := rng.randf() * TAU
 		var r := rng.randf_range(1.4, 4.4)
@@ -321,10 +386,10 @@ func enlarge_layout() -> void:
 
 func make_entry_and_exit() -> void:
 	var entry := group(scene_root, "EntranceTransition")
-	box(entry, "EntryRockLeft", Vector3(-1.65, 1.6, 8.7), Vector3(1.1, 3.3, 1.2), "59645a")
-	box(entry, "EntryRockRight", Vector3(1.65, 1.6, 8.7), Vector3(1.1, 3.3, 1.2), "59645a")
-	box(entry, "EntryRockTop", Vector3(0, 3.05, 8.7), Vector3(3.8, 0.75, 1.2), "4b574f")
-	box(entry, "EntryDarkness", Vector3(0, 1.55, 9.16), Vector3(2.1, 2.5, 0.08), "202823")
+	for p in [Vector3(-1.65, 1.25, 8.7), Vector3(-1.35, 2.65, 8.72), Vector3(1.65, 1.25, 8.7), Vector3(1.35, 2.7, 8.72), Vector3(-0.7, 3.08, 8.72), Vector3(0.7, 3.08, 8.72)]:
+		faceted_rock(entry, "EntryRimRock", p, Vector3(0.52, 0.85, 0.58), "59645a", 8)
+	var entry_shadow := PackedVector3Array([Vector3(-1.03, 0.34, 9.16), Vector3(-0.74, 2.68, 9.16), Vector3(0.74, 2.68, 9.16), Vector3(1.03, 0.34, 9.16), Vector3(-0.75, 0.18, 9.16), Vector3(0.75, 0.18, 9.16)])
+	solid(entry, "EntryDarkness", entry_shadow, PackedInt32Array([0, 1, 2, 0, 2, 3, 4, 0, 3, 4, 3, 5]), "202823", Vector3.FORWARD)
 	var portal := Area3D.new()
 	portal.name = "ExitToNorthernRidge"
 	portal.collision_layer = 0
