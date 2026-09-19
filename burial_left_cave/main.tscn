@@ -1,0 +1,254 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://burial_left_cave/viewer.gd" id="1"]
+
+[ext_resource type="PackedScene" path="res://burial_left_cave/world.tscn" id="2"]
+
+[ext_resource type="Texture2D" path="res://burial_left_cave/gear.svg" id="3"]
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.085,0.115,0.105,0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35,0.43,0.34,1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_left = 16
+corner_radius_bottom_right = 16
+shadow_size = 14
+
+[sub_resource type="Theme" id="MenuTheme"]
+default_font_size = 20
+
+
+[node name="VillageViewer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.1,0.13,0.12,1)
+
+
+[node name="WorldViewport" type="SubViewport" parent="."]
+own_world_3d = true
+size = Vector2i(1920,1080)
+render_target_update_mode = 4
+
+
+[node name="World" parent="WorldViewport" instance=ExtResource("2")]
+
+
+[node name="Picture" type="TextureRect" parent="."]
+texture_filter = 1
+mouse_filter = 2
+expand_mode = 1
+
+
+[node name="Status" type="Label" parent="."]
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.97,0.96,0.89,1)
+theme_override_colors/font_shadow_color = Color(0,0,0,0.85)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+
+
+[node name="Gear" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 80.0
+grow_horizontal = 0
+tooltip_text = "打开设置（Esc）"
+icon = ExtResource("3")
+
+
+[node name="Settings" type="Control" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+
+[node name="Backdrop" type="ColorRect" parent="Settings"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025,0.04,0.03,0.32)
+
+
+[node name="Panel" type="PanelContainer" parent="Settings"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -492.0
+offset_top = 94.0
+offset_right = -24.0
+grow_horizontal = 0
+mouse_filter = 0
+theme = SubResource("MenuTheme")
+theme_override_styles/panel = SubResource("PanelStyle")
+
+
+[node name="Margin" type="MarginContainer" parent="Settings/Panel"]
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_right = 26
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 26
+
+
+[node name="Content" type="VBoxContainer" parent="Settings/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+
+[node name="Header" type="HBoxContainer" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+
+
+[node name="Title" type="Label" parent="Settings/Panel/Margin/Content/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "画面与镜头"
+
+
+[node name="Close" type="Button" parent="Settings/Panel/Margin/Content/Header"]
+layout_mode = 2
+custom_minimum_size = Vector2(44,44)
+text = "×"
+tooltip_text = "关闭设置（Esc）"
+
+
+[node name="Resolution" type="Label" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.69,0.77,0.64,1)
+text = "1920 × 1080  ·  固定渲染分辨率"
+
+
+[node name="Separator" type="HSeparator" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+
+
+[node name="Options" type="VBoxContainer" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+
+[node name="pixel" type="CheckButton" parent="Settings/Panel/Margin/Content/Options"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,44)
+text = "像素化效果"
+button_pressed = true
+
+
+[node name="outline" type="CheckButton" parent="Settings/Panel/Margin/Content/Options"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,44)
+text = "轮廓描边"
+button_pressed = true
+
+
+[node name="toon" type="CheckButton" parent="Settings/Panel/Margin/Content/Options"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,44)
+text = "分阶光照"
+button_pressed = true
+
+
+[node name="highlight" type="CheckButton" parent="Settings/Panel/Margin/Content/Options"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,44)
+text = "边缘提亮"
+button_pressed = true
+
+
+[node name="snap" type="CheckButton" parent="Settings/Panel/Margin/Content/Options"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,44)
+text = "相机像素吸附"
+button_pressed = true
+
+
+[node name="orbit" type="CheckButton" parent="Settings/Panel/Margin/Content/Options"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,44)
+text = "自动旋转镜头"
+button_pressed = false
+
+
+[node name="Separator2" type="HSeparator" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+
+
+[node name="PixelLabel" type="Label" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+text = "像素大小  3 × 3 px"
+
+
+[node name="PixelSize" type="HSlider" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,36)
+min_value = 1.0
+max_value = 12.0
+step = 1.0
+value = 3.0
+
+
+[node name="PixelHint" type="Label" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "1：原始清晰度 · 数值越大，像素颗粒越粗"
+
+
+[node name="ZoomLabel" type="Label" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+text = "镜头可视范围"
+
+
+[node name="Zoom" type="HSlider" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,36)
+min_value = 30.0
+max_value = 150.0
+step = 1.0
+value = 100.0
+
+
+[node name="ZoomHint" type="Label" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "拉近看细节 ←                  → 拉远看全景"
+
+
+[node name="Reset" type="Button" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,44)
+text = "重置镜头"
+
+
+[node name="Hint" type="Label" parent="Settings/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "即时生效 · Esc 或点击面板外关闭"
