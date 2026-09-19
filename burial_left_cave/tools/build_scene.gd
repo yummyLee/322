@@ -1,6 +1,7 @@
 extends "scene_parts.gd"
 const OUTPUT := "res://burial_left_cave/world.tscn"
 const ROCK_PALETTE := ["25343d","30414a","3a4b52","46545a","526066"]
+const TERRAIN_CELL := 1.10
 
 func _initialize() -> void:
 	var args := OS.get_cmdline_args()
@@ -30,20 +31,57 @@ func _initialize() -> void:
 	scene_root.free()
 	quit(err)
 
+func tone(base: String, index: int) -> String:
+	var c := Color(base)
+	var delta: float = [-0.035,0.0,0.025,0.045][posmod(index,4)]
+	return Color(clampf(c.r+delta,0.0,1.0),clampf(c.g+delta,0.0,1.0),clampf(c.b+delta,0.0,1.0),1.0).to_html(false)
+
+func grid_jitter(ix: int, iz: int) -> Vector2:
+	var seed := float(ix*9283+iz*6899)
+	return Vector2(sin(seed*0.017)*0.36,cos(seed*0.013)*0.36)
+
+func cell_height(ix: int, iz: int, base_y: float, water := false) -> float:
+	if water:
+		return base_y + sin(float(ix*17+iz*11))*0.008
+	return base_y + sin(float(ix*17+iz*11))*0.085 + cos(float(ix*7-iz*13))*0.050
+
 func patch(parent: Node, label: String, points: Array, y: float, color: String) -> Node3D:
+	# A room is a stitched field of small irregular cells. The outline remains
+	# editable as a region group, while no large fan or rectangle survives in
+	# the baked scene.
 	var g := group(parent,label)
-	var center := Vector3.ZERO
+	var polygon := PackedVector2Array()
+	var min_x := INF; var max_x := -INF; var min_z := INF; var max_z := -INF
 	for p in points:
-		center += p
-	center /= points.size()
-	var verts := PackedVector3Array([Vector3(center.x,y,center.z)])
-	for p in points:
-		verts.append(Vector3(p.x,y,p.z))
-	var indices := PackedInt32Array()
-	for i in range(points.size()):
-		var j := (i + 1) % points.size()
-		indices.append(0); indices.append(i + 1); indices.append(j + 1)
-	solid(g,"Floor",verts,indices,color,Vector3.UP)
+		var q := Vector2(p.x,p.z)
+		polygon.append(q)
+		min_x = minf(min_x,q.x); max_x = maxf(max_x,q.x)
+		min_z = minf(min_z,q.y); max_z = maxf(max_z,q.y)
+	var ix0 := floori(min_x/TERRAIN_CELL)-1; var ix1 := ceili(max_x/TERRAIN_CELL)+1
+	var iz0 := floori(min_z/TERRAIN_CELL)-1; var iz1 := ceili(max_z/TERRAIN_CELL)+1
+	var water := color in ["2f6570","3b6266"]
+	var cell_index := 0
+	for ix in range(ix0,ix1):
+		for iz in range(iz0,iz1):
+			var x0 := ix*TERRAIN_CELL; var z0 := iz*TERRAIN_CELL
+			var x1 := (ix+1)*TERRAIN_CELL; var z1 := (iz+1)*TERRAIN_CELL
+			var v00 := Vector2(x0,z0)+grid_jitter(ix,iz)
+			var v10 := Vector2(x1,z0)+grid_jitter(ix+1,iz)
+			var v11 := Vector2(x1,z1)+grid_jitter(ix+1,iz+1)
+			var v01 := Vector2(x0,z1)+grid_jitter(ix,iz+1)
+			var inside := 0
+			for v in [v00,v10,v11,v01]:
+				if Geometry2D.is_point_in_polygon(v,polygon): inside += 1
+			if inside < 2: continue
+			var verts := PackedVector3Array([
+				Vector3(v00.x,cell_height(ix,iz,y,water),v00.y),
+				Vector3(v10.x,cell_height(ix+1,iz,y,water),v10.y),
+				Vector3(v11.x,cell_height(ix+1,iz+1,y,water),v11.y),
+				Vector3(v01.x,cell_height(ix,iz+1,y,water),v01.y)
+			])
+			var indices := PackedInt32Array([0,1,2,0,2,3] if posmod(ix+iz,2)==0 else [0,1,3,1,2,3])
+			solid(g,"GroundCell_%03d"%cell_index,verts,indices,tone(color,cell_index))
+			cell_index += 1
 	return g
 
 func rock(parent: Node, label: String, p: Vector3, s: Vector3, color := "") -> void:
@@ -66,12 +104,16 @@ func rim(parent: Node, points: Array, y: float, height: float, density: int = 2)
 func slope_quad(parent: Node, label: String, a: Vector3, b: Vector3, width: float, color: String) -> void:
 	var dir := Vector3(b.x-a.x,0,b.z-a.z).normalized()
 	var side := Vector3(-dir.z,0,dir.x)
-	var w0 := width*rng.randf_range(0.88,1.06)
-	var w1 := width*rng.randf_range(0.88,1.06)
-	var verts := PackedVector3Array([
-		a+side*w0*0.5, b+side*w1*0.5, b-side*w1*0.5, a-side*w0*0.5
-	])
-	solid(parent,label,verts,PackedInt32Array([0,1,2,0,2,3]),color)
+	var length := a.distance_to(b)
+	var steps := maxi(3,ceili(length/0.85))
+	for i in range(steps):
+		var t0 := i/float(steps); var t1 := (i+1)/float(steps)
+		var p0 := a.lerp(b,t0)+side*rng.randf_range(-0.10,0.10)+Vector3(0,0.06,0)
+		var p1 := a.lerp(b,t1)+side*rng.randf_range(-0.10,0.10)+Vector3(0,0.06,0)
+		var w0 := width*rng.randf_range(0.86,1.06); var w1 := width*rng.randf_range(0.86,1.06)
+		var verts := PackedVector3Array([p0+side*w0*0.5,p1+side*w1*0.5,p1-side*w1*0.5,p0-side*w0*0.5])
+		var indices := PackedInt32Array([0,1,2,0,2,3] if i%2==0 else [0,1,3,1,2,3])
+		solid(parent,"%s_Cell_%02d"%[label,i],verts,indices,tone(color,i))
 
 func corridor_edges(parent: Node, label: String, points: Array, width: float) -> void:
 	var g := group(parent,label)
