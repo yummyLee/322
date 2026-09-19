@@ -351,9 +351,9 @@ func spider_web(parent: Node, label: String, p: Vector3, size: float) -> void:
 func stone_pillar_cluster(parent: Node, label: String, p: Vector3, y: float) -> void:
 	var g := group(parent,label,p)
 	for i in range(3):
-		var q := p+Vector3(rng.randf_range(-1.0,1.0),0,rng.randf_range(-0.8,0.8))
+		var q := Vector3(rng.randf_range(-1.0,1.0),0,rng.randf_range(-0.8,0.8))
 		var pillar := group(g,"StonePillar_%02d"%i,q)
-		stalagmite(pillar,"PillarBody",Vector3(0,y,0),rng.randf_range(1.7,3.8),rng.randf_range(0.28,0.60),["465960","52636a","3d5058"][i])
+		stalagmite(pillar,"PillarBody",Vector3(0,y,0),rng.randf_range(1.0,2.2),rng.randf_range(0.28,0.52),["465960","52636a","3d5058"][i])
 		rock(pillar,"PillarFoot",Vector3(0,y+0.12,0),Vector3(rng.randf_range(0.45,0.8),0.24,rng.randf_range(0.42,0.72)),"59666a")
 		cylinder(pillar,"PillarCollar",Vector3(0,y+0.72,0),rng.randf_range(0.30,0.50),0.10,["59666a","697379"][i%2],rng.randf_range(0.18,0.28),7)
 
@@ -421,11 +421,9 @@ func build_layout() -> void:
 	patch(terrain,"J13_NameWallChamber",j13_points,3.0,"494b49"); rim(rock_shell,j13_points,2.95,2.6)
 	corridor(terrain,"J12_to_J13",[Vector3(34,3,-29),Vector3(34.8,3,-27.9),Vector3(36.2,3,-28.5),Vector3(36.4,3,-29.6),Vector3(37,3,-29)],2.5,3.0,"52554e")
 
+	# The open-top presentation uses the rim and side walls as the cave ceiling
+	# cue; detached stalactites are intentionally omitted from the playable view.
 	var ceiling := group(scene_root,"CeilingFormations")
-	for p in [Vector3(-31,5,18),Vector3(-18,6,14),Vector3(10,6,15),Vector3(27,7,6),Vector3(-35,5,-2),Vector3(-34,6,-17),Vector3(-27,6,-34),Vector3(-7,7,-37),Vector3(17,7,-37),Vector3(39,7,-36),Vector3(47,7,-27)]:
-		stalactite(ceiling,"CeilingFang",p,rng.randf_range(1.4,3.1),rng.randf_range(0.25,0.55))
-	for p in [Vector3(-25,-0.8,4),Vector3(-18,-0.8,7),Vector3(-22,-1.4,-4),Vector3(-17,-1.4,-13),Vector3(-26,-2.2,-17),Vector3(-18,0.8,-28),Vector3(-14,0.8,-31)]:
-		stalagmite(rock_shell,"LimestoneSpire",p,rng.randf_range(1.2,2.8),rng.randf_range(0.20,0.45))
 
 	var water := group(scene_root,"WaterFeatures")
 	patch(water,"J3_ReflectingPool",[Vector3(-29,-0.15,4),Vector3(-24,-0.15,7),Vector3(-17,-0.15,5),Vector3(-16,-0.15,0),Vector3(-22,-0.15,-2),Vector3(-29,-0.15,0)],-0.22,"2f6570")

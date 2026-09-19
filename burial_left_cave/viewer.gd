@@ -45,6 +45,8 @@ func _ready() -> void:
 	set_pixel_size(pixel_slider.value)
 	resized.connect(layout_view)
 	layout_view()
+	if "--orbit" in OS.get_cmdline_user_args():
+		orbit = true
 	if "--plain" in OS.get_cmdline_user_args():
 		for key in ["pixel","outline","toon","highlight","snap"]:
 			options.get_node(key).button_pressed = false
@@ -127,7 +129,7 @@ func _process(delta: float) -> void:
 
 func capture() -> void:
 	await RenderingServer.frame_post_draw
-	var suffix := "_plain" if "--plain" in OS.get_cmdline_user_args() else "_settings" if "--settings" in OS.get_cmdline_user_args() else ""
+	var suffix := "_orbit_plain" if "--orbit" in OS.get_cmdline_user_args() and "--plain" in OS.get_cmdline_user_args() else "_orbit" if "--orbit" in OS.get_cmdline_user_args() else "_plain" if "--plain" in OS.get_cmdline_user_args() else "_settings" if "--settings" in OS.get_cmdline_user_args() else ""
 	var err := get_viewport().get_texture().get_image().save_png("res://burial_left_cave/preview"+suffix+".png")
 	print("Screenshot saved: ",err)
 	get_tree().quit(err)
